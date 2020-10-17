@@ -1,0 +1,7 @@
+
+node_modules/
+showcase/
+src/
+tests/
+.babelrc
+!dist/
