@@ -25,3 +25,4 @@
 
 export { BoolUtils } from "./BoolUtils"
 export { ObjUtils } from "./ObjUtils"
+export { DOMUtils } from "./DOMUtils"

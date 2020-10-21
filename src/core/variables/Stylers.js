@@ -34,3 +34,20 @@ export var Alignment = {
     BOTTOM_LEFT: 'bottom-left',
     BOTTOM_RIGHT: 'bottom-right'
 }
+
+export var Elevation = {
+    NONE: '',
+    ONE: 'r-r-elevation-1',
+    TWO: 'r-r-elevation-2',
+    THREE: 'r-r-elevation-3',
+    FOUR: 'r-r-elevation-4',
+    FIVE: 'r-r-elevation-5',
+    SIX: 'r-r-elevation-6',
+    SEVEN: 'r-r-elevation-7',
+    EIGHT: 'r-r-elevation-8',
+    NINE: 'r-r-elevation-9',
+    TEN: 'r-r-elevation-10',
+    ELEVEN: 'r-r-elevation-11',
+    TWELVE: 'r-r-elevation-12',
+    THIRTEEN: 'r-r-elevation-13'
+}

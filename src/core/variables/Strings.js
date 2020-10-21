@@ -23,12 +23,13 @@
  * SOFTWARE.
  */
 
-export var Type = {
+export var Scheme = {
     STATELESS: "stateless",
     PRIMARY: "primary",
     SECONDARY: "secondary",
     SUCCESS: "success",
     INFO: "info",
     WARNING: "warning",
-    DANGER: "danger"
+    DANGER: "danger",
+    SKELETON: "skeleton"
 }

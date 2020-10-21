@@ -25,6 +25,16 @@
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
+.r-r-noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+
 .r-r-disabled {
     opacity: 50%;
     pointer-events:none;
@@ -53,12 +63,44 @@
     text-decoration: underline;
 }
 
+/* Margins */
+
 .r-r-margin-right-7px {
     margin-right: 7px;
 }
 
 .r-r-margin-left-7px {
     margin-left: 7px;
+}
+
+.r-r-margin-10px {
+    margin: 10px;
+}
+
+.r-r-margin-20px {
+    margin: 20px;
+}
+
+/* End Margins */
+
+.r-r-width-100-percent {
+    width: 100%;
+}
+
+.r-r-display-block {
+    display: block;
+}
+
+.r-r-float-right {
+    float: right;
+}
+
+.r-r-float-left {
+    float: left;
+}
+
+.r-r-float-center {
+    float: center;
 }
 
 /* Types, stateless hould not have over and co*/
@@ -197,3 +239,78 @@
 }
 
 /* End Color Type */
+
+/* Transition animation */
+
+.transition-dropdown-enter {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.transition-dropdown-enter-active {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in;
+}
+
+.transition-dropdown-exit {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-out;
+}
+
+.transition-dropdown-exit-active {
+    max-height: 0;
+    overflow: hidden;
+}
+
+/* The loading Class */ 
+
+.r-r-skeleton {
+    border: none !important;
+}
+
+.r-r-skeleton > * {
+    display: none !important;
+}
+
+.r-r-loading { 
+    position: relative; 
+    color: #e4e4e4 !important;
+    background-color: #e4e4e4 !important;
+    pointer-events: none;
+    overflow: hidden !important;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+} 
+
+.r-r-loading::after { 
+    display: block !important; 
+    content: "" !important; 
+    position: absolute !important; 
+    width: 100% !important; 
+    height: 100% !important; 
+    top: 0px !important; 
+    overflow: hidden !important;
+    transform: translateX(-100%); 
+    background: -webkit-gradient(linear, left top, 
+                right top, from(transparent),  
+                color-stop(rgba(255, 255, 255, 0.5)), 
+                to(transparent)); 
+                  
+    background: linear-gradient(90deg, transparent, 
+            rgba(255, 255, 255, 0.5), transparent); 
+
+    animation: r-r-loading 1.0s infinite; 
+} 
+
+@keyframes r-r-loading { 
+    100% { 
+        transform: translateX(100%); 
+    } 
+}
+
+/* End The loading Class */ 

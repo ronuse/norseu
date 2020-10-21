@@ -2,7 +2,8 @@
 
 import React from 'react'
 import { HashRouter, Switch, Route } from "react-router-dom"
-import { ButtonsPage } from './components/core/ButtonsPage'
+import { ButtonPage } from './components/core/buttons/ButtonPage'
+import { PanelPage } from './components/core/panels/PanelPage'
 import { ScratchPage } from './components/ScratchPage'
 import './index.css'
 
@@ -10,7 +11,8 @@ const App = () => {
     return (
         <HashRouter>
             <Switch>
-                <Route exact path="/button" component={ButtonsPage}/>
+                <Route exact path="/core/buttons/button" component={ButtonPage}/>
+                <Route exact path="/core/panels/panel" component={PanelPage}/>
                 <Route exact path="/" component={ScratchPage}/>
             </Switch>
         </HashRouter>

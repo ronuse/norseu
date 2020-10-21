@@ -23,6 +23,5 @@
  * SOFTWARE.
  */
 
-import "./Buttons.css"
-import "../../style.css"
-export { Button } from "./Button"
+import "./Panels.css"
+export { Panel } from "./Panel"

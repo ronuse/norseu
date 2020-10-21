@@ -26,8 +26,8 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { ObjUtils, BoolUtils } from "../utils/"
-import { Type, Alignment, Colors } from "../variables/"
+import { ObjUtils, BoolUtils } from "../utils/";
+import { Scheme, Alignment } from "../variables/";
 
 export class Button extends Component {
 
@@ -39,13 +39,14 @@ export class Button extends Component {
         rightIcon: null,
         tooltip: null,
         tooltipProps: null,
-        type: null,
+        scheme: null,
         link: null,
         raised: null,
         rounded: null,
         borderless: null,
         textonly: null,
-        outlined: null
+        outlined: null,
+        fill: false
     }
 
     static propTypes = {
@@ -56,13 +57,14 @@ export class Button extends Component {
         rightIcon: PropTypes.string,
         tooltip: PropTypes.string,
         tooltipProps: PropTypes.object,
-        type: PropTypes.string,
+        scheme: PropTypes.string,
         link: PropTypes.any,
         raised: PropTypes.any,
         rounded: PropTypes.any,
         borderless: PropTypes.any,
         textonly: PropTypes.any,
-        outlined: PropTypes.any
+        outlined: PropTypes.any,
+        fill: PropTypes.bool
     }
 
     componentDidMount() {
@@ -78,34 +80,42 @@ export class Button extends Component {
     }
 
     renderIcon() {
-        if (!this.props.icon) {
+        if (!this.props.icon || this.props.scheme == Scheme.SKELETON) {
             return null;
         }
 
         let className = classNames('r-r-button-icon', this.props.icon, {
-            'r-r-margin-right-7px': this.props.rightIcon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])
+            'r-r-margin-right-7px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
+                                    BoolUtils.equalsAny(this.props.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
+            'r-r-float-left': this.props.alignIcon === Alignment.LEFT,
+            'r-r-float-right': this.props.alignIcon === Alignment.RIGHT,
+            'r-r-float-center': this.props.alignIcon === Alignment.CENTER
         });
         return <i className={className}></i>;
     }
 
     renderRightIcon() {
-        if (!this.props.rightIcon) {
+        if (!this.props.rightIcon || this.props.scheme == Scheme.SKELETON) {
             return null;
         }
 
-        let className = classNames('r-r-button-right-icon', this.props.rightIcon);
+        let className = classNames(this.props.rightIcon, {
+            'r-r-float-right': this.props.fill
+        });
         return <i className={className}></i>;
     }
 
     renderText() {
-        if (!this.props.text) {
-            {/* return <span dangerouslySetInnerHTML={{ __html: "&nbsp;" }}></span>; */}
+        if (!this.props.text || this.props.scheme == Scheme.SKELETON) {
             return null;
         }
 
         let className = classNames({
             'r-r-margin-left-7px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
-            'r-r-margin-right-7px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon) 
+            'r-r-margin-right-7px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
+            'r-r-float-left': this.props.alignText === Alignment.LEFT,
+            'r-r-float-right': this.props.alignText === Alignment.RIGHT,
+            'r-r-float-center': this.props.alignText === Alignment.CENTER
         })
         return <span className={className}>{this.props.text}</span>;
     }
@@ -114,54 +124,59 @@ export class Button extends Component {
         let className = classNames('r-r-button r-r-button-theme ', this.props.className, {
             'r-r-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
             'r-r-disabled': this.props.disabled,
+            'r-r-width-100-percent r-r-display-block': this.props.fill,
             'r-r-button-rounded-border': this.props.rounded,
             'r-r-button-raised-border': this.props.raised,
             'r-r-button-textonly': this.props.textonly || this.props.outlined,
             'r-r-no-background r-r-text-decoration-underline-hover': this.props.link,
             'r-r-no-border': this.props.borderless || this.props.textonly || this.props.link,
 
-            'r-r-primary': this.props.type === Type.PRIMARY && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-secondary': this.props.type === Type.SECONDARY && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-success': this.props.type === Type.SUCCESS && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-info': this.props.type === Type.INFO && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-warning': this.props.type === Type.WARNING && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-danger': this.props.type === Type.DANGER && !this.props.textonly && !this.props.outlined && !this.props.link,
+            'r-r-primary': this.props.scheme === Scheme.PRIMARY && !this.props.textonly && !this.props.outlined && !this.props.link,
+            'r-r-secondary': this.props.scheme === Scheme.SECONDARY && !this.props.textonly && !this.props.outlined && !this.props.link,
+            'r-r-success': this.props.scheme === Scheme.SUCCESS && !this.props.textonly && !this.props.outlined && !this.props.link,
+            'r-r-info': this.props.scheme === Scheme.INFO && !this.props.textonly && !this.props.outlined && !this.props.link,
+            'r-r-warning': this.props.scheme === Scheme.WARNING && !this.props.textonly && !this.props.outlined && !this.props.link,
+            'r-r-danger': this.props.scheme === Scheme.DANGER && !this.props.textonly && !this.props.outlined && !this.props.link,
             
-            'r-r-primary-text': this.props.type === Type.PRIMARY && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-secondary-text': this.props.type === Type.SECONDARY && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-success-text': this.props.type === Type.SUCCESS && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-info-text': this.props.type === Type.INFO && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-warning-text': this.props.type === Type.WARNING && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-danger-text': this.props.type === Type.DANGER && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-primary-text': this.props.scheme === Scheme.PRIMARY && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-secondary-text': this.props.scheme === Scheme.SECONDARY && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-success-text': this.props.scheme === Scheme.SUCCESS && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-info-text': this.props.scheme === Scheme.INFO && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-warning-text': this.props.scheme === Scheme.WARNING && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-danger-text': this.props.scheme === Scheme.DANGER && (this.props.outlined || this.props.textonly || this.props.link),
             
-            'r-r-primary-border-1px': this.props.type === Type.PRIMARY && this.props.outlined,
-            'r-r-secondary-border-1px': this.props.type === Type.SECONDARY && this.props.outlined,
-            'r-r-success-border-1px': this.props.type === Type.SUCCESS && this.props.outlined,
-            'r-r-info-border-1px': this.props.type === Type.INFO && this.props.outlined,
-            'r-r-warning-border-1px': this.props.type === Type.WARNING && this.props.outlined,
-            'r-r-danger-border-1px': this.props.type === Type.DANGER && this.props.outlined,
+            'r-r-primary-border-1px': this.props.scheme === Scheme.PRIMARY && this.props.outlined,
+            'r-r-secondary-border-1px': this.props.scheme === Scheme.SECONDARY && this.props.outlined,
+            'r-r-success-border-1px': this.props.scheme === Scheme.SUCCESS && this.props.outlined,
+            'r-r-info-border-1px': this.props.scheme === Scheme.INFO && this.props.outlined,
+            'r-r-warning-border-1px': this.props.scheme === Scheme.WARNING && this.props.outlined,
+            'r-r-danger-border-1px': this.props.scheme === Scheme.DANGER && this.props.outlined,
             
-            'r-r-primary-border-1px-focus': this.props.type === Type.PRIMARY,
-            'r-r-secondary-border-1px-focus': this.props.type === Type.SECONDARY,
-            'r-r-success-border-1px-focus': this.props.type === Type.SUCCESS,
-            'r-r-info-border-1px-focus': this.props.type === Type.INFO,
-            'r-r-warning-border-1px-focus': this.props.type === Type.WARNING,
-            'r-r-danger-border-1px-focus': this.props.type === Type.DANGER,
+            'r-r-primary-border-1px-focus': this.props.scheme === Scheme.PRIMARY,
+            'r-r-secondary-border-1px-focus': this.props.scheme === Scheme.SECONDARY,
+            'r-r-success-border-1px-focus': this.props.scheme === Scheme.SUCCESS,
+            'r-r-info-border-1px-focus': this.props.scheme === Scheme.INFO,
+            'r-r-warning-border-1px-focus': this.props.scheme === Scheme.WARNING,
+            'r-r-danger-border-1px-focus': this.props.scheme === Scheme.DANGER,
+            'r-r-button-min-size r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON && !(this.props.icon || this.props.rightIcon),
+            'r-r-button-min-size-icon-only r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
 
-            'r-r-stateless': this.props.type === Type.STATELESS && !this.props.link
+            'r-r-stateless': BoolUtils.equalsAny(this.props.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.props.link
         });
         let icon = this.renderIcon();
-        let iconPreText = BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]) ;
         let rightIcon = this.renderRightIcon();
         let text = this.renderText();
+        let iconPreText = BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]) ;
         let componentProps = ObjUtils.findDiffKeys(this.props, Button.defaultProps);
+        ObjUtils.replaceEntry(componentProps, "className", className);
 
         return (
             <button ref={(el) => this.element = el} {...componentProps} className={className}>
                 { iconPreText ? icon : '' }
+                { this.props.fill ? rightIcon : '' }
                 { text }
                 { iconPreText ? '' : icon }
-                { rightIcon }
+                { this.props.fill ? '' : rightIcon }
             </button>
         )
     }

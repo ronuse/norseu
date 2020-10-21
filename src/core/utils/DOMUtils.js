@@ -23,48 +23,12 @@
  * SOFTWARE.
  */
 
-.r-r-button {
-    margin: 5px;
-    display: inline-flex;
-    cursor: pointer;
-    user-select: none;
-    align-items: center;
-    vertical-align: bottom;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-    background-color: #F5F8FA;
-    color: #293742;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #A7B6C2;
-}
+let uniqueElementIdsCount = 0;
 
-.r-r-button-rounded-border {
-    border-radius: 20px;
-}
+export class DOMUtils {
 
-.r-r-button-raised-border {
-    border: 1px solid #A7B6C2;
-    box-shadow: 1px 2.5px 5px #A7B6C2;
-    -webkit-box-shadow: 1px 2.5px 5px #A7B6C2;
-    -moz-box-shadow: 1px 2.5px 5px #A7B6C2;
-}
+    static UniqueElementId() {
+        return 'ronuse-auto-id-' + (uniqueElementIdsCount++)
+    }
 
-.r-r-button:hover {
-    filter: brightness(97%);
-    border-color: #8A9BA8;
 }
-
-.r-r-button:active {
-    box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .1);
-}
-
-.r-r-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(167, 182, 194, .5);
-    -webkit-box-shadow: 0 0 0 3px rgba(167, 182, 194, .5);
-    -moz-box-shadow: 0 0 0 3px rgba(167, 182, 194, .5);
-}
-
- 

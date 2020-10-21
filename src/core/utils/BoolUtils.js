@@ -47,4 +47,13 @@ export class BoolUtils {
         return true;
     }
 
+    static noneEquals(obj, compares) {
+        for (var compare of compares) {
+            if (this.bothEquals(obj, compare)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

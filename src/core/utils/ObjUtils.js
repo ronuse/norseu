@@ -13,4 +13,11 @@ export class ObjUtils {
         }, {});
     }
 
+    static replaceEntry(obj, key, newValue) {
+        var oldValue = obj[key];
+
+        obj[key] = newValue;
+        return oldValue;
+    }
+
 }

@@ -1,0 +1,36 @@
+
+/**
+ * MIT License
+ * Copyright (c) 2020 Ronuse Agency, Adewale Azeez, Oyeleke Damilola.
+ */
+
+.r-r-panel {
+    border: 1px solid #D8E1E8;
+    border-radius: 5px;
+}
+
+.r-r-panel-title {
+    height: 40px;
+    background-color: #F5F8FA;
+    border-bottom: inherit;
+    border-radius: inherit;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px ;
+    display: flex; 
+    align-items: center;
+}
+
+.r-r-panel-title > .r-r-panel-title-text {
+    margin-left: 15px;
+    font-weight: 600;
+}
+
+.r-r-panel-title > .r-r-panel-toggle-button {
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.r-r-panel-content {
+    padding: 20px;
+    margin: 0px;
+}
