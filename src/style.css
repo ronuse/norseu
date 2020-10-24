@@ -63,7 +63,35 @@
     text-decoration: underline;
 }
 
-/* Margins */
+/* Sizes */
+
+.r-r-width-min-content {
+    width: min-content;
+}
+
+.r-r-width-max-content {
+    width: max-content;
+}
+
+/* Displays */
+
+.r-r-display-none {
+    display: none;
+}
+
+.r-r-display-block {
+    display: block;
+}
+
+.r-r-display-flex {
+    display: flex;
+}
+
+/* Margins and Paddings And Borders */
+
+.r-r-no-border {
+    border: none !important;
+}
 
 .r-r-margin-right-7px {
     margin-right: 7px;
@@ -81,14 +109,27 @@
     margin: 20px;
 }
 
+.r-r-padding-20px {
+    padding: 20px;
+}
+
+.r-r-border-1px-radius-5px {
+    border: 1px solid #D8E1E8;
+    border-radius: 5px;
+}
+
+.r-r-border-bottom-2px-grey1 {
+    border-bottom: 2px solid #D8E1E8;
+}
+
+.r-r-border-top-2px-grey1 {
+    border-top: 2px solid #D8E1E8;
+}
+
 /* End Margins */
 
 .r-r-width-100-percent {
     width: 100%;
-}
-
-.r-r-display-block {
-    display: block;
 }
 
 .r-r-float-right {
@@ -288,13 +329,13 @@
 } 
 
 .r-r-loading::after { 
-    display: block !important; 
-    content: "" !important; 
-    position: absolute !important; 
-    width: 100% !important; 
-    height: 100% !important; 
-    top: 0px !important; 
-    overflow: hidden !important;
+    display: block; 
+    content: ""; 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0px; 
+    overflow: hidden;
     transform: translateX(-100%); 
     background: -webkit-gradient(linear, left top, 
                 right top, from(transparent),  

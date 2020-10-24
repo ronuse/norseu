@@ -25,4 +25,4 @@
 
 export { Colors, CoreColors } from "./Colors"
 export { Scheme } from "./Strings"
-export { Alignment, Elevation } from "./Stylers"
+export { Alignment, Elevation, Direction } from "./Stylers"

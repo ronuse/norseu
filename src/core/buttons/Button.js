@@ -46,7 +46,8 @@ export class Button extends Component {
         borderless: null,
         textonly: null,
         outlined: null,
-        fill: false
+        fill: false,
+        nostyle: false
     }
 
     static propTypes = {
@@ -58,13 +59,14 @@ export class Button extends Component {
         tooltip: PropTypes.string,
         tooltipProps: PropTypes.object,
         scheme: PropTypes.string,
-        link: PropTypes.any,
-        raised: PropTypes.any,
-        rounded: PropTypes.any,
-        borderless: PropTypes.any,
-        textonly: PropTypes.any,
-        outlined: PropTypes.any,
-        fill: PropTypes.bool
+        link: PropTypes.bool,
+        raised: PropTypes.bool,
+        rounded: PropTypes.bool,
+        borderless: PropTypes.bool,
+        textonly: PropTypes.bool,
+        outlined: PropTypes.bool,
+        fill: PropTypes.bool,
+        nostyle: PropTypes.bool
     }
 
     componentDidMount() {
@@ -121,15 +123,16 @@ export class Button extends Component {
     }
 
     render() {
-        let className = classNames('r-r-button r-r-button-theme ', this.props.className, {
+        let className = classNames({
+            'r-r-button': !this.props.nostyle,
             'r-r-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
-            'r-r-disabled': this.props.disabled,
+            'r-r-disabled': !this.props.nostyle && this.props.disabled,
             'r-r-width-100-percent r-r-display-block': this.props.fill,
-            'r-r-button-rounded-border': this.props.rounded,
-            'r-r-button-raised-border': this.props.raised,
-            'r-r-button-textonly': this.props.textonly || this.props.outlined,
-            'r-r-no-background r-r-text-decoration-underline-hover': this.props.link,
-            'r-r-no-border': this.props.borderless || this.props.textonly || this.props.link,
+            'r-r-button-rounded-border': !this.props.nostyle && this.props.rounded,
+            'r-r-button-raised-border': !this.props.nostyle && this.props.raised,
+            'r-r-button-textonly': !this.props.nostyle && this.props.textonly || this.props.outlined,
+            'r-r-no-background r-r-text-decoration-underline-hover': !this.props.nostyle && this.props.link,
+            'r-r-no-border': !this.props.nostyle && this.props.borderless || this.props.textonly || this.props.link,
 
             'r-r-primary': this.props.scheme === Scheme.PRIMARY && !this.props.textonly && !this.props.outlined && !this.props.link,
             'r-r-secondary': this.props.scheme === Scheme.SECONDARY && !this.props.textonly && !this.props.outlined && !this.props.link,
@@ -152,23 +155,22 @@ export class Button extends Component {
             'r-r-warning-border-1px': this.props.scheme === Scheme.WARNING && this.props.outlined,
             'r-r-danger-border-1px': this.props.scheme === Scheme.DANGER && this.props.outlined,
             
-            'r-r-primary-border-1px-focus': this.props.scheme === Scheme.PRIMARY,
-            'r-r-secondary-border-1px-focus': this.props.scheme === Scheme.SECONDARY,
-            'r-r-success-border-1px-focus': this.props.scheme === Scheme.SUCCESS,
-            'r-r-info-border-1px-focus': this.props.scheme === Scheme.INFO,
-            'r-r-warning-border-1px-focus': this.props.scheme === Scheme.WARNING,
-            'r-r-danger-border-1px-focus': this.props.scheme === Scheme.DANGER,
-            'r-r-button-min-size r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON && !(this.props.icon || this.props.rightIcon),
+            'r-r-primary-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.PRIMARY,
+            'r-r-secondary-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.SECONDARY,
+            'r-r-success-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.SUCCESS,
+            'r-r-info-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.INFO,
+            'r-r-warning-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.WARNING,
+            'r-r-danger-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.DANGER,
+            'r-r-button-min-size r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,
             'r-r-button-min-size-icon-only r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
 
             'r-r-stateless': BoolUtils.equalsAny(this.props.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.props.link
-        });
+        }, 'r-r-button-theme', this.props.className);
         let icon = this.renderIcon();
         let rightIcon = this.renderRightIcon();
         let text = this.renderText();
         let iconPreText = BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]) ;
         let componentProps = ObjUtils.findDiffKeys(this.props, Button.defaultProps);
-        ObjUtils.replaceEntry(componentProps, "className", className);
 
         return (
             <button ref={(el) => this.element = el} {...componentProps} className={className}>

@@ -14,17 +14,33 @@ code {
         monospace;
 }
 
+.r-r-showcase-component-page {
+    padding: 20px;
+    margin: 0px
+}
+
+.r-r-showcase-code {
+    margin: 20px !important;
+    padding: 30px !important;
+    background-color: #EBF1F5 !important;
+}
+
+.r-r-showcase-import-panel {
+    margin-bottom: 20px;
+}
+
+.r-r-showcase-documentation-panel {
+    margin-top: 20px;
+}
+
 p {
     margin: 0px;
 }
 
 
-/* TMPS */
-
-.wrap{
-    position:relative;
-    z-index:1;
-}
+/* TMPS *//* Style the tab */
+  
+  /* Style the tab content */
 
 .r-r-div {
     padding: 10px;

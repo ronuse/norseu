@@ -25,3 +25,4 @@
 
 import "./Panels.css"
 export { Panel } from "./Panel"
+export { TabPane, TabPanel } from "./TabPane"

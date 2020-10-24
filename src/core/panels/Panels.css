@@ -4,9 +4,10 @@
  * Copyright (c) 2020 Ronuse Agency, Adewale Azeez, Oyeleke Damilola.
  */
 
+ /* PANEL */
+
 .r-r-panel {
-    border: 1px solid #D8E1E8;
-    border-radius: 5px;
+    
 }
 
 .r-r-panel-title {
@@ -31,6 +32,37 @@
 }
 
 .r-r-panel-content {
-    padding: 20px;
-    margin: 0px;
+}
+
+/* TABPANE and TABPANEL */
+
+.r-r-tabpane {
+}
+
+.r-r-tabpane-content {
+}
+
+.r-r-tabpane-navigator {
+}
+
+.r-r-tab-button {
+    background-color: inherit;
+    border-radius: 1px ;
+    border: 2px solid rgba(0,0,0,0) !important;
+    padding: 14px;
+    cursor: pointer;
+    margin-right: 2px;
+    font-size: 14px;
+}
+
+.r-r-tab-button:focus {
+    outline: none;
+}
+
+.r-r-tab-button:hover {
+    border-bottom: 2px solid #738694 !important;
+}
+
+.r-r-tab-button.active {
+    border-bottom: 2px solid #0E5A8A !important;
 }

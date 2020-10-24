@@ -1,8 +1,25 @@
 
 import React from "react"
 import { Button } from 'ronuse-react-ui/core/buttons'
+import { Panel } from "ronuse-react-ui/core/panels/Panel";
+import { Scheme } from "ronuse-react-ui/core/variables";
 
 export class ScratchPage extends React.Component {
+
+    openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("r-r-tab-panel");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("r-r-tab-button");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        console.log(document.getElementById(cityName).type)
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+        }
 
     state = {
 
@@ -12,32 +29,83 @@ export class ScratchPage extends React.Component {
         var icon = this.state.buttonIcon ? this.state.buttonIcon : "fa fa-plus";
         return (
             <div style={{margin:"20px"}}>
+                <Panel scheme={Scheme.SKELETON}>
+                    <Button text={"Top Button"}/>
+                    <p>
+                        Hello World Hello World Hello World Hello World,<br/>
+                        Hello World Hello World Hello World Hello World,<br/>
+                        Hello World Hello World Hello World Hello World,<br/>
+                        Hello World Hello World Hello World Hello World, <br/>
+                    </p><br/>
+                    <Button text={"Button 1"}/>
+                    <Button text={"Button 2"}/>
+                    <Button text={"Button 3"}/>
+                </Panel>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <h2>Panel Flex Box</h2>
 
                 <Button icon={icon} onClick={(e)=> {
                     this.setState({buttonIcon: icon === "fa fa-plus" ? "fa fa-minus" : "fa fa-plus"});
                 }} rounded textonly/>
 
-                <div class="card" style={{width:"150px", height:"200px"}}> 
-                    <div class="card__image r-r-loading" style={{marginTop:"10px", width:"150px", height:"100px"}}></div> 
-                    <div class="card__title r-r-loading" style={{marginTop:"10px", width:"50px", height:"20px"}}></div> 
-                    <div class="card__description r-r-loading" style={{marginTop:"10px", width:"130px", height:"30px"}}></div> 
-                </div> 
+                <div>
+                    <Panel style={{borderBottom:"1px solid #D8E1E8"}} borderless>
+                        <Button nostyle className="r-r-tab-button" scheme={Scheme.PRIMARY} onClick={(e)=>{ this.openCity(e, 'London')}} icon="fa fa-user" rightIcon="fa fa-search" text="London" textonly/>
+                        <Button nostyle className="r-r-tab-button" scheme={Scheme.PRIMARY} onClick={(e)=>{ this.openCity(e, 'Paris')}} icon="fa fa-user" text="Paris" textonly/>
+                        <Button nostyle className="r-r-tab-button" scheme={Scheme.PRIMARY} onClick={(e)=>{ this.openCity(e, 'Tokyo')}} icon="fa fa-user" text="Tokyo" textonly/>
+                    </Panel>
+                    <Panel id="London" className="r-r-tab-panel active" scheme={Scheme.PRIMARY} borderless>
+                        <h3>London</h3>
+                        <p>London is the capital of England.</p>
+                    </Panel>
+                    <Panel id="Paris" className="r-r-tab-panel" scheme={Scheme.PRIMARY} borderless>
+                        <h3>Paris</h3>
+                        <p>Paris is the capital of France.</p> 
+                    </Panel>
+                    <Panel id="Tokyo" className="r-r-tab-panel" scheme={Scheme.PRIMARY} borderless>
+                        <h3>Tokyo</h3>
+                        <p>Tokyo is the capital of Japan.</p> 
+                    </Panel>
+                </div>
 
-                <div class="r-r-panel">
-                    <div className="r-r-panel-title">
-                        <span className="r-r-panel-title-text">Panel Title 1</span>
-
-                        <Button rounded textonly icon={icon} onClick={(e)=> {
-                            this.setState({buttonIcon: icon === "fa fa-plus" ? "fa fa-minus" : "fa fa-plus"});
-                        }} />
-                    </div>
-                    
-                    <div class="r-r-panel-content skeleton">
-                        foldable Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <div style={{display:"flex"}}>
+                    <Panel style={{marginRight:"15px"}} borderless>
+                        <Button fill nostyle className="r-r-tab-button" scheme={Scheme.PRIMARY} onClick={(e)=>{ this.openCity(e, 'London-1')}} icon="fa fa-user" rightIcon="fa fa-search" text="London" textonly/>
+                        <Button fill nostyle className="r-r-tab-button" scheme={Scheme.PRIMARY} onClick={(e)=>{ this.openCity(e, 'Paris-1')}} icon="fa fa-user" text="Paris France" textonly/>
+                        <Button fill nostyle className="r-r-tab-button" scheme={Scheme.PRIMARY} onClick={(e)=>{ this.openCity(e, 'Tokyo-1')}} icon="fa fa-user" text="Tokyo" textonly/>
+                    </Panel>
+                    <Panel id="London-1" className="r-r-tab-panel active" scheme={Scheme.PRIMARY} borderless>
+                        <h3>London</h3>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                        <p>London is the capital of England.</p>
+                    </Panel>
+                    <Panel id="Paris-1" className="r-r-tab-panel" scheme={Scheme.PRIMARY} borderless>
+                        <h3>Paris</h3>
+                        <p>Paris is the capital of France.</p> 
+                    </Panel>
+                    <Panel id="Tokyo-1" className="r-r-tab-panel" scheme={Scheme.PRIMARY} borderless>
+                        <h3>Tokyo</h3>
+                        <p>Tokyo is the capital of Japan.</p> 
+                    </Panel>
+                    <div>
+                        if not tabpanel add to button
                     </div>
                 </div>
                 

@@ -1,26 +1,47 @@
 
 import React from "react"
-import { Panel } from 'ronuse-react-ui/core/panels'
+import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels'
 import { Button } from 'ronuse-react-ui/core/buttons'
 import { Alignment, Scheme } from "ronuse-react-ui/core/variables"
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export class ButtonPage extends React.Component {
-    render() {
+
+    renderInteractiveEditor() {
         return (
-            <Panel className="r-r-margin-20px">
-                <h1>Button</h1>
-                <br/>
-                <code>{`
-                    import { Button } from 'ronuse-react-ui/core/buttons'
-                `}</code>
-                <br/>
+            <Panel style={{marginBottom:"20px"}}>
+                <h3>Interactive Preview Editor</h3>
+                <TabPane activeTabIndex={0}>
+                    <TabPanel title="WYSIWYG" icon="fa fa-eye">
+                        
+                    </TabPanel>
+                    <TabPanel title="Generated Source" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {`<Button text="Click Me" />
+<Button icon="fa fa-user-circle" text="View Profile" />
+<Button icon="fa fa-pencil" text="Edit" alignIcon={Alignment.RIGHT} />
+<Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" />
+<Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" alignIcon={Alignment.RIGHT} />
+<Button icon="fa fa-user-circle" text="Disabled" disabled/>
+<Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Link" link/>`}
+                        </SyntaxHighlighter>
+                    </TabPanel>
+                </TabPane>
+            </Panel>
+        )
+    }
+
+    renderPreview() {
+        return (
+            <Panel>
                 <h3>Basic</h3>
                 <Button text="Click Me" />
                 <Button icon="fa fa-user-circle" text="View Profile" />
                 <Button icon="fa fa-pencil" text="Edit" alignIcon={Alignment.RIGHT} />
                 <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" />
                 <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" alignIcon={Alignment.RIGHT} />
-                <Button icon="fa fa-user-circle" text="Disabled" onClick={()=>{alert("yea")}} disabled/>
+                <Button icon="fa fa-user-circle" text="Disabled" disabled/>
                 <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Link" link/>
 
                 <h3>Button with Scheme</h3>
@@ -138,6 +159,33 @@ export class ButtonPage extends React.Component {
                 <Button scheme={Scheme.INFO} icon="fa fa-bell" rounded textonly/>
                 <Button scheme={Scheme.WARNING} icon="fa fa-warning" rounded textonly/>
                 <Button scheme={Scheme.DANGER} icon="fa fa-times" rounded textonly/>
+            </Panel>
+        )
+    }
+
+    renderDocumentation() {
+        return (
+            <Panel  className="r-r-showcase-documentation-panel">
+                <h2>Properties</h2>
+                <h2>CSS</h2>
+            </Panel>
+        )
+    }
+
+    render() {
+        return (
+            <Panel className="r-r-showcase-component-page" borderless>
+                <h1>Button</h1>
+
+                <Panel className="r-r-showcase-import-panel">
+                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
+                        {`import { Button } from 'ronuse-react-ui/core/buttons'`}
+                    </SyntaxHighlighter>
+                </Panel>
+
+                {this.renderInteractiveEditor()}
+                {this.renderPreview()}
+                {this.renderDocumentation()}
             </Panel>
         )
     }

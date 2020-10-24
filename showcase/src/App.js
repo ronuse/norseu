@@ -4,6 +4,7 @@ import React from 'react'
 import { HashRouter, Switch, Route } from "react-router-dom"
 import { ButtonPage } from './components/core/buttons/ButtonPage'
 import { PanelPage } from './components/core/panels/PanelPage'
+import { TabPanePage } from './components/core/panels/TabPanePage'
 import { ScratchPage } from './components/ScratchPage'
 import './index.css'
 
@@ -13,6 +14,7 @@ const App = () => {
             <Switch>
                 <Route exact path="/core/buttons/button" component={ButtonPage}/>
                 <Route exact path="/core/panels/panel" component={PanelPage}/>
+                <Route exact path="/core/panels/tabpane" component={TabPanePage}/>
                 <Route exact path="/" component={ScratchPage}/>
             </Switch>
         </HashRouter>

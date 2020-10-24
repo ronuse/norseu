@@ -21,7 +21,7 @@ export class PanelPage extends React.Component {
 
     render() {
         return (
-            <Panel scheme={Scheme.SKELETON} exemptedComponents={[]} className="r-r-margin-20px">
+            <Panel className="r-r-margin-20px">
                 <h1>Panel</h1>
 
                 <h3>Basic</h3>
@@ -58,6 +58,7 @@ export class PanelPage extends React.Component {
 
                 <h3>Skeleton Panel</h3>
                 <Panel scheme={Scheme.SKELETON}>
+                    <Panel></Panel>
                     <p>When the type of panel is set to skeleton rather than applying the skeleton effect 
                         to the main panel the type is relayed down to the child components for application.
                     </p>
@@ -70,6 +71,13 @@ export class PanelPage extends React.Component {
                     <br/>
 
                     <Button text="Hello World" scheme={Scheme.PRIMARY}/>
+
+                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
                     
                 </Panel>
 

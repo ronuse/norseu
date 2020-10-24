@@ -26,11 +26,12 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { Button } from "../buttons"
-import { Scheme } from "../variables"
-import { BoolUtils, ObjUtils, DOMUtils } from "../utils/"
-import { Elevation } from "../variables/"
+import { Button } from "../buttons";
+import { Scheme } from "../variables";
+import { BoolUtils, ObjUtils, DOMUtils } from "../utils/";
+import { Elevation } from "../variables/";
 import { CSSTransition } from 'react-transition-group';
+import { TabPane } from "./TabPane"
 
 export class Panel extends Component {
 
@@ -41,6 +42,7 @@ export class Panel extends Component {
         safely: null,
         collapsible: null,
         expanded: null,
+        borderless: null,
         expandIcon: "fa fa-plus",
         collapseIcon: "fa fa-minus",
         onCollapse: null,
@@ -57,6 +59,7 @@ export class Panel extends Component {
         safely: PropTypes.bool,
         collapsible: PropTypes.bool,
         expanded: PropTypes.bool,
+        borderless: PropTypes.bool,
         expandIcon: PropTypes.string,
         collapseIcon: PropTypes.string,
         onCollapse: PropTypes.func,
@@ -128,10 +131,13 @@ export class Panel extends Component {
     renderHeader(expanded) {
         if (this.props.title || this.props.collapsible) {
             const toggleIcon = expanded ? this.props.collapseIcon : this.props.expandIcon;
+            let className = classNames('r-r-panel-title-text', {
+                'r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON
+            });
 
             return (
                 <div className="r-r-panel-title">
-                    <span className="r-r-panel-title-text r-r-loading r-r-skeleton" aria-label={this.id + '-header'}>{this.props.title}</span>
+                    <span className={className} aria-label={this.id + '-header'}>{this.props.title}</span>
                     {this.props.collapsible ? <Button scheme={this.props.scheme} rounded textonly icon={toggleIcon} onClick={this.toggle} className="r-r-panel-toggle-button" /> : ''}
                     
                 </div>
@@ -146,14 +152,13 @@ export class Panel extends Component {
                         React.Children.map(this.props.children, child => {
 
             let isExemptedComponent = BoolUtils.equalsAny(child.type, this.props.exemptedComponents);
-            if (isExemptedComponent) {
+            if (isExemptedComponent || !child.type) {
                 return child;
             }
-            let isPanelComponent = BoolUtils.equalsAny(child.type, [Panel]);
-            let relayProps = { className: !isPanelComponent
-                ? "r-r-loading r-r-skeleton" : "", 
-                scheme: this.props.scheme
-            };
+            let isPanelComponent = BoolUtils.equalsAny(child.type, [Panel, TabPane]);
+            var relayProps = ObjUtils.clone(child.props);
+            relayProps.className = classNames({"r-r-loading r-r-skeleton " : !isPanelComponent}, relayProps.className);
+            relayProps.scheme = this.props.scheme;
             if (isPanelComponent) {
                 relayProps.safely = this.props.safely;
                 relayProps.exemptedComponents = this.props.exemptedComponents;
@@ -166,13 +171,15 @@ export class Panel extends Component {
                 return React.cloneElement(child, relayProps)
 
             }
-            console.log("safely");
             return child;
+        });
+        let className = classNames('r-r-panel-content', this.props.elevation, {
+            'r-r-padding-20px': !this.props.borderless
         });
         
         return (
             <CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={expanded} unmountOnExit>
-                <div className="r-r-panel-content" aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'}>
+                <div className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'}>
                     {children}
                 </div>
             </CSSTransition>
@@ -180,17 +187,16 @@ export class Panel extends Component {
     }
 
     render() {
-        let className = classNames('r-r-panel r-r-component', this.props.elevation, {
+        let className = classNames('r-r-panel', this.props.elevation, {
+            'r-r-border-1px-radius-5px': !this.props.borderless,
             'r-panel-collapsible': this.props.collapsible
         }, this.props.className);
-        let expanded = this.isExpanded();
-        let header = this.renderHeader(expanded);
-        let content = this.renderContent(expanded);
-        let componentProps = ObjUtils.findDiffKeys(this.props, Panel.defaultProps);
-        ObjUtils.replaceEntry(componentProps, "className", className);
+        let expanded = !this.props.children ? false : this.isExpanded();
+        let header = !this.props.children ? '' : this.renderHeader(expanded);
+        let content = !this.props.children ? '' : this.renderContent(expanded);
 
         return (
-            <div className={className} {...componentProps} >
+            <div id={this.props.id} className={className} style={this.props.style}>
                 {header}
                 {content}
             </div>

@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-export var Alignment = {
+export const Alignment = {
     CENTER: 'center',
     LEFT: 'left',
     RIGHT: 'right',
@@ -35,7 +35,7 @@ export var Alignment = {
     BOTTOM_RIGHT: 'bottom-right'
 }
 
-export var Elevation = {
+export const Elevation = {
     NONE: '',
     ONE: 'r-r-elevation-1',
     TWO: 'r-r-elevation-2',
@@ -50,4 +50,9 @@ export var Elevation = {
     ELEVEN: 'r-r-elevation-11',
     TWELVE: 'r-r-elevation-12',
     THIRTEEN: 'r-r-elevation-13'
+}
+
+export const Direction = {
+    HORIZONTAL: "horizontal",
+    VERTICAL: "vertical"
 }
