@@ -137,12 +137,15 @@ export class TabPane extends Component {
         const tabIndex = tab.props.disabled ? null : '0';
         const fill = BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT]) ? true : null;
         const className = classNames('r-r-tab-button', {
-            'active': selectedTab, 
-            'r-r-disabled': tab.props.disabled, 
-        }, tab.props.headerClassName);
+            'r-r-tab-button-top': this.props.alignNavigator.startsWith(Alignment.BOTTOM),
+            'active': selectedTab,
+            'r-r-disabled': tab.props.disabled
+        }, 
+        (this.props.alignNavigator.startsWith(Alignment.BOTTOM) ? `r-r-tab-button-top-${tab.props.scheme}` : `r-r-tab-button-${tab.props.scheme}`),
+        tab.props.headerClassName);
 
         return (
-            <Button nostyle className={className} onClick={(e)=> this.onTabHeaderClick(e, tab, index)} 
+            <Button nostyle textonly className={className} onClick={(e)=> this.onTabHeaderClick(e, tab, index)} 
                 alignText={tab.props.alignTitle}
                 icon={tab.props.icon}
                 alignIcon={tab.props.alignIcon} 
@@ -171,13 +174,15 @@ export class TabPane extends Component {
         const className = classNames('r-r-tabpane-navigator r-r-noselect', {
             'r-r-border-bottom-2px-grey1': this.props.alignNavigator === Alignment.TOP,
             'r-r-border-top-2px-grey1': this.props.alignNavigator === Alignment.BOTTOM,
-            'r-r-width-max-content': BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT])
+            'r-r-display-flex-justify-center':  BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.CENTER, Alignment.TOP_CENTER, Alignment.BOTTOM_CENTER]),
+            'r-r-display-flex-justify-flex-end':  BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])
         });
+        let leftRightClassName = BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT]) ? 'r-r-tabpane-navigator-width-max-content' : '';
 
         return (
-            <Panel className={className} borderless>
-                {headers}
-            </Panel>
+            <div className={className} borderless>
+                <div className={leftRightClassName}>{headers}</div>
+            </div>
         )
     }
 
@@ -215,15 +220,17 @@ export class TabPane extends Component {
 
     render() {
         const className = classNames('r-r-tabpane', {
-            'r-r-display-flex': this.props.alignNavigator === Alignment.LEFT
+            'r-r-display-flex': BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT])
         }, this.props.className);
+        const tabNavBelow = this.props.alignNavigator === Alignment.RIGHT || this.props.alignNavigator.startsWith(Alignment.BOTTOM);
         const tabBar = this.renderTabBar();
         const content = this.renderContent(); 
 
         return (
             <div id={this.props.id} className={className} style={this.props.style}>
-                {tabBar}
+                { tabNavBelow ? '' : tabBar}
                 {content}
+                { tabNavBelow ? tabBar : '' }
             </div>
         )
     }

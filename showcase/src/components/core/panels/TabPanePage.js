@@ -9,7 +9,8 @@ import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 export class TabPanePage extends React.Component {
 
     state = {
-        activeTabIndex: 0
+        activeTabIndex: 0,
+        alignNavigator: Alignment.TOP
     }
 
     text1() {
@@ -39,120 +40,167 @@ export class TabPanePage extends React.Component {
     }
 
     renderInteractiveEditor() {
-        
-    }
-
-    renderPreview() {
         return (
-            <Panel>
-                <h3>Basic</h3>
-                <TabPane activeTabIndex={0} renderActiveTabOnly>
-                    <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
-                        {this.text1()}
-                        <br/><Button text="Click Me" />
+            <Panel className="r-r-padding-left-right-20px">
+                <h3>Component Generator</h3>
+                <TabPane activeTabIndex={0}>
+                    <TabPanel title="Designer" icon="fa fa-eye">
+                        
                     </TabPanel>
-                    <TabPanel title="Panel 2" contentStyle={{padding:"10px"}}>
-                        {this.text2()}
+                    <TabPanel title="Generated Source (React)" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {`<Button text="Click Me" />`}
+                        </SyntaxHighlighter>
                     </TabPanel>
-                    <TabPanel title="Panel 3" contentStyle={{padding:"10px"}}>
-                        {this.text3()}
-                    </TabPanel>
-                </TabPane>
-                
-                <h3>Header with Icon</h3>
-                <TabPane activeTabIndex={0} renderActiveTabOnly>
-                    <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye">
-                        {this.text1()}
-                        <br/><Button text="Click Me" />
-                    </TabPanel>
-                    <TabPanel title="Panel 2" contentStyle={{padding:"10px"}} icon="fa fa-code">
-                        {this.text2()}
-                    </TabPanel>
-                    <TabPanel title="Panel 3" contentStyle={{padding:"10px"}} icon="fa fa-user" rightIcon="fa fa-arrow-right">
-                        {this.text3()}
-                    </TabPanel>
-                </TabPane>
-                
-                <h3>TabPanel with Scheme</h3>
-                <TabPane activeTabIndex={0} renderActiveTabOnly>
-                    <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye" scheme={Scheme.PRIMARY}>
-                        {this.text1()}
-                        <br/><Button text="Click Me" />
-                    </TabPanel>
-                    <TabPanel title="Panel 2" contentStyle={{padding:"10px"}} icon="fa fa-code" scheme={Scheme.WARNING}>
-                        {this.text2()}
-                    </TabPanel>
-                    <TabPanel title="Panel 3" contentStyle={{padding:"10px"}} icon="fa fa-user" rightIcon="fa fa-arrow-right"  scheme={Scheme.INFO}>
-                        {this.text3()}
-                    </TabPanel>
-                    <TabPanel title="Panel 3" contentStyle={{padding:"10px"}} icon="fa fa-times"  scheme={Scheme.DANGER}>
-                        {this.text2()}
-                    </TabPanel>
-                </TabPane>
-
-                <h3>Skeleton</h3>
-                <TabPane activeTabIndex={0} scheme={Scheme.SKELETON} renderActiveTabOnly>
-                    <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
-                        {this.text1()}
-                        <br/><Button text="Click Me" /> <Button text="Click Me" />
-                        <br/><Button text="Click Me" /> <Button text="Click Me" />
-                    </TabPanel>
-                    <TabPanel title="Panel 2" contentStyle={{padding:"10px"}}>
-                        {this.text2()}
-                    </TabPanel>
-                    <TabPanel title="Panel 3" contentStyle={{padding:"10px"}}>
-                        {this.text3()}
-                    </TabPanel>
-                </TabPane>
-
-                <h3>Disabled tab</h3>
-                <TabPane activeTabIndex={0} renderActiveTabOnly>
-                    <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
-                        {this.text1()}
-                    </TabPanel>
-                    <TabPanel title="Panel 2" contentStyle={{padding:"10px"}}>
-                        {this.text2()}
-                    </TabPanel>
-                    <TabPanel title="Panel 3" contentStyle={{padding:"10px"}} disabled>
-                        {this.text3()}
-                    </TabPanel>
-                </TabPane>
-
-                <h3>Custom Logic</h3>
-                <Button text="Switch to Panel 1" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 0 })} outlined/>
-                <Button text="Switch to Panel 2" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 1 })} outlined/>
-                <Button text="Switch to Panel 3" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 2 })} outlined/>
-                <TabPane activeTabIndex={this.state.activeTabIndex} onTabChange={(e) => this.setState({ activeTabIndex: e.index })} renderActiveTabOnly>
-                    <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
-                        {this.text1()}
-                    </TabPanel>
-                    <TabPanel title="Panel 2" contentStyle={{padding:"10px"}}>
-                        {this.text2()}
-                    </TabPanel>
-                    <TabPanel title="Panel 3" contentStyle={{padding:"10px"}}>
-                        {this.text3()}
-                    </TabPanel>
-                </TabPane>
-
-                <h3>Tab Navigator Allignment</h3>
-                <TabPane activeTabIndex={0} alignNavigator={Alignment.LEFT} renderActiveTabOnly>
-                    <TabPanel title="Panel 1" icon="fa fa-user" contentStyle={{padding:"10px"}}>
-                        {this.text1()}
-                    </TabPanel>
-                    <TabPanel title="Panel 2" contentStyle={{padding:"10px"}}>
-                        {this.text2()}
-                    </TabPanel>
-                    <TabPanel title="Panel 3" contentStyle={{padding:"10px"}}>
-                        {this.text3()}
+                    <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {`<Button text="Click Me" />`}
+                        </SyntaxHighlighter>
                     </TabPanel>
                 </TabPane>
             </Panel>
         )
     }
 
+    renderSampleComponents() {
+        return (
+            <div>
+                <Panel className="r-r-padding-left-right-20px">
+                    <h3>Basic</h3>
+                    <TabPane activeTabIndex={0} renderActiveTabOnly>
+                        <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
+                            {this.text1()}
+                            <br/><Button text="Click Me" />
+                        </TabPanel>
+                        <TabPanel title="Panel 2" contentStyle={{padding:"10px"}}>
+                            {this.text2()}
+                        </TabPanel>
+                        <TabPanel title="Panel 3" contentStyle={{padding:"10px"}}>
+                            {this.text3()}
+                        </TabPanel>
+                    </TabPane>
+                </Panel>
+                
+                <Panel className="r-r-padding-left-right-20px">
+                    <h3>Header with Icon</h3>
+                    <TabPane activeTabIndex={0} renderActiveTabOnly>
+                        <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye">
+                            {this.text1()}
+                            <br/><Button text="Click Me" />
+                        </TabPanel>
+                        <TabPanel title="Panel 2" contentStyle={{padding:"10px"}} icon="fa fa-code">
+                            {this.text2()}
+                        </TabPanel>
+                        <TabPanel title="Panel 3" contentStyle={{padding:"10px"}} icon="fa fa-user" rightIcon="fa fa-arrow-right">
+                            {this.text3()}
+                        </TabPanel>
+                    </TabPane>
+                </Panel>
+                
+                <Panel className="r-r-padding-left-right-20px">
+                    <h3>TabPanel with Scheme</h3>
+                    <TabPane activeTabIndex={0} renderActiveTabOnly>
+                        <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye" scheme={Scheme.PRIMARY}>
+                            {this.text1()}
+                            <br/><Button text="Click Me" />
+                        </TabPanel>
+                        <TabPanel title="Panel 2" contentStyle={{padding:"10px"}} icon="fa fa-code" scheme={Scheme.WARNING}>
+                            {this.text2()}
+                        </TabPanel>
+                        <TabPanel title="Panel 3" contentStyle={{padding:"10px"}} icon="fa fa-user" rightIcon="fa fa-arrow-right"  scheme={Scheme.INFO}>
+                            {this.text3()}
+                        </TabPanel>
+                        <TabPanel title="Panel 3" contentStyle={{padding:"10px"}} icon="fa fa-times"  scheme={Scheme.DANGER}>
+                            {this.text2()}
+                        </TabPanel>
+                    </TabPane>
+                </Panel>
+
+                <Panel className="r-r-padding-left-right-20px">
+                    <h3>Skeleton</h3>
+                    <TabPane activeTabIndex={0} scheme={Scheme.SKELETON} renderActiveTabOnly>
+                        <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
+                            {this.text1()}
+                            <br/><Button text="Click Me" /> <Button text="Click Me" />
+                            <br/><Button text="Click Me" /> <Button text="Click Me" />
+                        </TabPanel>
+                        <TabPanel title="Panel 2" contentStyle={{padding:"10px"}}>
+                            {this.text2()}
+                        </TabPanel>
+                        <TabPanel title="Panel 3" contentStyle={{padding:"10px"}}>
+                            {this.text3()}
+                        </TabPanel>
+                    </TabPane>
+                </Panel>
+
+                <Panel className="r-r-padding-left-right-20px">
+                    <h3>Disabled tab</h3>
+                    <TabPane activeTabIndex={0} renderActiveTabOnly>
+                        <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
+                            {this.text1()}
+                        </TabPanel>
+                        <TabPanel title="Panel 2" contentStyle={{padding:"10px"}} disabled>
+                            {this.text2()}
+                        </TabPanel>
+                        <TabPanel title="Panel 3" contentStyle={{padding:"10px"}}>
+                            {this.text3()}
+                        </TabPanel>
+                    </TabPane>
+                </Panel>
+
+                <Panel className="r-r-padding-left-right-20px">
+                    <h3>Custom Logic</h3>
+                    <Button text="Switch to Panel 1" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 0 })} outlined/>
+                    <Button text="Switch to Panel 2" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 1 })} outlined/>
+                    <Button text="Switch to Panel 3" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 2 })} outlined/>
+                    <TabPane activeTabIndex={this.state.activeTabIndex} onTabChange={(e) => this.setState({ activeTabIndex: e.index })} renderActiveTabOnly>
+                        <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
+                            {this.text1()}
+                        </TabPanel>
+                        <TabPanel title="Panel 2" contentStyle={{padding:"10px"}}>
+                            {this.text2()}
+                        </TabPanel>
+                        <TabPanel title="Panel 3" contentStyle={{padding:"10px"}}>
+                            {this.text3()}
+                        </TabPanel>
+                        {/*<Button text="Extra Button"/>*/}
+                    </TabPane>
+                </Panel>
+                
+                <Panel className="r-r-padding-left-right-20px">
+                    <h3>Tab Navigator Allignment, TODO change select below to ronuse select Component</h3>
+                    <select onChange={(e)=>{this.setState({ alignNavigator: e.target.value} )}}>
+                        <option value={Alignment.TOP}>{"TOP"}</option>
+                        <option value={Alignment.CENTER}>{"CENTER"}</option>
+                        <option value={Alignment.TOP_CENTER}>{"TOP_CENTER"}</option>
+                        <option value={Alignment.TOP_LEFT}>{"TOP_LEFT"}</option>
+                        <option value={Alignment.TOP_RIGHT}>{"TOP_RIGHT"}</option>
+                        <option value={Alignment.BOTTOM}>{"BOTTOM"}</option>
+                        <option value={Alignment.BOTTOM_LEFT}>{"BOTTOM_LEFT"}</option>
+                        <option value={Alignment.BOTTOM_RIGHT}>{"BOTTOM_RIGHT"}</option>
+                        <option value={Alignment.BOTTOM_CENTER}>{"BOTTOM_CENTER"}</option>
+                        <option value={Alignment.LEFT}>{"LEFT"}</option>
+                        <option value={Alignment.RIGHT}>{"RIGHT"}</option>
+                    </select>
+                    <TabPane activeTabIndex={0} alignNavigator={this.state.alignNavigator} renderActiveTabOnly>
+                        <TabPanel scheme={Scheme.INFO} title="Panel 1" icon="fa fa-user" contentStyle={{padding:"10px"}}>
+                            {this.text1()}
+                        </TabPanel>
+                        <TabPanel scheme={Scheme.SUCCESS} title="Panel 2" contentStyle={{padding:"10px"}}>
+                            {this.text2()}
+                        </TabPanel>
+                        <TabPanel scheme={Scheme.WARNING} title="Panel 3" contentStyle={{padding:"10px"}}>
+                            {this.text3()}
+                        </TabPanel>
+                    </TabPane>
+                </Panel>
+            </div>
+        )
+    }
+
     renderDocumentation() {
         return (
-            <Panel  className="r-r-showcase-documentation-panel">
+            <Panel className="r-r-padding-left-right-20px">
                 <h2>Properties</h2>
                 <h2>CSS</h2>
             </Panel>
@@ -161,20 +209,20 @@ export class TabPanePage extends React.Component {
 
     render() {
         return (
-            <Panel className="r-r-margin-20px">
+            <div className="r-r-showcase-component-page" >
                 <h1>TabPane</h1>
 
-                <Panel className="r-r-showcase-import-panel">
+                <Panel borderless>
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
                         {`import { TabPane, TabPanel } from 'ronuse-react-ui/core/panels'`}
                     </SyntaxHighlighter>
                 </Panel>
 
                 {this.renderInteractiveEditor()}
-                {this.renderPreview()}
+                {this.renderSampleComponents()}
                 {this.renderDocumentation()}
 
-            </Panel>
+            </div>
         )
     }
 

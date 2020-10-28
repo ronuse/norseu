@@ -10,21 +10,20 @@ export class ButtonPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel style={{marginBottom:"20px"}}>
-                <h3>Interactive Preview Editor</h3>
+            <Panel className="r-r-padding-left-right-20px">
+                <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
-                    <TabPanel title="WYSIWYG" icon="fa fa-eye">
+                    <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
-                    <TabPanel title="Generated Source" icon="fa fa-code">
+                    <TabPanel title="Generated Source (React)" icon="fa fa-code">
                         <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
-                            {`<Button text="Click Me" />
-<Button icon="fa fa-user-circle" text="View Profile" />
-<Button icon="fa fa-pencil" text="Edit" alignIcon={Alignment.RIGHT} />
-<Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" />
-<Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" alignIcon={Alignment.RIGHT} />
-<Button icon="fa fa-user-circle" text="Disabled" disabled/>
-<Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Link" link/>`}
+                            {`<Button text="Click Me" />`}
+                        </SyntaxHighlighter>
+                    </TabPanel>
+                    <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                 </TabPane>
@@ -32,140 +31,205 @@ export class ButtonPage extends React.Component {
         )
     }
 
-    renderPreview() {
+    renderSampleComponents() {
         return (
-            <Panel>
-                <h3>Basic</h3>
-                <Button text="Click Me" />
-                <Button icon="fa fa-user-circle" text="View Profile" />
-                <Button icon="fa fa-pencil" text="Edit" alignIcon={Alignment.RIGHT} />
-                <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" />
-                <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" alignIcon={Alignment.RIGHT} />
-                <Button icon="fa fa-user-circle" text="Disabled" disabled/>
-                <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Link" link/>
+            <Panel className="r-r-padding-left-right-20px">
+                <Panel title="Basic" expanded collapsible borderless>
+                    <Button text="Click Me" />
+                    <Button icon="fa fa-user-circle" text="View Profile" />
+                    <Button icon="fa fa-pencil" text="Edit" alignIcon={Alignment.RIGHT} />
+                    <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" />
+                    <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" alignIcon={Alignment.RIGHT} />
+                    <Button icon="fa fa-user-circle" text="Disabled" disabled/>
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Link" link/>
+                </Panel>
 
-                <h3>Button with Scheme</h3>
-                <Button scheme={Scheme.SKELETON} text="Skeleton" />
-                <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless"/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary"/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary"/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success"/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info"/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning"/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger"/>
+                <Panel title="Buttons with Scheme" expanded collapsible borderless>
+                    <Button scheme={Scheme.SKELETON} text="Skeleton" />
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless"/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary"/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary"/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success"/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info"/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning"/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger"/>
+                </Panel>
 
-                <h3>Fill Button With Text And Icon Alignment</h3>
-                <Button text="Click Me" alignText={Alignment.CENTER} fill/>
-                <Button scheme={Scheme.SKELETON} fill/>
-                <Button scheme={Scheme.STATELESS} alignText={Alignment.LEFT} rightIcon="fa fa-exclamation" text="Stateless" fill/>
-                <Button scheme={Scheme.PRIMARY} alignText={Alignment.RIGHT} rightIcon="fa fa-circle" text="Primary" fill/>
-                <Button scheme={Scheme.SECONDARY} alignText={Alignment.LEFT} rightIcon="fa fa-square" text="Secondary" fill/>
-                <Button scheme={Scheme.SUCCESS} alignText={Alignment.CENTER} icon="fa fa-check" alignIcon={Alignment.LEFT} rightIcon="fa fa-check" text="Success" fill/>
-                <Button scheme={Scheme.INFO} alignText={Alignment.RIGHT} icon="fa fa-bell" alignIcon={Alignment.RIGHT}  rightIcon="fa fa-bell" text="Info" fill/>
-                <Button scheme={Scheme.WARNING} alignText={Alignment.LEFT} icon="fa fa-warning" alignIcon={Alignment.LEFT} rightIcon="fa fa-warning" text="Warning" fill/>
-                <Button scheme={Scheme.DANGER} alignText={Alignment.RIGHT} icon="fa fa-times" alignIcon={Alignment.LEFT} rightIcon="fa fa-times" text="Danger" fill/>
+                <Panel title="Disabled Buttons with Scheme" expanded collapsible borderless>
+                    <Button scheme={Scheme.SKELETON} text="Skeleton" disabled/>
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" disabled/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" disabled/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" disabled/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" disabled/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" disabled/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" disabled/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" disabled/>
+                </Panel>
+
+                <Panel title="Fill Button With Text And Icon Alignment" expanded collapsible borderless>
+                    <Button text="Click Me" alignText={Alignment.CENTER} fill/>
+                    <Button scheme={Scheme.SKELETON} fill/>
+                    <Button scheme={Scheme.STATELESS} alignText={Alignment.LEFT} rightIcon="fa fa-exclamation" text="Stateless" fill/>
+                    <Button scheme={Scheme.PRIMARY} alignText={Alignment.RIGHT} rightIcon="fa fa-circle" text="Primary" fill/>
+                    <Button scheme={Scheme.SECONDARY} alignText={Alignment.LEFT} rightIcon="fa fa-square" text="Secondary" fill/>
+                    <Button scheme={Scheme.SUCCESS} alignText={Alignment.CENTER} icon="fa fa-check" alignIcon={Alignment.LEFT} rightIcon="fa fa-check" text="Success" fill/>
+                    <Button scheme={Scheme.INFO} alignText={Alignment.RIGHT} icon="fa fa-bell" alignIcon={Alignment.RIGHT}  rightIcon="fa fa-bell" text="Info" fill/>
+                    <Button scheme={Scheme.WARNING} alignText={Alignment.LEFT} icon="fa fa-warning" alignIcon={Alignment.LEFT} rightIcon="fa fa-warning" text="Warning" fill/>
+                    <Button scheme={Scheme.DANGER} alignText={Alignment.RIGHT} icon="fa fa-times" alignIcon={Alignment.LEFT} rightIcon="fa fa-times" text="Danger" fill/>
+                </Panel>
                 
-                <h3>Rounded Buttons</h3>
-                <Button text="Click Me" rounded/>
-                <Button scheme={Scheme.SKELETON} rounded/>
-                <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" rounded/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" rounded/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" rounded/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" rounded/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" rounded/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" rounded/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" rounded/>
+                <Panel title="Rounded Buttons" expanded collapsible borderless>
+                    <Button text="Click Me" rounded/>
+                    <Button scheme={Scheme.SKELETON} rounded/>
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" rounded/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" rounded/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" rounded/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" rounded/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" rounded/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" rounded/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" rounded/>
+                </Panel>
                 
-                <h3>Raised Buttons</h3>
-                <Button text="Click Me" raised/>
-                <Button scheme={Scheme.SKELETON} raised/>
-                <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" raised/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" raised/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" raised/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" raised/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" raised/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" raised/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" raised/>
+                <Panel title="Raised Buttons" expanded collapsible borderless>
+                    <Button text="Click Me" raised/>
+                    <Button scheme={Scheme.SKELETON} raised/>
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" raised/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" raised/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" raised/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" raised/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" raised/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" raised/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" raised/>
+                </Panel>
                 
-                <h3>Outlined Buttons</h3>
-                <Button text="Click Me" outlined/>
-                <Button scheme={Scheme.SKELETON} outlined/>
-                <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" outlined/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" outlined/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" outlined/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" outlined/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" outlined/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" outlined/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" outlined/>
+                <Panel title="Outlined Buttons" expanded collapsible borderless>
+                    <Button text="Click Me" textonly outlined/>
+                    <Button scheme={Scheme.SKELETON} textonly outlined/>
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textonly outlined/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textonly outlined/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textonly outlined/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textonly outlined/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textonly outlined/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textonly outlined/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textonly outlined/>
+                </Panel>
                 
-                <h3>Text Only Buttons</h3>
-                <Button text="Click Me" textonly/>
-                <Button scheme={Scheme.SKELETON} textonly/>
-                <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textonly/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textonly/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textonly/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textonly/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textonly/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textonly/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textonly/>
+                <Panel title="Outlined With Over Filled Buttons" expanded collapsible borderless>
+                    <Button text="Click Me" outlined/>
+                    <Button scheme={Scheme.SKELETON} outlined/>
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" outlined/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" outlined/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" outlined/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" outlined/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" outlined/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" outlined/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" outlined/>
+                </Panel>
                 
-                <h3>Raised Text Only Buttons</h3>
-                <Button text="Click Me" textonly raised/>
-                <Button scheme={Scheme.SKELETON} raised/>
-                <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textonly raised/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textonly raised/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textonly raised/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textonly raised/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textonly raised/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textonly raised/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textonly raised/>
+                <Panel title="Text Only Buttons" expanded collapsible borderless>
+                    <Button text="Click Me" textonly/>
+                    <Button scheme={Scheme.SKELETON} textonly/>
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textonly/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textonly/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textonly/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textonly/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textonly/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textonly/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textonly/>
+                </Panel>
+                
+                <Panel title="Raised Text Only Buttons" expanded collapsible borderless>
+                    <Button text="Click Me" textonly raised/>
+                    <Button scheme={Scheme.SKELETON} raised/>
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textonly raised/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textonly raised/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textonly raised/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textonly raised/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textonly raised/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textonly raised/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textonly raised/>
+                </Panel>
 
-                <h3>Icon Button</h3>
-                <Button icon="fa fa-user-circle" />
-                <Button scheme={Scheme.SKELETON} icon="fa fa-user" />
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle"/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square"/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check"/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell"/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning"/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times"/>
+                <Panel title="Icon Button" expanded collapsible borderless>
+                    <Button icon="fa fa-user-circle" />
+                    <Button scheme={Scheme.SKELETON} icon="fa fa-user" />
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle"/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square"/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check"/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell"/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning"/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times"/>
+                </Panel>
 
-                <h3>Round Icon Button</h3>
-                <Button icon="fa fa-user-circle" rounded/>
-                <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" rounded/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" rounded/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" rounded/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" rounded/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" rounded/>
+                <Panel title="Round Icon Button" expanded collapsible borderless>
+                    <Button icon="fa fa-user-circle" rounded/>
+                    <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" rounded/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" rounded/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" rounded/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" rounded/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" rounded/>
+                </Panel>
 
-                <h3>Round and Outlined Icon Button</h3>
-                <Button icon="fa fa-user-circle" rounded outlined/>
-                <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded outlined/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded outlined/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" rounded outlined/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" rounded outlined/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" rounded outlined/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" rounded outlined/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" rounded outlined/>
+                <Panel title="Round and Outlined Icon Button" expanded collapsible borderless>
+                    <Button icon="fa fa-user-circle" rounded outlined/>
+                    <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded outlined/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded outlined/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" rounded outlined/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" rounded outlined/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" rounded outlined/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" rounded outlined/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" rounded outlined/>
+                </Panel>
 
-                <h3>Round Text Only Icon Button</h3>
-                <Button icon="fa fa-user-circle" rounded textonly/>
-                <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded textonly/>
-                <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded textonly/>
-                <Button scheme={Scheme.SECONDARY} icon="fa fa-square" rounded textonly/>
-                <Button scheme={Scheme.SUCCESS} icon="fa fa-check" rounded textonly/>
-                <Button scheme={Scheme.INFO} icon="fa fa-bell" rounded textonly/>
-                <Button scheme={Scheme.WARNING} icon="fa fa-warning" rounded textonly/>
-                <Button scheme={Scheme.DANGER} icon="fa fa-times" rounded textonly/>
+                <Panel title="Round Text Only Icon Button" expanded collapsible borderless>
+                    <Button icon="fa fa-user-circle" rounded textonly/>
+                    <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded textonly/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded textonly/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" rounded textonly/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" rounded textonly/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" rounded textonly/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" rounded textonly/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" rounded textonly/>
+                </Panel>
+
+                <Panel title="Social Icon Buttons" expanded collapsible borderless>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square"/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter"/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-google"/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-instagram"/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-linkedin"/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-skype"/>
+                    <br/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" rounded/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" rounded/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-google" rounded/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-instagram" rounded/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-linkedin" rounded/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-skype" rounded/>
+                    <br/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" rounded outlined/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" rounded outlined/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-google" rounded outlined/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-instagram" rounded outlined/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-linkedin" rounded outlined/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-skype" rounded outlined/>
+                    <br/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" textonly rounded/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" textonly rounded/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-google" textonly rounded/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-instagram" textonly rounded/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-linkedin" textonly rounded/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-skype" textonly rounded/>
+                </Panel>
             </Panel>
         )
     }
 
     renderDocumentation() {
         return (
-            <Panel  className="r-r-showcase-documentation-panel">
+            <Panel className="r-r-padding-left-right-20px">
                 <h2>Properties</h2>
                 <h2>CSS</h2>
             </Panel>
@@ -174,19 +238,19 @@ export class ButtonPage extends React.Component {
 
     render() {
         return (
-            <Panel className="r-r-showcase-component-page" borderless>
+            <div className="r-r-showcase-component-page">
                 <h1>Button</h1>
 
-                <Panel className="r-r-showcase-import-panel">
+                <Panel borderless>
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
                         {`import { Button } from 'ronuse-react-ui/core/buttons'`}
                     </SyntaxHighlighter>
                 </Panel>
 
                 {this.renderInteractiveEditor()}
-                {this.renderPreview()}
+                {this.renderSampleComponents()}
                 {this.renderDocumentation()}
-            </Panel>
+            </div>
         )
     }
 }

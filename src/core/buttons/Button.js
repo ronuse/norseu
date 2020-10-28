@@ -87,7 +87,7 @@ export class Button extends Component {
         }
 
         let className = classNames('r-r-button-icon', this.props.icon, {
-            'r-r-margin-right-7px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
+            'r-r-margin-right-15px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
                                     BoolUtils.equalsAny(this.props.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
             'r-r-float-left': this.props.alignIcon === Alignment.LEFT,
             'r-r-float-right': this.props.alignIcon === Alignment.RIGHT,
@@ -113,8 +113,8 @@ export class Button extends Component {
         }
 
         let className = classNames({
-            'r-r-margin-left-7px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
-            'r-r-margin-right-7px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
+            'r-r-margin-left-15px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
+            'r-r-margin-right-15px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
             'r-r-float-left': this.props.alignText === Alignment.LEFT,
             'r-r-float-right': this.props.alignText === Alignment.RIGHT,
             'r-r-float-center': this.props.alignText === Alignment.CENTER
@@ -127,12 +127,13 @@ export class Button extends Component {
             'r-r-button': !this.props.nostyle,
             'r-r-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
             'r-r-disabled': !this.props.nostyle && this.props.disabled,
+            'r-r-padding-left-right-20px': this.props.text,
             'r-r-width-100-percent r-r-display-block': this.props.fill,
             'r-r-button-rounded-border': !this.props.nostyle && this.props.rounded,
             'r-r-button-raised-border': !this.props.nostyle && this.props.raised,
-            'r-r-button-textonly': !this.props.nostyle && this.props.textonly || this.props.outlined,
+            'r-r-button-textonly': !this.props.nostyle && (this.props.textonly || this.props.outlined),
             'r-r-no-background r-r-text-decoration-underline-hover': !this.props.nostyle && this.props.link,
-            'r-r-no-border': !this.props.nostyle && this.props.borderless || this.props.textonly || this.props.link,
+            'r-r-no-border': !this.props.nostyle && (this.props.borderless || (this.props.textonly && !this.props.outlined) || this.props.link),
 
             'r-r-primary': this.props.scheme === Scheme.PRIMARY && !this.props.textonly && !this.props.outlined && !this.props.link,
             'r-r-secondary': this.props.scheme === Scheme.SECONDARY && !this.props.textonly && !this.props.outlined && !this.props.link,
@@ -141,19 +142,26 @@ export class Button extends Component {
             'r-r-warning': this.props.scheme === Scheme.WARNING && !this.props.textonly && !this.props.outlined && !this.props.link,
             'r-r-danger': this.props.scheme === Scheme.DANGER && !this.props.textonly && !this.props.outlined && !this.props.link,
             
-            'r-r-primary-text': this.props.scheme === Scheme.PRIMARY && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-secondary-text': this.props.scheme === Scheme.SECONDARY && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-success-text': this.props.scheme === Scheme.SUCCESS && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-info-text': this.props.scheme === Scheme.INFO && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-warning-text': this.props.scheme === Scheme.WARNING && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-danger-text': this.props.scheme === Scheme.DANGER && (this.props.outlined || this.props.textonly || this.props.link),
-            
             'r-r-primary-border-1px': this.props.scheme === Scheme.PRIMARY && this.props.outlined,
             'r-r-secondary-border-1px': this.props.scheme === Scheme.SECONDARY && this.props.outlined,
             'r-r-success-border-1px': this.props.scheme === Scheme.SUCCESS && this.props.outlined,
             'r-r-info-border-1px': this.props.scheme === Scheme.INFO && this.props.outlined,
             'r-r-warning-border-1px': this.props.scheme === Scheme.WARNING && this.props.outlined,
             'r-r-danger-border-1px': this.props.scheme === Scheme.DANGER && this.props.outlined,
+            
+            'r-r-primary-bg-hover': this.props.scheme === Scheme.PRIMARY && this.props.outlined && !this.props.textonly,
+            'r-r-secondary-bg-hover': this.props.scheme === Scheme.SECONDARY && this.props.outlined && !this.props.textonly,
+            'r-r-success-bg-hover': this.props.scheme === Scheme.SUCCESS && this.props.outlined && !this.props.textonly,
+            'r-r-info-bg-hover': this.props.scheme === Scheme.INFO && this.props.outlined && !this.props.textonly,
+            'r-r-warning-bg-hover': this.props.scheme === Scheme.WARNING && this.props.outlined && !this.props.textonly,
+            'r-r-danger-bg-hover': this.props.scheme === Scheme.DANGER && this.props.outlined && !this.props.textonly,
+            
+            'r-r-primary-text': this.props.scheme === Scheme.PRIMARY && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-secondary-text': this.props.scheme === Scheme.SECONDARY && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-success-text': this.props.scheme === Scheme.SUCCESS && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-info-text': this.props.scheme === Scheme.INFO && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-warning-text': this.props.scheme === Scheme.WARNING && (this.props.outlined || this.props.textonly || this.props.link),
+            'r-r-danger-text': this.props.scheme === Scheme.DANGER && (this.props.outlined || this.props.textonly || this.props.link),
             
             'r-r-primary-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.PRIMARY,
             'r-r-secondary-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.SECONDARY,

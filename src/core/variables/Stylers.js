@@ -31,8 +31,10 @@ export const Alignment = {
     BOTTOM: 'bottom',
     TOP_LEFT: 'top-left',
     TOP_RIGHT: 'top-right',
+    TOP_CENTER: 'top-center',
     BOTTOM_LEFT: 'bottom-left',
-    BOTTOM_RIGHT: 'bottom-right'
+    BOTTOM_RIGHT: 'bottom-right',
+    BOTTOM_CENTER: 'bottom-center'
 }
 
 export const Elevation = {
@@ -55,4 +57,15 @@ export const Elevation = {
 export const Direction = {
     HORIZONTAL: "horizontal",
     VERTICAL: "vertical"
+}
+
+export const Scheme = {
+    STATELESS: "stateless",
+    PRIMARY: "primary",
+    SECONDARY: "secondary",
+    SUCCESS: "success",
+    INFO: "info",
+    WARNING: "warning",
+    DANGER: "danger",
+    SKELETON: "skeleton"
 }

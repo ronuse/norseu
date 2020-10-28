@@ -28,59 +28,29 @@ export let Colors = {
     BLACK: "#10161A",
     WHITE: "#FFFFFF",
 
-    LIGHT_GRAY1: "#CED9E0",
-    LIGHT_GRAY2: "#D8E1E8",
-    LIGHT_GRAY3: "#E1E8ED",
-    LIGHT_GRAY4: "#EBF1F5",
-    LIGHT_GRAY5: "#F5F8FA",
+    LIGHT_GRAY1: "#E4E6EF",
 
     DARK_GRAY1: "#182026",
-    DARK_GRAY2: "#202B33",
-    DARK_GRAY3: "#293742",
-    DARK_GRAY4: "#30404D",
-    DARK_GRAY5: "#394B59",
 
     GRAY1: "#5C7080",
-    GRAY2: "#738694",
-    GRAY3: "#8A9BA8",
-    GRAY4: "#A7B6C2",
-    GRAY5: "#BFCCD6",
 
-    BLUE1: "#0E5A8A",
-    BLUE2: "#106BA3",
-    BLUE3: "#137CBD",
-    BLUE4: "#2B95D6",
-    BLUE5: "#48AFF0",
-    BLUE6: "#8DCEF7",
+    BLUE1: "#3699FF",
     
-    GREEN1: "#0A6640",
-    GREEN2: "#0D8050",
-    GREEN3: "#0F9960",
-    GREEN4: "#15B371",
-    GREEN5: "#3DCC91",
-    GREEN6: "#6EF0BA",
+    GREEN1: "#1BC5BD",
 
-    ORANGE1: "#A66321",
-    ORANGE2: "#BF7326",
-    ORANGE3: "#D9822B",
-    ORANGE4: "#F29D49",
-    ORANGE5: "#FFB366",
-    ORANGE6: "#E8B989",
+    ORANGE1: "#FFA800",
     
-    RED1: "#A82A2A",
-    RED2: "#C23030",
-    RED3: "#DB3737",
-    RED4: "#F55656",
-    RED5: "#FF7373",
-    RED6: "#ED9393",
+    RED1: "#F64E60",
+
+    PURPLE1: "#8950FC"
 }
 
 export let CoreColors = {
     TRANSPARENT: Colors.NONE,
     PRIMARY: Colors.BLUE1,
-    SECONDARY: Colors.DARK_GRAY4,
+    SECONDARY: Colors.LIGHT_GRAY1,
     SUCCESS: Colors.GREEN1,
-    INFO: Colors.BLUE4,
+    INFO: Colors.PURPLE1,
     WARNING: Colors.ORANGE1,
     DANGER: Colors.RED1
 }

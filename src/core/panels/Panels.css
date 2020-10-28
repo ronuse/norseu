@@ -7,10 +7,12 @@
  /* PANEL */
 
 .r-r-panel {
-    
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
 }
 
-.r-r-panel-title {
+.r-r-panel-header {
     height: 40px;
     background-color: #F5F8FA;
     border-bottom: inherit;
@@ -21,17 +23,18 @@
     align-items: center;
 }
 
-.r-r-panel-title > .r-r-panel-title-text {
-    margin-left: 15px;
+.r-r-panel-header > .r-r-panel-header-text {
+    margin-left: 10px;
     font-weight: 600;
 }
 
-.r-r-panel-title > .r-r-panel-toggle-button {
+.r-r-panel-header > .r-r-panel-toggle-button {
     margin-left: auto;
     background-color: rgba(255, 255, 255, 0);
 }
 
 .r-r-panel-content {
+    padding: 10px;
 }
 
 /* TABPANE and TABPANEL */
@@ -40,6 +43,10 @@
 }
 
 .r-r-tabpane-content {
+}
+
+.r-r-tabpane-navigator-width-max-content {
+    width: max-content;
 }
 
 .r-r-tabpane-navigator {
@@ -53,6 +60,7 @@
     cursor: pointer;
     margin-right: 2px;
     font-size: 14px;
+    width: max-content;
 }
 
 .r-r-tab-button:focus {
@@ -60,9 +68,67 @@
 }
 
 .r-r-tab-button:hover {
-    border-bottom: 2px solid #738694 !important;
+    border-bottom: 2px solid #bbc6ce !important;
 }
 
 .r-r-tab-button.active {
-    border-bottom: 2px solid #0E5A8A !important;
+    border-bottom: 2px solid #626363 !important;
+}
+
+.r-r-tab-button-primary.active {
+    border-bottom: 2px solid #3699FF !important;
+}
+
+.r-r-tab-button-secondary.active {
+    border-bottom: 2px solid #E4E6EF !important;
+}
+
+.r-r-tab-button-success.active {
+    border-bottom: 2px solid #1BC5BD !important;
+}
+
+.r-r-tab-button-info.active {
+    border-bottom: 2px solid #8950FC !important;
+}
+
+.r-r-tab-button-warning.active {
+    border-bottom: 2px solid #FFA800 !important;
+}
+
+.r-r-tab-button-danger.active {
+    border-bottom: 2px solid #F64E60 !important;
+}
+
+.r-r-tab-button-top:hover {
+    border-top: 2px solid #bbc6ce !important;
+    border-bottom: none !important;
+}
+
+.r-r-tab-button-top.active {
+    border-top: 2px solid #626363 !important;
+    border-bottom: none !important;
+}
+
+.r-r-tab-button-top-primary.active {
+    border-top: 2px solid #3699FF !important;
+}
+
+.r-r-tab-button-top-secondary.active {
+    border-top: 2px solid #E4E6EF !important;
+}
+
+.r-r-tab-button-top-success.active {
+    border-top: 2px solid #1BC5BD !important;
+}
+
+.r-r-tab-button-top-info.active {
+    border-top: 2px solid #8950FC !important;
+}
+
+.r-r-tab-button-top-warning.active {
+    border-top: 2px solid #FFA800 !important;
+}
+
+.r-r-tab-button-top-danger.active {
+    border-top: 2px solid #F64E60 !important;
 }

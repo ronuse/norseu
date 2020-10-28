@@ -47,7 +47,7 @@
 
 .r-r-no-background {
     background: none;
-    background-color: none;
+    background-color: rgba(0,0,0,0);
     background-image: none;
 }
 
@@ -73,6 +73,10 @@
     width: max-content;
 }
 
+.r-r-overflow-hidden {
+    overflow: hidden !important;
+}
+
 /* Displays */
 
 .r-r-display-none {
@@ -85,6 +89,21 @@
 
 .r-r-display-flex {
     display: flex;
+}
+
+.r-r-display-flex-justify-center {
+    display: flex;
+    justify-content: center;
+}
+
+.r-r-display-flex-justify-flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.r-r-display-flex-justify-flex-start {
+    display: flex;
+    justify-content: flex-start;
 }
 
 /* Margins and Paddings And Borders */
@@ -101,6 +120,14 @@
     margin-left: 7px;
 }
 
+.r-r-margin-right-15px {
+    margin-right: 15px;
+}
+
+.r-r-margin-left-15px {
+    margin-left: 15px;
+}
+
 .r-r-margin-10px {
     margin: 10px;
 }
@@ -113,17 +140,22 @@
     padding: 20px;
 }
 
+.r-r-padding-left-right-20px {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .r-r-border-1px-radius-5px {
-    border: 1px solid #D8E1E8;
+    border: 1px solid #EEF0F8;
     border-radius: 5px;
 }
 
 .r-r-border-bottom-2px-grey1 {
-    border-bottom: 2px solid #D8E1E8;
+    border-bottom: 2px solid #EEF0F8;
 }
 
 .r-r-border-top-2px-grey1 {
-    border-top: 2px solid #D8E1E8;
+    border-top: 2px solid #EEF0F8;
 }
 
 /* End Margins */
@@ -144,6 +176,60 @@
     float: center;
 }
 
+/* Elevations */
+
+.r-r-elevation-1 {
+    box-shadow: 0px 1px 2px #A7B6C2;
+}
+
+.r-r-elevation-2 {
+    box-shadow: 0.4px 1.5px 5px #A7B6C2;
+}
+
+.r-r-elevation-3 {
+    box-shadow: 1px 2.5px 5px #A7B6C2;
+}
+
+.r-r-elevation-4 {
+    box-shadow: 1px 2.5px 6px #A7B6C2;
+}
+
+.r-r-elevation-5 {
+    box-shadow: 1.2px 3.5px 7px #A7B6C2;
+}
+
+.r-r-elevation-6 {
+    box-shadow: 0.5px 3.5px 10px #A7B6C2;
+}
+
+.r-r-elevation-7 {
+    box-shadow: 0.2px 5px 15px #A7B6C2;
+}
+
+.r-r-elevation-8 {
+    box-shadow: 0.2px 5px 25px #A7B6C2;
+}
+
+.r-r-elevation-9 {
+    box-shadow: 1.2px 3.5px 7px #6d6d6d;
+}
+
+.r-r-elevation-10 {
+    box-shadow: 0.5px 3.5px 10px #6d6d6d;
+}
+
+.r-r-elevation-11 {
+    box-shadow: 0.2px 5px 25px #6d6d6d;
+}
+
+.r-r-elevation-12 {
+    box-shadow: 0.2px 5px 35px #6d6d6d;
+}
+
+.r-r-elevation-13 {
+    box-shadow: 0.2px 15px 55px #6d6d6d;
+}
+
 /* Types, stateless hould not have over and co*/
 
 .r-r-stateless {
@@ -160,123 +246,239 @@
 }
 
 .r-r-primary {
-    background-color: #0E5A8A;
     color: white;
+    border: 1px solid #3699FF;
+    background-color: #3699FF;
 }
 
 .r-r-secondary {
-    background-color: #30404D;
-    color: white;
+    color: #3F4254;
+    border: 1px solid #E4E6EF;
+    background-color: #E4E6EF;
 }
 
 .r-r-success {
-    background-color: #0A6640;
     color: white;
+    border: 1px solid #1BC5BD;
+    background-color: #1BC5BD;
 }
 
 .r-r-info {
-    background-color: #2B95D6;
     color: white;
+    border: 1px solid #8950FC;
+    background-color: #8950FC;
 }
 
 .r-r-warning {
-    background-color:#A66321;
     color: white;
+    border: 1px solid #FFA800;
+    background-color: #FFA800;
 }
 
 .r-r-danger {
-    background-color: #A82A2A;
     color: white;
+    border: 1px solid #F64E60;
+    background-color: #F64E60;
 }
 
 /* text */
 
 .r-r-primary-text {
-    color: #0E5A8A;
+    color: #3699FF;
 }
 
 .r-r-secondary-text {
-    color: #30404D;
+    color: #3F4254;
 }
 
 .r-r-success-text {
-    color: #0A6640;
+    color: #1BC5BD;
 }
 
 .r-r-info-text {
-    color: #2B95D6;
+    color: #8950FC;
 }
 
 .r-r-warning-text {
-    color: #A66321;
+    color: #FFA800;
 }
 
 .r-r-danger-text {
-    color: #A82A2A;
+    color: #F64E60;
+}
+
+/* border color */
+
+.r-r-primary-border-color {
+    border-color: #3699FF;
+}
+
+.r-r-secondary-border-color {
+    border-color: #E4E6EF;
+}
+
+.r-r-success-border-color {
+    border-color: #1BC5BD;
+}
+
+.r-r-info-border-color {
+    border-color: #8950FC;
+}
+
+.r-r-warning-border-color {
+    border-color: #FFA800;
+}
+
+.r-r-danger-border-color {
+    border-color: #F64E60;
+}
+
+/* border bottom color */
+
+.r-r-primary-border-bottom-color {
+    border-bottom-color: #3699FF;
+}
+
+.r-r-secondary-border-bottom-color {
+    border-bottom-color: #E4E6EF;
+}
+
+.r-r-success-border-bottom-color {
+    border-bottom-color: #1BC5BD;
+}
+
+.r-r-info-border-bottom-color {
+    border-bottom-color: #8950FC;
+}
+
+.r-r-warning-border-bottom-color {
+    border-bottom-color: #FFA800;
+}
+
+.r-r-danger-border-bottom-color {
+    border-bottom-color: #F64E60;
+}
+
+/* border bottom color */
+
+.r-r-primary-border-top-color {
+    border-top-color: #3699FF;
+}
+
+.r-r-secondary-border-top-color {
+    border-top-color: #E4E6EF;
+}
+
+.r-r-success-border-top-color {
+    border-top-color: #1BC5BD;
+}
+
+.r-r-info-border-top-color {
+    border-top-color: #8950FC;
+}
+
+.r-r-warning-border-top-color {
+    border-top-color: #FFA800;
+}
+
+.r-r-danger-border-top-color {
+    border-top-color: #F64E60;
 }
 
 /* border 1px */
 
 .r-r-primary-border-1px {
-    border: 1px solid #0E5A8A;
+    border: 1px solid #3699FF;
 }
 
 .r-r-secondary-border-1px {
-    border: 1px solid #30404D;
+    border: 1px solid #E4E6EF;
 }
 
 .r-r-success-border-1px {
-    border: 1px solid #0A6640;
+    border: 1px solid #1BC5BD;
 }
 
 .r-r-info-border-1px {
-    border: 1px solid #2B95D6;
+    border: 1px solid #8950FC;
 }
 
 .r-r-warning-border-1px {
-    border: 1px solid #A66321;
+    border: 1px solid #FFA800;
 }
 
 .r-r-danger-border-1px {
-    border: 1px solid #A82A2A;
+    border: 1px solid #F64E60;
+}
+
+/* hover */
+
+.r-r-primary-bg-hover:hover {
+    color: white;
+    background-color: #3699FF;
+}
+
+.r-r-secondary-bg-hover:hover {
+    color: #3F4254;
+    background-color: #E4E6EF;
+}
+
+.r-r-success-bg-hover:hover {
+    color: white;
+    background-color: #1BC5BD;
+}
+
+.r-r-info-bg-hover:hover {
+    color: white;
+    background-color: #8950FC;
+}
+
+.r-r-warning-bg-hover:hover {
+    color: white;
+    background-color: #FFA800;
+}
+
+.r-r-danger-bg-hover:hover {
+    color: white;
+    background-color: #F64E60;
 }
 
 /* border focus speead 1px */
 
 .r-r-primary-border-1px-focus:focus {
-    box-shadow: 0 0 0 3px rgba(14, 90, 138, .3);
-    -webkit-box-shadow: 0 0 0 3px rgba(14, 90, 138, .3);
-    -moz-box-shadow: 0 0 0 3px rgba(14, 90, 138, .3);
+    box-shadow: 0 0 0 3px rgba(54, 153, 255, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(54, 153, 255, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(54, 153, 255, .3);
 }
 
 .r-r-secondary-border-1px-focus:focus {
-    box-shadow: 0 0 0 3px rgba(48, 64, 77, .3);
-    -webkit-box-shadow: 0 0 0 3px rgba(48, 64, 77, .3);
-    -moz-box-shadow: 0 0 0 3px rgba(48, 64, 77, .3);
+    box-shadow: 0 0 0 3px rgba(228, 230, 239, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(228, 230, 239, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(228, 230, 239, .3);
 }
 
 .r-r-success-border-1px-focus:focus {
-    box-shadow: 0 0 0 3px rgba(10, 102, 64, .3);
-    -webkit-box-shadow: 0 0 0 3px rgba(10, 102, 64, .3);
-    -moz-box-shadow: 0 0 0 3px rgba(10, 102, 64, .3);
+    box-shadow: 0 0 0 3px rgba(27, 197, 189, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(27, 197, 189, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(27, 197, 189, .3);
 }
 
 .r-r-info-border-1px-focus:focus {
-    box-shadow: 0 0 0 3px rgba(43, 149, 214, .3);
-    -webkit-box-shadow: 0 0 0 3px rgba(43, 149, 214, .3);
-    -moz-box-shadow: 0 0 0 3px rgba(43, 149, 214, .3);
+    box-shadow: 0 0 0 3px rgba(137, 80, 252, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(137, 80, 252, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(137, 80, 252, .3);
 }
 
 .r-r-warning-border-1px-focus:focus {
-    box-shadow: 0 0 0 3px rgba(166, 99, 33, .3);
-    -webkit-box-shadow: 0 0 0 3px rgba(166, 99, 33, .3);
-    -moz-box-shadow: 0 0 0 3px rgba(166, 99, 33, .3);
+    box-shadow: 0 0 0 3px rgba(255, 168, 0, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(255, 168, 0, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(255, 168, 0, .3);
 }
 
 .r-r-danger-border-1px-focus:focus {
-    box-shadow: 0 0 0 3px rgba(168, 42, 42, .3);
-    -webkit-box-shadow: 0 0 0 3px rgba(168, 42, 42, .3);
-    -moz-box-shadow: 0 0 0 3px rgba(168, 42, 42, .3);
+    box-shadow: 0 0 0 3px rgba(246, 78, 96, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(246, 78, 96, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(246, 78, 96, .3);
 }
 
 /* End Color Type */

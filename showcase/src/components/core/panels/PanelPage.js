@@ -1,8 +1,10 @@
 
 import React from "react"
-import { Panel } from 'ronuse-react-ui/core/panels'
+import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels'
 import { Button } from 'ronuse-react-ui/core/buttons'
 import { Elevation, Scheme } from "ronuse-react-ui/core/variables"
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export class PanelPage extends React.Component {
 
@@ -19,77 +21,142 @@ export class PanelPage extends React.Component {
         alert("The Panel has been expanded");
     }
 
+    renderInteractiveEditor() {
+        return (
+            <Panel className="r-r-padding-left-right-20px">
+                <h3>Component Generator</h3>
+                <TabPane activeTabIndex={0}>
+                    <TabPanel title="Designer" icon="fa fa-eye">
+                        
+                    </TabPanel>
+                    <TabPanel title="Generated Source (React)" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {`<Button text="Click Me" />`}
+                        </SyntaxHighlighter>
+                    </TabPanel>
+                    <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {`<Button text="Click Me" />`}
+                        </SyntaxHighlighter>
+                    </TabPanel>
+                </TabPane>
+            </Panel>
+        )
+    }
+
+    renderSampleComponents() {
+        return (
+            <div>
+                <Panel style={{padding:"20px"}} borderless>
+                    <h3>Basic</h3>
+                    <Panel>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
+                        vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
+                        Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
+                        molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
+                    </Panel>
+
+                    <h3>Basic With Elevation</h3>
+                    <Panel elevation={Elevation.ONE}>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
+                        vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
+                        Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
+                        molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
+                    </Panel>
+
+                    <h3>Title Only</h3>
+                    <Panel title="Title">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
+                        vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
+                        Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
+                        molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
+                    </Panel>
+
+                    <h3>Collapsible With Title</h3>
+                    <Panel title="Title" collapsible expanded>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
+                        vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
+                        Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
+                        molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
+                    </Panel>
+
+                    <h3>Skeleton Panel</h3>
+                    <Panel scheme={Scheme.SKELETON}>
+                        <Panel>
+                            <p>When the type of panel is set to skeleton rather than applying the skeleton effect 
+                                to the main panel the type is relayed down to the child components for application.
+                            </p>
+                        </Panel>
+                        <br/>
+
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
+                        vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
+                        Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
+                        molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.
+                        <br/>
+
+                        <Button text="Hello World" scheme={Scheme.PRIMARY}/>
+
+                        <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                        <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                        <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                        <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                        <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+                        <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
+
+                        <br/><br/>
+                        <div>
+                            Hello World
+                            <br/><br/>
+                            <Button icon="fa fa-check"/>
+                            <div>
+                                This is inner div but better still this should also be skeletoned
+                                <br/><br/><br/>
+                                <p>This is inner div but better still this should also be skeletoned</p>
+                                <br/><br/>
+                                <Button text="we good" icon="fa fa-check"/>
+                            </div>
+                        </div>
+                        
+                    </Panel>
+
+                    <h3>Events</h3>
+                    <Panel title="onCollapse, onExpand Events" onExpand={this.onExpand} onCollapse={this.onCollapse} collapsible expanded>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
+                        vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
+                        Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
+                        molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
+                    </Panel>
+                </Panel>
+            </div>
+        )
+    }
+
+    renderDocumentation() {
+        return (
+            <Panel className="r-r-padding-left-right-20px">
+                <h2>Properties</h2>
+                <h2>CSS</h2>
+            </Panel>
+        )
+    }
+
     render() {
         return (
-            <Panel className="r-r-margin-20px">
+            <div className="r-r-showcase-component-page">
                 <h1>Panel</h1>
 
-                <h3>Basic</h3>
-                <Panel>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
-                    vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
-                    Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
-                    molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
+                <Panel borderless>
+                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
+                        {`import { Panel } from 'ronuse-react-ui/core/panels'`}
+                    </SyntaxHighlighter>
                 </Panel>
+                
+                {this.renderInteractiveEditor()}
+                {this.renderSampleComponents()}
+                {this.renderDocumentation()}
 
-                <h3>Basic With Elevation</h3>
-                <Panel elevation={Elevation.EIGHT}>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
-                    vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
-                    Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
-                    molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
-                </Panel>
-
-                <h3>Title Only</h3>
-                <Panel title="Title">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
-                    vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
-                    Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
-                    molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
-                </Panel>
-
-                <h3>Collapsible With Title</h3>
-                <Panel title="Title" collapsible expanded>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
-                    vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
-                    Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
-                    molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
-                </Panel>
-
-                <h3>Skeleton Panel</h3>
-                <Panel scheme={Scheme.SKELETON}>
-                    <Panel></Panel>
-                    <p>When the type of panel is set to skeleton rather than applying the skeleton effect 
-                        to the main panel the type is relayed down to the child components for application.
-                    </p>
-                    <br/>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
-                    vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
-                    Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
-                    molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
-                    <br/>
-
-                    <Button text="Hello World" scheme={Scheme.PRIMARY}/>
-
-                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
-                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
-                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
-                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
-                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
-                    <Button icon="fa fa-check" scheme={Scheme.PRIMARY} rounded/>
-                    
-                </Panel>
-
-                <h3>Events</h3>
-                <Panel title="onCollapse, onExpand Events" onExpand={this.onExpand} onCollapse={this.onCollapse} collapsible expanded>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate dolor neque, 
-                    vel porta sem tincidunt ut. Pellentesque lacinia orci quis sagittis tincidunt. 
-                    Proin viverra varius orci, at blandit mauris feugiat vitae. Aliquam elit nisi, 
-                    molestie ac maximus eget, aliquet nec tortor. Pellentesque bibendum ante vel risus efficitur volutpat.</p>
-                </Panel>
-
-            </Panel>
+            </div>
         )
     }
 
