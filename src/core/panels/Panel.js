@@ -53,7 +53,9 @@ export class Panel extends Component {
         elevation: Elevation.NONE,
         exemptedComponents: [],
         ignoreChildrenOf: [
-            "select"
+            "select",
+            "span",
+            "p"
         ]
     }
 
@@ -231,7 +233,7 @@ export class Panel extends Component {
             'r-panel-collapsible': this.props.collapsible
         }, this.props.className);
         let expanded = !this.props.children ? false : this.isExpanded();
-        let header = !this.props.children ? '' : this.renderHeader(expanded);
+        let header = this.renderHeader(expanded);
         let content = !this.props.children ? '' : this.renderContent(expanded);
 
         return (

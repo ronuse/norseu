@@ -6,6 +6,7 @@ import { ButtonPage } from './components/core/buttons/ButtonPage'
 import { PanelPage } from './components/core/panels/PanelPage'
 import { TabPanePage } from './components/core/panels/TabPanePage'
 import { ElevationPage } from './components/core/variables/ElevationPage'
+import { BadgeAndTagPage } from './components/supplement/BadgeAndTagPage'
 import { ScratchPage } from './components/ScratchPage'
 import './index.css'
 
@@ -21,6 +22,7 @@ const App = () => {
                 <Route exact path="/core/panels/tabpane" component={TabPanePage}/>
                 
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>
+                <Route exact path="/supplement/badgeandtag" component={BadgeAndTagPage}/>
             </Switch>
         </HashRouter>
     )

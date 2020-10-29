@@ -47,15 +47,16 @@ export class Button extends Component {
         textonly: null,
         outlined: null,
         fill: false,
-        nostyle: false
+        nostyle: false,
+        fillIcon: null
     }
 
     static propTypes = {
         text: PropTypes.string,
         alignText: PropTypes.string,
-        icon: PropTypes.string,
+        icon: PropTypes.any,
         alignIcon: PropTypes.string,
-        rightIcon: PropTypes.string,
+        rightIcon: PropTypes.any,
         tooltip: PropTypes.string,
         tooltipProps: PropTypes.object,
         scheme: PropTypes.string,
@@ -66,7 +67,8 @@ export class Button extends Component {
         textonly: PropTypes.bool,
         outlined: PropTypes.bool,
         fill: PropTypes.bool,
-        nostyle: PropTypes.bool
+        nostyle: PropTypes.bool,
+        fillIcon: PropTypes.bool
     }
 
     componentDidMount() {
@@ -86,13 +88,23 @@ export class Button extends Component {
             return null;
         }
 
-        let className = classNames('r-r-button-icon', this.props.icon, {
+        let isString = BoolUtils.isTypeOfAny(this.props.icon, ["string"]);
+        if (!isString && !React.isValidElement(this.props.icon)) {
+            return null;
+        }
+        let className = classNames('r-r-button-icon', isString ? this.props.icon : this.props.icon.props.className, {
             'r-r-margin-right-15px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
                                     BoolUtils.equalsAny(this.props.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
             'r-r-float-left': this.props.alignIcon === Alignment.LEFT,
             'r-r-float-right': this.props.alignIcon === Alignment.RIGHT,
-            'r-r-float-center': this.props.alignIcon === Alignment.CENTER
+            'r-r-float-center': this.props.alignIcon === Alignment.CENTER,
+            'r-r-width-100-percent': this.props.fillIcon
         });
+        if (!isString) {
+            var relayProps = ObjUtils.clone(this.props.icon.props);
+            relayProps.className = className;
+            return React.cloneElement(this.props.icon, relayProps);
+        }
         return <i className={className}></i>;
     }
 
@@ -101,9 +113,17 @@ export class Button extends Component {
             return null;
         }
 
-        let className = classNames(this.props.rightIcon, {
+        let isString = BoolUtils.isTypeOfAny(this.props.rightIcon, ["string"]);
+        if (!isString && !React.isValidElement(this.props.rightIcon)) {
+            return null;
+        }
+        let className = classNames(isString ? this.props.rightIcon : this.props.rightIcon.props.className, {
             'r-r-float-right': this.props.fill
-        });
+        });if (!isString) {
+            var relayProps = ObjUtils.clone(this.props.rightIcon.props);
+            relayProps.className = className;
+            return React.cloneElement(this.props.rightIcon, relayProps);
+        }
         return <i className={className}></i>;
     }
 
@@ -172,23 +192,27 @@ export class Button extends Component {
             'r-r-button-min-size r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,
             'r-r-button-min-size-icon-only r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
 
-            'r-r-stateless': BoolUtils.equalsAny(this.props.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.props.link
+            'r-r-stateless': BoolUtils.equalsAny(this.props.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.props.link,
+            'r-r-padding-0px': this.props.fillIcon
         }, 'r-r-button-theme', this.props.className);
         let icon = this.renderIcon();
         let rightIcon = this.renderRightIcon();
         let text = this.renderText();
         let iconPreText = BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]) ;
         let componentProps = ObjUtils.findDiffKeys(this.props, Button.defaultProps);
+        if (!componentProps.children) {
+            componentProps.children = [];
+        }
+        componentProps.children.push(iconPreText ? icon : '');
+        componentProps.children.push(this.props.fill ? rightIcon : '');
+        componentProps.children.push(text);
+        componentProps.children.push(iconPreText ? '' : icon);
+        componentProps.children.push(this.props.fill ? '' : rightIcon);
 
-        return (
-            <button ref={(el) => this.element = el} {...componentProps} className={className}>
-                { iconPreText ? icon : '' }
-                { this.props.fill ? rightIcon : '' }
-                { text }
-                { iconPreText ? '' : icon }
-                { this.props.fill ? '' : rightIcon }
-            </button>
-        )
+        let element = this.props.link ? <a ref={(el) => this.element = el} {...componentProps} className={className}/>
+                      : <button ref={(el) => this.element = el} {...componentProps} className={className}/>
+
+        return element;
     }
 
 }

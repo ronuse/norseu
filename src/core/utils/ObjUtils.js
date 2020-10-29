@@ -30,4 +30,8 @@ export class ObjUtils {
         return clone;
     }
 
+    static typeOf(obj) {
+        return typeof obj;
+    }
+
 }

@@ -56,4 +56,8 @@ export class BoolUtils {
         return true;
     }
 
+    static isTypeOfAny(obj, compares) {
+        return this.equalsAny(typeof obj, compares)
+    }
+
 }

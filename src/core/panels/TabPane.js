@@ -161,10 +161,10 @@ export class TabPane extends Component {
     renderTabHeaders() {
         return (
             React.Children.map(this.props.children, (tab, index) => {
-                if (tab.type !== TabPanel) {
-                    throw Error("RonuseReactUI: Invalid child element, only the TabPanel component should be added as TabPane child")
+                if (tab.type === TabPanel) {
+                    return this.renderTabHeader(tab, index);
                 }
-                return this.renderTabHeader(tab, index);
+                return tab;
             })
         )
     }
@@ -204,7 +204,7 @@ export class TabPane extends Component {
     renderContent() {
         const contents = React.Children.map(this.props.children, (tab, index) => {
             if (tab.type !== TabPanel) {
-                throw Error("RonuseReactUI: Invalid child element, only the TabPanel component should be added as TabPane child")
+                return null;
             }
             if (!this.props.renderActiveTabOnly || this.isSelectedTab(index)) {
                 return this.renderTabContent(tab,index);

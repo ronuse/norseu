@@ -51,33 +51,14 @@ p {
     font-weight: 500;
 }
 
+.r-r-showcase-badges > .r-r-badge, 
+.r-r-showcase-badges > .r-r-tag,
+.r-r-showcase-badges > .r-r-pill {
+    margin-right: .5em;
+    margin-bottom: .5em;
+}
+
+.r-r-showcase-badges {
+}
 
 /* TMPS *//* Style the tab */
-
-.numberCircle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color:#f53f3f;
-    color: white;
-    min-width: 20px;
-    border-radius: 50%;
-    vertical-align: middle;
-    position: absolute;
-    padding: 1.5px;
-    z-index: 1;
-    right: 0;
-    top: 0;
-    border: 1px solid rgb(247, 247, 247);
-    font-size: 12px;
-}
-      
-.numberCircle:before {
-    content:'';
-    float: left;
-    width: auto;
-    padding-bottom: 100%;
-}
-      
-  
-  /* Style the tab content */

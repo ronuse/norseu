@@ -98,6 +98,27 @@ export class TabPanePage extends React.Component {
                 </Panel>
                 
                 <Panel className="r-r-padding-left-right-20px">
+                    <h3>Extra TabNavigator Elements</h3>
+                    <TabPane activeTabIndex={0} renderActiveTabOnly>
+                        <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye">
+                            {this.text1()}
+                            <br/><Button text="Click Me" />
+                        </TabPanel>
+                        <TabPanel title="Panel 2" contentStyle={{padding:"10px"}} icon="fa fa-code">
+                            {this.text2()}
+                        </TabPanel>
+                        <TabPanel title="Panel 3" contentStyle={{padding:"10px"}} icon="fa fa-user" rightIcon="fa fa-arrow-right">
+                            {this.text3()}
+                        </TabPanel>
+
+                        <div className="r-r-flex" style={{alignItems:"center",float:"right"}}>
+                            <input type="text" placeholder="" style={{height:"30px"}}/>
+                            <Button scheme={Scheme.PRIMARY} text="Search"/>
+                        </div>
+                    </TabPane>
+                </Panel>
+                
+                <Panel className="r-r-padding-left-right-20px">
                     <h3>TabPanel with Scheme</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye" scheme={Scheme.PRIMARY}>

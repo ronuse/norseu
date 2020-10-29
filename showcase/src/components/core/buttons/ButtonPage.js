@@ -8,6 +8,12 @@ import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export class ButtonPage extends React.Component {
 
+    pageSource() {
+        return `
+        Yahoo
+        `;
+    }
+
     renderInteractiveEditor() {
         return (
             <Panel className="r-r-padding-left-right-20px">
@@ -32,16 +38,23 @@ export class ButtonPage extends React.Component {
     }
 
     renderSampleComponents() {
+        let customIcon1 = <img src="https://avatars3.githubusercontent.com/u/14879387?s=16" style={{borderRadius:"50%"}}/>;
+        let customIcon2 = <img src="https://avatars3.githubusercontent.com/u/69908664?s=16" style={{borderRadius:"50%"}}/>;
+        let customIcon3 = <img src="https://avatars3.githubusercontent.com/u/14879387?s=100"/>;
+        let customIcon4 = <img src="https://avatars3.githubusercontent.com/u/69908664?s=100"/>;
+
         return (
             <Panel className="r-r-padding-left-right-20px">
                 <Panel title="Basic" expanded collapsible borderless>
                     <Button text="Click Me" />
                     <Button icon="fa fa-user-circle" text="View Profile" />
+                    <Button icon={customIcon1} text="Custom Icon" />
+                    <Button rightIcon={customIcon2} text="RIght Custom Icon" />
                     <Button icon="fa fa-pencil" text="Edit" alignIcon={Alignment.RIGHT} />
                     <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" />
                     <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" alignIcon={Alignment.RIGHT} />
                     <Button icon="fa fa-user-circle" text="Disabled" disabled/>
-                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Link" link/>
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Link" href="https://github.com/ronuse/ronuse-react-ui" link/>
                 </Panel>
 
                 <Panel title="Buttons with Scheme" expanded collapsible borderless>
@@ -163,6 +176,7 @@ export class ButtonPage extends React.Component {
 
                 <Panel title="Round Icon Button" expanded collapsible borderless>
                     <Button icon="fa fa-user-circle" rounded/>
+                    <Button icon={customIcon3} style={{width:"37px",height:"35px"}} fillIcon rounded/>
                     <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded/>
                     <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded/>
                     <Button scheme={Scheme.SECONDARY} icon="fa fa-square" rounded/>
@@ -195,6 +209,7 @@ export class ButtonPage extends React.Component {
                 </Panel>
 
                 <Panel title="Social Icon Buttons" expanded collapsible borderless>
+                    <Button scheme={Scheme.WARNING} icon={customIcon2}/>
                     <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square"/>
                     <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter"/>
                     <Button scheme={Scheme.SUCCESS} icon="fa fa-google"/>
@@ -202,6 +217,7 @@ export class ButtonPage extends React.Component {
                     <Button scheme={Scheme.WARNING} icon="fa fa-linkedin"/>
                     <Button scheme={Scheme.DANGER} icon="fa fa-skype"/>
                     <br/>
+                    <Button scheme={Scheme.WARNING} icon={customIcon2} rounded/>
                     <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" rounded/>
                     <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" rounded/>
                     <Button scheme={Scheme.SUCCESS} icon="fa fa-google" rounded/>
@@ -209,6 +225,7 @@ export class ButtonPage extends React.Component {
                     <Button scheme={Scheme.WARNING} icon="fa fa-linkedin" rounded/>
                     <Button scheme={Scheme.DANGER} icon="fa fa-skype" rounded/>
                     <br/>
+                    <Button scheme={Scheme.WARNING} icon={customIcon2} rounded outlined/>
                     <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" rounded outlined/>
                     <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" rounded outlined/>
                     <Button scheme={Scheme.SUCCESS} icon="fa fa-google" rounded outlined/>
@@ -216,6 +233,7 @@ export class ButtonPage extends React.Component {
                     <Button scheme={Scheme.WARNING} icon="fa fa-linkedin" rounded outlined/>
                     <Button scheme={Scheme.DANGER} icon="fa fa-skype" rounded outlined/>
                     <br/>
+                    <Button scheme={Scheme.WARNING} icon={customIcon2} textonly rounded/>
                     <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" textonly rounded/>
                     <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" textonly rounded/>
                     <Button scheme={Scheme.SUCCESS} icon="fa fa-google" textonly rounded/>
@@ -230,8 +248,18 @@ export class ButtonPage extends React.Component {
     renderDocumentation() {
         return (
             <Panel className="r-r-padding-left-right-20px">
-                <h2>Properties</h2>
-                <h2>CSS</h2>
+                <TabPane activeTabIndex={0}>
+                    <TabPanel scheme={Scheme.SUCCESS} title="Documentation" icon="fa fa-book">
+                        <h2>Properties</h2>
+                        <h2>CSS</h2>
+                    </TabPanel>
+                    <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {this.pageSource()}
+                        </SyntaxHighlighter>
+                    </TabPanel>
+                </TabPane>
+                
             </Panel>
         )
     }
