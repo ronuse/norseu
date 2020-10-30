@@ -11,7 +11,13 @@ import { Alignment } from "ronuse-react-ui/core/variables";
 export class BadgeAndTagPage extends React.Component {
 
     state = {
+        pageSource: ''
+    }
 
+    loadPageSource() {
+        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/supplement/BadgeAndTagPage.js")
+        .then(response => response.text())
+        .then(data => this.setState({pageSource : data}));
     }
 
     renderInteractiveEditor() {
@@ -198,10 +204,24 @@ return (
     }
 
     renderDocumentation() {
+        if (this.state.pageSource === '') {
+            this.loadPageSource();
+        }
+        
         return (
             <Panel className="r-r-padding-left-right-20px">
-                <h2>Properties</h2>
-                <h2>CSS</h2>
+                <TabPane activeTabIndex={0}>
+                    <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
+                        <h2>Properties</h2>
+                        <h2>CSS</h2>
+                    </TabPanel>
+                    <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {this.state.pageSource}
+                        </SyntaxHighlighter>
+                    </TabPanel>
+                </TabPane>
+                
             </Panel>
         )
     }

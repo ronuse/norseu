@@ -8,10 +8,14 @@ import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export class ButtonPage extends React.Component {
 
-    pageSource() {
-        return `
-        Yahoo
-        `;
+    state = {
+        pageSource: ''
+    }
+
+    loadPageSource() {
+        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/buttons/ButtonPage.js")
+        .then(response => response.text())
+        .then(data => this.setState({pageSource : data}));
     }
 
     renderInteractiveEditor() {
@@ -246,16 +250,20 @@ export class ButtonPage extends React.Component {
     }
 
     renderDocumentation() {
+        if (this.state.pageSource === '') {
+            this.loadPageSource();
+        }
+        
         return (
             <Panel className="r-r-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
-                    <TabPanel scheme={Scheme.SUCCESS} title="Documentation" icon="fa fa-book">
+                    <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
                         <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
-                            {this.pageSource()}
+                            {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
                 </TabPane>

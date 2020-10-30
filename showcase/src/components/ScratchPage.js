@@ -14,7 +14,7 @@ export class ScratchPage extends React.Component {
         var icon = this.state.buttonIcon ? this.state.buttonIcon : "fa fa-plus";
         return (
             <div style={{margin:"20px"}}>
-                
+                j
             </div>
         )
     }

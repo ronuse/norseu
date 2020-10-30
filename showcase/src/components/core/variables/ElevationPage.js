@@ -2,14 +2,20 @@
 import React from "react"
 import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels'
 import { Button } from 'ronuse-react-ui/core/buttons'
-import { Elevation } from "ronuse-react-ui/core/variables"
+import { Elevation, Scheme } from "ronuse-react-ui/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export class ElevationPage extends React.Component {
 
     state = {
+        pageSource: ''
+    }
 
+    loadPageSource() {
+        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/variables/ElevationPage.js")
+        .then(response => response.text())
+        .then(data => this.setState({pageSource : data}));
     }
 
     renderInteractiveEditor() {
@@ -96,10 +102,24 @@ export class ElevationPage extends React.Component {
     }
 
     renderDocumentation() {
+        if (this.state.pageSource === '') {
+            this.loadPageSource();
+        }
+        
         return (
             <Panel className="r-r-padding-left-right-20px">
-                <h2>Properties</h2>
-                <h2>CSS</h2>
+                <TabPane activeTabIndex={0}>
+                    <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
+                        <h2>Properties</h2>
+                        <h2>CSS</h2>
+                    </TabPanel>
+                    <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
+                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                            {this.state.pageSource}
+                        </SyntaxHighlighter>
+                    </TabPanel>
+                </TabPane>
+                
             </Panel>
         )
     }
