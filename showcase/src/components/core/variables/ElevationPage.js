@@ -1,7 +1,6 @@
 
 import React from "react"
 import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels'
-import { Button } from 'ronuse-react-ui/core/buttons'
 import { Elevation, Scheme } from "ronuse-react-ui/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';

@@ -51,6 +51,7 @@ p {
     font-weight: 500;
 }
 
+.r-r-tag,
 .r-r-showcase-badges > .r-r-badge, 
 .r-r-showcase-badges > .r-r-tag,
 .r-r-showcase-badges > .r-r-pill {
@@ -61,4 +62,39 @@ p {
 .r-r-showcase-badges {
 }
 
-/* TMPS *//* Style the tab */
+/* TMPS */
+
+.r-r-fieldset {
+    border: 1px solid #A7B6C2;
+    border-radius: 5px;
+    padding: 20px;
+    padding-top: 10px;
+}
+
+.r-r-reset-styles {
+    all: unset;
+}
+
+.r-r-reset-styles > * {
+    all: unset;
+}
+
+.r-r-ripple {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.0);
+    position: absolute;
+    opacity: 1;
+    z-index: 1;
+}
+
+.r-r-ripple-effect {
+    animation: r-r-ripple-drop .6s linear;
+}
+
+@keyframes r-r-ripple-drop {
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

@@ -26,10 +26,10 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { ObjUtils, BoolUtils } from "../utils/";
-import { Scheme, Alignment } from "../variables/";
+import { ObjUtils, BoolUtils } from "../utils";
+import { Scheme, Alignment } from "../variables";
 
-export class Button extends Component {
+export class Tag extends Component {
 
     static defaultProps = {
         text: null,
@@ -40,7 +40,8 @@ export class Button extends Component {
         tooltip: null,
         tooltipProps: null,
         scheme: null,
-        link: null,
+        removable: null,
+        removeIcon: 'fa fa-times',
         raised: null,
         rounded: null,
         borderless: null,
@@ -60,7 +61,8 @@ export class Button extends Component {
         tooltip: PropTypes.string,
         tooltipProps: PropTypes.object,
         scheme: PropTypes.string,
-        link: PropTypes.bool,
+        removable: PropTypes.bool,
+        removeIcon: PropTypes.string,
         raised: PropTypes.bool,
         rounded: PropTypes.bool,
         borderless: PropTypes.bool,
@@ -83,6 +85,15 @@ export class Button extends Component {
 
     }
 
+    removeComponent(event) {
+        let target = event.target.parentNode;
+        let targetParent = event.target.parentNode.parentNode;
+
+        if (targetParent && target) {
+            targetParent.removeChild(target);
+        }
+    }
+
     renderIcon() {
         if (!this.props.icon || this.props.scheme == Scheme.SKELETON) {
             return null;
@@ -92,8 +103,8 @@ export class Button extends Component {
         if (!isString && !React.isValidElement(this.props.icon)) {
             return null;
         }
-        let className = classNames('r-r-button-icon', isString ? this.props.icon : this.props.icon.props.className, {
-            'r-r-margin-right-15px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
+        let className = classNames('r-r-tag-icon', isString ? this.props.icon : this.props.icon.props.className, {
+            'r-r-margin-right-5px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
                                     BoolUtils.equalsAny(this.props.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
             'r-r-float-left': this.props.alignIcon === Alignment.LEFT,
             'r-r-float-right': this.props.alignIcon === Alignment.RIGHT,
@@ -117,9 +128,10 @@ export class Button extends Component {
         if (!isString && !React.isValidElement(this.props.rightIcon)) {
             return null;
         }
-        let className = classNames('r-r-button-icon', isString ? this.props.rightIcon : this.props.rightIcon.props.className, {
+        let className = classNames('r-r-tag-icon', isString ? this.props.rightIcon : this.props.rightIcon.props.className, {
             'r-r-float-right': this.props.fill
-        });if (!isString) {
+        });
+        if (!isString) {
             var relayProps = ObjUtils.clone(this.props.rightIcon.props);
             relayProps.className = className;
             return React.cloneElement(this.props.rightIcon, relayProps);
@@ -127,24 +139,43 @@ export class Button extends Component {
         return <i className={className}></i>;
     }
 
+    renderRemoveIcon() {
+        if (!this.props.removeIcon || this.props.scheme == Scheme.SKELETON) {
+            return null;
+        }
+
+        let isString = BoolUtils.isTypeOfAny(this.props.removeIcon, ["string"]);
+        if (!isString && !React.isValidElement(this.props.removeIcon)) {
+            return null;
+        }
+        let className = classNames('r-r-tag-icon r-r-tag-remove-icon', isString ? this.props.removeIcon : this.props.removeIcon.props.className);
+        if (!isString) {
+            var relayProps = ObjUtils.clone(this.props.removeIcon.props);
+            relayProps.className = className;
+            relayProps.onClick = this.removeComponent;
+            return React.cloneElement(this.props.removeIcon, relayProps);
+        }
+        return <i className={className} onClick={this.removeComponent}/>;
+    }
+
     renderText() {
-        if (!this.props.text || this.props.scheme == Scheme.SKELETON) {
+        if (!this.props.text && this.props.scheme != Scheme.SKELETON) {
             return null;
         }
 
         let className = classNames({
-            'r-r-margin-left-15px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.CENTER, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
-            'r-r-margin-right-15px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
+            'r-r-margin-left-5px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
+            'r-r-margin-right-5px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
             'r-r-float-left': this.props.alignText === Alignment.LEFT,
             'r-r-float-right': this.props.alignText === Alignment.RIGHT,
             'r-r-float-center': this.props.alignText === Alignment.CENTER
         })
-        return <span className={className}>{this.props.text}</span>;
+        return <span className={className}>{this.props.scheme === Scheme.SKELETON ? "Ronuse Tag" : this.props.text}</span>;
     }
 
     render() {
         let className = classNames({
-            'r-r-button': !this.props.nostyle,
+            'r-r-tag': !this.props.nostyle,
             'r-r-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
             'r-r-disabled': !this.props.nostyle && this.props.disabled,
             'r-r-padding-left-right-20px': this.props.text,
@@ -189,29 +220,29 @@ export class Button extends Component {
             'r-r-info-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.INFO,
             'r-r-warning-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.WARNING,
             'r-r-danger-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.DANGER,
-            'r-r-button-min-size r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,
-            'r-r-button-min-size-icon-only r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
+            'r-r-tag-min-size r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,
+            'r-r-tag-min-size-icon-only r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
 
             'r-r-stateless': BoolUtils.equalsAny(this.props.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.props.link,
             'r-r-padding-0px': this.props.fillIcon
         }, 'r-r-button-theme', this.props.className);
         let icon = this.renderIcon();
         let rightIcon = this.renderRightIcon();
+        let removeIcon = this.props.removable ? this.renderRemoveIcon() : null;
         let text = this.renderText();
-        let iconPreText = BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.CENTER, Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]) ;
-        let rightIconPreText = this.props.rightIcon && this.props.fill && this.props.rightIcon.indexOf('float-none') === -1 ;
-        let componentProps = ObjUtils.findDiffKeys(this.props, Button.defaultProps);
+        let iconPreText = BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]) ;
+        let componentProps = ObjUtils.findDiffKeys(this.props, Tag.defaultProps);
         if (!componentProps.children) {
             componentProps.children = [];
         }
+        componentProps.children.push(this.props.removable ? removeIcon : '');
         componentProps.children.push(iconPreText ? icon : '');
-        componentProps.children.push(rightIconPreText ? rightIcon : '');
+        componentProps.children.push(this.props.fill ? rightIcon : '');
         componentProps.children.push(text);
         componentProps.children.push(iconPreText ? '' : icon);
-        componentProps.children.push(rightIconPreText ? '' : rightIcon);
+        componentProps.children.push(this.props.fill ? '' : rightIcon);
 
-        let element = this.props.link ? <a ref={(el) => this.element = el} {...componentProps} className={className}/>
-                      : <button ref={(el) => this.element = el} {...componentProps} className={className}/>
+        let element = <span ref={(el) => this.element = el} {...componentProps} className={className}/>
 
         return element;
     }

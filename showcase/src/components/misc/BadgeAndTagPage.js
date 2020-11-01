@@ -1,8 +1,8 @@
 
-import React from "react"
-import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels'
-import { Button } from 'ronuse-react-ui/core/buttons'
-import { Elevation } from "ronuse-react-ui/core/variables"
+import React from "react";
+import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels';
+import { Button } from 'ronuse-react-ui/core/buttons';
+import { Tag } from 'ronuse-react-ui/core/misc';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Scheme } from "ronuse-react-ui/core/variables/Stylers";
@@ -15,7 +15,7 @@ export class BadgeAndTagPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/supplement/BadgeAndTagPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/misc/BadgeAndTagPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}));
     }
@@ -47,6 +47,12 @@ export class BadgeAndTagPage extends React.Component {
         let icon9 = <span className="r-r-badge r-r-secondary r-r-no-border">9</span>;
         let tagWarning = <span className="r-r-tag r-r-warning">warning</span>;
         let pillDanger = <span className="r-r-pill r-r-danger">danger</span>;
+        let customTag = (<div style={{marginTop:"6px"}}>
+                <Tag scheme={Scheme.INFO} icon="fa fa-square" text="Info" outlined/>
+                <Tag scheme={Scheme.PRIMARY} icon="fa fa-square" text="Primary" outlined/>
+                <Tag scheme={Scheme.DANGER} icon="fa fa-square" text="Danger" outlined/>
+        
+        </div>);
 
         return (
             <div>
@@ -140,6 +146,7 @@ export class BadgeAndTagPage extends React.Component {
                                 <Button scheme={Scheme.INFO} text="Emails" icon={icon9} alignIcon={Alignment.RIGHT} />
                                 <Button scheme={Scheme.WARNING} text="Type" icon={tagWarning} outlined />
                                 <Button scheme={Scheme.DANGER} text="Error" icon={pillDanger} alignIcon={Alignment.RIGHT} outlined rounded/>
+                                <Button text="Tags" rightIcon={customTag} scheme={Scheme.SECONDARY} outlined/>
 
                                 <h5>Positioned</h5>
                                 <div className="r-r-flex">

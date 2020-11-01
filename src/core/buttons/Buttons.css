@@ -4,6 +4,8 @@
  * Copyright (c) 2020 Ronuse Agency, Adewale Azeez, Oyeleke Damilola.
  */
 
+ /* Button */
+
 .r-r-button-min-size {
     min-height: 35px;
     min-width: 90px;
@@ -32,6 +34,10 @@
     text-decoration: none;
 }
 
+.r-r-button-icon {
+    
+}
+
 .r-r-button-rounded-border {
     border-radius: 20px;
 }
@@ -58,4 +64,42 @@
     -moz-box-shadow: 0 0 0 3px rgba(167, 182, 194, .5);
 }
 
- 
+/* ButtonGroup */
+
+.r-r-button-group {
+    display: flex;
+    padding: 0px;
+    width: max-content;
+}
+
+.r-r-button-group > .r-r-button {
+    margin: 0px;
+    border-radius: 0px;
+}
+
+.r-r-button-group > .r-r-button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.r-r-button-group > .r-r-button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.r-r-button-group.r-r-flex-vertical {
+}
+
+.r-r-button-group.r-r-flex-vertical > .r-r-button {
+    border-radius: 0px;
+}
+
+.r-r-button-group.r-r-flex-vertical > .r-r-button:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.r-r-button-group.r-r-flex-vertical > .r-r-button:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

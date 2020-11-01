@@ -153,6 +153,10 @@
     flex-wrap: wrap;
 }
 
+.r-r-flex-vertical {
+    flex-direction: column;
+}
+
 /* Margins and Paddings And Borders */
 
 .r-r-no-border {
@@ -173,6 +177,14 @@
 
 .r-r-margin-left-15px {
     margin-left: 15px;
+}
+
+.r-r-margin-right-5px {
+    margin-right: 5px;
+}
+
+.r-r-margin-left-5px {
+    margin-left: 5px;
 }
 
 .r-r-margin-10px {
@@ -212,7 +224,7 @@
 /* End Margins */
 
 .r-r-width-100-percent {
-    width: 100%;
+    width: 100% !important;
 }
 
 .r-r-float-right {
@@ -225,6 +237,10 @@
 
 .r-r-float-center {
     float: center;
+}
+
+.r-r-float-none {
+    float: none;
 }
 
 /* Elevations */

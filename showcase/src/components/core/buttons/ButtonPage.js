@@ -42,10 +42,9 @@ export class ButtonPage extends React.Component {
     }
 
     renderSampleComponents() {
-        let customIcon1 = <img src="https://avatars3.githubusercontent.com/u/14879387?s=16" style={{borderRadius:"50%"}}/>;
-        let customIcon2 = <img src="https://avatars3.githubusercontent.com/u/69908664?s=16" style={{borderRadius:"50%"}}/>;
-        let customIcon3 = <img src="https://avatars3.githubusercontent.com/u/14879387?s=100"/>;
-        let customIcon4 = <img src="https://avatars3.githubusercontent.com/u/69908664?s=100"/>;
+        let customIcon1 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/14879387?s=16" style={{borderRadius:"50%"}}/>;
+        let customIcon2 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/69908664?s=16" style={{borderRadius:"50%"}}/>;
+        let customIcon3 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/14879387?s=100"/>;
 
         return (
             <Panel className="r-r-padding-left-right-20px">
