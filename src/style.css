@@ -25,6 +25,14 @@
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
+.r-r-reset-styles {
+    all: unset;
+}
+
+.r-r-reset-styles > * {
+    all: unset;
+}
+
 .r-r-noselect {
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
@@ -33,7 +41,11 @@
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
-  }
+}
+
+.r-r-no-pointer-event {
+    pointer-events:none;
+}
 
 .r-r-disabled {
     opacity: 50%;
@@ -163,6 +175,10 @@
     border: none !important;
 }
 
+.r-r-margin-0px {
+    margin: 0px;
+}
+
 .r-r-margin-right-7px {
     margin-right: 7px;
 }
@@ -203,9 +219,41 @@
     padding: 20px;
 }
 
+.r-r-padding-top-20px {
+    padding-top: 20px;
+}
+
+.r-r-padding-bottom-20px {
+    padding-bottom: 20px;
+}
+
+.r-r-padding-left-20px {
+    padding-left: 20px;
+}
+
+.r-r-padding-right-20px {
+    padding-right: 20px;
+}
+
 .r-r-padding-left-right-20px {
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.r-r-padding-bottom-0px {
+    padding-bottom: 0px !important;
+}
+
+.r-r-padding-top-0px {
+    padding-top: 0px !important;
+}
+
+.r-r-padding-right-0px {
+    padding-top: 0px !important;
+}
+
+.r-r-padding-left-0px {
+    padding-top: 0px !important;
 }
 
 .r-r-border-1px-radius-5px {
@@ -455,27 +503,27 @@
 /* border 1px */
 
 .r-r-primary-border-1px {
-    border: 1px solid #3699FF;
+    border: 1px solid #3699FF !important;
 }
 
 .r-r-secondary-border-1px {
-    border: 1px solid #E4E6EF;
+    border: 1px solid #E4E6EF !important;
 }
 
 .r-r-success-border-1px {
-    border: 1px solid #1BC5BD;
+    border: 1px solid #1BC5BD !important;
 }
 
 .r-r-info-border-1px {
-    border: 1px solid #8950FC;
+    border: 1px solid #8950FC !important;
 }
 
 .r-r-warning-border-1px {
-    border: 1px solid #FFA800;
+    border: 1px solid #FFA800 !important;
 }
 
 .r-r-danger-border-1px {
-    border: 1px solid #F64E60;
+    border: 1px solid #F64E60 !important;
 }
 
 /* hover */

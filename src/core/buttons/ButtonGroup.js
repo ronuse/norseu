@@ -26,7 +26,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { ObjUtils, BoolUtils } from "../utils/";
+import { ObjUtils, BoolUtils } from "../../utils";
 import { Scheme, Alignment, Direction } from "../variables/";
 
 export class ButtonGroup extends Component {

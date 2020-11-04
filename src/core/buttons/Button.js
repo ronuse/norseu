@@ -26,7 +26,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { ObjUtils, BoolUtils } from "../utils/";
+import { ObjUtils, BoolUtils } from "../../utils";
 import { Scheme, Alignment } from "../variables/";
 
 export class Button extends Component {
@@ -119,7 +119,8 @@ export class Button extends Component {
         }
         let className = classNames('r-r-button-icon', isString ? this.props.rightIcon : this.props.rightIcon.props.className, {
             'r-r-float-right': this.props.fill
-        });if (!isString) {
+        });
+        if (!isString) {
             var relayProps = ObjUtils.clone(this.props.rightIcon.props);
             relayProps.className = className;
             return React.cloneElement(this.props.rightIcon, relayProps);

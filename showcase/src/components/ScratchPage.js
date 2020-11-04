@@ -56,12 +56,8 @@ export class ScratchPage extends React.Component {
         return (
             <div className="r-r-showcase-component-page">
                 <h1>Construct A Component Here</h1>
-                <fieldset className="r-r-fieldset r-r-primary-border-1px">
-                    <legend><Button scheme={Scheme.PRIMARY} icon="fa fa-plus" text="Header"/></legend>
-                    <p>Donec in vehicula neque. Etiam ornare lectus sed enim cursus, ut vestibulum nibh condimentum. Phasellus vestibulum vitae mauris quis 
-                        scelerisque. Curabitur vitae cursus est. Cras ac porta sapien. Aliquam quis mattis mauris. Praesent ut bibendum felis. 
-                        Nullam sagittis semper quam et maximus. Suspendisse faucibus erat felis, sit amet dignissim ex euismod quis. </p>
-                </fieldset>
+                
+                
                 <br/>
                 <br/>
                 <br/>

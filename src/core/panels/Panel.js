@@ -28,10 +28,10 @@ import classNames from 'classnames';
 import React, { Component } from 'react';
 import { Button } from "../buttons";
 import { Scheme } from "../variables";
-import { BoolUtils, ObjUtils, DOMUtils } from "../utils/";
+import { BoolUtils, ObjUtils, DOMUtils } from "../../utils";
 import { Elevation } from "../variables/";
 import { CSSTransition } from 'react-transition-group';
-import { TabPane } from "./TabPane"
+import { TabPane } from "./TabPane";
 
 export class Panel extends Component {
 

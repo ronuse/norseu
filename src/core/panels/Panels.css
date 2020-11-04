@@ -132,3 +132,20 @@
 .r-r-tab-button-top-danger.active {
     border-top: 2px solid #F64E60 !important;
 }
+
+/* FieldsetL */
+
+.r-r-fieldset {
+    border: 1px solid #A7B6C2;
+    border-radius: 5px;
+}
+
+.r-r-fieldset-content {
+    margin: 10px;
+    margin-top: 0px;
+}
+
+.r-r-fieldset-content > .r-r-panel-content{
+    margin: 0px;
+    padding: 0px;
+}
