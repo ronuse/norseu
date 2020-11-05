@@ -11,11 +11,11 @@ import { ViewportSensor } from "ronuse-react-ui/sensors";
 export class ViewportSensorPage extends React.Component {
 
     state = {
-        pageSource: ';'
+        pageSource: ''
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/sensors/ViewportSensor.js")
+        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/sensors/ViewportSensorPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}));
     }
@@ -93,7 +93,7 @@ export class ViewportSensorPage extends React.Component {
         return (
             <Panel className="r-r-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
-                    <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
+                    <TabPanel title="Documentation" icon="fa fa-book">
                         Can be used to defer rendering if no event listener is specified<br/>
                         
                         If onEnterViewport return true the children will be rendered if it return false the children will 
@@ -107,7 +107,7 @@ export class ViewportSensorPage extends React.Component {
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
-                    <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
+                    <TabPanel title="Page Source" icon="fa fa-code">
                         <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>

@@ -164,7 +164,7 @@ export class Fieldset extends Component {
 
         return (
             <CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={expanded} unmountOnExit>
-                <Panel safely={safely} scheme={this.props.scheme} className={className} id={id} borderless>
+                <Panel safely={this.props.safely} scheme={this.props.scheme} className={className} id={id} borderless>
                     {this.props.children}
                 </Panel>
             </CSSTransition>
@@ -173,16 +173,9 @@ export class Fieldset extends Component {
 
     render() {
         let expanded = !this.props.children ? false : this.isExpanded();
-        let className = classNames('r-r-fieldset', this.props.elevation, {
-            'r-r-primary-border-1px': !this.props.borderless,
+        let className = classNames('r-r-fieldset', this.props.elevation, 
+            ((this.props.scheme && !this.props.borderless)? `${this.props.scheme}-border-1px` : null), {
             'r-panel-collapsible': this.props.collapsible,
-            
-            'r-r-primary-border-1px': this.props.scheme === Scheme.PRIMARY,
-            'r-r-secondary-border-1px': this.props.scheme === Scheme.SECONDARY,
-            'r-r-success-border-1px': this.props.scheme === Scheme.SUCCESS,
-            'r-r-info-border-1px': this.props.scheme === Scheme.INFO,
-            'r-r-warning-border-1px': this.props.scheme === Scheme.WARNING,
-            'r-r-danger-border-1px': this.props.scheme === Scheme.DANGER,
         }, this.props.className);
         let legend = this.renderLengend(expanded);
         let content = !this.props.children ? '' : this.renderContent(expanded);

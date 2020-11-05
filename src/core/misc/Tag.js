@@ -174,7 +174,11 @@ export class Tag extends Component {
     }
 
     render() {
-        let className = classNames({
+        let className = classNames((this.props.scheme && (!this.props.textonly && !this.props.outlined && !this.props.link)) ? `${this.props.scheme}`: null, 
+            (this.props.scheme && (this.props.outlined)) ? `${this.props.scheme}-border-1px`: null,
+            (this.props.scheme && (this.props.outlined && !this.props.textonly)) ? `${this.props.scheme}-bg-hover`: null,
+            (this.props.scheme && (this.props.outlined || this.props.textonly || this.props.link)) ? `${this.props.scheme}-text`: null,
+            (this.props.scheme && (!this.props.nostyle)) ? `${this.props.scheme}-border-1px-focus`: null, {
             'r-r-tag': !this.props.nostyle,
             'r-r-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
             'r-r-disabled': !this.props.nostyle && this.props.disabled,
@@ -185,41 +189,7 @@ export class Tag extends Component {
             'r-r-button-textonly': !this.props.nostyle && (this.props.textonly || this.props.outlined),
             'r-r-no-background r-r-text-decoration-underline-hover': !this.props.nostyle && this.props.link,
             'r-r-no-border': !this.props.nostyle && (this.props.borderless || (this.props.textonly && !this.props.outlined) || this.props.link),
-
-            'r-r-primary': this.props.scheme === Scheme.PRIMARY && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-secondary': this.props.scheme === Scheme.SECONDARY && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-success': this.props.scheme === Scheme.SUCCESS && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-info': this.props.scheme === Scheme.INFO && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-warning': this.props.scheme === Scheme.WARNING && !this.props.textonly && !this.props.outlined && !this.props.link,
-            'r-r-danger': this.props.scheme === Scheme.DANGER && !this.props.textonly && !this.props.outlined && !this.props.link,
             
-            'r-r-primary-border-1px': this.props.scheme === Scheme.PRIMARY && this.props.outlined,
-            'r-r-secondary-border-1px': this.props.scheme === Scheme.SECONDARY && this.props.outlined,
-            'r-r-success-border-1px': this.props.scheme === Scheme.SUCCESS && this.props.outlined,
-            'r-r-info-border-1px': this.props.scheme === Scheme.INFO && this.props.outlined,
-            'r-r-warning-border-1px': this.props.scheme === Scheme.WARNING && this.props.outlined,
-            'r-r-danger-border-1px': this.props.scheme === Scheme.DANGER && this.props.outlined,
-            
-            'r-r-primary-bg-hover': this.props.scheme === Scheme.PRIMARY && this.props.outlined && !this.props.textonly,
-            'r-r-secondary-bg-hover': this.props.scheme === Scheme.SECONDARY && this.props.outlined && !this.props.textonly,
-            'r-r-success-bg-hover': this.props.scheme === Scheme.SUCCESS && this.props.outlined && !this.props.textonly,
-            'r-r-info-bg-hover': this.props.scheme === Scheme.INFO && this.props.outlined && !this.props.textonly,
-            'r-r-warning-bg-hover': this.props.scheme === Scheme.WARNING && this.props.outlined && !this.props.textonly,
-            'r-r-danger-bg-hover': this.props.scheme === Scheme.DANGER && this.props.outlined && !this.props.textonly,
-            
-            'r-r-primary-text': this.props.scheme === Scheme.PRIMARY && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-secondary-text': this.props.scheme === Scheme.SECONDARY && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-success-text': this.props.scheme === Scheme.SUCCESS && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-info-text': this.props.scheme === Scheme.INFO && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-warning-text': this.props.scheme === Scheme.WARNING && (this.props.outlined || this.props.textonly || this.props.link),
-            'r-r-danger-text': this.props.scheme === Scheme.DANGER && (this.props.outlined || this.props.textonly || this.props.link),
-            
-            'r-r-primary-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.PRIMARY,
-            'r-r-secondary-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.SECONDARY,
-            'r-r-success-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.SUCCESS,
-            'r-r-info-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.INFO,
-            'r-r-warning-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.WARNING,
-            'r-r-danger-border-1px-focus': !this.props.nostyle && this.props.scheme === Scheme.DANGER,
             'r-r-tag-min-size r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,
             'r-r-tag-min-size-icon-only r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
 

@@ -58,6 +58,7 @@
 }
 
 .r-r-button:focus {
+    z-index: 99;
     outline: none;
     box-shadow: 0 0 0 3px rgba(167, 182, 194, .5);
     -webkit-box-shadow: 0 0 0 3px rgba(167, 182, 194, .5);

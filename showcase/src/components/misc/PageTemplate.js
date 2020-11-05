@@ -58,11 +58,11 @@ export class TagPage extends React.Component {
         return (
             <Panel className="r-r-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
-                    <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
+                    <TabPanel title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
-                    <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
+                    <TabPanel title="Page Source" icon="fa fa-code">
                         <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>

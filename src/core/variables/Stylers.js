@@ -61,12 +61,12 @@ export const Direction = {
 }
 
 export const Scheme = {
-    STATELESS: "stateless",
-    PRIMARY: "primary",
-    SECONDARY: "secondary",
-    SUCCESS: "success",
-    INFO: "info",
-    WARNING: "warning",
-    DANGER: "danger",
-    SKELETON: "skeleton"
+    STATELESS: "r-r-stateless",
+    PRIMARY: "r-r-primary",
+    SECONDARY: "r-r-secondary",
+    SUCCESS: "r-r-success",
+    INFO: "r-r-info",
+    WARNING: "r-r-warning",
+    DANGER: "r-r-danger",
+    SKELETON: "r-r-skeleton"
 }
