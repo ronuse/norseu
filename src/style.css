@@ -53,7 +53,7 @@
     cursor: default;
 }
 
-.r-r-no-border {
+.r-r-no-border-soft {
     border: none;
 }
 
@@ -195,6 +195,30 @@
     margin-left: 15px;
 }
 
+.r-r-margin-top-15px {
+    margin-top: 15px;
+}
+
+.r-r-margin-bottom-15px {
+    margin-bottom: 15px;
+}
+
+.r-r-margin-right-20px {
+    margin-right: 20px;
+}
+
+.r-r-margin-left-20px {
+    margin-left: 20px;
+}
+
+.r-r-margin-top-20px {
+    margin-top: 20px;
+}
+
+.r-r-margin-bottom-20px {
+    margin-bottom: 20px;
+}
+
 .r-r-margin-right-5px {
     margin-right: 5px;
 }
@@ -267,6 +291,22 @@
 
 .r-r-border-top-2px-grey1 {
     border-top: 2px solid #EEF0F8;
+}
+
+.r-r-border-bottom-1px-grey1 {
+    border-bottom: 1px solid #EEF0F8;
+}
+
+.r-r-border-top-1px-grey1 {
+    border-top: 1px solid #EEF0F8;
+}
+
+.r-r-border-bottom-1px-grey2 {
+    border-bottom: 1px solid #A7B6C2;
+}
+
+.r-r-border-top-1px-grey2 {
+    border-top: 1px solid #A7B6C2;
 }
 
 /* End Margins */

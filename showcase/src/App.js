@@ -5,6 +5,7 @@ import { HashRouter, Switch, Route } from "react-router-dom"
 import { ButtonPage } from './components/core/buttons/ButtonPage'
 import { ButtonGroupPage } from './components/core/buttons/ButtonGroupPage'
 import { PanelPage } from './components/core/panels/PanelPage'
+import { AccordionPage } from './components/core/panels/AccordionPage'
 import { TabPanePage } from './components/core/panels/TabPanePage'
 import { FieldsetPage } from './components/core/panels/FieldsetPage'
 import { ElevationPage } from './components/core/variables/ElevationPage'
@@ -26,6 +27,7 @@ const App = () => {
                 <Route exact path="/core/panels/panel" component={PanelPage}/>
                 <Route exact path="/core/panels/tabpane" component={TabPanePage}/>
                 <Route exact path="/core/panels/fieldset" component={FieldsetPage}/>
+                <Route exact path="/core/panels/accordion" component={AccordionPage}/>
                 
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>
                 <Route exact path="/core/misc/tag" component={TagPage}/>

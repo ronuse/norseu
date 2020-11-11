@@ -26,15 +26,19 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { BoolUtils, DOMUtils } from "../../utils";
+import { BoolUtils, DOMUtils, ObjUtils } from "../../utils";
 import { Direction, Scheme, Alignment } from "../variables/";
 import { Button } from "../buttons";
 import { Panel } from "./Panel"
+import { CSSTransition } from 'react-transition-group';
 
 
 export class AccordionPanel extends Component {
 
     static defaultProps = {
+        id: null,
+        style: null,
+        className: null,
         title: null,
         disabled: false,
         scheme: null,
@@ -45,6 +49,9 @@ export class AccordionPanel extends Component {
     }
 
     static propTypes = {
+        id: PropTypes.string,
+        style: PropTypes.object,
+        className: PropTypes.string,
         title: PropTypes.string,
         disabled: PropTypes.bool,
         scheme: PropTypes.string,
@@ -63,10 +70,14 @@ export class Accordion extends Component {
         id: null,
         style: null,
         className: null,
+        collapseIcon: 'fa-angle-down',
+        expandIcon: 'fa-angle-right',
         safely: null,
-        alignNavigator: Alignment.TOP,
-        activeTabIndex: 0,
-        renderActiveTabOnly: false,
+        activeIndex: 0,
+        alwaysRenderAllPanel: false,
+        multiple: false,
+        onTabCollapse: null,
+        onTabExpand: null,
         onTabChange: null
     }
 
@@ -74,10 +85,14 @@ export class Accordion extends Component {
         id: PropTypes.string,
         style: PropTypes.object,
         className: PropTypes.string,
+        collapseIcon: PropTypes.string,
+        expandIcon: PropTypes.string,
         safely: PropTypes.bool,
-        alignNavigator: PropTypes.string,
-        activeTabIndex: PropTypes.number,
-        renderActiveTabOnly: PropTypes.bool,
+        activeIndex: PropTypes.any,
+        alwaysRenderAllPanel: PropTypes.bool,
+        multiple: PropTypes.bool,
+        onTabCollapse: PropTypes.func,
+        onTabExpand: PropTypes.func,
         onTabChange: PropTypes.func
     }
 
@@ -85,75 +100,130 @@ export class Accordion extends Component {
         super(props);
         if (!this.props.onTabChange) {
             this.state = {
-                activeTabIndex: this.props.activeTabIndex
+                activeIndex: this.props.activeIndex
             };
         }
 
         this.id = this.props.id || DOMUtils.UniqueElementId();
     }
 
-    getActiveTabIndex() {
-        return this.props.onTabChange ? this.props.activeTabIndex : this.state.activeTabIndex;
+    isActiveIndex(index) {
+        const activeIndex = this.props.onTabChange ? this.props.activeIndex : this.state.activeIndex;
+        return (this.props.multiple || Array.isArray(activeIndex)) ? (activeIndex && activeIndex.indexOf(index) >= 0) : activeIndex === index;
     }
 
-    isSelectedTab(index) {
-        return (index === this.getActiveTabIndex());
+    onPanelHeaderClick(event, panel, index) {
+        if (!panel.props.disabled) {
+            const isToggled = this.isActiveIndex(index);
+            let newActiveIndex = null;
+
+            if(this.props.multiple) {
+                let indexes = (this.props.onTabChange ? this.props.activeIndex : this.state.activeIndex) || [];
+                if (isToggled) {
+                    indexes = indexes.filter(i => i !== index);
+                } else {
+                    indexes = [...indexes, index];
+                }
+                newActiveIndex = indexes;
+            } else {
+                newActiveIndex = isToggled ? null : index;
+            }
+
+            let callback = isToggled ? this.props.onTabCollapse : this.props.onTabExpand;
+            if (callback) {
+                callback({event: event, index: index});
+            }
+            if (this.props.onTabChange) {
+                this.props.onTabChange({
+                    event: event,
+                    index: newActiveIndex
+                })
+            } else {
+                this.setState({
+                    activeIndex: newActiveIndex
+                });
+            }
+        }
+    }
+
+    renderAccordionPanelHeader(panel, index, childrenCount, isToggled) {
+        const ariaControls = `${this.id}-content-${index}`;
+        const id = `${this.id}-header-${index}`;
+        const className = classNames('r-r-accordion-tab-header', panel.props.headerClassName, {
+            'r-r-disabled': panel.props.disabled
+        });
+        const arrowIcon = isToggled ? this.props.collapseIcon : this.props.expandIcon;
+
+        return (
+            <Button className={className} //href={`#${ariaControls}`}
+                role="tab" aria-controls={ariaControls} aria-expanded={isToggled} id={id}
+                onClick={(e)=> this.onPanelHeaderClick(e, panel, index)}
+                icon={`r-r-accordion-tab-header-icon fa ${arrowIcon}`}
+                scheme={panel.props.scheme ? panel.props.scheme : this.props.scheme}
+                
+                text={panel.props.title}
+                //link
+                borderless
+                fill
+            />
+        )
+    }
+
+    renderAccordionPanelContent(panel, isToggled) {
+        const renderPanel = isToggled || this.props.alwaysRenderAllPanel;
+        if (!renderPanel) {
+            //return null;
+        }
+
+        const className = classNames('r-r-accordion-tab-panel', panel.props.contentClassName, {
+            
+        });
+        return (
+            <CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={isToggled} unmountOnExit>
+                <Panel safely={this.props.safely} scheme={this.props.scheme} className={className} borderless>
+                    {panel.props.children}
+                </Panel>
+            </CSSTransition>
+        )
+    }
+
+    renderAccordionPanel(panel, index, childrenCount) {
+        const isToggled = this.isActiveIndex(index);
+        const panelContent = this.renderAccordionPanelContent(panel, isToggled);
+        const panelHeader = this.renderAccordionPanelHeader(panel, index, childrenCount, isToggled);
+        const className = classNames('r-r-accordion-tab', panel.props.className);
+        const headerDivider = (index < childrenCount-1 || (isToggled)) ? <hr className="r-r-accordion-divider"/> : null;
+        const contentDivider = (isToggled && index < childrenCount-1) ? <hr className="r-r-accordion-divider"/> : null;
+        
+        return (
+            <div id={panel.props.id} className={className} style={panel.props.style}>
+                {panelHeader}
+                {headerDivider}
+
+                {panelContent}
+                {contentDivider}
+            </div>
+        )
+    }
+
+    renderAccordionPanels() {
+        const childrenCount = this.props.children.length;
+        return React.Children.map(this.props.children, (panel, index) => {
+            if (panel.type !== AccordionPanel) {
+                throw new Error("ronuse-react-ui.Accordion: Invalid child of Accordion component expecting AccordionPanel only, found '" + panel.type + "'");
+            }
+            return this.renderAccordionPanel(panel, index, childrenCount);
+        });
     }
 
     render() {
+        const className = classNames('r-r-accordion', this.props.className, (this.props.scheme) ? `${this.props.scheme}-border-1px` : null);
+        const content = this.renderAccordionPanels(); 
+
         return (
-            <div className="r-r-accordion">
-                    <div className="r-r-accordion-tab">
-                        <div className="r-r-accordion-tab-header">
-                            <Button className="r-r-accordion-tab-header-button" icon="r-r-accordion-tab-header-icon fa fa-angle-down" 
-                                alignText={Alignment.LEFT} text="Section 1" fill/>
-                        </div>
-                        <Panel className="r-r-accordion-tab-panel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </Panel>
-                    </div>
-                    <hr className="r-r-accordion-divider"/>
-
-                    <div className="r-r-accordion-tab">
-                        <div className="r-r-accordion-tab-header">
-                            <Button className="r-r-accordion-tab-header-button" icon="r-r-accordion-tab-header-icon fa fa-angle-down" 
-                                alignText={Alignment.LEFT} text="Section 2" fill/>
-                        </div>
-                        <Panel className="r-r-accordion-tab-panel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </Panel>
-                    </div>
-                    <hr className="r-r-accordion-divider"/>
-
-                    <div className="r-r-accordion-tab">
-                        <div className="r-r-accordion-tab-header">
-                            <Button className="r-r-accordion-tab-header-button" icon="r-r-accordion-tab-header-icon fa fa-angle-down" 
-                                alignText={Alignment.LEFT} text="Section 3" fill/>
-                        </div>
-                        <Panel className="r-r-accordion-tab-panel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </Panel>
-                    </div>
-                    <hr className="r-r-accordion-divider"/>
-
-                    <div className="r-r-accordion-tab">
-                        <div className="r-r-accordion-tab-header">
-                            <Button className="r-r-accordion-tab-header-button" icon="r-r-accordion-tab-header-icon fa fa-angle-down" 
-                                alignText={Alignment.LEFT} text="Section 4" fill/>
-                        </div>
-                        <Panel className="r-r-accordion-tab-panel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </Panel>
-                    </div>
-                </div>
+            <div id={this.props.id} className={className} style={this.props.style}>
+                {content}
+            </div>
         )
     }
 

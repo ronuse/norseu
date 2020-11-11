@@ -78,7 +78,7 @@ export class ButtonGroup extends Component {
         let className = classNames('r-r-button-group', {
             'r-r-flex-vertical': BoolUtils.equalsAny(this.props.direction, [Direction.VERTICAL]),
             'r-r-width-100-percent': this.props.fill
-        });
+        }, this.props.className);
         let componentProps = ObjUtils.findDiffKeys(this.props, ButtonGroup.defaultProps);
         let children = this.prepareChildren();
 

@@ -10,7 +10,7 @@ import { Alignment } from "ronuse-react-ui/core/variables";
 export class TagPage extends React.Component {
 
     state = {
-        pageSource: ';'
+        pageSource: ''
     }
 
     loadPageSource() {

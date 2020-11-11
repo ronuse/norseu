@@ -83,24 +83,21 @@ p {
 }
 
 .r-r-accordion-tab-header {
-    padding: 0px;
+    padding: 14px;
     margin: 0px;
     display: flex;
-    border-bottom: 1px solid #A7B6C2;
 }
 
 .r-r-accordion-tab-header > * {
     margin: 0px;
     border-radius: 5px;
-}
-
-.r-r-accordion-tab-header-button {
-    border: none;
-    display: flex;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
 }
 
 .r-r-accordion-tab-header-icon {
-    font-size: 1.9em;
+    width: 14px;
+    font-size: 1.6em;
 }
 
 .r-r-accordion-tab-panel {
