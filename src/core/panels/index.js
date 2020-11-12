@@ -23,8 +23,8 @@
  * SOFTWARE.
  */
 
-import "./Panels.css"
 export { Panel } from "./Panel"
 export { Fieldset } from "./Fieldset"
 export { TabPane, TabPanel } from "./TabPane"
 export { Accordion, AccordionPanel } from "./Accordion"
+import "./Panels.css" //TODO split to pre and after css
