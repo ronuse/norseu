@@ -57,12 +57,16 @@ export class ScratchPage extends React.Component {
             <div className="r-r-showcase-component-page">
                 <h1>Construct A Component Here</h1>
 
-                <div inputId="binary" className="r-r-checkbox r-r-primary-border-hover">
+                <div inputId="" className="r-r-checkbox r-r-primary-border-hover">
                     
                 </div>
                 <br/>
-                <div inputId="binary" className="r-r-checkbox r-r-primary r-r-primary-border-1px">
-                    <i className="fa fa-check" />
+                <div className="r-r-checkbox">
+                    <div tabindex="1" inputId="check1" className="r-r-checkbox-box r-r-primary r-r-primary-border-1px-focus" 
+                        aria-checked="false">
+                        <i className="fa fa-check" />
+                    </div>
+                    <label for="check1">I accept terms and conditions</label>
                 </div>
                 
                 <br/>
