@@ -56,60 +56,18 @@ export class ScratchPage extends React.Component {
         return (
             <div className="r-r-showcase-component-page">
                 <h1>Construct A Component Here</h1>
-                
-                <div className="r-r-accordion">
-                    <div className="r-r-accordion-tab">
-                        <Button className="r-r-accordion-tab-header" icon="r-r-accordion-tab-header-icon fa fa-angle-down" 
-                                alignText={Alignment.LEFT} 
-                                text={"Hello"} 
-                        borderless link fill/>
 
-                        <Panel className="r-r-accordion-tab-panel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </Panel>
-                    </div>
-                    <hr className="r-r-accordion-divider"/>
-
-                    <div className="r-r-accordion-tab">
-                        <div className="r-r-accordion-tab-header">
-                            <Button className="r-r-accordion-tab-header-button" icon="r-r-accordion-tab-header-icon fa fa-angle-down" 
-                                alignText={Alignment.LEFT} text="Section 2" fill/>
-                        </div>
-                        <Panel className="r-r-accordion-tab-panel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </Panel>
-                    </div>
-                    <hr className="r-r-accordion-divider"/>
-
-                    <div className="r-r-accordion-tab">
-                        <div className="r-r-accordion-tab-header">
-                            <Button className="r-r-accordion-tab-header-button" icon="r-r-accordion-tab-header-icon fa fa-angle-down" 
-                                alignText={Alignment.LEFT} text="Section 3" fill/>
-                        </div>
-                        <Panel className="r-r-accordion-tab-panel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </Panel>
-                    </div>
-                    <hr className="r-r-accordion-divider"/>
-
-                    <div className="r-r-accordion-tab">
-                        <div className="r-r-accordion-tab-header">
-                            <Button className="r-r-accordion-tab-header-button" icon="r-r-accordion-tab-header-icon fa fa-angle-down" 
-                                alignText={Alignment.LEFT} text="Section 4" fill/>
-                        </div>
-                        <Panel className="r-r-accordion-tab-panel">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </Panel>
-                    </div>
+                <div inputId="binary" className="r-r-checkbox r-r-primary-border-hover">
+                    
                 </div>
+                <br/>
+                <div inputId="binary" className="r-r-checkbox r-r-primary r-r-primary-border-1px">
+                    <i className="fa fa-check" />
+                </div>
+                
+                <br/>
+                <br/>
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></input>
                 <br/>
                 <br/>
                 <br/>

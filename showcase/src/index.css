@@ -64,6 +64,26 @@ p {
 
 /* TMPS */
 
+.r-r-checkbox {
+    display: flex;
+    width: max-content;
+    cursor: pointer;
+    padding: 1.7px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #d6d6d6;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.r-r-checkbox:hover {
+    filter: brightness(90%);
+}
+
+.r-r-primary-border-hover:hover {
+    border-color: #3699FF;
+}
+
 /* */
 
 .r-r-ripple {

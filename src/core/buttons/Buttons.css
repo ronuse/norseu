@@ -69,7 +69,6 @@
 
 .r-r-button-group {
     display: flex;
-    flex-wrap: wrap;
     padding: 0px;
 }
 
@@ -89,6 +88,7 @@
 }
 
 .r-r-button-group.r-r-flex-vertical {
+    flex-wrap: wrap;
 }
 
 .r-r-button-group.r-r-flex-vertical > .r-r-button {

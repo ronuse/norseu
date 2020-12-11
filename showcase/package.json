@@ -17,7 +17,8 @@
     "ronuse-react-ui": "file:..\\ronuse-react-ui-1.0.0.tgz"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+    "minify": "^6.0.1"
   },
   "eslintConfig": {
     "extends": "react-app"
