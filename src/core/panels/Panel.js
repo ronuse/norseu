@@ -32,6 +32,7 @@ import { BoolUtils, ObjUtils, DOMUtils } from "../../utils";
 import { Elevation } from "../variables/";
 import { CSSTransition } from 'react-transition-group';
 import { TabPane } from "./TabPane";
+import { Checkbox } from '../form';
 
 export class Panel extends Component {
 
@@ -157,7 +158,7 @@ export class Panel extends Component {
 
     getWithChildrenSkeletonAdded(element, skeletonize) {
         if (!this.props.safely && (element.props && element.props.children) && !skeletonize) {
-            let isPanelComponent = BoolUtils.equalsAny(element.type, [Panel, TabPane]);
+            let isPanelComponent = BoolUtils.equalsAny(element.type, [Panel, TabPane, Checkbox]);
             let subChildren = isPanelComponent ? element.props.children : React.Children.map(element.props.children, child => {
                 if (React.isValidElement(child)) {
                     let skeletonize = BoolUtils.equalsAny(child.type, this.props.ignoreChildrenOf);
@@ -193,7 +194,7 @@ export class Panel extends Component {
             }
             let skeletonize = BoolUtils.equalsAny(child.type, this.props.ignoreChildrenOf);
             child = this.getWithChildrenSkeletonAdded(child, skeletonize);
-            let isPanelComponent = BoolUtils.equalsAny(child.type, [Panel, TabPane]);
+            let isPanelComponent = BoolUtils.equalsAny(child.type, [Panel, TabPane, Checkbox]);
             var relayProps = ObjUtils.clone(child.props);
             relayProps.className = classNames('r-r-overflow-hidden', {
                                         "r-r-loading r-r-skeleton" : (!isPanelComponent && (!child.props || !child.props.children)) || skeletonize
