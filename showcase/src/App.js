@@ -14,8 +14,9 @@ import { TagPage } from './components/misc/TagPage'
 import { ScratchPage } from './components/ScratchPage'
 import { HomePage } from './components/HomePage'
 import { ViewportSensorPage } from './components/sensors/ViewportSensorPage'
-import './index.css'
 import { CheckboxPage } from './components/core/form/CheckboxPage'
+import { InputTextPage } from './components/core/form/InputTextPage'
+import './index.css'
 
 const App = () => {
     return (
@@ -33,6 +34,7 @@ const App = () => {
                 <Route exact path="/core/panels/accordion" component={AccordionPage}/>
                 
                 <Route exact path="/core/form/checkbox" component={CheckboxPage}/>
+                <Route exact path="/core/form/inputtext" component={InputTextPage}/>
                 
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>
                 <Route exact path="/core/misc/tag" component={TagPage}/>

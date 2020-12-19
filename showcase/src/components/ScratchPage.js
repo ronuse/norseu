@@ -61,17 +61,68 @@ export class ScratchPage extends React.Component {
                     
                 </div>
                 <br/>
-                <div className="r-r-checkbox">
-                    <div tabindex="1" inputId="check1" className="r-r-checkbox-box r-r-primary r-r-primary-border-1px-focus" 
-                        aria-checked="false">
-                        <i className="fa fa-check" />
-                    </div>
-                    <label for="check1">I accept terms and conditions</label>
-                </div>
-                
-                <br/>
-                <br/>
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></input>
+                    <input className="r-r-inputtext" placeholder=""/>
+                <br/><br/>
+                    <input className="r-r-inputtext r-r-dark-border-3px-focus-box-shadow r-r-dark-border-1px-focus r-r-dark-border-1px-hover" 
+                    placeholder="Filled"/>
+                <br/><br/>
+                    <input className="r-r-inputtext r-r-disabled" 
+                    placeholder="Disabled"/>
+                <br/><br/>
+                    <input className="r-r-inputtext r-r-inputtext-flushed
+                                    r-r-dark-border-bottom-color-hover r-r-dark-border-bottom-color-focus" 
+                    placeholder="Flushed"/>
+                <br/><br/>
+                    <input className="r-r-inputtext r-r-inputtext-outlined
+                                    r-r-dark-border-3px-focus-box-shadow r-r-dark-border-1px-focus r-r-dark-border-1px-hover" 
+                    placeholder="Outlined"/>
+                <br/><br/>
+                    <span style={{position: "relative", display: "inline-flex"}}>
+                        <i class="fa fa-spinner fa-spin" style={{position: "absolute", alignSelf: "center", marginLeft: "12px"}}/>
+                        <input className="r-r-inputtext r-r-info-border-3px-focus-box-shadow r-r-info-border-1px-focus r-r-info-border-1px-hover" 
+                        placeholder="Amount" style={{paddingLeft: "35px"}}/>
+                    </span>
+                <br/><br/>
+                    <span style={{position: "relative", display: "inline-flex"}}>
+                        <i class="fa fa-spinner fa-pulse" style={{position: "absolute", alignSelf: "center", right: "12px", color: "#F64E60"}}/>
+                        <input className="r-r-inputtext r-r-danger-border-3px-focus-box-shadow r-r-danger-border-1px-focus r-r-danger-border-1px-hover" 
+                        placeholder="Amount" style={{paddingRight: "35px"}}/>
+                    </span>
+                <br/><br/>
+                    <span style={{position: "relative", display: "inline-flex"}}>
+                        <i class="fa fa-cog fa-spin" style={{position: "absolute", alignSelf: "center", marginLeft: "0px"}}/>
+                        <i class="fa fa-spinner fa-pulse" style={{position: "absolute", alignSelf: "center", right: "0px"}}/>
+                        <input className="r-r-inputtext r-r-inputtext-flushed r-r-dark-border-bottom-color-hover r-r-dark-border-bottom-color-focus" 
+                        placeholder="Amount" style={{paddingLeft: "25px", paddingRight: "25px"}}/>
+                    </span>
+                <br/><br/>
+                    <span>
+                        <label hmmltFor="" style={{marginBottom: "7px"}}>Email</label>
+                        <input className="r-r-inputtext r-r-dark-border-3px-focus-box-shadow r-r-dark-border-1px-focus r-r-dark-border-1px-hover" 
+                        placeholder="Email"/>
+                    </span>
+                <br/><br/>
+                    <span>
+                        <input className="r-r-inputtext r-r-dark-border-3px-focus-box-shadow r-r-dark-border-1px-focus r-r-dark-border-1px-hover" 
+                        placeholder="Email"/>
+                        <br/><small style={{marginTop: "3px"}}>Enter your account email address</small>
+                        <br/><label hmmltFor="" style={{marginTop: "7px", display: "inline-block"}}>Email</label>
+                    </span>
+                <br/><br/>
+                    <span style={{display: "flex", flexDirection:"column", alignItems: "flex-start"}}>
+                        <label hmmltFor="" style={{marginBottom: "7px"}}>Email</label>
+                        <input className="r-r-inputtext r-r-primary-border-3px-focus-box-shadow 
+                                            r-r-primary-border-1px-focus r-r-primary-border-1px-hover r-r-danger-border-1px" 
+                        placeholder="Email"/>
+                        <small style={{marginTop: "3px", color: "#F64E60"}}>Enter your account email address</small>
+                    </span>
+                <br/><br/>
+                    <span className="r-r-floating-label">
+                        <input className="r-r-inputtext r-r-primary-border-3px-focus-box-shadow 
+                                            r-r-primary-border-1px-focus r-r-primary-border-1px-hover" 
+                                            placeholder=" "/>
+                        <label hmmltFor="" style={{marginBottom: "7px"}}>Fullname</label>
+                    </span>
                 <br/>
                 <br/>
                 <br/>

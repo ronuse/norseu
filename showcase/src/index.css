@@ -19,6 +19,10 @@ p {
     margin: 0px;
 }
 
+input {
+    color: #717272;
+}
+
 .r-r-showcase-component-page {
     padding: 20px;
     margin: 0px;
@@ -63,6 +67,90 @@ p {
 }
 
 /* TMPS */
+
+.r-r-dark-border-bottom-color-hover:hover {
+    border-bottom-color: #000000;
+}
+
+.r-r-dark-border-bottom-color-focus:focus {
+    border-bottom-color: #000000;
+}
+
+.r-r-dark-border-1px-hover:hover {
+    z-index: 99;
+    border: 1px solid #000000 !important;
+}
+
+.r-r-dark-border-1px-focus:focus {
+    z-index: 99;
+    border: 1px solid #000000 !important;
+}
+
+.r-r-dark-border-3px-focus-box-shadow:focus {
+    z-index: 99;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, .2);
+    -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0, .2);
+    -moz-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0, .2);
+}
+
+.r-r-inputtext {
+    background-color: rgba(238, 240, 248);
+    border: 1px solid #c7c7c7;
+    border-radius: 3px;
+    outline: none;
+    padding: 8px;
+    transition: 0.3s;
+}
+
+.r-r-inputtext-flushed {
+    border: none;
+    border-bottom: 1px solid #c7c7c7;
+    border-radius: 0px;
+}
+
+.r-r-inputtext-outlined {
+    background-color: transparent;
+}
+
+.r-r-inputtext-label {
+    display: inline-block;
+}
+
+.r-r-inputtext-help-label {
+    display: inline-block;
+}
+
+.r-r-floating-label {
+    position: relative;
+    margin: 40px 0 20px;
+}
+
+.r-r-floating-label > label {
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 8px;
+    top: 0%;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.r-r-floating-label > .r-r-inputtext-label-flushed {
+    left: 0px;
+}
+
+.r-r-inputtext:focus ~ .r-r-inputtext-label,
+.r-r-inputtext:not(:placeholder-shown) ~ .r-r-inputtext-label {
+    top: -32px;
+    left: 0px;
+}
+
+.r-r-inputtext:focus ~ .r-r-inputtext-label-flushed,
+.r-r-inputtext:not(:placeholder-shown) ~ .r-r-inputtext-label-flushed {
+    top: -23px;
+    left: 0px;
+}
 
 /* */
 

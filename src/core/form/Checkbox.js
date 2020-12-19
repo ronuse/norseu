@@ -25,7 +25,7 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { ObjUtils, BoolUtils } from "../../utils";
+import { DOMUtils, BoolUtils, ObjUtils } from "../../utils";
 import { Scheme, Alignment } from "../variables";
 
 export class Checkbox extends Component {
@@ -33,7 +33,7 @@ export class Checkbox extends Component {
     static defaultProps = {
         scheme: null,
         label: null,
-        inputId: null,
+        id: null,
         name: null,
         required: false,
         align: Alignment.LEFT,
@@ -55,9 +55,6 @@ export class Checkbox extends Component {
         checkedIndex: -1,
         style: null,
         className: null,
-        labelScheme: null,
-        labelStyle: null,
-        labelClassName: null,
         disabled: false,
         readOnly: false,
         nostyle: false,
@@ -69,7 +66,7 @@ export class Checkbox extends Component {
     static propTypes = {
         scheme: PropTypes.string,
         label: PropTypes.string,
-        inputId: PropTypes.string,
+        id: PropTypes.string,
         name: PropTypes.string,
         required: PropTypes.bool,
         align: PropTypes.string,
@@ -78,9 +75,6 @@ export class Checkbox extends Component {
         checkedIndex: PropTypes.number,
         style: PropTypes.string,
         className: PropTypes.string,
-        labelScheme: PropTypes.string,
-        labelStyle: PropTypes.string,
-        labelClassName: PropTypes.string,
         disabled: PropTypes.bool,
         readOnly: PropTypes.bool,
         nostyle: PropTypes.bool,
@@ -94,6 +88,11 @@ export class Checkbox extends Component {
         this.state = {
             checkedIndex: this.props.checkedIndex
         };
+
+        this.id = this.props.id; 
+        if (!this.id && this.props.label) { 
+            this.id = DOMUtils.UniqueElementId();
+        }
     }
 
     componentDidMount() {
@@ -136,7 +135,7 @@ export class Checkbox extends Component {
         }
 
         let element = <input type="checkbox" 
-            id={this.props.inputId} 
+            id={this.id} 
             name={this.props.name} 
             required={this.props.required}
             disabled={this.props.readOnly}
@@ -150,7 +149,7 @@ export class Checkbox extends Component {
         let className = classNames(
             (scheme && checked.icon) ? `${scheme} ${scheme}-border-2px` : null,
             (scheme && !checked.icon) ? `${scheme}-border-hover` : null, 
-            (scheme && this.props.scheme ? `${scheme}-border-1px-focus` : null), {
+            (scheme && this.props.scheme ? `${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null), {
             'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON,
             'r-r-checkbox-box': !this.props.nostyle,
             'r-r-margin-right-10px': BoolUtils.equalsAny(this.props.align, [Alignment.LEFT, Alignment.CENTER]),
@@ -163,7 +162,7 @@ export class Checkbox extends Component {
         let icon = checked.icon ? <i className={checked.icon}/> : null;
 
         return (
-            <div tabindex="1" className={className} onClick={(e) => {
+            <div tabIndex="1" className={className} onClick={(e) => {
                     this.onChange(e, checkedIndex, checked);
                 }} onMouseDown={this.props.onMouseDown} 
                 aria-checked={checked.checked}>
@@ -177,13 +176,22 @@ export class Checkbox extends Component {
         if (!this.props.label) {
             return;
         }
+        let isString = BoolUtils.isTypeOfAny(this.props.label, ["string"]);
+        if (!isString && !React.isValidElement(this.props.label)) {
+            throw new Error("Only string or a valid react element is expected as the checkbox label");
+        }
 
-        let className = classNames((this.props.labelScheme ? `${this.props.labelScheme}-text` : null), {
+        let className = classNames({
             'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON
-        }, 'r-r-checkbox-label', this.props.labelClassName);        
-        return (
-            <label className={className} style={this.props.labelStyle} htmlFor={this.props.inputId}>{this.props.label}</label>
-        )
+        }, 'r-r-checkbox-label'); 
+        if (isString) {
+            return (
+                <label className={className} htmlFor={this.id}>{this.props.label}</label>
+            )
+        }
+        var relayProps = ObjUtils.clone(this.props.label.props);
+        relayProps.className += ' ' + className;
+        return React.cloneElement(this.props.label, relayProps);
     }
 
     getCheckStatesIndex() {

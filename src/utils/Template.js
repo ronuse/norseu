@@ -52,7 +52,6 @@ export class Checkbox extends Component {
             };
         }
 
-        this.toggle = this.toggle.bind(this);
         this.id = this.props.id || DOMUtils.UniqueElementId();
     }
 

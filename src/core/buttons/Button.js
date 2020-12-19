@@ -90,7 +90,7 @@ export class Button extends Component {
 
         let isString = BoolUtils.isTypeOfAny(this.props.icon, ["string"]);
         if (!isString && !React.isValidElement(this.props.icon)) {
-            return null;
+            throw new Error("Only string or a valid react element is expected as the checkbox label");
         }
         let className = classNames('r-r-button-icon', isString ? this.props.icon : this.props.icon.props.className, {
             'r-r-margin-right-15px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
@@ -102,7 +102,7 @@ export class Button extends Component {
         });
         if (!isString) {
             var relayProps = ObjUtils.clone(this.props.icon.props);
-            relayProps.className = className;
+            relayProps.className += ' ' + className;
             return React.cloneElement(this.props.icon, relayProps);
         }
         return <i className={className}></i>;
@@ -149,7 +149,7 @@ export class Button extends Component {
             (this.props.scheme && this.props.outlined) ? `${this.props.scheme}-border-1px` : null,
             (this.props.scheme && this.props.outlined && !this.props.textonly) ? `${this.props.scheme}-border-1px-bg-hover` : null,
             (this.props.scheme && (this.props.outlined || this.props.textonly || this.props.link)) ? `${this.props.scheme}-text` : null,
-            (this.props.scheme && (!this.props.nostyle && this.props.scheme)) ? `${this.props.scheme}-border-1px-focus` : null, {
+            (this.props.scheme && (!this.props.nostyle && this.props.scheme)) ? `${this.props.scheme}-border-3px-focus-box-shadow` : null, {
             'r-r-button': !this.props.nostyle,
             'r-r-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
             'r-r-disabled': !this.props.nostyle && this.props.disabled,

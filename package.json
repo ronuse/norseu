@@ -20,10 +20,8 @@
     "showcase:start": "cd showcase && npm start",
     "showcase:run": "npm run showcase:prepare && npm run showcase:start",
 
-    "deploy": "npm run deploy:build && npm run deploy:copy && npm run deploy:minify && npm run deploy:push",
-    "deploy:build": "cd showcase && npm run build",
-    "deploy:copy": "cd showcase && copy ..\\src\\core\\buttons\\Buttons.css + ..\\src\\style.css  build\\ronuse-react-ui.css",
-    "deploy:minify": "cd showcase && node ./node_modules/minify/bin/minify.js build\\ronuse-react-ui.css > build\\ronuse-react-ui.min.css && rm build\\ronuse-react-ui.css",
+    "deploy": "npm run deploy:build && npm run deploy:push",
+    "deploy:build": "cd showcase && npm run build && build-showcase.bat",
     "deploy:push": "cd showcase && gh-pages -d build"
   },
   "repository": {

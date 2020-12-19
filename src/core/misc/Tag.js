@@ -178,7 +178,7 @@ export class Tag extends Component {
             (this.props.scheme && (this.props.outlined)) ? `${this.props.scheme}-border-1px`: null,
             (this.props.scheme && (this.props.outlined && !this.props.textonly)) ? `${this.props.scheme}-bg-hover`: null,
             (this.props.scheme && (this.props.outlined || this.props.textonly || this.props.link)) ? `${this.props.scheme}-text`: null,
-            (this.props.scheme && (!this.props.nostyle)) ? `${this.props.scheme}-border-1px-focus`: null, {
+            (this.props.scheme && (!this.props.nostyle)) ? `${this.props.scheme}-border-3px-focus-box-shadow`: null, {
             'r-r-tag': !this.props.nostyle,
             'r-r-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
             'r-r-disabled': !this.props.nostyle && this.props.disabled,

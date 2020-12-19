@@ -20,7 +20,7 @@ export class CheckboxPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/form/CheckoutPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/form/CheckboxPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}));
     }
@@ -127,6 +127,7 @@ export class CheckboxPage extends React.Component {
         let checkStates2 = this.checkStates2();
         let checkStates3 = this.checkStates3();
         let checkStates5 = this.checkStates5();
+        let customLabel = <label className="r-r-primary-text fa fa-book" > Schemed And Styled Text</label>;
 
         return (
             <Panel className="r-r-padding-left-right-20px">
@@ -146,9 +147,7 @@ export class CheckboxPage extends React.Component {
                     <Checkbox scheme={!this.state.checked2 ? Scheme.WARNING : Scheme.DANGER} 
                                 label={!this.state.checked2 ? "Warning" : "Danger"} checked={this.state.checked2} 
                                 onChange={e => this.setState({ checked2: e.checked })}/><br/>
-                    <Checkbox scheme={Scheme.SECONDARY} labelScheme={Scheme.PRIMARY} 
-                                labelClassName="fa fa-book"
-                                label=" Schemed And Styled Text" checked={true}/>
+                    <Checkbox scheme={Scheme.SECONDARY} label={customLabel} checked={true}/>
                 </Panel>
 
                 <Panel title="Skeleton" scheme={Scheme.SKELETON} expanded collapsible borderless>

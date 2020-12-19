@@ -25,3 +25,4 @@
 
 import "./Form.css"
 export { Checkbox } from "./Checkbox"
+export { InputText } from "./InputText"
