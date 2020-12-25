@@ -1,6 +1,6 @@
 {
-  "short_name": "ronuse-react-components",
-  "name": "ronuse-react-components",
+  "short_name": "ronuse-react-ui",
+  "name": "ronuse-react-ui",
   "icons": [
     {
       "src": "favicon.ico",
