@@ -15,7 +15,6 @@ import { ScratchPage } from './components/ScratchPage'
 import { HomePage } from './components/HomePage'
 import { ViewportSensorPage } from './components/sensors/ViewportSensorPage'
 import './index.css'
-import { CheckboxPage } from './components/core/form/CheckboxPage'
 
 const App = () => {
     return (
@@ -31,8 +30,6 @@ const App = () => {
                 <Route exact path="/core/panels/tabpane" component={TabPanePage}/>
                 <Route exact path="/core/panels/fieldset" component={FieldsetPage}/>
                 <Route exact path="/core/panels/accordion" component={AccordionPage}/>
-                
-                <Route exact path="/core/form/checkbox" component={CheckboxPage}/>
                 
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>
                 <Route exact path="/core/misc/tag" component={TagPage}/>
