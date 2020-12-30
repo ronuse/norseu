@@ -3,6 +3,7 @@ import React from "react"
 import { Button } from 'ronuse-react-ui/core/buttons'
 import { Panel } from "ronuse-react-ui/core/panels/Panel";
 import { Scheme, Alignment } from "ronuse-react-ui/core/variables";
+import { InputText } from 'ronuse-react-ui/core/form'
 
 export class ScratchPage extends React.Component {
 
@@ -125,6 +126,10 @@ export class ScratchPage extends React.Component {
                     </span>
                 <br/>
                 <br/>
+                Value: <span>{this.state.value}</span>
+                    <br/><br/>
+                    <InputText placeholder="Enter you text here" scheme={Scheme.PRIMARY} onChange={(e) => this.setState({value: e.target.value})}/>
+                    <br/><br/>
                 <br/>
                 <br/>
                 <br/>

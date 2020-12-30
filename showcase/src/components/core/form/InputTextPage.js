@@ -13,7 +13,9 @@ export class InputTextPage extends React.Component {
         pageSource: '',
         alignLabel: Alignment.TOP,
         alignLabel2: Alignment.TOP,
-        alignHelpLabel: Alignment.BOTTOM
+        alignHelpLabel: Alignment.BOTTOM,
+        value1: "",
+        value2: "thecarisma"
     }
 
     loadPageSource() {
@@ -48,6 +50,8 @@ export class InputTextPage extends React.Component {
     renderSampleComponents() {
         const customLabel1 = <label className="r-r-secondary-text fa fa-user" > Schemed And Styled Label</label>;
         const customLabel2 = <label>First name <span style={{color: "red"}}>*</span></label>;
+        const customLeftIcon1 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/14879387?s=16" style={{borderRadius:"50%"}}/>;
+        const customLeftIcon2 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/69908664?s=16" style={{borderRadius:"50%"}}/>;
 
         return (
             <Panel className="r-r-padding-left-right-20px">
@@ -104,6 +108,9 @@ export class InputTextPage extends React.Component {
                     <InputText placeholder="e.g. Damilola" scheme={Scheme.PRIMARY} label="First name"/>
                     <br/><br/>
 
+                    <InputText placeholder="e.g. Damilola" scheme={Scheme.PRIMARY} label={<i className="fa fa-user"/>}/>
+                    <br/><br/>
+
                     <h5>Floating Label</h5>
                     <InputText style={{marginTop: "15px"}} scheme={Scheme.PRIMARY} label="First name" alignLabel={Alignment.TOP} floatLabel/>
                     <br/><br/>
@@ -126,6 +133,26 @@ export class InputTextPage extends React.Component {
                         <option value={Alignment.BOTTOM}>{"BOTTOM"}</option>
                     </select><br/><br/>
                     <InputText placeholder="alignLabel={Alignment.?}" scheme={Scheme.PRIMARY} label="Fullname" alignLabel={this.state.alignLabel}/>
+                    <br/><br/>
+
+                </Panel>
+
+
+                <Panel title="Icon" expanded collapsible borderless>
+
+                    <InputText placeholder="Left icon only" scheme={Scheme.PRIMARY} leftIcon="fa fa-search" outlined/>
+                    <br/><br/>
+
+                    <InputText placeholder="Right icon only" scheme={Scheme.PRIMARY} rightIcon="fa fa-spinner fa-pulse" outlined/>
+                    <br/><br/>
+
+                    <InputText placeholder="Right and left icon only" scheme={Scheme.PRIMARY} leftIcon="fa fa-user" rightIcon="fa fa-cog fa-spin" outlined/>
+                    <br/><br/>
+
+                    <InputText placeholder="Custom Icon" scheme={Scheme.PRIMARY} leftIcon={customLeftIcon1} outlined/>
+                    <br/><br/>
+
+                    <InputText placeholder="Custom left and right icon" scheme={Scheme.PRIMARY} leftIcon="fa fa-google" rightIcon="fa fa-twitter" outlined flushed/>
                     <br/><br/>
 
                 </Panel>
@@ -165,6 +192,23 @@ export class InputTextPage extends React.Component {
                     <br/><br/>
 
                 </Panel>
+
+                
+                <Panel title="Controlled" expanded collapsible borderless>
+
+                    Value: <span>{this.state.value1}</span>
+                    <br/><br/>
+                        <InputText placeholder="Enter you text here" scheme={Scheme.PRIMARY} onChange={(e) => this.setState({value1: e.target.value})}/>
+                    <br/><br/>
+
+                    {/*<InputText style={{marginTop: "15px"}}  scheme={Scheme.DANGER} label="Username" alignLabel={Alignment.TOP}
+                        value={this.state.value2}
+                        helpLabel={<small style={{color:"#F64E60"}}>`The username '${this.state.value2}' has been taken`</small>}
+                        onChange={(e) => this.setState({value2: e.target.value})} floatLabel/>
+                    <br/><br/>*/}
+
+                </Panel>
+
 
             </Panel>
         )

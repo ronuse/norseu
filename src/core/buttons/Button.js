@@ -102,7 +102,7 @@ export class Button extends Component {
         });
         if (!isString) {
             var relayProps = ObjUtils.clone(this.props.icon.props);
-            relayProps.className += ' ' + className;
+            relayProps.className = relayProps.className ? ' ' + className : className;;
             return React.cloneElement(this.props.icon, relayProps);
         }
         return <i className={className}></i>;
