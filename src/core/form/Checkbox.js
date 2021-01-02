@@ -190,7 +190,8 @@ export class Checkbox extends Component {
             )
         }
         var relayProps = ObjUtils.clone(this.props.label.props);
-        relayProps.className = relayProps.className ? ' ' + className : className;;
+        className = classNames(className, relayProps.className);
+        relayProps.className = className;
         return React.cloneElement(this.props.label, relayProps);
     }
 

@@ -12,6 +12,7 @@ import { ElevationPage } from './components/core/variables/ElevationPage'
 import { BadgeAndTagPage } from './components/misc/BadgeAndTagPage'
 import { TagPage } from './components/misc/TagPage'
 import { ScratchPage } from './components/ScratchPage'
+import { GenerateSchemePage } from './components/GenerateSchemePage'
 import { HomePage } from './components/HomePage'
 import { ViewportSensorPage } from './components/sensors/ViewportSensorPage'
 import { CheckboxPage } from './components/core/form/CheckboxPage'
@@ -24,6 +25,7 @@ const App = () => {
             <Switch>
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/scratch" component={ScratchPage}/>
+                <Route exact path="/generate/scheme" component={GenerateSchemePage}/>
 
                 <Route exact path="/core/buttons/button" component={ButtonPage}/>
                 <Route exact path="/core/buttons/buttongroup" component={ButtonGroupPage}/>

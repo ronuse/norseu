@@ -174,7 +174,8 @@ export class InputText extends Component {
             )
         }
         var relayProps = ObjUtils.clone(this.props.label.props);
-        relayProps.className = relayProps.className ? ' ' + className : className;;
+        className = classNames(className, relayProps.className);
+        relayProps.className = className;
         return (
             React.cloneElement(this.props.label, relayProps)
         );
@@ -203,7 +204,8 @@ export class InputText extends Component {
             )
         }
         var relayProps = ObjUtils.clone(this.props.helpLabel.props);
-        relayProps.className = relayProps.className ? ' ' + className : className;;
+        className = classNames(className, relayProps.className);
+        relayProps.className = className;
         return (
             React.cloneElement(this.props.helpLabel, relayProps)
         );
@@ -218,10 +220,11 @@ export class InputText extends Component {
         if (!isString && !React.isValidElement(this.props.leftIcon)) {
             throw new Error("Only string or a valid react element is expected as the input left icon");
         }
-        let className = classNames('r-r-inputtext-left-icon', {
+        let className = classNames('r-r-inputtext-left-icon', 
+            (isString ? this.props.leftIcon : null), {
             'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON,
             'r-r-inputtext-left-icon-flushed': this.props.flushed && this.props.outlined
-        }, this.props.leftIcon); 
+        }); 
         if (isString) {
             return [
                 true, 
@@ -229,7 +232,8 @@ export class InputText extends Component {
             ]
         }
         var relayProps = ObjUtils.clone(this.props.leftIcon.props);
-        relayProps.className = relayProps.className ? ' ' + className : className;;
+        className = classNames(className, relayProps.className);
+        relayProps.className = className;
         return [
             false, 
             React.cloneElement(this.props.leftIcon, relayProps)
@@ -245,7 +249,8 @@ export class InputText extends Component {
         if (!isString && !React.isValidElement(this.props.rightIcon)) {
             throw new Error("Only string or a valid react element is expected as the input left icon");
         }
-        let className = classNames('r-r-inputtext-right-icon', {
+        let className = classNames('r-r-inputtext-right-icon',
+            (isString ? this.props.rightIcon : null), {
             'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON,
             'r-r-inputtext-right-icon-flushed': this.props.flushed && this.props.outlined
         }, this.props.rightIcon); 
@@ -256,7 +261,8 @@ export class InputText extends Component {
             ]
         }
         var relayProps = ObjUtils.clone(this.props.rightIcon.props);
-        relayProps.className = relayProps.className ? ' ' + className : className;
+        className = classNames(className, relayProps.className);
+        relayProps.className = className;
         return [
             false, 
             React.cloneElement(this.props.rightIcon, relayProps)

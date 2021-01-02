@@ -14,7 +14,10 @@ export class HomePage extends React.Component {
         return (
             <Panel className="r-r-margin-20px">
                 <Button scheme={Scheme.SECONDARY} className="r-r-margin-left-20px" rightIcon="fa fa-pencil" text="ScratchPad" onClick={(e) => {
-                    this.props. history.push("/scratch");
+                    this.props.history.push("/scratch");
+                }}/><br/>
+                <Button scheme={Scheme.SUCCESS} className="r-r-margin-left-20px" rightIcon="fa fa-paint-brush" text="Create Scheme" onClick={(e) => {
+                    this.props.history.push("/generate/scheme");
                 }}/><br/>
                 <Panel className="r-r-margin-20px" title="Buttons">
                     <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Button" onClick={(e) => {

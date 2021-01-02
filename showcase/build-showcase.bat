@@ -21,7 +21,7 @@ exit /b 0
     exit /b 0
 
 :generate_styles:
-    node ./src/utils/generate_css.js
+    node --experimental-modules ./src/utils/generate_css.js
     exit /b 0
 
 :: Copy Css
