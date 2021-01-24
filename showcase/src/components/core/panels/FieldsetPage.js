@@ -1,8 +1,8 @@
 
 import React from "react"
-import { Panel, TabPane, TabPanel, Fieldset } from 'ronuse-react-ui/core/panels'
-import { Button } from 'ronuse-react-ui/core/buttons'
-import { Elevation, Scheme } from "ronuse-react-ui/core/variables"
+import { Panel, TabPane, TabPanel, Fieldset } from '@ronuse/react-ui/core/panels'
+import { Button } from '@ronuse/react-ui/core/buttons'
+import { Elevation, Scheme } from "@ronuse/react-ui/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -13,7 +13,7 @@ export class FieldsetPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/panels/FieldsetPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/panels/FieldsetPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}));
     }
@@ -130,7 +130,7 @@ export class FieldsetPage extends React.Component {
 
                 <Panel borderless>
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Fieldset } from 'ronuse-react-ui/core/panels'`}
+                        {`import { Fieldset } from '@ronuse/react-ui/core/panels'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

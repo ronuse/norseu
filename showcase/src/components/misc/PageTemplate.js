@@ -1,11 +1,11 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels';
-import { Button } from 'ronuse-react-ui/core/buttons';
+import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
+import { Button } from '@ronuse/react-ui/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "ronuse-react-ui/core/variables/Stylers";
-import { Alignment } from "ronuse-react-ui/core/variables";
+import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
+import { Alignment } from "@ronuse/react-ui/core/variables";
 
 export class TagPage extends React.Component {
 
@@ -14,7 +14,7 @@ export class TagPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/tag/TagPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/tag/TagPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}));
     }
@@ -80,7 +80,7 @@ export class TagPage extends React.Component {
 
                 <Panel className="r-r-padding-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Tag } from 'ronuse-react-ui/core/misc'`}
+                        {`import { Tag } from '@ronuse/react-ui/core/misc'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

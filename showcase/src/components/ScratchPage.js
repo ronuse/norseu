@@ -1,14 +1,18 @@
 
 import React from "react"
-import { Button } from 'ronuse-react-ui/core/buttons'
-import { Panel } from "ronuse-react-ui/core/panels/Panel";
-import { Scheme, Alignment } from "ronuse-react-ui/core/variables";
-import { InputText } from 'ronuse-react-ui/core/form'
+import { Button } from '@ronuse/react-ui/core/buttons'
+import { Panel } from "@ronuse/react-ui/core/panels/Panel";
+import { Scheme, Alignment } from "@ronuse/react-ui/core/variables";
+import { InputText } from '@ronuse/react-ui/core/form';
+import { Tag } from '@ronuse/react-ui/core/misc'
 
 export class ScratchPage extends React.Component {
 
     state = {
-
+        username: "",
+        usernameScheme: Scheme.PRIMARY,
+        usernameBorderClass: "",
+        helpLabel: null
     }
 
     removeRippleStylesAndEffect(element) {
@@ -54,15 +58,37 @@ export class ScratchPage extends React.Component {
 
     render() {
         var icon = this.state.buttonIcon ? this.state.buttonIcon : "fa fa-plus";
+
         return (
             <div className="r-r-showcase-component-page">
                 <h1>Construct A Component Here</h1>
 
-            
+                Username: <span>{this.state.username}</span>
                 <br/><br/>
-                <InputText placeholder="Enter you text here" scheme={"expostudy-blacky"}/>
+                <InputText scheme={this.state.usernameScheme} className={this.state.usernameBorderClass}
+                    value={this.state.username}
+                    placeholder="Username" helpLabel={this.state.helpLabel} onChange={(e) => {
+                        this.setState({
+                            username: e.target.value,
+                            usernameScheme: Scheme.PRIMARY,
+                            usernameBorderClass: "",
+                            helpLabel: null
+                        })
+                    }} />
                 <br/><br/>
-                <Button text="Sign in" scheme={"expostudy-blacky"}/>
+                <Button text="Sign in" scheme={Scheme.PRIMARY} onClick={(e) => {
+                    if (this.state.username === "") {
+                        this.setState({
+                            usernameScheme: Scheme.SUCCESS,
+                            usernameBorderClass: "r-r-success-border-1px",
+                            helpLabel: <small className="r-r-success-text">username is required</small>
+                        })
+                    } else {
+                        console.log(this.state.username);
+                        this.setState({
+                            username: e.target.value})
+                    }
+                }}/>
                 <br/><br/>
                 
                 <br/>

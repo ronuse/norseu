@@ -1,8 +1,7 @@
 {
-  "name": "ronuse-react-ui",
-  "version": "0.0.1",
+  "name": "@ronuse/react-ui",
+  "version": "0.0.4-rc1",
   "description": "Configurable React Components by Ronuse",
-  "main": "dist/index.js",
   "watch": {
     "showcase:run": {
       "patterns": [
@@ -15,18 +14,20 @@
     "watch": "npm-watch",
     "test": "jest",
     "build": "babel src --out-dir dist --copy-files",
-    "pack": "npm run build && cp package.json dist/ && cp .*ignore dist/ && cd dist/ && npm pack && mv -Force *.tgz ../",
-    "showcase:prepare": "npm run pack && cd showcase && if exist \"node_modules/ronuse-react-ui\" (robocopy \"../dist/\" \"node_modules/ronuse-react-ui\" /s /e || exit /b 0) else (npm install ../ronuse-react-ui-0.0.1.tgz) ",
+    "pack": "npm run build && cp package.json dist/ && cp .*ignore dist/ && cd dist/ && npm pack && cp -Force *.tgz ../",
+    "showcase:prepare": "npm run pack && cd showcase && if exist \"node_modules/react-ui\" (robocopy \"../dist/\" \"node_modules/react-ui\" /s /e || exit /b 0) else (npm install ../ronuse-react-ui-0.0.4-rc1.tgz) ",
     "showcase:start": "cd showcase && npm start",
     "showcase:run": "npm run showcase:prepare && npm run showcase:start",
 
     "deploy": "npm run deploy:build && npm run deploy:push",
     "deploy:build": "cd showcase && npm run build && build-showcase.bat",
-    "deploy:push": "cd showcase && gh-pages -d build"
+    "deploy:push": "cd showcase && gh-pages -d build",
+
+    "publish": "npm run pack && cd dist/ && npm publish --access public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ronuse/ronuse-react-ui.git"
+    "url": "git+https://github.com/ronuse/react-ui.git"
   },
   "keywords": [
     "react",
@@ -38,9 +39,9 @@
   "author": "Adewale Azeez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ronuse/ronuse-react-ui/issues"
+    "url": "https://github.com/ronuse/react-ui/issues"
   },
-  "homepage": "https://github.com/ronuse/ronuse-react-ui",
+  "homepage": "https://github.com/ronuse/react-ui",
   "devDependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",

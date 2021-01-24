@@ -1,10 +1,10 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel } from 'ronuse-react-ui/core/panels';
-import { Button, ButtonGroup } from 'ronuse-react-ui/core/buttons';
-import { InputText, Checkbox } from 'ronuse-react-ui/core/form';
-import { Tag } from 'ronuse-react-ui/core/misc';
-import { Scheme, Alignment } from "ronuse-react-ui/core/variables/Stylers";
+import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel } from '@ronuse/react-ui/core/panels';
+import { Button, ButtonGroup } from '@ronuse/react-ui/core/buttons';
+import { InputText, Checkbox } from '@ronuse/react-ui/core/form';
+import { Tag } from '@ronuse/react-ui/core/misc';
+import { Scheme, Alignment } from "@ronuse/react-ui/core/variables/Stylers";
 import { SchemeBuilder } from '../utils/generate_scheme_css.mjs';
 import AceEditor from "react-ace";
 

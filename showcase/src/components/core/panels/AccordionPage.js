@@ -1,13 +1,13 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels';
-import { Button } from 'ronuse-react-ui/core/buttons';
+import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
+import { Button } from '@ronuse/react-ui/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "ronuse-react-ui/core/variables/Stylers";
-import { Alignment } from "ronuse-react-ui/core/variables";
-import { Accordion, AccordionPanel } from "ronuse-react-ui/core/panels/Accordion";
-import { ButtonGroup } from "ronuse-react-ui/core/buttons/ButtonGroup";
+import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
+import { Alignment } from "@ronuse/react-ui/core/variables";
+import { Accordion, AccordionPanel } from "@ronuse/react-ui/core/panels/Accordion";
+import { ButtonGroup } from "@ronuse/react-ui/core/buttons/ButtonGroup";
 
 export class AccordionPage extends React.Component {
 
@@ -17,7 +17,7 @@ export class AccordionPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/panels/AccordionPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/panels/AccordionPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}));
     }
@@ -194,7 +194,7 @@ export class AccordionPage extends React.Component {
 
                 <Panel className="r-r-padding-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Accordion } from 'ronuse-react-ui/core/panels'`}
+                        {`import { Accordion } from '@ronuse/react-ui/core/panels'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

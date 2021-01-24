@@ -28,6 +28,7 @@ import React, { Component } from 'react';
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { Scheme, Alignment } from "../variables";
 
+// TODO add fill
 export class InputText extends Component {
 
     static defaultProps = {

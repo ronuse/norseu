@@ -1,11 +1,11 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels';
-import { InputText } from 'ronuse-react-ui/core/form';
+import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
+import { InputText } from '@ronuse/react-ui/core/form';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "ronuse-react-ui/core/variables/Stylers";
-import { Alignment } from "ronuse-react-ui/core/variables";
+import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
+import { Alignment } from "@ronuse/react-ui/core/variables";
 
 export class InputTextPage extends React.Component {
 
@@ -19,7 +19,7 @@ export class InputTextPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/form/InputTextPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/form/InputTextPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}));
     }
@@ -244,7 +244,7 @@ export class InputTextPage extends React.Component {
 
                 <Panel className="r-r-padding-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { InputText } from 'ronuse-react-ui/core/form''`}
+                        {`import { InputText } from '@ronuse/react-ui/core/form''`}
                     </SyntaxHighlighter>
                 </Panel>
                 

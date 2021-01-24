@@ -1,7 +1,7 @@
 
 import React from "react"
-import { Panel, TabPane, TabPanel } from 'ronuse-react-ui/core/panels'
-import { Elevation, Scheme } from "ronuse-react-ui/core/variables"
+import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels'
+import { Elevation, Scheme } from "@ronuse/react-ui/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -12,7 +12,7 @@ export class ElevationPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/variables/ElevationPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/variables/ElevationPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}));
     }
@@ -130,7 +130,7 @@ export class ElevationPage extends React.Component {
 
                 <Panel className="r-r-padding-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Elevation } from 'ronuse-react-ui/core/variables'`}
+                        {`import { Elevation } from '@ronuse/react-ui/core/variables'`}
                     </SyntaxHighlighter>
                 </Panel>
                 
