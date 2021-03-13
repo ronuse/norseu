@@ -3,8 +3,9 @@ import React from "react";
 import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel } from '@ronuse/react-ui/core/panels';
 import { Button, ButtonGroup } from '@ronuse/react-ui/core/buttons';
 import { InputText, Checkbox } from '@ronuse/react-ui/core/form';
+import { LinearLayout } from '@ronuse/react-ui/layouts';
 import { Tag } from '@ronuse/react-ui/core/misc';
-import { Scheme, Alignment } from "@ronuse/react-ui/core/variables/Stylers";
+import { Scheme, Alignment, Orientation } from "@ronuse/react-ui/core/variables";
 import { SchemeBuilder } from '../utils/generate_scheme_css.mjs';
 import AceEditor from "react-ace";
 
@@ -14,11 +15,11 @@ import "ace-builds/src-noconflict/theme-xcode";
 export class GenerateSchemePage extends React.Component {
 
     state = {
-        name: 'expostudy-blacky',
-        baseColor: '#F5F8FA',
-        textColor: '#293742',
+        name: 'new-scheme',
+        baseColor: '#243447',
+        textColor: 'white',
+        altColors: [],
         disableSave: false,
-        generatedCss: "",
         everythingIsImportant: true,
         activeTabIndex: 0
     }
@@ -120,77 +121,108 @@ export class GenerateSchemePage extends React.Component {
         )
     }
 
+    buildAlternateColorPanels(alternateColors) {
+        let alternateColorsView = [];
+
+        for (let alternateColor of alternateColors) {
+            alternateColorsView.push(<Panel title={alternateColor.name} collapsible expanded>
+                <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} defaultValue={alternateColor.name} label="Name" alignLabel={Alignment.TOP} onChange={(e) => {
+                    this.state.altColors[alternateColor.index].name = e.target.value;
+                    this.setState({
+                        altColors: this.state.altColors
+                    })
+                }}/>
+                <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} label="Color Value" alignLabel={Alignment.TOP}
+                    leftIcon={<span style={{color: alternateColor.value}} className="fa fa-circle"/>}
+                    defaultValue={alternateColor.value} onChange={(e)=> {
+                    this.state.altColors[alternateColor.index].value = e.target.value;
+                    this.setState({
+                        altColors: this.state.altColors
+                    })
+                }}/>
+            </Panel>)
+        }
+        return alternateColorsView;
+    }
+
     render() {
-        this.injectCss(this.state.generatedCss);
+        const generatedCss = SchemeBuilder.generateSchemeCss(this.state);
+        this.injectCss(generatedCss);
+        const alternateColorsView = this.buildAlternateColorPanels(this.state.altColors);
 
         return (
             <div className="r-r-showcase-component-page">
                 <h1>Scheme Builder</h1>
-                
-                <Panel className="r-r-padding-left-right-20px">
-                    <InputText scheme={Scheme.PRIMARY} defaultValue={this.state.name}  label="Scheme name"alignLabel={Alignment.TOP}/>
-                    <br/><br/>
+                <LinearLayout padding={20} style={{backgroundColor: "white"}}>
+                    <Panel  style={{flex: 0.7}}>
+                        <LinearLayout padding={20}>
+                            <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} defaultValue={this.state.name} label="Scheme name"alignLabel={Alignment.TOP} onChange={(e) => {
+                                this.setState({
+                                    name: e.target.value
+                                })
+                            }}/>
 
-                    <InputText scheme={Scheme.PRIMARY} label="Base color" alignLabel={Alignment.TOP}
-                        defaultValue={this.state.baseColor}
-                        onChange={(e)=>{
-                            this.setState({
-                                baseColor: e.target.value,
-                                generatedCss: SchemeBuilder.generateSchemeCss(this.state.name, e.target.value, this.state.textColor, this.state.everythingIsImportant)
-                            })
-                        }}
-                        leftIcon={<span style={{color: this.state.baseColor}} className="fa fa-circle"/>}/>
-                    <br/><br/>
+                            <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} label="Base color" alignLabel={Alignment.TOP}
+                                leftIcon={<span style={{color: this.state.baseColor}} className="fa fa-circle"/>}
+                                defaultValue={this.state.baseColor} onChange={(e)=>{
+                                this.setState({
+                                    baseColor: e.target.value
+                                })
+                            }}/>
+                        </LinearLayout>
+                        <LinearLayout padding={20}>
+                            <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} label="Text color" alignLabel={Alignment.TOP}
+                                leftIcon={<span style={{color: this.state.textColor}} className="fa fa-circle"/>}
+                                defaultValue={this.state.textColor} onChange={(e)=>{
+                                this.setState({
+                                    textColor: e.target.value
+                                });
+                            }}/>
+                        </LinearLayout>
 
-                    <InputText scheme={Scheme.PRIMARY} label="Text color" alignLabel={Alignment.TOP}
-                        defaultValue={this.state.textColor}
-                        onChange={(e)=>{
-                            this.setState({
-                                textColor: e.target.value,
-                                generatedCss: SchemeBuilder.generateSchemeCss(this.state.name, this.state.baseColor, e.target.value, this.state.everythingIsImportant)
-                            }); 
-                        }}
-                        leftIcon={<span style={{color: this.state.textColor}} className="fa fa-circle"/>}/>
-                    <br/><br/>
-
-                    <Checkbox scheme={Scheme.PRIMARY} 
+                        <LinearLayout padding={20} orientation={Orientation.VERTICAL}>
+                            <Checkbox scheme={Scheme.PRIMARY} 
                                 label="Make everything important" checked={this.state.everythingIsImportant} 
-                                onChange={e => this.setState({ everythingIsImportant: e.checked })}/>
-                    <br/><br/>
-
-                    {/*<Button text="Generate CSS" scheme={Scheme.SUCCESS} 
-                        onClick={(e) => {
-                            this.setState({
-                                disableSave: false,
-                                generatedCss: generateSchemeCss(this.state.name, this.state.baseColor, e.target.value, this.state.everythingIsImportant)
-                            })
-                        }}/> */}
-                    <Button text="Copy Generated CSS" scheme={Scheme.SUCCESS} disabled={this.state.disableSave} 
-                        onClick={(e) => {
-
-                        }}/>
-                    <Button text="Save Generated CSS" scheme={Scheme.SUCCESS} disabled={this.state.disableSave} 
-                        onClick={(e) => {
-                            
-                        }}/>
-                    <br/><br/>
-
-                    <TabPane activeTabIndex={this.state.activeTabIndex} onTabChange={(e) => this.setState({ activeTabIndex: e.index })} renderActiveTabOnly>
-                        <TabPanel title="Component Preview" icon="fa fa-eye">
-                            {this.renderPreviewComponents()}
-                        </TabPanel>
-                        <TabPanel title="Generated CSS" icon="fa fa-book">
-                            <AceEditor
-                                style={{width: "100%"}}
-                                mode="css"
-                                theme="xcode"
-                                name="generated-css-content"
-                                value={this.state.generatedCss}
-                                editorProps={{ $blockScrolling: true }}
-                            />
-                        </TabPanel>
-                    </TabPane>
-                </Panel>
+                                onChange={e => {
+                                    this.setState({ 
+                                        everythingIsImportant: e.checked 
+                                    })
+                            }}/>
+                            <Button text="Add Alternative Color" scheme={Scheme.SUCCESS} disabled={this.state.disableSave}  onClick={(e) => {
+                                this.state.altColors.push({
+                                    index: this.state.altColors.length,
+                                    name: "Alt Color " + this.state.altColors.length,
+                                    value: "green"
+                                });
+                                this.setState({ 
+                                    altColors: this.state.altColors
+                                })
+                            }}/>
+                            {alternateColorsView}
+                        </LinearLayout>
+                    </Panel>
+                    <Panel  style={{flex: 1}}>
+                        <TabPane activeTabIndex={this.state.activeTabIndex} onTabChange={(e) => this.setState({ activeTabIndex: e.index })} renderActiveTabOnly>
+                            <TabPanel title="Component Preview" icon="fa fa-eye">
+                                {this.renderPreviewComponents()}
+                            </TabPanel>
+                            <TabPanel title="Generated CSS" icon="fa fa-book">
+                                <AceEditor ref={(el) => this.cssEditor = el}
+                                    style={{width: "100%"}}
+                                    mode="css"
+                                    theme="xcode"
+                                    name="generated-css-content"
+                                    value={generatedCss}
+                                    editorProps={{ $blockScrolling: true }}
+                                />
+                            </TabPanel>
+                            <TabPanel title="Scheme Options" icon="fa fa-book">
+                                This should contain the options like state, so it can be easily loaded into the 
+                                scheme builder and modified
+                            </TabPanel>
+                        </TabPane>
+                    </Panel>
+                </LinearLayout>
 
             </div>
         )

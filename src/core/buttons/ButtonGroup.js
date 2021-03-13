@@ -27,19 +27,19 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import { ObjUtils, BoolUtils } from "../../utils";
-import { Direction } from "../variables/";
+import { Orientation } from "../variables/";
 
 export class ButtonGroup extends Component {
 
     static defaultProps = {
         fill: null,
-        direction: Direction.HORIZONTAL,
+        orientation: Orientation.HORIZONTAL,
         scheme: null
     }
 
     static propTypes = {
         fill: PropTypes.bool,
-        direction: PropTypes.string,
+        orientation: PropTypes.string,
         scheme: PropTypes.string
     }
 
@@ -76,7 +76,7 @@ export class ButtonGroup extends Component {
     render() {
         
         let className = classNames('r-r-button-group', {
-            'r-r-flex-vertical': BoolUtils.equalsAny(this.props.direction, [Direction.VERTICAL]),
+            'r-r-flex-vertical': BoolUtils.equalsAny(this.props.direction, [Orientation.VERTICAL]),
             'r-r-width-100-percent': this.props.fill
         }, this.props.className);
         let componentProps = ObjUtils.findDiffKeys(this.props, ButtonGroup.defaultProps);

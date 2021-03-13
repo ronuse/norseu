@@ -25,7 +25,7 @@
 
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Direction } from '../core/variables';
+import { Orientation } from '../core/variables';
 import { ObjUtils } from "../utils/";
 
 export class ViewportSensor extends Component {
@@ -33,13 +33,13 @@ export class ViewportSensor extends Component {
     static defaultProps = {
         onEnterViewport: null,
         onExitViewport: null,
-        direction: Direction.HORIZONTAL_VERTICAL
+        orientation: Orientation.HORIZONTAL_VERTICAL
     }
 
     static propTypes = {
         onEnterViewport: PropTypes.func,
         onExitViewport: PropTypes.func,
-        direction: PropTypes.string
+        orientation: PropTypes.string
     }
 
     constructor() {
@@ -88,10 +88,10 @@ export class ViewportSensor extends Component {
         let winHeight = docElement.clientHeight;
         let winWidth = docElement.clientWidth;
 
-        if (this.props.direction === Direction.VERTICAL) {
+        if (this.props.orientation === Orientation.VERTICAL) {
             return (winHeight >= rect.top);
 
-        } else if (this.props.direction === Direction.HORIZONTAL) {
+        } else if (this.props.orientation === Orientation.HORIZONTAL) {
             return (winWidth >= rect.left);
         }
         return ((winHeight >= rect.top) || (winWidth >= rect.left));

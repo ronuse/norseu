@@ -4,7 +4,7 @@ import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
 import { Button, ButtonGroup } from '@ronuse/react-ui/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme, Alignment, Direction } from "@ronuse/react-ui/core/variables";
+import { Scheme, Alignment, Orientation } from "@ronuse/react-ui/core/variables";
 
 export class ButtonGroupPage extends React.Component {
 
@@ -84,37 +84,37 @@ export class ButtonGroupPage extends React.Component {
                 </Panel>
                 <Panel title="Vertical" expanded collapsible borderless>
                     <h5>Basic</h5>
-                    <ButtonGroup direction={Direction.VERTICAL}>
+                    <ButtonGroup direction={Orientation.VERTICAL}>
                         <Button icon="fa fa-folder-open" text="Open"/>
                         <Button icon="fa fa-times" text="Close"/>
                         <Button icon="fa fa-sign-out" text="Exit"/>
                     </ButtonGroup>
                     <h5>Skeleton</h5>
-                    <ButtonGroup direction={Direction.VERTICAL} scheme={Scheme.SKELETON}>
+                    <ButtonGroup direction={Orientation.VERTICAL} scheme={Scheme.SKELETON}>
                         <Button icon="fa fa-folder-open" text="Open"/>
                         <Button icon="fa fa-times" text="Close"/>
                         <Button icon="fa fa-sign-out" text="Exit"/>
                     </ButtonGroup>
                     <h5>With scheme</h5>
-                    <ButtonGroup direction={Direction.VERTICAL} scheme={Scheme.PRIMARY}>
+                    <ButtonGroup direction={Orientation.VERTICAL} scheme={Scheme.PRIMARY}>
                         <Button icon="fa fa-folder-open" text="Open"/>
                         <Button icon="fa fa-times" text="Close"/>
                         <Button icon="fa fa-sign-out" text="Exit"/>
                     </ButtonGroup>
                     <h5>With individual scheme</h5>
-                    <ButtonGroup direction={Direction.VERTICAL}>
+                    <ButtonGroup direction={Orientation.VERTICAL}>
                         <Button scheme={Scheme.PRIMARY} icon="fa fa-folder-open" text="Open"/>
                         <Button scheme={Scheme.SECONDARY} icon="fa fa-times" text="Close"/>
                         <Button scheme={Scheme.SUCCESS} icon="fa fa-sign-out" text="Exit"/>
                     </ButtonGroup>
                     <h5>Fill</h5>
-                    <ButtonGroup direction={Direction.VERTICAL} fill>
+                    <ButtonGroup direction={Orientation.VERTICAL} fill>
                         <Button scheme={Scheme.PRIMARY} icon="fa fa-folder-open" alignIcon={Alignment.CENTER} text="Open"/>
                         <Button scheme={Scheme.PRIMARY} icon="fa fa-times" alignIcon={Alignment.CENTER} text="Close"/>
                         <Button scheme={Scheme.PRIMARY} icon="fa fa-sign-out" alignIcon={Alignment.CENTER} text="Exit"/>
                     </ButtonGroup>
                     <h5>Icon only</h5>
-                    <ButtonGroup direction={Direction.VERTICAL} scheme={Scheme.PRIMARY}>
+                    <ButtonGroup direction={Orientation.VERTICAL} scheme={Scheme.PRIMARY}>
                         <Button icon="fa fa-folder-open"/>
                         <Button icon="fa fa-times"/>
                         <Button icon="fa fa-sign-out"/>

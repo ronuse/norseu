@@ -59,13 +59,19 @@ export class HomePage extends React.Component {
                     <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Tag" onClick={(e) => {
                         this.props.history.push("/core/misc/tag");
                     }}/><br/>
-                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="BadgeAndTagPage" onClick={(e) => {
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Badge And Tag" onClick={(e) => {
                         this.props.history.push("/misc/badgeandtag");
                     }}/>
                 </Panel>
 
+                <Panel className="r-r-margin-20px" title="Layouts">
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="LinearLayout" onClick={(e) => {
+                        this.props.history.push("/layouts/linearlayout");
+                    }}/><br/>
+                </Panel>
+
                 <Panel className="r-r-margin-20px" title="Sensors">
-                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="ViewportSensorPage" onClick={(e) => {
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="ViewportSensor" onClick={(e) => {
                         this.props.history.push("/sensors/viewportsensor");
                     }}/><br/>
                 </Panel>

@@ -54,7 +54,7 @@ export const Elevation = {
     THIRTEEN: 'r-r-elevation-13'
 }
 
-export const Direction = {
+export const Orientation = {
     HORIZONTAL: "horizontal",
     VERTICAL: "vertical",
     HORIZONTAL_VERTICAL: "horizontal_vertical"
@@ -69,4 +69,9 @@ export const Scheme = {
     WARNING: "r-r-warning",
     DANGER: "r-r-danger",
     SKELETON: "r-r-skeleton"
+}
+
+export const Overflow = {
+    Scroll: "scroll",
+    Fixed: "fixed"
 }

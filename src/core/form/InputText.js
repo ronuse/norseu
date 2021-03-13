@@ -36,6 +36,8 @@ export class InputText extends Component {
         id: null,
         className: null,
         style: null,
+        inputClassName: null,
+        inputStyle: null,
         label: null,
         alignLabel: Alignment.LEFT,
         placeholder: "",
@@ -60,6 +62,8 @@ export class InputText extends Component {
         id: PropTypes.string,
         className: PropTypes.string,
         style: PropTypes.object,
+        inputClassName: PropTypes.string,
+        inputStyle: PropTypes.object,
         label: PropTypes.any,
         alignLabel: PropTypes.string,
         placeholder: PropTypes.string,
@@ -128,6 +132,7 @@ export class InputText extends Component {
     renderInput() {
         const placeholder = (this.props.floatLabel) ? " " : this.props.placeholder;
         let inputProps = ObjUtils.findDiffKeys(this.props, InputText.defaultProps);
+        //inputProps = ObjUtils.removeKeys(inputProps, ['className', 'style']);
         let className = this.props.nostyle ? "" : classNames('r-r-inputtext', 
             (this.props.scheme && this.props.flushed ? `${this.props.scheme}-border-bottom-color-hover` : null),
             (this.props.scheme && this.props.flushed ? `${this.props.scheme}-border-bottom-color-focus` : null),
@@ -139,9 +144,9 @@ export class InputText extends Component {
             'r-r-padding-left-0px': this.props.flushed && !this.props.leftIcon && !this.props.rightIcon,
             'r-r-disabled r-r-noselect': this.props.disabled,
             'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON
-        }, 'r-r-inputtext-theme', this.props.className);
+        }, 'r-r-inputtext-theme', this.props.inputClassName);
         return <input {...inputProps} className={className} 
-                    style={this.props.style} 
+                    style={this.props.inputStyle} 
                     id={this.id} 
                     name={this.props.name} 
                     placeholder={placeholder}
@@ -273,7 +278,7 @@ export class InputText extends Component {
     render() {
         const className = classNames({
             'r-r-floating-label': this.props.floatLabel,
-        });
+        }, this.props.className);
         const alignLabel = (this.props.floatLabel) ? Alignment.RIGHT : this.props.alignLabel;
         let input = this.renderInput();
         const label = this.renderLabel(alignLabel);
@@ -295,7 +300,7 @@ export class InputText extends Component {
         }
 
         return (
-            <span className={className}>
+            <span className={className} style={this.props.style}>
                 {alignLabel === Alignment.LEFT && label ? label : null}
                 {alignLabel === Alignment.TOP && label ? <React.Fragment>{label} <br/></React.Fragment> : null}
 

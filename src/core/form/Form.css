@@ -15,6 +15,10 @@
     outline: none;
     padding: 8px;
     transition: 0.3s;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .r-r-inputtext:focus {
@@ -42,6 +46,10 @@
 .r-r-inputtext-icon-pack {
     position: relative;
     display: inline-flex;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .r-r-inputtext-left-icon {

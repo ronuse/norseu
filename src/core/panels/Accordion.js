@@ -27,7 +27,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import { BoolUtils, DOMUtils, ObjUtils } from "../../utils";
-import { Direction, Scheme, Alignment } from "../variables/";
+import { Orientation, Scheme, Alignment } from "../variables/";
 import { Button } from "../buttons";
 import { Panel } from "./Panel"
 import { CSSTransition } from 'react-transition-group';

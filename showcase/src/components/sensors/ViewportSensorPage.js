@@ -5,7 +5,7 @@ import { Button } from '@ronuse/react-ui/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Direction } from "@ronuse/react-ui/core/variables";
+import { Orientation } from "@ronuse/react-ui/core/variables";
 import { ViewportSensor } from "@ronuse/react-ui/sensors";
 
 export class ViewportSensorPage extends React.Component {
@@ -66,7 +66,7 @@ export class ViewportSensorPage extends React.Component {
                         flexFlow: "row-reverse"
                     }}>
                         <p>padding</p>
-                        <ViewportSensor style={{float:"right"}} direction={Direction.HORIZONTAL}>
+                        <ViewportSensor style={{float:"right"}} direction={Orientation.HORIZONTAL}>
                             <img src="https://avatars3.githubusercontent.com/u/69908664?s=500"/>
                         </ViewportSensor>
                     </div>
@@ -74,7 +74,7 @@ export class ViewportSensorPage extends React.Component {
                     <h4>Scroll down to the to load the video below.</h4>
                     <div style={{height:"120vh"}}/>
                     
-                    <ViewportSensor direction={Direction.VERTICAL} onEnterViewport={this.onEnterViewport} onExitViewport={this.onExitViewport}>
+                    <ViewportSensor direction={Orientation.VERTICAL} onEnterViewport={this.onEnterViewport} onExitViewport={this.onExitViewport}>
                         <iframe width="100%" height="720" src="https://www.youtube.com/embed/aSLZFdqwh7E" 
                             frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowFullScreen>

@@ -13,6 +13,12 @@ export class ObjUtils {
         }, {});
     }
 
+    static removeKeys(obj1, keys) {
+        for (let key of keys) {
+            delete obj1[key];
+        }
+    }
+
     static replaceEntry(obj, key, newValue) {
         var oldValue = obj[key];
 

@@ -17,6 +17,8 @@ import { HomePage } from './components/HomePage'
 import { ViewportSensorPage } from './components/sensors/ViewportSensorPage'
 import { CheckboxPage } from './components/core/form/CheckboxPage'
 import { InputTextPage } from './components/core/form/InputTextPage'
+
+import { LinearLayoutPage } from './components/layouts/LinearLayoutPage'
 import './index.css'
 
 const App = () => {
@@ -41,6 +43,8 @@ const App = () => {
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>
                 <Route exact path="/core/misc/tag" component={TagPage}/>
                 <Route exact path="/misc/badgeandtag" component={BadgeAndTagPage}/>
+
+                <Route exact path="/layouts/linearlayout" component={LinearLayoutPage}/>
 
                 <Route exact path="/sensors/viewportsensor" component={ViewportSensorPage}/>
             </Switch>

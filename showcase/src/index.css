@@ -68,31 +68,6 @@ input {
 
 /* TMPS */
 
-.r-r-dark-border-bottom-color-hover:hover {
-    border-bottom-color: #000000;
-}
-
-.r-r-dark-border-bottom-color-focus:focus {
-    border-bottom-color: #000000;
-}
-
-.r-r-dark-border-1px-hover:hover {
-    z-index: 99;
-    border: 1px solid #000000 !important;
-}
-
-.r-r-dark-border-1px-focus:focus {
-    z-index: 99;
-    border: 1px solid #000000 !important;
-}
-
-.r-r-dark-border-3px-focus-box-shadow:focus {
-    z-index: 99;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, .2);
-    -webkit-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0, .2);
-    -moz-box-shadow: 0 0 0 3px rgba(0, 0, 0, 0, .2);
-}
-
 /* */
 
 .r-r-ripple {

@@ -90,6 +90,40 @@ export class ScratchPage extends React.Component {
                     }
                 }}/>
                 <br/><br/>
+                <br/><br/>
+
+                <div className="r-r-linear-layout r-r-layout-horizontal">
+                    <span style={{backgroundColor: "purple", flex: 0.5}}>Hello Hollo Hollo Hollo Hollo</span>
+                    <span style={{backgroundColor: "blue", flex: 1}}>Hello Hollo Hollo Hollo Hollo</span>
+                    <span style={{backgroundColor: "blue", flex: 0.5}}>Hello Hollo Hollo Hollo Hollo</span>
+                </div>
+                <br/>
+
+                <div className="r-r-linear-layout r-r-layout-horizontal" style={{backgroundColor: "blue"}}>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div className="r-r-linear-layout r-r-layout-vertical" style={{backgroundColor: "yellow"}}>
+                        <div style={{height: "100px", width: "150px", backgroundColor: "green"}}> </div>
+                        <div style={{height: "100px", width: "150px", backgroundColor: "green"}}> </div>
+                        <div style={{height: "100px", width: "150px", backgroundColor: "green"}}> </div>
+                    </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                </div>
+
+                <br/>
+                <div className="r-r-linear-layout r-r-layout-vertical">
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                    <div style={{height: "100px", width: "150px", backgroundColor: "grey"}}> </div>
+                </div>
                 
                 <br/>
                 <br/>
