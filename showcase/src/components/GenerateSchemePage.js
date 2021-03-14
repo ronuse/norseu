@@ -23,7 +23,8 @@ export class GenerateSchemePage extends React.Component {
         disableSave: false,
         everythingIsImportant: true,
         embedSchemeOption: true,
-        activeTabIndex: 0
+        activeTabIndex: 0,
+        rawCss: ""
     }
 
     constructor(props) {
@@ -177,7 +178,7 @@ export class GenerateSchemePage extends React.Component {
                 <LinearLayout padding={20}>
                     <Panel style={{flex: 0.4}}>
                         <LinearLayout padding={20}>
-                            <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} defaultValue={this.state.name} label="Scheme name"alignLabel={Alignment.TOP} onChange={(e) => {
+                            <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} defaultValue={this.state.name} label="Scheme name" alignLabel={Alignment.TOP} onChange={(e) => {
                                 this.setState({
                                     name: e.target.value
                                 })
@@ -233,6 +234,14 @@ export class GenerateSchemePage extends React.Component {
                                         altColors: this.state.altColors
                                     })
                             }}/>
+                            Raw Css
+                            <textarea defaultValue={this.state.rawCss} onChange={(e) => {
+                                this.setState({ 
+                                    rawCss: e.target.value
+                                })
+                            }}>
+
+                            </textarea>
                             {alternateColorsView}
                         </LinearLayout>
                     </Panel>

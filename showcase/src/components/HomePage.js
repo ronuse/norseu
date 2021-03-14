@@ -77,6 +77,9 @@ export class HomePage extends React.Component {
                     <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="ViewportSensor" onClick={(e) => {
                         this.props.history.push("/sensors/viewportsensor");
                     }}/><br/>
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="ResizeSensor" onClick={(e) => {
+                        this.props.history.push("/sensors/resizesensor");
+                    }}/><br/>
                 </Panel>
             </Panel>
         )

@@ -24,3 +24,4 @@
  */
 
  export { ViewportSensor } from "./ViewportSensor"
+ export { ResizeSensor } from "./ResizeSensor"

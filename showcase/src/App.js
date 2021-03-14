@@ -16,6 +16,7 @@ import { ScratchPage } from './components/ScratchPage'
 import { GenerateSchemePage } from './components/GenerateSchemePage'
 import { HomePage } from './components/HomePage'
 import { ViewportSensorPage } from './components/sensors/ViewportSensorPage'
+import { ResizeSensorPage } from './components/sensors/ResizeSensorPage'
 import { CheckboxPage } from './components/core/form/CheckboxPage'
 import { InputTextPage } from './components/core/form/InputTextPage'
 
@@ -49,6 +50,7 @@ const App = () => {
                 <Route exact path="/layouts/linearlayout" component={LinearLayoutPage}/>
 
                 <Route exact path="/sensors/viewportsensor" component={ViewportSensorPage}/>
+                <Route exact path="/sensors/resizesensor" component={ResizeSensorPage}/>
             </Switch>
         </HashRouter>
     )
