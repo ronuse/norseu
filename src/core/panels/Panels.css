@@ -9,7 +9,7 @@
 .r-r-panel {
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: white;
+    /*background-color: white;*/
 }
 
 .r-r-panel-header {
@@ -199,4 +199,83 @@
 
 .r-r-accordion-panel {
     display: none;
+}
+
+/* ScrollPanel */
+
+.r-r-scrollpanel {
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.r-r-scrollpanel::-webkit-scrollbar {
+	width: 10px;
+    height: 10px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.r-r-scrollpanel::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: transparent;
+    cursor: pointer;
+}
+
+.r-r-scrollpanel::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgb(193, 193, 193);
+    cursor: pointer;
+}
+
+.r-r-scrollpanel::-webkit-scrollbar-corner {
+	background-color: transparent;
+    cursor: pointer;
+}
+
+.r-r-scrollpanel-hidden-scrollbars::-webkit-scrollbar {
+    width: 0;
+}
+
+.r-r-scrollpanel-hidden-scrollbar-x::-webkit-scrollbar {
+    height: 0;
+}
+
+.r-r-scrollpanel-hidden-scrollbar-y::-webkit-scrollbar {
+    width: 0;
+}
+
+.r-r-scrollpanel-always-show-scrollbars {
+    overflow: scroll;
+}
+
+.r-r-scrollpanel-always-show-scrollbar-x {
+    overflow-x: scroll;
+}
+
+.r-r-scrollpanel-always-show-scrollbar-y {
+    overflow-x: scroll;
+}
+
+.r-r-primary-scrollpanel::-webkit-scrollbar-thumb {
+	background-color: #3699FF;
+}
+
+.r-r-secondary-scrollpanel::-webkit-scrollbar-thumb {
+	background-color: #E4E6EF;
+}
+
+.r-r-success-scrollpanel::-webkit-scrollbar-thumb {
+	background-color: #1BC5BD;
+}
+
+.r-r-info-scrollpanel::-webkit-scrollbar-thumb {
+	background-color: #8950FC;
+}
+
+.r-r-warning-scrollpanel::-webkit-scrollbar-thumb {
+	background-color: #FFA800;
+}
+
+.r-r-danger-scrollpanel::-webkit-scrollbar-thumb {
+	background-color: #F64E60;
 }

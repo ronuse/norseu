@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel } from '@ronuse/react-ui/core/panels';
+import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel, ScrollPanel } from '@ronuse/react-ui/core/panels';
 import { Button, ButtonGroup } from '@ronuse/react-ui/core/buttons';
 import { InputText, Checkbox } from '@ronuse/react-ui/core/form';
 import { LinearLayout } from '@ronuse/react-ui/layouts';
@@ -10,6 +10,7 @@ import { SchemeBuilder } from '../utils/generate_scheme_css.mjs';
 import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-css";
+import "ace-builds/src-noconflict/mode-json";
 import "ace-builds/src-noconflict/theme-xcode";
 
 export class GenerateSchemePage extends React.Component {
@@ -21,6 +22,7 @@ export class GenerateSchemePage extends React.Component {
         altColors: [],
         disableSave: false,
         everythingIsImportant: true,
+        embedSchemeOption: true,
         activeTabIndex: 0
     }
 
@@ -46,7 +48,7 @@ export class GenerateSchemePage extends React.Component {
         let customIcon1 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/14879387?s=16" style={{borderRadius:"50%"}}/>;
         
         return (
-            <React.Fragment>
+            <ScrollPanel scheme={this.state.name} style={{maxHeight: "70vh", padding: "20px"}} hideScrollBarX>
                 <Button scheme={this.state.name} text="Click me"/>
                 <Button scheme={this.state.name} text="Click me" fill/>
                 <Button scheme={this.state.name} text="Click me" rounded/>
@@ -117,15 +119,26 @@ export class GenerateSchemePage extends React.Component {
                 <Tag scheme={this.state.name} icon="fa fa-warning" text="Warning" raised textonly/>
                 <br/><br/>
 
-            </React.Fragment>
+            </ScrollPanel>
         )
     }
 
     buildAlternateColorPanels(alternateColors) {
         let alternateColorsView = [];
 
-        for (let alternateColor of alternateColors) {
-            alternateColorsView.push(<Panel title={alternateColor.name} collapsible expanded>
+        for (let index = 0; index < alternateColors.length; index++) {
+            let alternateColor = alternateColors[index]
+            alternateColor.index = index;
+            alternateColorsView.push(
+            <Panel title={
+                    <React.Fragment>
+                        <i className="fa fa-times" style={{color: "red", cursor: "pointer"}} onClick={(e) => { 
+                            alternateColors.splice(alternateColor.index, 1);
+                            this.setState(this.state);
+                         }}/>
+                        <span style={{marginLeft: "10px"}}>{alternateColor.name}</span>
+                    </React.Fragment>
+                } collapsible expanded style={{marginLeft: "20px"}}>
                 <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} defaultValue={alternateColor.name} label="Name" alignLabel={Alignment.TOP} onChange={(e) => {
                     this.state.altColors[alternateColor.index].name = e.target.value;
                     this.setState({
@@ -140,6 +153,14 @@ export class GenerateSchemePage extends React.Component {
                         altColors: this.state.altColors
                     })
                 }}/>
+                <Checkbox scheme={Scheme.PRIMARY} 
+                    label="Generate supplement styles" checked={alternateColor.generateSupplement} 
+                    onChange={e => {
+                        this.state.altColors[alternateColor.index].generateSupplement = e.checked;
+                        this.setState({
+                            altColors: this.state.altColors
+                        })
+                }}/>
             </Panel>)
         }
         return alternateColorsView;
@@ -151,17 +172,18 @@ export class GenerateSchemePage extends React.Component {
         const alternateColorsView = this.buildAlternateColorPanels(this.state.altColors);
 
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="r-r-showcase-component-page" style={{backgroundColor: "white"}}>
                 <h1>Scheme Builder</h1>
-                <LinearLayout padding={20} style={{backgroundColor: "white"}}>
-                    <Panel  style={{flex: 0.7}}>
+                <LinearLayout padding={20}>
+                    <Panel style={{flex: 0.4}}>
                         <LinearLayout padding={20}>
                             <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} defaultValue={this.state.name} label="Scheme name"alignLabel={Alignment.TOP} onChange={(e) => {
                                 this.setState({
                                     name: e.target.value
                                 })
                             }}/>
-
+                        </LinearLayout>
+                        <LinearLayout padding={20}>
                             <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} label="Base color" alignLabel={Alignment.TOP}
                                 leftIcon={<span style={{color: this.state.baseColor}} className="fa fa-circle"/>}
                                 defaultValue={this.state.baseColor} onChange={(e)=>{
@@ -169,8 +191,7 @@ export class GenerateSchemePage extends React.Component {
                                     baseColor: e.target.value
                                 })
                             }}/>
-                        </LinearLayout>
-                        <LinearLayout padding={20}>
+
                             <InputText style={{flex: 1}} scheme={Scheme.PRIMARY} label="Text color" alignLabel={Alignment.TOP}
                                 leftIcon={<span style={{color: this.state.textColor}} className="fa fa-circle"/>}
                                 defaultValue={this.state.textColor} onChange={(e)=>{
@@ -180,28 +201,42 @@ export class GenerateSchemePage extends React.Component {
                             }}/>
                         </LinearLayout>
 
-                        <LinearLayout padding={20} orientation={Orientation.VERTICAL}>
-                            <Checkbox scheme={Scheme.PRIMARY} 
+                        <LinearLayout orientation={Orientation.VERTICAL}>
+                            <Checkbox scheme={Scheme.PRIMARY} style={{marginLeft: "20px"}}
+                                label="Add scheme option in css" checked={this.state.embedSchemeOption} 
+                                onChange={e => {
+                                    this.setState({ 
+                                        embedSchemeOption: e.checked 
+                                    })
+                            }}/>
+                            <Checkbox scheme={Scheme.PRIMARY} style={{marginLeft: "20px"}}
                                 label="Make everything important" checked={this.state.everythingIsImportant} 
                                 onChange={e => {
                                     this.setState({ 
                                         everythingIsImportant: e.checked 
                                     })
                             }}/>
-                            <Button text="Add Alternative Color" scheme={Scheme.SUCCESS} disabled={this.state.disableSave}  onClick={(e) => {
-                                this.state.altColors.push({
-                                    index: this.state.altColors.length,
-                                    name: "Alt Color " + this.state.altColors.length,
-                                    value: "green"
-                                });
-                                this.setState({ 
-                                    altColors: this.state.altColors
-                                })
+                            <Button text="Load Existing Scheme Options" scheme={Scheme.SUCCESS} disabled={this.state.disableSave}   style={{marginLeft: "20px"}} 
+                                onClick={(e) => {
+                                    let state = prompt("Show dialog to accept the option text");
+                                    this.setState(JSON.parse(state))
+                            }}/>
+                            <Button text="Add Alternative Color" scheme={Scheme.SUCCESS} disabled={this.state.disableSave} style={{marginLeft: "20px"}} 
+                                onClick={(e) => {
+                                    this.state.altColors.push({
+                                        index: this.state.altColors.length,
+                                        name: "alt-color-" + this.state.altColors.length,
+                                        value: "green",
+                                        generateSupplement: false
+                                    });
+                                    this.setState({ 
+                                        altColors: this.state.altColors
+                                    })
                             }}/>
                             {alternateColorsView}
                         </LinearLayout>
                     </Panel>
-                    <Panel  style={{flex: 1}}>
+                    <Panel style={{flex: 1}}>
                         <TabPane activeTabIndex={this.state.activeTabIndex} onTabChange={(e) => this.setState({ activeTabIndex: e.index })} renderActiveTabOnly>
                             <TabPanel title="Component Preview" icon="fa fa-eye">
                                 {this.renderPreviewComponents()}
@@ -217,8 +252,14 @@ export class GenerateSchemePage extends React.Component {
                                 />
                             </TabPanel>
                             <TabPanel title="Scheme Options" icon="fa fa-book">
-                                This should contain the options like state, so it can be easily loaded into the 
-                                scheme builder and modified
+                                <AceEditor ref={(el) => this.cssEditor = el}
+                                    style={{width: "100%"}}
+                                    mode="json"
+                                    theme="xcode"
+                                    name="generated-scheme-state"
+                                    value={JSON.stringify(this.state, null, "\t")}
+                                    editorProps={{ $blockScrolling: true }}
+                                />
                             </TabPanel>
                         </TabPane>
                     </Panel>

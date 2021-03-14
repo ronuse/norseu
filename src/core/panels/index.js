@@ -27,4 +27,5 @@ export { Panel } from "./Panel"
 export { Fieldset } from "./Fieldset"
 export { TabPane, TabPanel } from "./TabPane"
 export { Accordion, AccordionPanel } from "./Accordion"
+export { ScrollPanel } from "./ScrollPanel"
 import "./Panels.css" //TODO split to pre and after css

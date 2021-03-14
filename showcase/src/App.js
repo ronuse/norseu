@@ -6,6 +6,7 @@ import { ButtonPage } from './components/core/buttons/ButtonPage'
 import { ButtonGroupPage } from './components/core/buttons/ButtonGroupPage'
 import { PanelPage } from './components/core/panels/PanelPage'
 import { AccordionPage } from './components/core/panels/AccordionPage'
+import { ScrollPanelPage } from './components/core/panels/ScrollPanelPage'
 import { TabPanePage } from './components/core/panels/TabPanePage'
 import { FieldsetPage } from './components/core/panels/FieldsetPage'
 import { ElevationPage } from './components/core/variables/ElevationPage'
@@ -36,6 +37,7 @@ const App = () => {
                 <Route exact path="/core/panels/tabpane" component={TabPanePage}/>
                 <Route exact path="/core/panels/fieldset" component={FieldsetPage}/>
                 <Route exact path="/core/panels/accordion" component={AccordionPage}/>
+                <Route exact path="/core/panels/scrollpanel" component={ScrollPanelPage}/>
                 
                 <Route exact path="/core/form/checkbox" component={CheckboxPage}/>
                 <Route exact path="/core/form/inputtext" component={InputTextPage}/>

@@ -62,7 +62,7 @@ export class Panel extends Component {
 
     static propTypes = {
         id: PropTypes.string,
-        title: PropTypes.string,
+        title: PropTypes.any,
         scheme: PropTypes.string,
         safely: PropTypes.bool,
         collapsible: PropTypes.bool,

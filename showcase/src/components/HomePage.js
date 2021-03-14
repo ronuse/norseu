@@ -40,6 +40,9 @@ export class HomePage extends React.Component {
                     }}/><br/>
                     <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Accordion" onClick={(e) => {
                         this.props.history.push("/core/panels/accordion");
+                    }}/><br/>
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="ScrollPanel" onClick={(e) => {
+                        this.props.history.push("/core/panels/scrollpanel");
                     }}/>
                 </Panel>
 
