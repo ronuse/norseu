@@ -45,7 +45,7 @@ export class ResizeSensor extends Component {
     constructor(props) {
         super();
         this.state = {
-            renderChildren: !props.minDimension && !props.maxDimension
+            renderChildren: this.shouldRenderChildren(props.minDimension, props.maxDimension, document.documentElement.clientWidth, document.documentElement.clientHeight)
         };        
     }
 
@@ -59,6 +59,7 @@ export class ResizeSensor extends Component {
                     dimension: {width: width, height: height}
                 });
             }
+            this.setState({renderChildren: this.shouldRenderChildren(this.props.minDimension, this.props.maxDimension, width, height)});
         }
 
         window.addEventListener('resize', this.documentResizeListener);
@@ -71,10 +72,45 @@ export class ResizeSensor extends Component {
         }
     }
 
+    shouldRenderChildren(minDimension, maxDimension, screenWidth, screenHeight) {
+        if (!minDimension && !maxDimension) {
+            return true;
+        }
+        console.log(screenWidth + "- " + screenHeight);
+        console.log(minDimension);
+        console.log(maxDimension);
+        if (minDimension) {
+            if (minDimension.width !== undefined && minDimension.height !== undefined && minDimension.width < screenWidth && minDimension.height < screenHeight) {
+                return true;
+            } else if (minDimension.width !== undefined && minDimension.width < screenWidth) {
+                return true;
+            } else if (minDimension.height !== undefined && minDimension.height < screenHeight) {
+                return true;
+            }
+        } else if (maxDimension) {
+            if (maxDimension.width !== undefined && maxDimension.height !== undefined && maxDimension.width > screenWidth && maxDimension.height > screenHeight) {
+                return true;
+            } else if (maxDimension.width !== undefined && maxDimension.width > screenWidth) {
+                return true;
+            } else if (maxDimension.height !== undefined && maxDimension.height > screenHeight) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     render() {
+        let childrenProps = ObjUtils.clone(this.props, ["children", "minDimension", "minDimension", "onDimensionChange"]);
+        const children = !this.state.renderChildren ? null : React.Children.map(this.props.children, child => {
+            if (React.isValidElement(child)) {
+                return React.cloneElement(child, {...child.props, ...childrenProps});
+            }
+            return child;
+          });
+
         return (
             <React.Fragment>
-                {(this.state.renderChildren) ? this.props.children : null}
+                {(this.state.renderChildren) ? children : null}
             </React.Fragment>
         )
     }

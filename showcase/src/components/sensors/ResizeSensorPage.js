@@ -11,7 +11,8 @@ import { ResizeSensor } from "@ronuse/react-ui/sensors";
 export class ResizeSensorPage extends React.Component {
 
     state = {
-        pageSource: ''
+        pageSource: '',
+        dimension: {width: 0, height: 0}
     }
 
     loadPageSource() {
@@ -46,8 +47,24 @@ export class ResizeSensorPage extends React.Component {
     renderSampleComponents() {
         return (
             <Panel className="r-r-padding-left-right-20px">
-                <ResizeSensor> 
+                <ResizeSensor onDimensionChange={(e) => {
+                    this.setState({
+                        dimension: e.dimension
+                    })
+                }}> 
                     <h3>Resize The window to see new value</h3>
+                    <h2>Width {this.state.dimension.width}</h2>
+                    <h2>Height {this.state.dimension.height}</h2>
+                </ResizeSensor>
+                
+                <h3>The image below will be rendered if the screen width is greater than 500</h3>
+                <ResizeSensor minDimension={{width: 500}}> 
+                    <img style={{width: "300px"}} src="https://c.files.bbci.co.uk/12A9B/production/_111434467_gettyimages-1143489763.jpg"/>
+                </ResizeSensor>
+                
+                <h3>The image below will be hidden if the screen is greater than 800</h3>
+                <ResizeSensor maxDimension={{width: 800}}> 
+                    <img style={{width: "300px"}} src="https://www.sciencemag.org/sites/default/files/styles/inline__450w__no_aspect/public/dogs_1280p_0.jpg?itok=4t_1_fSJ"/>
                 </ResizeSensor>
             </Panel>
         )

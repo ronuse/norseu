@@ -116,6 +116,7 @@
     display: inline-flex;
     margin-top: 6px;
     margin-bottom: 6px;
+    align-items: center;
 } 
 
 .r-r-checkbox input {

@@ -26,12 +26,14 @@ export class ObjUtils {
         return oldValue;
     }
 
-    static clone(obj) {
+    static clone(obj, keys) {
         var clone = {};
 
         if (!obj) { return clone; }
         Object.keys(obj).map((key) => {
-            clone[key] = obj[key];
+            if (!keys || keys.indexOf(key) == -1) {
+                clone[key] = obj[key];
+            }
         });
         return clone;
     }
