@@ -22,11 +22,11 @@
  * SOFTWARE.
  */
 
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import React, { Component } from 'react';
-import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { Scheme, Alignment } from "../variables";
+import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 
 // TODO add fill
 export class InputText extends Component {
@@ -54,7 +54,12 @@ export class InputText extends Component {
         readOnly: false,
         floatLabel: false,
         filter: null,
-        filterKeyOnly: false
+        ref: null,
+        filterKeyOnly: false,
+        onKeyPress: null,
+        onInput: null,
+        onPasteCapture: null,
+        onFirstInput: null
     }
 
     static propTypes = {
@@ -80,18 +85,27 @@ export class InputText extends Component {
         readOnly: PropTypes.bool,
         floatLabel: PropTypes.bool,
         filter: PropTypes.string,
-        filterKeyOnly: PropTypes.bool
+        ref: PropTypes.any,
+        filterKeyOnly: PropTypes.bool,
+        onKeyPress: PropTypes.any,
+        onInput: PropTypes.any,
+        onPasteCapture: PropTypes.any,
+        onFirstInput: PropTypes.any
     }
 
     constructor(props) {
         super(props);
+        this.state = ObjUtils.clone(this.props);
 
-        
-        this.id = this.props.id; 
-        if (!this.id && this.props.label) { 
+        if (this.state.ref && this.state.ref.current !== undefined) {
+            this.state.ref.current = this;
+        }
+        this.id = this.state.id; 
+        if (!this.id) { 
             this.id = DOMUtils.UniqueElementId();
         }
 
+        this.onPasteCapture = this.onPasteCapture.bind(this);
         this.onInput = this.onInput.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
     }
@@ -108,128 +122,161 @@ export class InputText extends Component {
 
     }
 
+    // begin Native fillers
+    getId() {
+        return this.id;
+    }
+
+    getInput() {
+        return document.getElementById(this.id);
+    }
+
+    value() {
+        return document.getElementById(this.id).value ;
+    }
+
+    focus() {
+        document.getElementById(this.id).focus();
+    }
+    // end Native fillers
+
+    onPasteCapture(event) {
+        if (this.state.onPasteCapture) {
+            this.state.onPasteCapture(event);
+        }
+    }
+
     onInput(event) {
         let validatedValue = false;
-        if (this.props.filter) {
-            validatedValue = InputFilter.validate(event.target.value, this.props.filter)
+        let value = event.target.value;
+        if (this.state.filter) {
+            validatedValue = InputFilter.validate(value, this.state.filter)
         }
 
-        if (this.props.onInput) {
-            this.props.onInput(event);
+        if (this.state.onInput) {
+            this.state.onInput(event);
+        }
+        if (this.state.onFirstInput && !this.state.hasValue) {
+            this.state.hasValue = true;
+            this.state.onFirstInput(event);
+        }
+        if (value.length == 0) {
+            this.state.hasValue = false;
         }
     }
 
     onKeyPress(event) {
-        if (this.props.onKeyPress) {
-            this.props.onKeyPress(event);
+        if (this.state.onKeyPress) {
+            this.state.onKeyPress(event);
         }
 
-        if (this.props.filter && !this.props.validateOnly) {
-            InputFilter.onKeyPress(event, this.props.filter)
+        if (this.state.filter && !this.state.validateOnly) {
+            InputFilter.onKeyPress(event, this.state.filter)
         }
     }
 
     renderInput() {
-        const placeholder = (this.props.floatLabel) ? " " : this.props.placeholder;
+        const placeholder = (this.state.floatLabel) ? " " : this.state.placeholder;
         let inputProps = ObjUtils.findDiffKeys(this.props, InputText.defaultProps);
         //inputProps = ObjUtils.removeKeys(inputProps, ['className', 'style']);
-        let className = this.props.nostyle ? "" : classNames('r-r-inputtext', 
-            (this.props.scheme && this.props.flushed ? `${this.props.scheme}-border-bottom-color-hover` : null),
-            (this.props.scheme && this.props.flushed ? `${this.props.scheme}-border-bottom-color-focus` : null),
-            (this.props.scheme && !this.props.flushed ? `${this.props.scheme}-border-3px-focus-box-shadow` : null),
-            (this.props.scheme && !this.props.flushed ? `${this.props.scheme}-border-1px-focus` : null),
-            (this.props.scheme && !this.props.flushed ? `${this.props.scheme}-border-1px-hover` : null), {
-            'r-r-inputtext-outlined': this.props.outlined,
-            'r-r-inputtext-flushed': this.props.flushed,
-            'r-r-padding-left-0px': this.props.flushed && !this.props.leftIcon && !this.props.rightIcon,
-            'r-r-disabled r-r-noselect': this.props.disabled,
-            'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON
-        }, 'r-r-inputtext-theme', this.props.inputClassName);
+        let className = this.state.nostyle ? "" : classNames('r-r-inputtext', 
+            (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-hover` : null),
+            (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-focus` : null),
+            (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-3px-focus-box-shadow` : null),
+            (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-focus` : null),
+            (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-hover` : null), {
+            'r-r-inputtext-outlined': this.state.outlined,
+            'r-r-inputtext-flushed': this.state.flushed,
+            'r-r-padding-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
+            'r-r-disabled r-r-noselect': this.state.disabled,
+            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON
+        }, 'r-r-inputtext-theme', this.state.inputClassName);
         return <input {...inputProps} className={className} 
-                    style={this.props.inputStyle} 
+                    style={this.state.inputStyle} 
                     id={this.id} 
-                    name={this.props.name} 
+                    name={this.state.name} 
                     placeholder={placeholder}
-                    required={this.props.required}
-                    disabled={this.props.readOnly}
-                    onInput={this.onInput} 
+                    required={this.state.required}
+                    disabled={this.state.readOnly}
+                    onInput={this.onInput}
                     onKeyPress={this.onKeyPress}
+                    onPasteCapture={this.onPasteCapture}
                 />
     }
 
     renderLabel(alignLabel) {
-        if (!this.props.label) {
+        if (!this.state.label) {
             return;
         }
 
-        let isString = BoolUtils.isTypeOfAny(this.props.label, ["string"]);
-        if (!isString && !React.isValidElement(this.props.label)) {
+        let isString = BoolUtils.isTypeOfAny(this.state.label, ["string"]);
+        if (!isString && !React.isValidElement(this.state.label)) {
             throw new Error("Only string or a valid react element is expected as the input label");
         }
         let className = classNames('r-r-inputtext-label', {
-            'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON,
+            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
             'r-r-margin-bottom-7px': alignLabel === Alignment.TOP,
             'r-r-margin-top-7px': alignLabel === Alignment.BOTTOM,
             'r-r-margin-right-7px': alignLabel === Alignment.LEFT,
-            'r-r-margin-left-7px': alignLabel === Alignment.RIGHT && !this.props.floatLabel,
-            'r-r-inputtext-label-flushed': this.props.flushed && this.props.outlined
+            'r-r-margin-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'r-r-inputtext-label-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
             return (
-                <label className={className} htmlFor={this.id}>{this.props.label}</label>
+                <label className={className} htmlFor={this.id}>{this.state.label}</label>
             )
         }
-        var relayProps = ObjUtils.clone(this.props.label.props);
+        var relayProps = ObjUtils.clone(this.state.label.props);
         className = classNames(className, relayProps.className);
         relayProps.className = className;
         return (
-            React.cloneElement(this.props.label, relayProps)
+            React.cloneElement(this.state.label, relayProps)
         );
     }
 
     renderHelpLabel(alignHelpLabel) {
-        if (!this.props.helpLabel) {
+        if (!this.state.helpLabel) {
             return;
         }
 
-        let isString = BoolUtils.isTypeOfAny(this.props.helpLabel, ["string"]);
-        if (!isString && !React.isValidElement(this.props.helpLabel)) {
+        let isString = BoolUtils.isTypeOfAny(this.state.helpLabel, ["string"]);
+        if (!isString && !React.isValidElement(this.state.helpLabel)) {
             throw new Error("Only string or a valid react element is expected as the input help label");
         }
         let className = classNames('r-r-inputtext-help-label', {
-            'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON,
+            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
             'r-r-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
             'r-r-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
             'r-r-margin-right-3px': alignHelpLabel === Alignment.LEFT,
-            'r-r-margin-left-3px': alignHelpLabel === Alignment.RIGHT && !this.props.floatLabel,
-            'r-r-inputtext-label-flushed': this.props.flushed && this.props.outlined
+            'r-r-margin-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'r-r-inputtext-label-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
             return (
-                <small className={className}>{this.props.helpLabel}</small>
+                <small className={className}>{this.state.helpLabel}</small>
             )
         }
-        var relayProps = ObjUtils.clone(this.props.helpLabel.props);
+        var relayProps = ObjUtils.clone(this.state.helpLabel.props);
         className = classNames(className, relayProps.className);
         relayProps.className = className;
         return (
-            React.cloneElement(this.props.helpLabel, relayProps)
+            React.cloneElement(this.state.helpLabel, relayProps)
         );
     }
 
     renderLeftIcon() {
-        if (!this.props.leftIcon) {
+        if (!this.state.leftIcon) {
             return [null, null];
         }
 
-        let isString = BoolUtils.isTypeOfAny(this.props.leftIcon, ["string"]);
-        if (!isString && !React.isValidElement(this.props.leftIcon)) {
+        let isString = BoolUtils.isTypeOfAny(this.state.leftIcon, ["string"]);
+        if (!isString && !React.isValidElement(this.state.leftIcon)) {
             throw new Error("Only string or a valid react element is expected as the input left icon");
         }
         let className = classNames('r-r-inputtext-left-icon', 
-            (isString ? this.props.leftIcon : null), {
-            'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON,
-            'r-r-inputtext-left-icon-flushed': this.props.flushed && this.props.outlined
+            (isString ? this.state.leftIcon : null), {
+            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-inputtext-left-icon-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
             return [
@@ -237,83 +284,83 @@ export class InputText extends Component {
                 <i className={className}/>
             ]
         }
-        var relayProps = ObjUtils.clone(this.props.leftIcon.props);
+        var relayProps = ObjUtils.clone(this.state.leftIcon.props);
         className = classNames(className, relayProps.className);
         relayProps.className = className;
         return [
             false, 
-            React.cloneElement(this.props.leftIcon, relayProps)
+            React.cloneElement(this.state.leftIcon, relayProps)
         ];
     }
 
     renderRightIcon() {
-        if (!this.props.rightIcon) {
+        if (!this.state.rightIcon) {
             return [null, null];
         }
 
-        let isString = BoolUtils.isTypeOfAny(this.props.rightIcon, ["string"]);
-        if (!isString && !React.isValidElement(this.props.rightIcon)) {
+        let isString = BoolUtils.isTypeOfAny(this.state.rightIcon, ["string"]);
+        if (!isString && !React.isValidElement(this.state.rightIcon)) {
             throw new Error("Only string or a valid react element is expected as the input left icon");
         }
         let className = classNames('r-r-inputtext-right-icon',
-            (isString ? this.props.rightIcon : null), {
-            'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON,
-            'r-r-inputtext-right-icon-flushed': this.props.flushed && this.props.outlined
-        }, this.props.rightIcon); 
+            (isString ? this.state.rightIcon : null), {
+            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-inputtext-right-icon-flushed': this.state.flushed && this.state.outlined
+        }, this.state.rightIcon); 
         if (isString) {
             return [
                 true, 
                 <i className={className}/>
             ]
         }
-        var relayProps = ObjUtils.clone(this.props.rightIcon.props);
+        var relayProps = ObjUtils.clone(this.state.rightIcon.props);
         className = classNames(className, relayProps.className);
         relayProps.className = className;
         return [
             false, 
-            React.cloneElement(this.props.rightIcon, relayProps)
+            React.cloneElement(this.state.rightIcon, relayProps)
         ];
     }
 
     render() {
         const className = classNames({
-            'r-r-floating-label': this.props.floatLabel,
-        }, this.props.className);
-        const alignLabel = (this.props.floatLabel) ? Alignment.RIGHT : this.props.alignLabel;
+            'r-r-floating-label': this.state.floatLabel,
+        }, this.state.className);
+        const alignLabel = (this.state.floatLabel) ? Alignment.RIGHT : this.state.alignLabel;
         let input = this.renderInput();
         const label = this.renderLabel(alignLabel);
-        const helpLabel = this.renderHelpLabel(this.props.alignHelpLabel);
+        const helpLabel = this.renderHelpLabel(this.state.alignHelpLabel);
         let inputAndIcon = input;
-        if (this.props.leftIcon || this.props.rightIcon) { // TODO there must be a better way to this this
+        if (this.state.leftIcon || this.state.rightIcon) { // TODO there must be a better way to this this
             const [leftIconIsString, leftIcon] = this.renderLeftIcon();
             const [rightIconIsString, rightIcon] = this.renderRightIcon();
             var relayProps = ObjUtils.clone(input);
             relayProps.style = {};
             if (leftIconIsString !== null) {
-                relayProps.style.paddingLeft = this.props.flushed ? "25px" : "35px";
+                relayProps.style.paddingLeft = this.state.flushed ? "25px" : "35px";
             }
             if (rightIconIsString !== null) {
-                relayProps.style.paddingRight = this.props.flushed ? "25px" : "35px";
+                relayProps.style.paddingRight = this.state.flushed ? "25px" : "35px";
             }
             input = React.cloneElement(input, relayProps);
             inputAndIcon = <span className="r-r-inputtext-icon-pack">{leftIcon}{rightIcon} {input}</span>;
         }
 
         return (
-            <span className={className} style={this.props.style}>
+            <span className={className} style={this.state.style}>
                 {alignLabel === Alignment.LEFT && label ? label : null}
                 {alignLabel === Alignment.TOP && label ? <React.Fragment>{label} <br/></React.Fragment> : null}
 
-                {this.props.alignHelpLabel === Alignment.LEFT && helpLabel ? helpLabel : null}
-                {this.props.alignHelpLabel === Alignment.TOP && helpLabel ? <React.Fragment>{helpLabel} <br/></React.Fragment> : null}
+                {this.state.alignHelpLabel === Alignment.LEFT && helpLabel ? helpLabel : null}
+                {this.state.alignHelpLabel === Alignment.TOP && helpLabel ? <React.Fragment>{helpLabel} <br/></React.Fragment> : null}
 
                 {inputAndIcon}
 
                 {alignLabel === Alignment.RIGHT && label ? label : null}
                 {alignLabel === Alignment.BOTTOM && label ? <React.Fragment><br/> {label}</React.Fragment> : null}
                 
-                {this.props.alignHelpLabel === Alignment.RIGHT && helpLabel ? helpLabel : null}
-                {this.props.alignHelpLabel === Alignment.BOTTOM && helpLabel ? <React.Fragment><br/> {helpLabel}</React.Fragment> : null}
+                {this.state.alignHelpLabel === Alignment.RIGHT && helpLabel ? helpLabel : null}
+                {this.state.alignHelpLabel === Alignment.BOTTOM && helpLabel ? <React.Fragment><br/> {helpLabel}</React.Fragment> : null}
             </span>
         )
     }

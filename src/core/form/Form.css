@@ -140,3 +140,8 @@
 .r-r-checkbox-box:hover {
     filter: brightness(90%);
 }
+
+.r-r-checkbox-label {
+    margin-bottom: 0px;
+    flex: 1;
+}

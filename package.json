@@ -14,7 +14,7 @@
     "watch": "npm-watch",
     "test": "jest",
     "build": "babel src --out-dir dist --copy-files",
-    "pack": "npm run build && cp package.json dist/ && cp .*ignore dist/ && cd dist/ && npm pack && cp -Force *.tgz ../",
+    "pack": "npm run build && cp package.json dist/ && cp .*ignore dist/ && cd dist/ && npm pack && cp --force *.tgz ../",
     "showcase:prepare": "npm run pack && cd showcase && if exist \"node_modules/react-ui\" (robocopy \"../dist/\" \"node_modules/react-ui\" /s /e || exit /b 0) else (npm install ../ronuse-react-ui-0.0.4-rc1.tgz) ",
     "showcase:start": "cd showcase && npm start",
     "showcase:run": "npm run showcase:prepare && npm run showcase:start",

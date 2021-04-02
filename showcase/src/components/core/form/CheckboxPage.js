@@ -123,6 +123,14 @@ export class CheckboxPage extends React.Component {
         ]
     }
 
+    longText() {
+        return `This is a really really really really really really really really really really really really really really
+        really really really really really really really really really really really really really really really really really
+        really really really really really really really really really really really really really really really really really really
+        really really really really really really really really really really really really really really really really really really
+        really really really really really really really really really really really really really really really really really really long text`;
+    }
+
     renderSampleComponents() {
         let checkStates2 = this.checkStates2();
         let checkStates3 = this.checkStates3();
@@ -139,6 +147,7 @@ export class CheckboxPage extends React.Component {
                     <Checkbox label={this.state.checked ? "Checked - true" : "Checked - false"} checked={this.state.checked} 
                                 onChange={e => this.setState({ checked: e.checked })} selfManaged/><br/>
                     <Checkbox name="readonly-checkbox" scheme={Scheme.PRIMARY} label="Read Only" readOnly checked/>
+                    <Checkbox name="readonly-checkbox" scheme={Scheme.PRIMARY} label={this.longText()} checked/>
                 </Panel>
                 
                 <Panel title="With Scheme" expanded collapsible borderless>

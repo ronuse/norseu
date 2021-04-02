@@ -37,6 +37,8 @@ export class LinearLayout extends Component {
         overflow: Overflow.Scroll,
         nofill: false,
         wrap: false,
+        style: null,
+        className: null,
         elevation: Elevation.NONE
     }
 
@@ -46,6 +48,8 @@ export class LinearLayout extends Component {
         overflow: PropTypes.string,
         nofill: PropTypes.bool,
         wrap: PropTypes.bool,
+        style: PropTypes.object,
+        className: PropTypes.string,
         elevation: PropTypes.string
     }
 
@@ -96,7 +100,7 @@ export class LinearLayout extends Component {
         });
 
         return (
-            <div ref={(el) => this.container = el} {...componentProps} className={className}>
+            <div ref={(el) => this.container = el} {...componentProps} style={this.props.style} className={className}>
                 {children}
             </div>
         )

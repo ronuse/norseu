@@ -22,11 +22,12 @@
  * SOFTWARE.
  */
 
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import React, { Component } from 'react';
-import { DOMUtils, BoolUtils, ObjUtils } from "../../utils";
+import BaseComponent from "../BaseComponent"
 import { Scheme, Alignment } from "../variables";
+import { DOMUtils, BoolUtils, ObjUtils } from "../../utils";
 
 export class Checkbox extends Component {
 
@@ -59,13 +60,14 @@ export class Checkbox extends Component {
         readOnly: false,
         nostyle: false,
         selfManaged: false,
+        ref: null,
         onChange: null,
         onMouseDown: null
     }
 
     static propTypes = {
         scheme: PropTypes.string,
-        label: PropTypes.string,
+        label: PropTypes.any,
         id: PropTypes.string,
         name: PropTypes.string,
         required: PropTypes.bool,
@@ -80,6 +82,7 @@ export class Checkbox extends Component {
         nostyle: PropTypes.bool,
         selfManaged: PropTypes.bool,
         onChange: PropTypes.func,
+        ref: PropTypes.any,
         onMouseDown: PropTypes.func
     }
 
@@ -88,9 +91,12 @@ export class Checkbox extends Component {
         this.state = {
             checkedIndex: this.props.checkedIndex
         };
+        if (this.props.ref && this.props.ref.current !== undefined) {
+            this.props.ref.current = this;
+        }
 
         this.id = this.props.id; 
-        if (!this.id && this.props.label) { 
+        if (!this.id) { 
             this.id = DOMUtils.UniqueElementId();
         }
     }
@@ -106,6 +112,24 @@ export class Checkbox extends Component {
     componentWillUnmount() {
 
     }
+
+    // begin Native fillers
+    getId() {
+        return this.id;
+    }
+
+    getInput() {
+        return document.getElementById(this.id);
+    }
+
+    value() {
+        return this.state.checkedIndex > -1 && this.props.checkStates[this.state.checkedIndex].checked ;
+    }
+
+    focus() {
+        document.getElementById(this.id).focus();
+    }
+    // end Native fillers
 
     onChange(event, checkedIndex) {
         checkedIndex += 1;
