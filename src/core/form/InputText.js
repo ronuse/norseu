@@ -179,7 +179,7 @@ export class InputText extends Component {
         const placeholder = (this.state.floatLabel) ? " " : this.state.placeholder;
         let inputProps = ObjUtils.findDiffKeys(this.props, InputText.defaultProps);
         //inputProps = ObjUtils.removeKeys(inputProps, ['className', 'style']);
-        let className = this.state.nostyle ? "" : classNames('r-r-inputtext', 
+        let className = this.state.nostyle ? "" : classNames('r-r-inputtext',
             (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-hover` : null),
             (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-focus` : null),
             (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-3px-focus-box-shadow` : null),

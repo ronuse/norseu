@@ -3,6 +3,20 @@
 // TODO use options instead of parameters
 
 export class SchemeBuilder {
+
+    static hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+
+    static rgbWithAlpha(rgbObject, alpha) {
+        return `rgba(${rgbObject.r}, ${rgbObject.g}, ${rgbObject.b}, ${alpha})`;
+    }
+
     static generateSchemeHoverCss() {
         
     }
@@ -56,8 +70,8 @@ export class SchemeBuilder {
                     ];
         let units = [['px', 'px']/*, ['em', 'em'], ['percent', '%']*/];
 
-        let schemeCss = `.${name}-border-hover:hover { z-index: 99; border-color: ${colorHex}  ${everythingIsImportant ? "!important" : ""}; }\n`;
-        schemeCss += `.${name}-border-focus:focus { z-index: 99; border-color: ${colorHex}  ${everythingIsImportant ? "!important" : ""}; }\n`;
+        let schemeCss = `.${name}-border-hover:hover { z-index: 99; border-color: ${colorHex} ${everythingIsImportant ? "!important" : ""}; }\n`;
+        schemeCss += `.${name}-border-focus:focus { z-index: 99; border-color: ${colorHex} ${everythingIsImportant ? "!important" : ""}; }\n`;
         for (let group of groups) {
             for (let unit of units) {
                 for (let index = 1; index <= limit; index++) {
@@ -86,6 +100,26 @@ export class SchemeBuilder {
         return schemeCss;
     }
 
+    static buildBoxShadows(name, colorHex, everythingIsImportant) {
+        let limit = 3;
+        let rgb = this.hexToRgb(colorHex); if (!rgb) { return ''; }
+        let rgbaForBoxShadow = this.rgbWithAlpha(rgb, 0.3);
+
+        let schemeCss = `.${name}-border-focus-box-shadow:focus { z-index: 99; box-shadow: 0 0 0 3px ${rgbaForBoxShadow} ${everythingIsImportant ? "!important" : ""}; `;
+        schemeCss += ` -webkit-box-shadow: 0 0 0 3px ${rgbaForBoxShadow} ${everythingIsImportant ? "!important" : ""}; `;
+        schemeCss += ` -moz-box-shadow: 0 0 0 3px ${rgbaForBoxShadow} ${everythingIsImportant ? "!important" : ""}; }\n`;
+
+        for (let index = 1; index <= limit; index++) {
+            schemeCss += `.${name}-border-${index}px-focus-box-shadow:focus { z-index: 99; `;
+            schemeCss += `box-shadow: 0 0 0 3px ${rgbaForBoxShadow} ${everythingIsImportant ? "!important" : ""}; `;
+            schemeCss += `-webkit-box-shadow: 0 0 0 3px ${rgbaForBoxShadow} ${everythingIsImportant ? "!important" : ""}; `;
+            schemeCss += `-moz-box-shadow: 0 0 0 3px ${rgbaForBoxShadow} ${everythingIsImportant ? "!important" : ""}; }\n`;
+        }
+
+        console.log(schemeCss);
+        return schemeCss;
+    }
+
     static buildAlternateColors(parameter, alternateColors) {
         let schemeCss = '';
 
@@ -96,6 +130,7 @@ export class SchemeBuilder {
             if (alternateColor.generateSupplement) {
                 schemeCss += this.buildSchemeBorders(alternateColor.name, alternateColor.value, parameter.everythingIsImportant);
                 schemeCss += this.buildSchemeHoversAndFocuses(alternateColor.name, alternateColor.value, parameter.everythingIsImportant);
+                schemeCss += this.buildBoxShadows(alternateColor.name, alternateColor.value, parameter.everythingIsImportant);
             }
         }
 
@@ -111,6 +146,7 @@ export class SchemeBuilder {
         schemeCss += `.${parameter.name}-text-bg { background-color: ${parameter.textColor}; }\n`;
         schemeCss += this.buildSchemeBorders(parameter.name, parameter.baseColor, parameter.everythingIsImportant);
         schemeCss += this.buildSchemeHoversAndFocuses(parameter.name, parameter.baseColor, parameter.everythingIsImportant);
+        schemeCss += this.buildBoxShadows(parameter.name, parameter.baseColor, parameter.everythingIsImportant);
 
         return schemeCss;
     }
