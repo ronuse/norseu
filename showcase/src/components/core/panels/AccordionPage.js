@@ -91,52 +91,52 @@ export class AccordionPage extends React.Component {
             <Panel className="r-r-padding-left-right-20px">
                 <h3>Basic</h3>
                 <Accordion activeIndex={[2]}>
-                    <AccordionPanel title="Title 1">
+                    <AccordionPanel header="Title 1">
                         {this.text1()}
                     </AccordionPanel>
-                    <AccordionPanel title="Title 2">
+                    <AccordionPanel header="Title 2">
                         {this.text2()}
                     </AccordionPanel>
-                    <AccordionPanel title="Title 3">
+                    <AccordionPanel header="Title 3">
                         {this.text3()}
                     </AccordionPanel>
                 </Accordion>
                 
                 <h3>Multiple With schemes</h3>
                 <Accordion scheme={Scheme.PRIMARY} activeIndex={[2]} multiple>
-                    <AccordionPanel scheme={Scheme.SUCCESS} title="Title 1">
+                    <AccordionPanel scheme={Scheme.SUCCESS} header="Title 1">
                         {this.text1()}
                     </AccordionPanel>
-                    <AccordionPanel scheme={Scheme.WARNING} title="Title 2">
+                    <AccordionPanel scheme={Scheme.WARNING} header="Title 2">
                         {this.text2()}
                     </AccordionPanel>
-                    <AccordionPanel scheme={Scheme.DANGER} title="Title 3">
+                    <AccordionPanel scheme={Scheme.DANGER} header="Title 3">
                         {this.text3()}
                     </AccordionPanel>
                 </Accordion>
                 
                 <h3>Skeleton</h3>
                 <Accordion scheme={Scheme.SKELETON} activeIndex={1}>
-                    <AccordionPanel title="Title 1">
+                    <AccordionPanel header="Title 1">
                         {this.text1()}
                     </AccordionPanel>
-                    <AccordionPanel title="Title 2">
+                    <AccordionPanel header="Title 2">
                         {this.text2()}
                     </AccordionPanel>
-                    <AccordionPanel title="Title 3">
+                    <AccordionPanel header="Title 3">
                         {this.text3()}
                     </AccordionPanel>
                 </Accordion>
                 
                 <h3>Skeleton</h3>
                 <Accordion scheme={Scheme.SKELETON} activeIndex={1}>
-                    <AccordionPanel title="Title 1">
+                    <AccordionPanel header="Title 1">
                         {this.text1()}
                     </AccordionPanel>
-                    <AccordionPanel title="Title 2">
+                    <AccordionPanel header="Title 2">
                         {this.text2()}
                     </AccordionPanel>
-                    <AccordionPanel title="Title 3">
+                    <AccordionPanel header="Title 3">
                         {this.text3()}
                     </AccordionPanel>
                 </Accordion>
@@ -149,13 +149,13 @@ export class AccordionPage extends React.Component {
                 </ButtonGroup>
                 
                 <Accordion activeIndex={this.state.activeIndex} onTabChange={(e) => this.setState({ activeIndex: [e.index] })}>
-                    <AccordionPanel title={<React.Fragment><i class="fa fa-user-o r-r-margin-right-5px"/>User</React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i class="fa fa-user-o r-r-margin-right-5px"/>User</React.Fragment>}>
                         {this.text1()}
                     </AccordionPanel>
-                    <AccordionPanel title={<React.Fragment><i class="fa fa-gear r-r-margin-right-5px"/>Settings</React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i class="fa fa-gear r-r-margin-right-5px"/>Settings</React.Fragment>}>
                         {this.text2()}
                     </AccordionPanel>
-                    <AccordionPanel title={<React.Fragment><i class="fa fa-search r-r-margin-right-5px"/>Search Profiles<i class="fa fa-eye r-r-margin-left-5px"/></React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i class="fa fa-search r-r-margin-right-5px"/>Search Profiles<i class="fa fa-eye r-r-margin-left-5px"/></React.Fragment>}>
                         {this.text3()}
                     </AccordionPanel>
                 </Accordion>

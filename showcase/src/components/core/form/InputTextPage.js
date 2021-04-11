@@ -5,7 +5,7 @@ import { InputText } from '@ronuse/react-ui/core/form';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Alignment } from "@ronuse/react-ui/core/variables";
+import { Alignment, InputFilters } from "@ronuse/react-ui/core/variables";
 
 export class InputTextPage extends React.Component {
 
@@ -56,7 +56,7 @@ export class InputTextPage extends React.Component {
         return (
             <Panel className="r-r-padding-left-right-20px">
                 <Panel title="Basic" expanded collapsible borderless>
-                    <InputText name="user-name"/>
+                    <InputText name="user-name" filter={InputFilters.NUMBER}/>
                     <br/><br/>
 
                     <InputText placeholder="With placeholder"/>
