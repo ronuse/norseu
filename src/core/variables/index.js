@@ -23,5 +23,9 @@
  * SOFTWARE.
  */
 
+import { InputFilter } from "../../utils"
+
 export { Colors, CoreColors } from "./Colors"
 export { Scheme, Alignment, Elevation, Orientation, Overflow } from "./Stylers"
+export const InputFilters = InputFilter.DEFAULT_FILTER;
+export const SpecialKeys = InputFilter.SpecialKeys;

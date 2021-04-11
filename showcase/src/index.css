@@ -39,8 +39,8 @@ input {
 }
 
 .r-r-showcase-code {
-    margin: 20px !important;
-    padding: 30px !important;
+    margin: 0px !important;
+    padding: 10px !important;
     background-color: #EBF1F5 !important;
 }
 
@@ -74,8 +74,52 @@ input {
     background-color: white;
 }
 
+.r-r-inputtext-icon-pack {
+    max-width: 250px;
+}
+
+.r-r-inputtext {
+    max-width: 250px;
+}
+
+.r-r-showcase-doc-title {
+    font-weight: bold;
+}
+
+.accordion-controlled-header-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.accordion-controlled-header-buttons > i {
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 100%;
+}
+
+.accordion-controlled-header-buttons > i:hover {
+    background-color: rgba(2, 102, 116, 0.2);
+}
+
 /* TMPS */
 
+.r-r-padding-5px {
+    padding: 5px;
+}
+
+.r-r-padding-10px {
+    padding: 10px;
+}
+
+.r-r-padding-15px {
+    padding: 15px;
+}
+
+.r-r-padding-20px {
+    padding: 20px;
+}
 
 /* */
 

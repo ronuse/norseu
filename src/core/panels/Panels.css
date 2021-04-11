@@ -34,7 +34,7 @@
 }
 
 .r-r-panel-content {
-    padding: 10px;
+    /*padding: 10px;*/
 }
 
 /* TABPANE and TABPANEL */
@@ -171,9 +171,11 @@
 }
 
 .r-r-accordion-tab-header {
-    padding: 14px;
+    padding: 10px;
     margin: 0px;
     display: flex;
+    cursor: pointer;
+    align-items: center;
 }
 
 .r-r-accordion-tab-header > * {

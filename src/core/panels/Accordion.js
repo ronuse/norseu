@@ -30,6 +30,7 @@ import { BoolUtils, DOMUtils, ObjUtils } from "../../utils";
 import { Orientation, Scheme, Alignment } from "../variables/";
 import { Button } from "../buttons";
 import { Panel } from "./Panel"
+import { rrFireAfterPageloadComplete } from "../../sensors"
 import { CSSTransition } from 'react-transition-group';
 
 
@@ -39,26 +40,34 @@ export class AccordionPanel extends Component {
         id: null,
         style: null,
         className: null,
-        title: null,
+        header: null,
         disabled: false,
         scheme: null,
         contentClassName: null,
         headerClassName: null,
         contentStyle: null,
-        headerStyle: null
+        headerStyle: null,
+        noicon: false,
+        nonCollapsible: false,
+        onHeaderClickRefId: null,
+        noheader: false
     }
 
     static propTypes = {
         id: PropTypes.string,
         style: PropTypes.object,
         className: PropTypes.string,
-        title: PropTypes.string,
+        header: PropTypes.string,
         disabled: PropTypes.bool,
         scheme: PropTypes.string,
         contentClassName: PropTypes.string,
         headerClassName: PropTypes.string,
         contentStyle: PropTypes.object,
-        headerStyle: PropTypes.object
+        headerStyle: PropTypes.object,
+        noicon: PropTypes.bool,
+        nonCollapsible: PropTypes.bool,
+        onHeaderClickRefId: PropTypes.string,
+        noheader: PropTypes.bool
     }
 
 }
@@ -78,7 +87,9 @@ export class Accordion extends Component {
         multiple: false,
         onTabCollapse: null,
         onTabExpand: null,
-        onTabChange: null
+        onTabChange: null,
+        borderless: false,
+        elevation: null,
     }
 
     static propTypes = {
@@ -93,7 +104,9 @@ export class Accordion extends Component {
         multiple: PropTypes.bool,
         onTabCollapse: PropTypes.func,
         onTabExpand: PropTypes.func,
-        onTabChange: PropTypes.func
+        onTabChange: PropTypes.func,
+        borderless: PropTypes.bool,
+        elevation: PropTypes.string
     }
 
     constructor(props) {
@@ -112,13 +125,13 @@ export class Accordion extends Component {
         return (this.props.multiple || Array.isArray(activeIndex)) ? (activeIndex && activeIndex.indexOf(index) >= 0) : activeIndex === index;
     }
 
-    onPanelHeaderClick(event, panel, index) {
+    onPanelHeaderClick(component, event, panel, index) {
         if (!panel.props.disabled) {
-            const isToggled = this.isActiveIndex(index);
+            const isToggled = component.isActiveIndex(index);
             let newActiveIndex = null;
 
-            if(this.props.multiple) {
-                let indexes = (this.props.onTabChange ? this.props.activeIndex : this.state.activeIndex) || [];
+            if(component.props.multiple) {
+                let indexes = (component.props.onTabChange ? component.props.activeIndex : component.state.activeIndex) || [];
                 if (isToggled) {
                     indexes = indexes.filter(i => i !== index);
                 } else {
@@ -129,17 +142,17 @@ export class Accordion extends Component {
                 newActiveIndex = isToggled ? null : index;
             }
 
-            let callback = isToggled ? this.props.onTabCollapse : this.props.onTabExpand;
+            let callback = isToggled ? component.props.onTabCollapse : component.props.onTabExpand;
             if (callback) {
                 callback({event: event, index: index});
             }
-            if (this.props.onTabChange) {
-                this.props.onTabChange({
+            if (component.props.onTabChange) {
+                component.props.onTabChange({
                     event: event,
                     index: newActiveIndex
                 })
             } else {
-                this.setState({
+                component.setState({
                     activeIndex: newActiveIndex
                 });
             }
@@ -149,23 +162,21 @@ export class Accordion extends Component {
     renderAccordionPanelHeader(panel, index, childrenCount, isToggled) {
         const ariaControls = `${this.id}-content-${index}`;
         const id = `${this.id}-header-${index}`;
-        const className = classNames('r-r-accordion-tab-header', panel.props.headerClassName, {
-            'r-r-disabled': panel.props.disabled
+        const scheme = (panel.props.scheme ? panel.props.scheme : this.props.scheme);
+        const className = classNames('r-r-accordion-tab-header', panel.props.headerClassName, scheme,
+            (panel.props.scheme) ? `${scheme}-border-1px-hover` : null,
+            (panel.props.scheme) ? `${scheme}-border-3px-focus-box-shadow` : null, {
+            'r-r-disabled': panel.props.disabled,
         });
         const arrowIcon = isToggled ? this.props.collapseIcon : this.props.expandIcon;
 
         return (
-            <Button className={className} //href={`#${ariaControls}`}
+            <div className={className} style={panel.props.headerStyle} //href={`#${ariaControls}`}
                 role="tab" aria-controls={ariaControls} aria-expanded={isToggled} id={id}
-                onClick={(e)=> this.onPanelHeaderClick(e, panel, index)}
-                icon={`r-r-accordion-tab-header-icon fa ${arrowIcon}`}
-                scheme={panel.props.scheme ? panel.props.scheme : this.props.scheme}
-                
-                text={panel.props.title}
-                //link
-                borderless
-                fill
-            />
+                onClick={(e)=> !panel.props.nonCollapsible ? this.onPanelHeaderClick(this, e, panel, index) : null}>
+                    {!panel.props.noicon ? <i className={`r-r-accordion-tab-header-icon fa ${arrowIcon}`}></i>: null}
+                    {panel.props.header}
+            </div>
         )
     }
 
@@ -180,7 +191,7 @@ export class Accordion extends Component {
         });
         return (
             <CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={isToggled} unmountOnExit>
-                <Panel safely={this.props.safely} scheme={this.props.scheme} className={className} borderless>
+                <Panel safely={this.props.safely} scheme={this.props.scheme} className={className} style={panel.props.contentStyle} borderless>
                     {panel.props.children}
                 </Panel>
             </CSSTransition>
@@ -190,10 +201,23 @@ export class Accordion extends Component {
     renderAccordionPanel(panel, index, childrenCount) {
         const isToggled = this.isActiveIndex(index);
         const panelContent = this.renderAccordionPanelContent(panel, isToggled);
-        const panelHeader = this.renderAccordionPanelHeader(panel, index, childrenCount, isToggled);
+        const panelHeader = !panel.props.noheader ? this.renderAccordionPanelHeader(panel, index, childrenCount, isToggled) : null;
         const className = classNames('r-r-accordion-tab', panel.props.className);
-        const headerDivider = (index < childrenCount-1 || (isToggled)) ? <hr className="r-r-accordion-divider"/> : null;
-        const contentDivider = (isToggled && index < childrenCount-1) ? <hr className="r-r-accordion-divider"/> : null;
+        const headerDivider = (index < childrenCount-1 || (isToggled)) && !panel.props.noheader ? <hr className="r-r-accordion-divider"/> : null;
+        const contentDivider = (isToggled && index < childrenCount-1)? <hr className="r-r-accordion-divider"/> : null;
+        if (panel.props.onHeaderClickRefId) {
+            rrFireAfterPageloadComplete((e, data) => {
+                const toggleElement = document.getElementById(data.panel.props.onHeaderClickRefId);
+                if (toggleElement) {
+                    toggleElement.onclick = (e) => data.onPanelHeaderClick(data.component, e, data.panel, data.index);
+                }
+            }, {
+                onPanelHeaderClick: this.onPanelHeaderClick,
+                panel: panel,
+                index: index,
+                component: this
+            });
+        }
         
         return (
             <div id={panel.props.id} className={className} style={panel.props.style}>
@@ -217,7 +241,9 @@ export class Accordion extends Component {
     }
 
     render() {
-        const className = classNames('r-r-accordion', this.props.className, (this.props.scheme) ? `${this.props.scheme}-border-1px` : null);
+        const className = classNames('r-r-accordion', this.props.elevation,  this.props.className, (this.props.scheme) ? `${this.props.scheme}-border-1px` : null, {
+            'r-r-no-border' : this.props.borderless
+        });
         const content = this.renderAccordionPanels(); 
 
         return (

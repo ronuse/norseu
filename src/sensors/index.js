@@ -25,3 +25,13 @@
 
  export { ViewportSensor } from "./ViewportSensor"
  export { ResizeSensor } from "./ResizeSensor"
+
+const __onPageLoadedCallbacks = [];
+window.onload = (event) => {
+    for (const __onPageLoadedCallback of __onPageLoadedCallbacks) {
+        __onPageLoadedCallback.callback(event, __onPageLoadedCallback.data);
+    }
+};
+export const rrFireAfterPageloadComplete = (cb, data) => {
+    __onPageLoadedCallbacks.push({ data: data, callback: cb});
+}
