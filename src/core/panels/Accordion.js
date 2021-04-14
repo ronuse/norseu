@@ -50,7 +50,8 @@ export class AccordionPanel extends Component {
         noicon: false,
         nonCollapsible: false,
         onHeaderClickRefId: null,
-        noheader: false
+        noheader: false,
+        nodivier: false
     }
 
     static propTypes = {
@@ -67,7 +68,8 @@ export class AccordionPanel extends Component {
         noicon: PropTypes.bool,
         nonCollapsible: PropTypes.bool,
         onHeaderClickRefId: PropTypes.string,
-        noheader: PropTypes.bool
+        noheader: PropTypes.bool,
+        nodivier: PropTypes.bool
     }
 
 }
@@ -185,13 +187,13 @@ export class Accordion extends Component {
         if (!renderPanel) {
             //return null;
         }
-
+        const scheme = (panel.props.scheme ? panel.props.scheme : this.props.scheme);
         const className = classNames('r-r-accordion-tab-panel', panel.props.contentClassName, {
             
         });
         return (
             <CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={isToggled} unmountOnExit>
-                <Panel safely={this.props.safely} scheme={this.props.scheme} className={className} style={panel.props.contentStyle} borderless>
+                <Panel safely={this.props.safely} scheme={scheme} className={className} style={panel.props.contentStyle} borderless>
                     {panel.props.children}
                 </Panel>
             </CSSTransition>
@@ -203,8 +205,8 @@ export class Accordion extends Component {
         const panelContent = this.renderAccordionPanelContent(panel, isToggled);
         const panelHeader = !panel.props.noheader ? this.renderAccordionPanelHeader(panel, index, childrenCount, isToggled) : null;
         const className = classNames('r-r-accordion-tab', panel.props.className);
-        const headerDivider = (index < childrenCount-1 || (isToggled)) && !panel.props.noheader ? <hr className="r-r-accordion-divider"/> : null;
-        const contentDivider = (isToggled && index < childrenCount-1)? <hr className="r-r-accordion-divider"/> : null;
+        const headerDivider = (index < childrenCount-1 || (isToggled)) && !panel.props.noheader && !panel.props.nodivier ? <hr className="r-r-accordion-divider"/> : null;
+        const contentDivider = (isToggled && index < childrenCount-1) && !panel.props.nodivier ? <hr className="r-r-accordion-divider"/> : null;
         if (panel.props.onHeaderClickRefId) {
             rrFireAfterPageloadComplete((e, data) => {
                 const toggleElement = document.getElementById(data.panel.props.onHeaderClickRefId);

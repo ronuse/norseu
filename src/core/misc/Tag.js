@@ -104,11 +104,11 @@ export class Tag extends Component {
             return null;
         }
         let className = classNames('r-r-tag-icon', isString ? this.props.icon : this.props.icon.props.className, {
+            'r-r-float-center': this.props.alignIcon === Alignment.CENTER,
             'r-r-margin-right-5px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
                                     BoolUtils.equalsAny(this.props.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
             'r-r-float-left': this.props.alignIcon === Alignment.LEFT,
             'r-r-float-right': this.props.alignIcon === Alignment.RIGHT,
-            'r-r-float-center': this.props.alignIcon === Alignment.CENTER,
             'r-r-width-100-percent': this.props.fillIcon
         });
         if (!isString) {
@@ -164,11 +164,11 @@ export class Tag extends Component {
         }
 
         let className = classNames({
+            'r-r-float-center': this.props.alignText === Alignment.CENTER,
             'r-r-margin-left-5px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
             'r-r-margin-right-5px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
             'r-r-float-left': this.props.alignText === Alignment.LEFT,
-            'r-r-float-right': this.props.alignText === Alignment.RIGHT,
-            'r-r-float-center': this.props.alignText === Alignment.CENTER
+            'r-r-float-right': this.props.alignText === Alignment.RIGHT
         })
         return <span className={className}>{this.props.scheme === Scheme.SKELETON ? "Ronuse Tag" : this.props.text}</span>;
     }

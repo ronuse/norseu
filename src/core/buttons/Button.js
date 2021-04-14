@@ -104,11 +104,11 @@ export class Button extends Component {
             throw new Error("Only string or a valid react element is expected as the checkbox label");
         }
         let className = classNames('r-r-button-icon', isString ? this.state.icon : this.state.icon.props.className, {
+            'r-r-float-center': this.state.alignIcon === Alignment.CENTER,
             'r-r-margin-right-15px': this.state.rightIcon && (BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
                                     BoolUtils.equalsAny(this.state.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
             'r-r-float-left': this.state.alignIcon === Alignment.LEFT,
             'r-r-float-right': this.state.alignIcon === Alignment.RIGHT,
-            'r-r-float-center': this.state.alignIcon === Alignment.CENTER,
             'r-r-width-100-percent': this.state.fillIcon
         });
         if (!isString) {
@@ -144,13 +144,14 @@ export class Button extends Component {
         if (!this.state.text || this.state.scheme == Scheme.SKELETON) {
             return null;
         }
+        console.log(this.state)
 
         let className = classNames({
+            'r-r-float-center': this.state.alignText === Alignment.CENTER,
             'r-r-margin-left-15px': this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.LEFT, Alignment.CENTER, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
             'r-r-margin-right-15px': (this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.state.rightIcon),
             'r-r-float-left': this.state.alignText === Alignment.LEFT,
-            'r-r-float-right': this.state.alignText === Alignment.RIGHT,
-            'r-r-float-center': this.state.alignText === Alignment.CENTER
+            'r-r-float-right': this.state.alignText === Alignment.RIGHT
         })
         return <span className={className}>{this.state.text}</span>;
     }

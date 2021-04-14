@@ -90,6 +90,7 @@ input {
     display: flex;
     justify-content: flex-end;
     padding: 10px;
+    background-color: rgb(198, 209, 214);
 }
 
 .accordion-controlled-header-buttons > i {
@@ -101,6 +102,34 @@ input {
 
 .accordion-controlled-header-buttons > i:hover {
     background-color: rgba(2, 102, 116, 0.2);
+}
+
+.r-r-showcase-component-page-preview {
+    padding: 20px;
+}
+
+.s-flex-wrap > .r-r-panel{
+    display: flex;
+    background-color: green;
+    flex-direction: row;
+}
+
+.sppai {
+    flex-wrap: wrap;
+}
+
+.sppai > div {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sppai > div > span {
+    margin-bottom: 10px;
+}
+
+.max-height-350px {
+    max-height: 350px;
 }
 
 /* TMPS */
@@ -119,6 +148,10 @@ input {
 
 .r-r-padding-20px {
     padding: 20px;
+}
+
+.r-r-margin-20px {
+    margin: 20px;
 }
 
 /* */

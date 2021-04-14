@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 
 .r-r-reset-styles {
     all: unset;
@@ -221,15 +221,15 @@
 }
 
 .r-r-margin-right-15px {
-    margin-right: 15px;
+    margin-right: 15px !important;
 }
 
 .r-r-margin-left-15px {
-    margin-left: 15px;
+    margin-left: 15px !important;
 }
 
 .r-r-margin-top-15px {
-    margin-top: 15px;
+    margin-top: 15px !important;
 }
 
 .r-r-margin-bottom-15px {
@@ -301,11 +301,11 @@
 }
 
 .r-r-margin-right-5px {
-    margin-right: 5px;
+    margin-right: 5px !important;
 }
 
 .r-r-margin-left-5px {
-    margin-left: 5px;
+    margin-left: 5px !important;
 }
 
 .r-r-margin-10px {
@@ -405,7 +405,11 @@
 }
 
 .r-r-float-center {
-    float: center;
+    margin: 0 auto;
+}
+
+.r-r-float-center-middle {
+    margin: auto;
 }
 
 .r-r-float-none {

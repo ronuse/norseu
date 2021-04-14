@@ -57,7 +57,7 @@ export class ButtonPage extends React.Component {
                     <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" />
                     <Button icon="fa fa-user-circle" rightIcon="fa fa-arrow-right" text="Update Profile" alignIcon={Alignment.RIGHT} />
                     <Button icon="fa fa-user-circle" text="Disabled" disabled/>
-                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link" text="Link" href="https://github.com/ronuse/ronuse-react-ui" link/>
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link-alt" text="Link" href="https://github.com/ronuse/ronuse-react-ui" link/>
                 </Panel>
 
                 <Panel title="Buttons with Scheme" expanded collapsible borderless>
