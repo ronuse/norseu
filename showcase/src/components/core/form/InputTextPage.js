@@ -198,7 +198,7 @@ export class InputTextPage extends React.Component {
 
                     Value: <span>{this.state.value1}</span>
                     <br/><br/>
-                        <InputText placeholder="Enter you text here" scheme={Scheme.PRIMARY} onChange={(e) => this.setState({value1: e.target.value})}/>
+                        <InputText placeholder="Enter you text here" scheme={Scheme.PRIMARY} onInput={(e) => this.setState({value1: e.target.value})}/>
                     <br/><br/>
 
                     {/*<InputText style={{marginTop: "15px"}}  scheme={Scheme.DANGER} label="Username" alignLabel={Alignment.TOP}

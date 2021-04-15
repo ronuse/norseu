@@ -19,6 +19,7 @@ import { ViewportSensorPage } from './components/sensors/ViewportSensorPage'
 import { ResizeSensorPage } from './components/sensors/ResizeSensorPage'
 import { CheckboxPage } from './components/core/form/CheckboxPage'
 import { InputTextPage } from './components/core/form/InputTextPage'
+import { PasswordInputPage } from './components/core/form/PasswordInputPage'
 import { InputFiltersPage } from './components/core/form/InputFiltersPage'
 
 import { LinearLayoutPage } from './components/layouts/LinearLayoutPage'
@@ -43,6 +44,7 @@ const App = () => {
                 
                 <Route exact path="/core/form/checkbox" component={CheckboxPage}/>
                 <Route exact path="/core/form/inputtext" component={InputTextPage}/>
+                <Route exact path="/core/form/passwordinput" component={PasswordInputPage}/>
                 <Route exact path="/core/form/inputfilterspage" component={InputFiltersPage}/>
                 
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>

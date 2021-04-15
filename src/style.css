@@ -80,6 +80,10 @@
     text-decoration: underline;
 }
 
+.r-r-cursor-pointer {
+    cursor: pointer;
+}
+
 /* Sizes */
 
 .r-r-width-min-content {

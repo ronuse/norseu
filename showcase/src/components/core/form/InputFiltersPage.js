@@ -8,7 +8,7 @@ import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
 import { Alignment, Orientation, Elevation, InputFilters } from "@ronuse/react-ui/core/variables";
 import { LinearLayout } from "@ronuse/react-ui/layouts";
 import { InputText } from "@ronuse/react-ui/core/form/InputText";
-import { getTextBetweenLine } from "../../../utils/helpers"
+import { getTextBetweenLine, copyToClipboard } from "../../../utils/helpers"
 
 export class InputFiltersPage extends React.Component {
 
@@ -19,25 +19,26 @@ export class InputFiltersPage extends React.Component {
     loadPageSource() {
         fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/form/InputFiltersPage.js")
         .then(response => response.text())
-        .then(data => this.setState({pageSource : data}));
+        .then(data => this.setState({
+            pageSource : data,
+        }));
     }
 
     getSourceWithinLine(from, to) {
-        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to);
+        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
     renderSampleComponents() {
-
-        function copyCode() {
-            
-        }
+        const source1 = this.getSourceWithinLine(45, 80);
 
         return (
             <Panel borderless elevation={Elevation.ONE}>
                 <div className="accordion-controlled-header-buttons">
-                    <i className="fa fa-code" id='ifp-view-code'></i>
-                    <i className="fa fa-copy" onClick={copyCode}></i>
+                    <div className="right">
+                        <i className="fa fa-code" id='ifp-view-code'></i>
+                        <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                    </div>
                 </div>
                 <Accordion borderless multiple activeIndex={[0]}>
                     <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
@@ -82,7 +83,7 @@ export class InputFiltersPage extends React.Component {
                     </AccordionPanel>
                     <AccordionPanel noheader nodivier onHeaderClickRefId={'ifp-view-code'}>
                         <SyntaxHighlighter language="javascript" style={prism} className={"max-height-350px r-r-showcase-code"}>
-                            {this.getSourceWithinLine(44, 81)}
+                            {source1}
                         </SyntaxHighlighter>
                     </AccordionPanel>
                 </Accordion>
@@ -109,7 +110,7 @@ export class InputFiltersPage extends React.Component {
 
                 <Panel className="r-r-padding-20px" elevation={Elevation.ONE}>
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Tag } from '@ronuse/react-ui/core/misc'`}
+                        {`import { InputFilters } from '@ronuse/react-ui/core/variables''`}
                     </SyntaxHighlighter>
                 </Panel>
                 

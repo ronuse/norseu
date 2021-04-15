@@ -82,6 +82,10 @@ export class Button extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState(nextProps);
+    }
+
     componentDidMount() {
 
     }
@@ -144,7 +148,6 @@ export class Button extends Component {
         if (!this.state.text || this.state.scheme == Scheme.SKELETON) {
             return null;
         }
-        console.log(this.state)
 
         let className = classNames({
             'r-r-float-center': this.state.alignText === Alignment.CENTER,

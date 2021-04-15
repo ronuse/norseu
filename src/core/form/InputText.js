@@ -27,6 +27,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Scheme, Alignment } from "../variables";
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
+import { rrAttachToResizeListener } from "../../sensors"
 
 // TODO add fill
 export class InputText extends Component {
@@ -59,7 +60,9 @@ export class InputText extends Component {
         onKeyPress: null,
         onInput: null,
         onPasteCapture: null,
-        onFirstInput: null
+        onFirstInput: null,
+        defaultValue: "",
+        type: "text"
     }
 
     static propTypes = {
@@ -90,7 +93,9 @@ export class InputText extends Component {
         onKeyPress: PropTypes.any,
         onInput: PropTypes.any,
         onPasteCapture: PropTypes.any,
-        onFirstInput: PropTypes.any
+        onFirstInput: PropTypes.any,
+        defaultValue: PropTypes.string,
+        type: PropTypes.string
     }
 
     constructor(props) {
@@ -108,6 +113,10 @@ export class InputText extends Component {
         this.onPasteCapture = this.onPasteCapture.bind(this);
         this.onInput = this.onInput.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState(nextProps);
     }
 
     componentDidMount() {
@@ -191,13 +200,15 @@ export class InputText extends Component {
             'r-r-disabled r-r-noselect': this.state.disabled,
             'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON
         }, 'r-r-inputtext-theme', this.state.inputClassName);
-        return <input {...inputProps} className={className} 
+        return <input className={className} 
                     style={this.state.inputStyle} 
                     id={this.id} 
+                    type={this.state.type}
                     name={this.state.name} 
                     placeholder={placeholder}
                     required={this.state.required}
                     disabled={this.state.readOnly}
+                    defaultValue={this.state.defaultValue}
                     onInput={this.onInput}
                     onKeyPress={this.onKeyPress}
                     onPasteCapture={this.onPasteCapture}
@@ -334,12 +345,14 @@ export class InputText extends Component {
         if (this.state.leftIcon || this.state.rightIcon) { // TODO there must be a better way to this this
             const [leftIconIsString, leftIcon] = this.renderLeftIcon();
             const [rightIconIsString, rightIcon] = this.renderRightIcon();
-            var relayProps = ObjUtils.clone(input);
-            relayProps.style = {};
-            if (leftIconIsString !== null) {
+            var relayProps = ObjUtils.clone(input.props);
+            if (!relayProps.style) {
+                relayProps.style = {};
+            }
+            if (leftIconIsString !== null && !relayProps.style.paddingLeft) {
                 relayProps.style.paddingLeft = this.state.flushed ? "25px" : "35px";
             }
-            if (rightIconIsString !== null) {
+            if (rightIconIsString !== null && !relayProps.style.paddingRight) {
                 relayProps.style.paddingRight = this.state.flushed ? "25px" : "35px";
             }
             input = React.cloneElement(input, relayProps);

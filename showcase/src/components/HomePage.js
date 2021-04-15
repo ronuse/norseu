@@ -53,6 +53,9 @@ export class HomePage extends React.Component {
                     <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link-alt" text="InputText" onClick={(e) => {
                         this.props.history.push("/core/form/inputtext");
                     }}/>
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link-alt" text="PasswordInput" onClick={(e) => {
+                        this.props.history.push("/core/form/passwordinput");
+                    }}/>
                     <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link-alt" text="InputFilters" onClick={(e) => {
                         this.props.history.push("/core/form/inputfilterspage");
                     }}/>

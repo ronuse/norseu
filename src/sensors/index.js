@@ -26,6 +26,7 @@
  export { ViewportSensor } from "./ViewportSensor"
  export { ResizeSensor } from "./ResizeSensor"
 
+ /* On Page Load Complete */
 const __onPageLoadedCallbacks = [];
 window.onload = (event) => {
     for (const __onPageLoadedCallback of __onPageLoadedCallbacks) {
@@ -35,3 +36,50 @@ window.onload = (event) => {
 export const rrFireAfterPageloadComplete = (cb, data) => {
     __onPageLoadedCallbacks.push({ data: data, callback: cb});
 }
+
+/* Resize Sensor */
+const __resizeCallbacks = [];
+const __onResizeCallback = (event) => {
+    const dimension = {
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
+        event: event
+    }
+    for (const __resizeCallback of __resizeCallbacks) {
+        __resizeCallback.callback(dimension, __resizeCallback.data);
+    }
+};
+window.addEventListener('resize', __onResizeCallback);
+export const rrAttachToResizeListener = (cb, data) => {
+    __resizeCallbacks.push({ data: data, callback: cb});
+}
+// Match Div Dimensions
+export const rrattachToResizeAdaptor = (params) => {
+    rrAttachToResizeListener(function(dimension, data) {
+        if (!data.dimension || !data.main || !data.adapters) {
+            return;
+        }
+        const adaptWidth = data.dimension.indexOf('width') > -1;
+        const adaptHeight = data.dimension.indexOf('height') > -1;
+        const widthDifference = data.widthDifference ? data.widthDifference : 0;
+        const heightDifference = data.heightDifference ? data.heightDifference : 0;
+        for (const adapter of data.adapters) {
+            let width = data.main.width();
+            let height = data.main.height();
+            width = width <= 0 && data.alternateMain ? data.alternateMain.width() : width;
+            height = height <= 0 && data.alternateMain ? data.alternateMain.height() : width;
+            if (adaptWidth) {
+                adapter.width((width - widthDifference));
+            }
+            if (adaptHeight) {
+                adapter.height((height - heightDifference));
+            }
+        }
+    }, params);
+}
+
+/* High level Operations */
+const rrReFireBasis = () => {
+    rrFireAfterPageloadComplete(__onResizeCallback, null);
+}
+rrReFireBasis();
