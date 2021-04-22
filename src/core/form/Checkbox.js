@@ -60,7 +60,7 @@ export class Checkbox extends Component {
         readOnly: false,
         nostyle: false,
         selfManaged: false,
-        ref: null,
+        inputRef: null,
         onChange: null,
         onMouseDown: null
     }
@@ -82,7 +82,7 @@ export class Checkbox extends Component {
         nostyle: PropTypes.bool,
         selfManaged: PropTypes.bool,
         onChange: PropTypes.func,
-        ref: PropTypes.any,
+        inputRef: PropTypes.any,
         onMouseDown: PropTypes.func
     }
 
@@ -91,8 +91,8 @@ export class Checkbox extends Component {
         this.state = {
             checkedIndex: this.props.checkedIndex
         };
-        if (this.props.ref && this.props.ref.current !== undefined) {
-            this.props.ref.current = this;
+        if (this.props.inputRef && this.props.inputRef.current !== undefined) {
+            this.props.inputRef.current = this;
         }
 
         this.id = this.props.id; 

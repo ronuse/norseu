@@ -30,7 +30,7 @@ export class PasswordInputPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(50);
+        const source1 = this.getSourceWithinLine(49);
         const source2 = this.getSourceWithinLine(67, 75);
 
         return (

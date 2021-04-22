@@ -1,10 +1,15 @@
 
-import React from "react"
+import React, { Component } from "react"
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { CSSTransition } from 'react-transition-group';
 import { Button } from '@ronuse/react-ui/core/buttons'
 import { Panel } from "@ronuse/react-ui/core/panels/Panel";
 import { Scheme, Alignment } from "@ronuse/react-ui/core/variables";
 import { InputText } from '@ronuse/react-ui/core/form';
 import { Tag } from '@ronuse/react-ui/core/misc'
+import { ObjUtils, DOMUtils, BoolUtils } from "@ronuse/react-ui/utils"
 
 export class ScratchPage extends React.Component {
 
@@ -12,7 +17,16 @@ export class ScratchPage extends React.Component {
         username: "",
         usernameScheme: Scheme.PRIMARY,
         usernameBorderClass: "",
-        helpLabel: null
+        helpLabel: null,
+        dVisible: false
+    }
+    
+    constructor(props) {
+        super(props);
+        this.cancelButton = React.createRef();
+        this.recButton = React.createRef();
+        this.dialogRef = React.createRef();
+        
     }
 
     removeRippleStylesAndEffect(element) {
@@ -62,62 +76,26 @@ export class ScratchPage extends React.Component {
         return (
             <div className="r-r-showcase-component-page">
                 <h1>Construct A Component Here</h1>
+                <Button text="Show" scheme={Scheme.INFO} onClick={() => this.setState({dVisible: true})} />
+                <Button ref={this.recButton} text="I receive on Close"/>
 
-                Username: <span>{this.state.username}</span>
-                <br/><br/>
-                <InputText scheme={this.state.usernameScheme} className={this.state.usernameBorderClass}
-                    value={this.state.username}
-                    placeholder="Username" helpLabel={this.state.helpLabel} onChange={(e) => {
-                        this.setState({
-                            username: e.target.value,
-                            usernameScheme: Scheme.PRIMARY,
-                            usernameBorderClass: "",
-                            helpLabel: null
-                        })
-                    }} />
-                <br/><br/>
-                <Button text="Sign in" scheme={Scheme.PRIMARY} onClick={(e) => {
-                    if (this.state.username === "") {
-                        this.setState({
-                            usernameScheme: Scheme.SUCCESS,
-                            usernameBorderClass: "r-r-success-border-1px",
-                            helpLabel: <small className="r-r-success-text">username is required</small>
-                        })
-                    } else {
-                        console.log(this.state.username);
-                        this.setState({
-                            username: e.target.value})
-                    }
-                }}/>
-                <br/><br/>
-                <br/><br/>
-
-                <div className="r-r-scrollpanel" id="style-1" style={{backgroundColor: "grey", width: "400px", height: "400px"}}>
-                    <Button text="Hello World"/><div style={{width: "600px"}}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tempus iaculis urna id. Ut ornare lectus sit amet est placerat in egestas. Sit amet mauris commodo quis imperdiet massa. Dictum sit amet justo donec enim diam vulputate ut pharetra. Sit amet porttitor eget dolor morbi. Ultrices sagittis orci a scelerisque. Nisi scelerisque eu ultrices vitae. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Donec pretium vulputate sapien nec. A scelerisque purus semper eget duis at tellus at urna.
-
-Dignissim convallis aenean et tortor at risus viverra adipiscing. Sem fringilla ut morbi tincidunt augue interdum. Facilisis gravida neque convallis a cras semper auctor neque vitae. Pellentesque habitant morbi tristique senectus et netus. Orci dapibus ultrices in iaculis nunc sed augue lacus viverra. Nulla facilisi morbi tempus iaculis. Felis eget nunc lobortis mattis aliquam faucibus purus. Malesuada fames ac turpis egestas sed tempus. Tempus urna et pharetra pharetra massa massa ultricies mi. Ac feugiat sed lectus vestibulum mattis. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo. Massa enim nec dui nunc mattis enim ut tellus. Aliquet risus feugiat in ante metus dictum at tempor. Fusce id velit ut tortor pretium viverra suspendisse. Posuere ac ut consequat semper. Sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Lorem mollis aliquam ut porttitor leo a. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum.
-
-Vitae turpis massa sed elementum tempus egestas sed sed risus. At quis risus sed vulputate odio ut. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Nec ullamcorper sit amet risus nullam. Vitae tempus quam pellentesque nec nam aliquam. Molestie a iaculis at erat. Arcu felis bibendum ut tristique et egestas quis. Volutpat lacus laoreet non curabitur gravida. Ante metus dictum at tempor commodo. Vivamus at augue eget arcu. Quam vulputate dignissim suspendisse in. Nec dui nunc mattis enim ut tellus elementum.
-                </div></div>
-
-                <br/><br/><br/>
-                <div className="r-r-scrollpanel r-r-scrollpanel-primary" style={{backgroundColor: "grey", width: "400px", height: "400px"}}>
-                    <Button text="Hello World"/><div style={{width: "600px"}}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tempus iaculis urna id. Ut ornare lectus sit amet est placerat in egestas. Sit amet mauris commodo quis imperdiet massa. Dictum sit amet justo donec enim diam vulputate ut pharetra. Sit amet porttitor eget dolor morbi. Ultrices sagittis orci a scelerisque. Nisi scelerisque eu ultrices vitae. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Donec pretium vulputate sapien nec. A scelerisque purus semper eget duis at tellus at urna.
-
-Dignissim convallis aenean et tortor at risus viverra adipiscing. Sem fringilla ut morbi tincidunt augue interdum. Facilisis gravida neque convallis a cras semper auctor neque vitae. Pellentesque habitant morbi tristique senectus et netus. Orci dapibus ultrices in iaculis nunc sed augue lacus viverra. Nulla facilisi morbi tempus iaculis. Felis eget nunc lobortis mattis aliquam faucibus purus. Malesuada fames ac turpis egestas sed tempus. Tempus urna et pharetra pharetra massa massa ultricies mi. Ac feugiat sed lectus vestibulum mattis. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo. Massa enim nec dui nunc mattis enim ut tellus. Aliquet risus feugiat in ante metus dictum at tempor. Fusce id velit ut tortor pretium viverra suspendisse. Posuere ac ut consequat semper. Sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Lorem mollis aliquam ut porttitor leo a. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum.
-
-Vitae turpis massa sed elementum tempus egestas sed sed risus. At quis risus sed vulputate odio ut. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Nec ullamcorper sit amet risus nullam. Vitae tempus quam pellentesque nec nam aliquam. Molestie a iaculis at erat. Arcu felis bibendum ut tristique et egestas quis. Volutpat lacus laoreet non curabitur gravida. Ante metus dictum at tempor commodo. Vivamus at augue eget arcu. Quam vulputate dignissim suspendisse in. Nec dui nunc mattis enim ut tellus elementum.
-                </div></div>
-                
+                <Dialog ref={this.dialogRef} onOpenFocusRef={this.cancelButton} onCloseFocusRef={this.recButton} maximizable={true} header="Header" isVisible={this.state.dVisible} allowScroll={false} onHide={(e) => { this.setState({dVisible: false})}} footer={
+                    <div>
+                        <Button ref={this.cancelButton} text="Cancel" icon="fa fa-times" textonly scheme={Scheme.DANGER} onClick={() => this.setState({dVisible: false})} />
+                        <Button text="Continue" icon="fa fa-check" scheme={Scheme.PRIMARY} onClick={() => this.setState({dVisible: false})}/>
+                    </div>} alignment={Alignment.CENTER}>
+                    Hello World <br/>
+                    Hello World <br/>
+                    Hello World <br/>
+                </Dialog>
                 <br/>
                 <br/>
                 <br/>
                 <br/>
                 <br/>
                 <br/>
-                <br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <div onClick={()=>{}} style={{position:"relative",backgroundColor:"black",margin:"20px",color:"white",width:"220px",height:"120px"}}>
                     <span onClick={(e)=>this.animateRipple(e)} className="r-r-ripple r-r-noselect"/>
                 </div>

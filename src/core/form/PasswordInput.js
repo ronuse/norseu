@@ -38,14 +38,16 @@ export class PasswordInput extends Component {
             hide: 'fa fa-eye-slash'
         },
         onShow: null,
-        onHide: null
+        onHide: null,
+        inputRef: null
     }
 
     static propTypes = {
         toggleMask: PropTypes.bool,
         toggleIcons: PropTypes.object,
         onShow: PropTypes.func,
-        onHide: PropTypes.func
+        onHide: PropTypes.func,
+        inputRef: PropTypes.any
     }
 
     constructor(props) {
@@ -82,7 +84,7 @@ export class PasswordInput extends Component {
         const relayProps = ObjUtils.findDiffKeys(this.props, PasswordInput.defaultProps);
 
         return (
-            <InputText {...relayProps} type={type} rightIcon={icon}/>
+            <InputText {...relayProps} ref={this.props.inputRef} type={type} rightIcon={icon}/>
         );
     }
 

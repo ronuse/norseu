@@ -42,4 +42,12 @@ export class ObjUtils {
         return typeof obj;
     }
 
+    static isFunction(obj) {
+        return !!(obj && obj.constructor && obj.call && obj.apply);
+    }
+
+    static selectJSXElement(obj, ...params) {
+        return this.isFunction(obj) ? obj(...params) : obj;
+    }
+
 }

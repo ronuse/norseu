@@ -55,7 +55,7 @@ export class InputText extends Component {
         readOnly: false,
         floatLabel: false,
         filter: null,
-        ref: null,
+        inputRef: null,
         filterKeyOnly: false,
         onKeyPress: null,
         onInput: null,
@@ -88,7 +88,7 @@ export class InputText extends Component {
         readOnly: PropTypes.bool,
         floatLabel: PropTypes.bool,
         filter: PropTypes.string,
-        ref: PropTypes.any,
+        inputRef: PropTypes.any,
         filterKeyOnly: PropTypes.bool,
         onKeyPress: PropTypes.any,
         onInput: PropTypes.any,
@@ -102,8 +102,8 @@ export class InputText extends Component {
         super(props);
         this.state = ObjUtils.clone(this.props);
 
-        if (this.state.ref && this.state.ref.current !== undefined) {
-            this.state.ref.current = this;
+        if (this.state.inputRef) {
+            this.state.inputRef.current = this;
         }
         this.id = this.state.id; 
         if (!this.id) { 

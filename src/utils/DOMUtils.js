@@ -65,4 +65,44 @@ export class DOMUtils {
         return 'ronuse-auto-id-' + (uniqueElementIdsCount++)
     }
 
+    static hasClass(el, className) {
+        if (el) {
+            if (el.classList) {
+                return el.classList.contains(className);
+            } else {
+                return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+            } 
+        }
+    }
+    
+    static addClass(el, className) {
+        if (el && className) {
+            if (el.classList) {
+                el.classList.add(className);
+            } else {
+                el.className += ' ' + className;
+            }
+        }
+    }
+
+    static removeClass(el, className) {
+        if (el && className) {
+            if (el.classList) {
+                el.classList.remove(className);
+            } else {
+                el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            } 
+        }
+    }
+
+    static ZIndexHandler_() {
+        return {
+            set(key, el, zIndex) {
+                console.log("Setting ", key);
+            }
+        };
+    }
+
+    static ZIndexHandler = this.ZIndexHandler_();
+
 }
