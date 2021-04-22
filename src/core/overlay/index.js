@@ -2,7 +2,7 @@
 /**
  * MIT License
  * 
- * Copyright (c) 2020 Ronuse Agency, Adewale Azeez, Oyeleke Damilola.
+ * Copyright (c) 2021 Ronuse Agency, Adewale Azeez, Oyeleke Damilola.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,5 @@
  * SOFTWARE.
  */
 
-import { InputFilter } from "../../utils"
-
-export { Colors, CoreColors } from "./Colors"
-export { Scheme, Alignment, Elevation, Orientation, Overflow } from "./Stylers"
-export const InputFilters = InputFilter.DEFAULT_FILTER;
-export const SpecialKeys = InputFilter.SpecialKeys;
-export const ZIndex = {
-    menu: 1000,
-    overlay: 1000,
-    modal: 1100,
-    tooltip: 1100
-}
+import "./Overlay.css"
+export { Dialog } from "./Dialog"

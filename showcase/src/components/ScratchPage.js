@@ -1,9 +1,7 @@
 
 import React, { Component } from "react"
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
 import { Button } from '@ronuse/react-ui/core/buttons'
 import { Panel } from "@ronuse/react-ui/core/panels/Panel";
 import { Scheme, Alignment } from "@ronuse/react-ui/core/variables";
@@ -78,16 +76,6 @@ export class ScratchPage extends React.Component {
                 <h1>Construct A Component Here</h1>
                 <Button text="Show" scheme={Scheme.INFO} onClick={() => this.setState({dVisible: true})} />
                 <Button ref={this.recButton} text="I receive on Close"/>
-
-                <Dialog ref={this.dialogRef} onOpenFocusRef={this.cancelButton} onCloseFocusRef={this.recButton} maximizable={true} header="Header" isVisible={this.state.dVisible} allowScroll={false} onHide={(e) => { this.setState({dVisible: false})}} footer={
-                    <div>
-                        <Button ref={this.cancelButton} text="Cancel" icon="fa fa-times" textonly scheme={Scheme.DANGER} onClick={() => this.setState({dVisible: false})} />
-                        <Button text="Continue" icon="fa fa-check" scheme={Scheme.PRIMARY} onClick={() => this.setState({dVisible: false})}/>
-                    </div>} alignment={Alignment.CENTER}>
-                    Hello World <br/>
-                    Hello World <br/>
-                    Hello World <br/>
-                </Dialog>
                 <br/>
                 <br/>
                 <br/>

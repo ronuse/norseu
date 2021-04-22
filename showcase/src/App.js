@@ -21,6 +21,7 @@ import { CheckboxPage } from './components/core/form/CheckboxPage'
 import { InputTextPage } from './components/core/form/InputTextPage'
 import { PasswordInputPage } from './components/core/form/PasswordInputPage'
 import { InputFiltersPage } from './components/core/form/InputFiltersPage'
+import { DialogPage } from './components/core/overlay/DialogPage'
 
 import { LinearLayoutPage } from './components/layouts/LinearLayoutPage'
 import './index.css'
@@ -46,6 +47,8 @@ const App = () => {
                 <Route exact path="/core/form/inputtext" component={InputTextPage}/>
                 <Route exact path="/core/form/passwordinput" component={PasswordInputPage}/>
                 <Route exact path="/core/form/inputfilterspage" component={InputFiltersPage}/>
+                
+                <Route exact path="/core/overlay/dialog" component={DialogPage}/>
                 
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>
                 <Route exact path="/core/misc/tag" component={TagPage}/>

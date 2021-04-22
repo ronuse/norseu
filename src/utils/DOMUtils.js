@@ -95,14 +95,4 @@ export class DOMUtils {
         }
     }
 
-    static ZIndexHandler_() {
-        return {
-            set(key, el, zIndex) {
-                console.log("Setting ", key);
-            }
-        };
-    }
-
-    static ZIndexHandler = this.ZIndexHandler_();
-
 }

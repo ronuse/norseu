@@ -1,7 +1,8 @@
+
 /**
  * MIT License
  * 
- * Copyright (c) 2020 Ronuse Agency, Adewale Azeez, Oyeleke Damilola.
+ * Copyright (c) 2021 Ronuse Agency, Adewale Azeez, Oyeleke Damilola.
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,30 +23,49 @@
  * SOFTWARE.
  */
 
-import React from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import { Component } from 'react';
 
-class BaseComponent extends React.Component {
+export class Portal extends Component {
+
+    static defaultProps = {
+        child: null,
+        container: null,
+        visible: false
+    };
+
+    static propTypes = {
+        child: PropTypes.any,
+        container: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+        visible: PropTypes.bool
+    }; 
 
     constructor(props) {
-        super();
+        super(props);
+
+        this.state = {
+            hasdom: props.visible
+        };
     }
 
-    getId() {
-        return this.id;
+    isDOMReady() {
+        return (typeof window !== 'undefined' && window.document && window.document.createElement);
     }
 
-    getInput() {
-        return document.getElementById(this.id);
+    componentDidMount() {
+        if (this.isDOMReady() && !this.state.hasdom) {
+            this.setState({ hasdom: true });
+        }
     }
 
-    value() {
-        return document.getElementById(this.id).value ;
+    render() {
+        if (this.props.child && this.state.hasdom) {
+            const container = this.props.container || document.body;
+            return container === 'self' ? this.props.child : ReactDOM.createPortal(this.props.child, container);
+        }
+
+        return null;
     }
 
-    focus() {
-        document.getElementById(this.id).focus();
-    }
-    
 }
-
-export default BaseComponent;

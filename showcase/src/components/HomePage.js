@@ -61,6 +61,12 @@ export class HomePage extends React.Component {
                     }}/>
                 </Panel>
 
+                <Panel className="r-r-margin-20px" title="Overlay">
+                    <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link-alt" text="Dialog" onClick={(e) => {
+                        this.props.history.push("/core/overlay/dialog");
+                    }}/>
+                </Panel>
+
                 <Panel className="r-r-margin-20px" title="Others">
                     <Button scheme={Scheme.PRIMARY} rightIcon="fa fa-external-link-alt" text="Elevation" onClick={(e) => {
                         this.props.history.push("/core/variables/elevation");

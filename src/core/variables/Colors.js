@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-export let Colors = {
+export const Colors = {
     NONE: "rgba(0,0,0,0)",
     BLACK: "#10161A",
     WHITE: "#FFFFFF",
@@ -45,7 +45,7 @@ export let Colors = {
     PURPLE1: "#8950FC"
 }
 
-export let CoreColors = {
+export const CoreColors = {
     TRANSPARENT: Colors.NONE,
     PRIMARY: Colors.BLUE1,
     SECONDARY: Colors.LIGHT_GRAY1,
