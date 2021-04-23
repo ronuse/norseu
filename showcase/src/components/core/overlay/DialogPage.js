@@ -65,7 +65,7 @@ export class DialogPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(86, 91);
+        const source1 = this.getSourceWithinLine(86, 92);
 
         return (
             <React.Fragment>
@@ -86,6 +86,7 @@ export class DialogPage extends React.Component {
                                 <Dialog header="Basic" isVisible={this.state.showBasic} onHide={(e) => this.onHide('showBasic')} footer={this.renderFooter('showBasic')}>
                                     {this.basicText()} 
                                 </Dialog>
+
                                 <Dialog header="Overflow Content" isVisible={this.state.showOverflow} onHide={(e) => this.onHide('showOverflow')} footer={this.renderFooter('showOverflow')}>
                                     {this.overflowText()} 
                                 </Dialog>

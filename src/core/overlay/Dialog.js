@@ -55,6 +55,7 @@ import { CSSTransition } from 'react-transition-group';
         noFooter: false,
         onOpenFocusRef: null,
         onCloseFocusRef: null,
+        baseZIndex: null,
         forwardRef: null,
 
         onShow: null,
@@ -84,6 +85,7 @@ import { CSSTransition } from 'react-transition-group';
         noFooter: PropTypes.bool,
         onOpenFocusRef: PropTypes.object,
         onCloseFocusRef: PropTypes.object,
+        baseZIndex: PropTypes.number,
         forwardRef: PropTypes.any,
         
         onShow: PropTypes.func,
@@ -130,7 +132,7 @@ import { CSSTransition } from 'react-transition-group';
 
         if (this.props.isVisible) {
             this.setState({ visible: true }, () => {
-                // increaze el z index
+                DOMUtils.ZIndexHandler.set('modal', this.modal, this.props.baseZIndex);
             });
         }
         this.resolveForwardRef();
@@ -139,7 +141,7 @@ import { CSSTransition } from 'react-transition-group';
     componentDidUpdate(prevProps) {
         if (this.props.isVisible && !this.state.modalVisible) {
             this.setState({ modalVisible: true }, () => {
-                // increaze el z index
+                DOMUtils.ZIndexHandler.set('modal', this.modal, this.props.baseZIndex);
             });
         }
 
@@ -154,7 +156,7 @@ import { CSSTransition } from 'react-transition-group';
     }
 
     componentWillUnmount() {
-        // TODO remove el z index
+        DOMUtils.ZIndexHandler.removeElementZIndex(this.modal);
     }
 
     onClose(event) {
@@ -180,6 +182,7 @@ import { CSSTransition } from 'react-transition-group';
     }
 
     onExited() {
+        DOMUtils.ZIndexHandler.removeElementZIndex(this.modal);
         this.setState({ modalVisible: false });
         if (!this.props.allowScroll || (this.props.maximizable && this.state.maximized)) {
             DOMUtils.removeClass(document.body, 'r-r-overflow-hidden');

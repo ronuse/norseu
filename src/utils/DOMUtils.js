@@ -95,4 +95,48 @@ export class DOMUtils {
         }
     }
 
+    static ZIndexHandler_() {
+
+        const BaseZIndexes = {
+            menu: 1000,
+            overlay: 1000,
+            modal: 1001,
+            tooltip: 10001
+        }
+        let zIndexes = [];
+
+        const generateZIndex = (key, baseZIndex) => {
+            baseZIndex = baseZIndex || BaseZIndexes[key];
+            let lastZIndex = (zIndexes.length > 0) ? zIndexes[zIndexes.length - 1] || 999 : { key, value: baseZIndex };
+            let newZIndex = lastZIndex.value + (lastZIndex.key === key ? 0 : baseZIndex) + 1;
+            zIndexes.push({ key, value: newZIndex });
+            return newZIndex;
+        }
+    
+        const getCurrentZIndex = () => {
+            return zIndexes.length > 0 ? zIndexes[zIndexes.length - 1].value : 0;
+        }
+        
+        return {
+            get: (key) => getZIndex(key),
+            set: (key, el, zIndex) => {
+                if (el && el.style) {
+                    el.style.zIndex = String(generateZIndex(key, zIndex));
+                }
+            },
+            remove: (key) => delete zIndexes[key],
+            removeElementZIndex: (el) => {
+                if (el) {
+                    const zIndex = ZIndexHandler.getZIndex(el);
+                    zIndexes = zIndexes.filter(item => item.value !== zIndex);
+                    el.style.zIndex = '';
+                }
+            },
+            getElementZIndex: (el) => (el && el.style) ? parseInt(el.style.zIndex) || 0 : 0,
+            getCurrentZIndex
+        };
+    }
+
+    static ZIndexHandler = this.ZIndexHandler_();
+
 }

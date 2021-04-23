@@ -26,12 +26,6 @@
 import { InputFilter } from "../../utils"
 
 export { Colors, CoreColors } from "./Colors"
-export { Scheme, Alignment, Elevation, Orientation, Overflow } from "./Stylers"
+export { Scheme, Alignment, Alignment as Position, Elevation, Orientation, Overflow } from "./Stylers"
 export const InputFilters = InputFilter.DEFAULT_FILTER;
 export const SpecialKeys = InputFilter.SpecialKeys;
-export const ZIndex = {
-    menu: 1000,
-    overlay: 1000,
-    modal: 1100,
-    tooltip: 1100
-}
