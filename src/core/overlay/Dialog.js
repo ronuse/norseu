@@ -27,7 +27,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import { ObjUtils, BoolUtils, DOMUtils } from "../../utils";
-import { Alignment } from "../variables/";
+import { Position } from "../variables/";
 import { Portal } from "./Portal"
 import { CSSTransition } from 'react-transition-group';
  
@@ -35,7 +35,7 @@ import { CSSTransition } from 'react-transition-group';
 
     static defaultProps = {
         isVisible: false,
-        alignment: Alignment.CENTER,
+        position: Position.CENTER,
         dismissableModal: true,
         noOverlay: false,
         className: null,
@@ -65,7 +65,7 @@ import { CSSTransition } from 'react-transition-group';
 
     static propTypes = {
         isVisible: PropTypes.bool,
-        alignment: PropTypes.string,
+        position: PropTypes.string,
         dismissableModal: PropTypes.bool,
         noOverlay: PropTypes.bool,
         className: PropTypes.string,
@@ -92,7 +92,7 @@ import { CSSTransition } from 'react-transition-group';
         onHide: PropTypes.func,
         onMaximize: PropTypes.func,
     };
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -167,7 +167,7 @@ import { CSSTransition } from 'react-transition-group';
     }
     
     onEnter() {
-        if (!this.props.allowScroll || (this.props.maximizable && this.state.maximized)) {
+        if ((!this.props.allowScroll || (this.props.maximizable && this.state.maximized)) && !this.props.noOverlay) {
             DOMUtils.addClass(document.body, 'r-r-overflow-hidden');
         }
     }
@@ -184,7 +184,7 @@ import { CSSTransition } from 'react-transition-group';
     onExited() {
         DOMUtils.ZIndexHandler.removeElementZIndex(this.modal);
         this.setState({ modalVisible: false });
-        if (!this.props.allowScroll || (this.props.maximizable && this.state.maximized)) {
+        if ((!this.props.allowScroll || (this.props.maximizable && this.state.maximized)) && !this.props.noOverlay) {
             DOMUtils.removeClass(document.body, 'r-r-overflow-hidden');
         }
         if (this.props.onCloseFocusRef && this.props.onCloseFocusRef.current && ObjUtils.isFunction(this.props.onCloseFocusRef.current.focus)) {
@@ -304,10 +304,10 @@ import { CSSTransition } from 'react-transition-group';
         const modalClassName = classNames('r-r-dialog-modal', {
             'r-r-component-overlay': !this.props.noOverlay,
             'r-r-dialog-visible': this.state.modalVisible
-        }, `r-r-dialog-${this.props.alignment}`, this.props.modalClassName);
+        }, `r-r-dialog-${this.props.position}`, this.props.modalClassName);
         let transitionTimeout = {
-            enter: this.props.alignment === Alignment.CENTER ? 150 : 300,
-            exit: this.props.alignment === Alignment.CENTER ? 150 : 300
+            enter: this.props.position === Position.CENTER ? 150 : 300,
+            exit: this.props.position === Position.CENTER ? 150 : 300
         };
         const header = this.renderHeader();
         const content = this.renderContent();

@@ -5,9 +5,9 @@ import { Button } from '@ronuse/react-ui/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Alignment, Orientation, Elevation, InputFilters } from "@ronuse/react-ui/core/variables";
+import { Position, Orientation, Elevation, InputFilters } from "@ronuse/react-ui/core/variables";
 import { LinearLayout } from "@ronuse/react-ui/layouts";
-import { PasswordInput, InputText } from "@ronuse/react-ui/core/form";
+import { PasswordInput, InputText, Checkbox } from "@ronuse/react-ui/core/form";
 import { Dialog } from "@ronuse/react-ui/core/overlay";
 import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
 
@@ -16,7 +16,19 @@ export class DialogPage extends React.Component {
     state = {
         pageSource: '',
         showBasic: false,
-        showOverflow: false
+        showOverflow: false,
+        showMaximizable: false,
+        showWithoutModal: false,
+        showWithPosition: false,
+        showWithoutHeaderAndFooter: false,
+        dialogPosition: Position.LEFT
+    }
+
+    constructor(props) {
+        super(props)
+        this.previewPanel1 = React.createRef();
+        this.previewPanel2 = React.createRef();
+        this.previewPanel3 = React.createRef();
     }
     
     loadPageSource() {
@@ -65,14 +77,15 @@ export class DialogPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(86, 92);
+        const source1 = this.getSourceWithinLine(87, 93);
+        const source2 = this.getSourceWithinLine(86, 92);
 
         return (
-            <React.Fragment>
+            <React.Fragment>                
                 <Panel borderless elevation={Elevation.ONE}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
-                            <i className="fa fa-code" id='ifp-view-code'></i>
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
                             <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Basic</span>
@@ -92,7 +105,74 @@ export class DialogPage extends React.Component {
                                 </Dialog>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, 'ifp-view-code')}
+                        {getSourceInEditorR(source1, this.previewPanel1)}
+                    </Accordion>
+                </Panel>
+                
+                <Panel borderless elevation={Elevation.ONE}>
+                    <div className="accordion-controlled-header-buttons">
+                        <div className="right">
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                        </div>
+                        <span className="left">Other Properties</span>
+                    </div>
+                    <Accordion borderless multiple activeIndex={[0]}>
+                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
+                            <div className="r-r-display-flex">
+                                <Button text="Maximizable" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showMaximizable: true})} />
+                                <Button text="Without Modal" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithoutModal: true})} />
+                                <Button text="Without Header And Footer" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithoutHeaderAndFooter: true})} />
+                                
+                                <Dialog header="Maximizable" maximizable isVisible={this.state.showMaximizable} onHide={(e) => this.onHide('showMaximizable')} footer={this.renderFooter('showMaximizable')}>
+                                    {this.overflowText()} 
+                                </Dialog>
+
+                                <Dialog header="Without Modal" noOverlay isVisible={this.state.showWithoutModal} onHide={(e) => this.onHide('showWithoutModal')} footer={this.renderFooter('showWithoutModal')}>
+                                    {this.basicText()} 
+                                </Dialog>
+
+                                <Dialog header="Without Header And Footer" noHeader isVisible={this.state.showWithoutHeaderAndFooter} onHide={(e) => this.onHide('showWithoutHeaderAndFooter')}>
+                                    {this.basicText()} 
+                                </Dialog>
+                            </div>
+                        </AccordionPanel>
+                        {getSourceInEditorR(source2, this.previewPanel2)}
+                    </Accordion>
+                </Panel>
+                
+                <Panel borderless elevation={Elevation.ONE}>
+                    <div className="accordion-controlled-header-buttons">
+                        <div className="right">
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanel3.current.toggle()}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                        </div>
+                        <span className="left">Position TODO change select below to ronuse select Component</span>
+                    </div>
+                    <Accordion borderless multiple activeIndex={[0]}>
+                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
+                            <div className="r-r-display-flex">
+                                <select onChange={(e)=>{this.setState({ dialogPosition: e.target.value} )}}>
+                                    <option value={Position.LEFT}>{"LEFT"}</option>
+                                    <option value={Position.RIGHT}>{"RIGHT"}</option>
+                                    <option value={Position.TOP}>{"TOP"}</option>
+                                    <option value={Position.CENTER}>{"CENTER"}</option>
+                                    <option value={Position.TOP_CENTER}>{"TOP_CENTER"}</option>
+                                    <option value={Position.TOP_LEFT}>{"TOP_LEFT"}</option>
+                                    <option value={Position.TOP_RIGHT}>{"TOP_RIGHT"}</option>
+                                    <option value={Position.BOTTOM}>{"BOTTOM"}</option>
+                                    <option value={Position.BOTTOM_LEFT}>{"BOTTOM_LEFT"}</option>
+                                    <option value={Position.BOTTOM_RIGHT}>{"BOTTOM_RIGHT"}</option>
+                                    <option value={Position.BOTTOM_CENTER}>{"BOTTOM_CENTER"}</option>
+                                </select>
+                                <Button text="Show" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithPosition: true})} />
+
+                                <Dialog header={`Position ${this.state.dialogPosition}`} position={this.state.dialogPosition} isVisible={this.state.showWithPosition} onHide={(e) => this.onHide('showWithPosition')} footer={this.renderFooter('showWithPosition')}>
+                                    {this.basicText()} 
+                                </Dialog>
+                            </div>
+                        </AccordionPanel>
+                        {getSourceInEditorR(source1, this.previewPanel3)}
                     </Accordion>
                 </Panel>
             </React.Fragment>
@@ -118,7 +198,7 @@ export class DialogPage extends React.Component {
 
                 <Panel className="r-r-padding-20px" elevation={Elevation.ONE}>
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Dialog } from '@ronuse/react-ui/overlay/dialog''`}
+                        {`import { Dialog } from '@ronuse/react-ui/overlay/dialog'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

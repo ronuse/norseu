@@ -127,7 +127,7 @@ export class DOMUtils {
             remove: (key) => delete zIndexes[key],
             removeElementZIndex: (el) => {
                 if (el) {
-                    const zIndex = ZIndexHandler.getZIndex(el);
+                    const zIndex = this.ZIndexHandler.getElementZIndex(el);
                     zIndexes = zIndexes.filter(item => item.value !== zIndex);
                     el.style.zIndex = '';
                 }

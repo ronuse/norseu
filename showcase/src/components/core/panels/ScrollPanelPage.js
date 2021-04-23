@@ -21,7 +21,30 @@ export class ScrollPanelPage extends React.Component {
 
     // TODO chage alerts to taost component
     overflowText() {
-        return `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tempus iaculis urna id. Ut ornare lectus sit amet est placerat in egestas. Sit amet mauris commodo quis imperdiet massa. Dictum sit amet justo donec enim diam vulputate ut pharetra. Sit amet porttitor eget dolor morbi. Ultrices sagittis orci a scelerisque. Nisi scelerisque eu ultrices vitae. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Donec pretium vulputate sapien nec. A scelerisque purus semper eget duis at tellus at urna. Dignissim convallis aenean et tortor at risus viverra adipiscing. Sem fringilla ut morbi tincidunt augue interdum. Facilisis gravida neque convallis a cras semper auctor neque vitae. Pellentesque habitant morbi tristique senectus et netus. Orci dapibus ultrices in iaculis nunc sed augue lacus viverra. Nulla facilisi morbi tempus iaculis. Felis eget nunc lobortis mattis aliquam faucibus purus. Malesuada fames ac turpis egestas sed tempus. Tempus urna et pharetra pharetra massa massa ultricies mi. Ac feugiat sed lectus vestibulum mattis. Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo. Massa enim nec dui nunc mattis enim ut tellus. Aliquet risus feugiat in ante metus dictum at tempor. Fusce id velit ut tortor pretium viverra suspendisse. Posuere ac ut consequat semper. Sit amet luctus venenatis lectus magna fringilla urna porttitor rhoncus. Lorem mollis aliquam ut porttitor leo a. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum. Vitae turpis massa sed elementum tempus egestas sed sed risus. At quis risus sed vulputate odio ut. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Nec ullamcorper sit amet risus nullam. Vitae tempus quam pellentesque nec nam aliquam. Molestie a iaculis at erat. Arcu felis bibendum ut tristique et egestas quis. Volutpat lacus laoreet non curabitur gravida. Ante metus dictum at tempor commodo. Vivamus at augue eget arcu. Quam vulputate dignissim suspendisse in. Nec dui nunc mattis enim ut tellus elementum.`;
+        return `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+        labore et dolore magna aliqua. Morbi tempus iaculis urna id. Ut ornare lectus 
+        sit amet est placerat in egestas. Sit amet mauris commodo quis imperdiet massa. 
+        Dictum sit amet justo donec enim diam vulputate ut pharetra. Sit amet porttitor 
+        eget dolor morbi. Ultrices sagittis orci a scelerisque. Nisi scelerisque eu ultrices vitae. 
+        Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Donec pretium vulputate sapien nec. 
+        A scelerisque purus semper eget duis at tellus at urna. 
+        Dignissim convallis aenean et tortor at risus viverra adipiscing. 
+        Sem fringilla ut morbi tincidunt augue interdum. Facilisis gravida 
+        neque convallis a cras semper auctor neque vitae. Pellentesque habitant 
+        morbi tristique senectus et netus. Orci dapibus ultrices in iaculis nunc 
+        sed augue lacus viverra. Nulla facilisi morbi tempus iaculis. Felis eget 
+        nunc lobortis mattis aliquam faucibus purus. Malesuada fames ac turpis egestas sed tempus.
+         Tempus urna et pharetra pharetra massa massa ultricies mi. Ac feugiat sed lectus vestibulum mattis. 
+         Sagittis nisl rhoncus mattis rhoncus urna neque viverra justo. Massa enim nec dui nunc mattis enim ut tellus. 
+         Aliquet risus feugiat in ante metus dictum at tempor. Fusce id velit ut tortor pretium viverra suspendisse. 
+         Posuere ac ut consequat semper. Sit amet luctus venenatis lectus magna fringilla urna 
+         porttitor rhoncus. Lorem mollis aliquam ut porttitor leo a. Volutpat sed cras ornare arcu 
+         dui vivamus arcu felis bibendum. Vitae turpis massa sed elementum tempus egestas sed sed risus. 
+         At quis risus sed vulputate odio ut. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. 
+         Nec ullamcorper sit amet risus nullam. Vitae tempus quam pellentesque nec nam aliquam. 
+         Molestie a iaculis at erat. Arcu felis bibendum ut tristique et egestas quis. 
+         Volutpat lacus laoreet non curabitur gravida. Ante metus dictum at tempor commodo. 
+         Vivamus at augue eget arcu. Quam vulputate dignissim suspendisse in. Nec dui nunc mattis enim ut tellus elementum.`;
     }
 
     renderInteractiveEditor() {

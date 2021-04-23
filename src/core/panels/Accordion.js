@@ -49,9 +49,9 @@ export class AccordionPanel extends Component {
         headerStyle: null,
         noicon: false,
         nonCollapsible: false,
-        onHeaderClickRefId: null,
         noheader: false,
-        nodivier: false
+        nodivier: false,
+        ref: null
     }
 
     static propTypes = {
@@ -67,15 +67,14 @@ export class AccordionPanel extends Component {
         headerStyle: PropTypes.object,
         noicon: PropTypes.bool,
         nonCollapsible: PropTypes.bool,
-        onHeaderClickRefId: PropTypes.string,
         noheader: PropTypes.bool,
-        nodivier: PropTypes.bool
+        nodivier: PropTypes.bool,
+        ref: PropTypes.any
     }
 
 }
 
-
-export class Accordion extends Component {
+class AccordionComponent extends Component {
 
     static defaultProps = {
         id: null,
@@ -92,6 +91,7 @@ export class Accordion extends Component {
         onTabChange: null,
         borderless: false,
         elevation: null,
+        forwardRef: null
     }
 
     static propTypes = {
@@ -108,7 +108,8 @@ export class Accordion extends Component {
         onTabExpand: PropTypes.func,
         onTabChange: PropTypes.func,
         borderless: PropTypes.bool,
-        elevation: PropTypes.string
+        elevation: PropTypes.string,
+        forwardRef: PropTypes.any
     }
 
     constructor(props) {
@@ -120,6 +121,22 @@ export class Accordion extends Component {
         }
 
         this.id = this.props.id || DOMUtils.UniqueElementId();
+        this.elementRef = React.createRef(this.props.forwardRef);
+    }
+
+    resolveForwardRef() {
+        let ref = this.props.forwardRef;
+        if (ref) {
+            if (typeof ref === 'function') {
+                ref(this.elementRef.current);
+            } else {
+                ref.current = this.elementRef.current;
+            }
+        }
+    }
+
+    componentDidMount() {
+        this.resolveForwardRef();
     }
 
     isActiveIndex(index) {
@@ -207,18 +224,10 @@ export class Accordion extends Component {
         const className = classNames('r-r-accordion-tab', panel.props.className);
         const headerDivider = (index < childrenCount-1 || (isToggled)) && !panel.props.noheader && !panel.props.nodivier ? <hr className="r-r-accordion-divider"/> : null;
         const contentDivider = (isToggled && index < childrenCount-1) && !panel.props.nodivier ? <hr className="r-r-accordion-divider"/> : null;
-        if (panel.props.onHeaderClickRefId) {
-            rrFireAfterPageloadComplete((e, data) => {
-                const toggleElement = document.getElementById(data.panel.props.onHeaderClickRefId);
-                if (toggleElement) {
-                    toggleElement.onclick = (e) => data.onPanelHeaderClick(data.component, e, data.panel, data.index);
-                }
-            }, {
-                onPanelHeaderClick: this.onPanelHeaderClick,
-                panel: panel,
-                index: index,
-                component: this
-            });
+        if (panel.props.forwardRef) {
+            panel.props.forwardRef.current = {
+                toggle: (e) => this.onPanelHeaderClick(this, e, panel, index)
+            }
         }
         
         return (
@@ -249,10 +258,12 @@ export class Accordion extends Component {
         const content = this.renderAccordionPanels(); 
 
         return (
-            <div id={this.props.id} className={className} style={this.props.style}>
+            <div ref={this.elementRef} id={this.props.id} className={className} style={this.props.style}>
                 {content}
             </div>
         )
     }
 
 }
+
+export const Accordion = React.forwardRef((props, ref) => <AccordionComponent {...props} forwardRef={ref} />);

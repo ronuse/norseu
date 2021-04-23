@@ -65,9 +65,9 @@ export const copyToClipboard = (text) => {
     }
 }
 
-export const getSourceInEditorR = (source, onHeaderClickRefId) => {
+export const getSourceInEditorR = (source, panelForwardRef) => {
     return (
-        <AccordionPanel noheader nodivier onHeaderClickRefId={onHeaderClickRefId}>
+        <AccordionPanel noheader nodivier forwardRef={panelForwardRef}>
             <SyntaxHighlighter language="javascript" style={prism} className={"max-height-350px r-r-showcase-code"}>
                 {source}
             </SyntaxHighlighter>
