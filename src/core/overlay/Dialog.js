@@ -57,6 +57,7 @@ import { CSSTransition } from 'react-transition-group';
         onCloseFocusRef: null,
         baseZIndex: null,
         forwardRef: null,
+        container: null,
 
         onShow: null,
         onHide: null,
@@ -87,6 +88,7 @@ import { CSSTransition } from 'react-transition-group';
         onCloseFocusRef: PropTypes.object,
         baseZIndex: PropTypes.number,
         forwardRef: PropTypes.any,
+        container: PropTypes.any,
         
         onShow: PropTypes.func,
         onHide: PropTypes.func,
@@ -236,7 +238,7 @@ import { CSSTransition } from 'react-transition-group';
         if (!relayProps.onClick) {
             relayProps.onClick = this.onClose;
         }
-        return React.cloneElement(this.state.closeIcon, relayProps);
+        return React.cloneElement(this.props.closeIcon, relayProps);
     }
 
     renderMaximizeButton() {

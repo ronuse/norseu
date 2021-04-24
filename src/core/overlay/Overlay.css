@@ -230,3 +230,29 @@
 .r-r-dialog-bottom-right .r-r-dialog-exit-active {
     transition: all .3s ease-out;
 }
+
+/* Alert Dialog */
+
+.r-r-alert-dialog {
+    width: max-content;
+}
+
+.r-r-alert-dialog .r-r-dialog-content {
+    border-radius: 4px;
+}
+
+.r-r-alert-dialog .r-r-dialog-content .r-r-alert-dialog-content {
+    display: flex;
+    padding: 1.5rem;
+}
+
+.r-r-alert-dialog .r-r-dialog-content .r-r-alert-dialog-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.r-r-alert-dialog .r-r-dialog-content .r-r-dialog-content-icon.r-r-dialog-content-icon-str {
+    margin-right: 1.5rem;
+    font-size: 3em;
+}

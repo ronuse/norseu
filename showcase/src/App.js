@@ -21,6 +21,7 @@ import { CheckboxPage } from './components/core/form/CheckboxPage'
 import { InputTextPage } from './components/core/form/InputTextPage'
 import { PasswordInputPage } from './components/core/form/PasswordInputPage'
 import { InputFiltersPage } from './components/core/form/InputFiltersPage'
+import { AlertDialogPage } from './components/core/overlay/AlertDialogPage'
 import { DialogPage } from './components/core/overlay/DialogPage'
 
 import { LinearLayoutPage } from './components/layouts/LinearLayoutPage'
@@ -48,6 +49,7 @@ const App = () => {
                 <Route exact path="/core/form/passwordinput" component={PasswordInputPage}/>
                 <Route exact path="/core/form/inputfilterspage" component={InputFiltersPage}/>
                 
+                <Route exact path="/core/overlay/alertdialog" component={AlertDialogPage}/>
                 <Route exact path="/core/overlay/dialog" component={DialogPage}/>
                 
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>

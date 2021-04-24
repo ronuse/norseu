@@ -25,3 +25,4 @@
 
 import "./Overlay.css"
 export { Dialog } from "./Dialog"
+export { AlertDialogEvent, AlertDialog, alertDialog, loadingDialog } from "./AlertDialog"

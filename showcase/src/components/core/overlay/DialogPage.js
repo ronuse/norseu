@@ -77,11 +77,12 @@ export class DialogPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(87, 93);
-        const source2 = this.getSourceWithinLine(86, 92);
+        const source1 = this.getSourceWithinLine(100, 106);
+        const source2 = this.getSourceWithinLine(128, 138);
+        const source3 = this.getSourceWithinLine(171, 173);
 
         return (
-            <React.Fragment>                
+            <React.Fragment>
                 <Panel borderless elevation={Elevation.ONE}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
@@ -172,7 +173,7 @@ export class DialogPage extends React.Component {
                                 </Dialog>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel3)}
+                        {getSourceInEditorR(source3, this.previewPanel3)}
                     </Accordion>
                 </Panel>
             </React.Fragment>
@@ -198,7 +199,7 @@ export class DialogPage extends React.Component {
 
                 <Panel className="r-r-padding-20px" elevation={Elevation.ONE}>
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Dialog } from '@ronuse/react-ui/overlay/dialog'`}
+                        {`import { Dialog } from '@ronuse/react-ui/core/overlay'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

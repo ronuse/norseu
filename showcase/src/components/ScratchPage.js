@@ -6,6 +6,7 @@ import { Button } from '@ronuse/react-ui/core/buttons'
 import { Panel } from "@ronuse/react-ui/core/panels/Panel";
 import { Scheme, Alignment } from "@ronuse/react-ui/core/variables";
 import { InputText } from '@ronuse/react-ui/core/form';
+import { Dialog } from '@ronuse/react-ui/core/overlay';
 import { Tag } from '@ronuse/react-ui/core/misc'
 import { ObjUtils, DOMUtils, BoolUtils } from "@ronuse/react-ui/utils"
 
@@ -74,8 +75,6 @@ export class ScratchPage extends React.Component {
         return (
             <div className="r-r-showcase-component-page">
                 <h1>Construct A Component Here</h1>
-                <Button text="Show" scheme={Scheme.INFO} onClick={() => this.setState({dVisible: true})} />
-                <Button ref={this.recButton} text="I receive on Close"/>
                 <br/>
                 <br/>
                 <br/>

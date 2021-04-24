@@ -95,6 +95,22 @@ export class DOMUtils {
         }
     }
 
+    static isElement(obj) {
+        return (typeof HTMLElement === "object" ? obj instanceof HTMLElement :
+            obj && typeof obj === "object" && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === "string"
+        );
+    }
+
+    static appendChild(element, target) {
+        if (this.isElement(target)) {
+            target.appendChild(element);
+        } else if(target.el && target.el.nativeElement) {
+            target.el.nativeElement.appendChild(element);
+        } else {
+            throw new Error('AppendChild: Cannot append ' + target + ' to ' + element);
+        }
+    }
+
     static ZIndexHandler_() {
 
         const BaseZIndexes = {
