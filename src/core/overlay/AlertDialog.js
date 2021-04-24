@@ -66,8 +66,16 @@ export function alertDialog(props) {
     }
 };
 
-export function loadingDialog(props) {
-
+export function loadingDialog(params, props) {
+    const loadingIcon = props.loadingIcon || "fas fa-spinner fa-pulse";
+    const dialog = alertDialog({
+        icon: loadingIcon,
+        confirmLabel: null
+    });
+    if (ObjUtils.isFunction(props.onLoading)) {
+        props.onLoading(params, dialog);
+    }
+    return dialog;
 };
 
 export const AlertDialogEvent = {
@@ -88,6 +96,7 @@ export class AlertDialog extends Component {
         confirmScheme: null,
         cancelScheme: null,
         container: null,
+        dismissableModal: false,
         
         onConfirm: null,
         onCancel: null,
@@ -105,6 +114,7 @@ export class AlertDialog extends Component {
         confirmScheme: PropTypes.string,
         cancelScheme: PropTypes.string,
         container: PropTypes.any,
+        dismissableModal: PropTypes.bool,
 
         onConfirm: PropTypes.func,
         onCancel: PropTypes.func,
@@ -150,17 +160,17 @@ export class AlertDialog extends Component {
         }
     }
 
-    renderIcon() {
+    renderIcon(hasMessage) {
         if (!this.props.icon) {
             return;
         }
 
         const isString = BoolUtils.isTypeOfAny(this.props.icon, ["string"]);
         if (isString) {
-            return <i className={`r-r-dialog-content-icon r-r-dialog-content-icon-str ${this.props.icon}`} />;
+            return <i className={`r-r-dialog-content-icon r-r-dialog-content-icon-str ${this.props.icon} ${!hasMessage ? 'r-r-margin-1-5rem' : ''}`} />;
         }
         const relayProps = ObjUtils.clone(this.props.icon.props);
-        relayProps.className = classNames('r-r-dialog-content-icon', relayProps.className);
+        relayProps.className = classNames('r-r-dialog-content-icon', (!hasMessage ? 'r-r-margin-1-5rem' : null), relayProps.className);
         return React.cloneElement(this.props.icon, relayProps);
     }
 
@@ -181,13 +191,13 @@ export class AlertDialog extends Component {
 
     renderElement() {
         const className = classNames('r-r-alert-dialog', this.props.className);
-        const icon = this.renderIcon();
+        const icon = this.renderIcon(!!this.props.message);
         const dialogProps = ObjUtils.findDiffKeys(this.props, AlertDialog.defaultProps);
         const message = ObjUtils.selectJSXElement(this.props.message, this.props);
         const controls = this.renderControl();
 
         return (
-            <Dialog {...dialogProps} noHeader isVisible={this.state.visible} className={className} onHide={this.resolve}>
+            <Dialog {...dialogProps} dismissableModal={this.props.dismissableModal} noHeader isVisible={this.state.visible} className={className} onHide={this.resolve}>
                 <div className="r-r-alert-dialog-content">
                     {icon}
                     {message}

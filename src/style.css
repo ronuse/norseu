@@ -212,8 +212,12 @@
     border: none !important;
 }
 
+.r-r-no-margin {
+    margin: 0px !important;
+}
+
 .r-r-margin-0px {
-    margin: 0px;
+    margin: 0px !important;
 }
 
 .r-r-margin-right-7px {
@@ -318,6 +322,10 @@
 
 .r-r-margin-20px {
     margin: 20px;
+}
+
+.r-r-margin-1-5rem {
+    margin: 1.5rem !important;
 }
 
 .r-r-padding-0px {

@@ -15,6 +15,13 @@ export class PasswordInputPage extends React.Component {
     state = {
         pageSource: ''
     }
+
+    constructor(props) {
+        super(props)
+
+        this.previewPanel1 = React.createRef();
+        this.previewPanel2 = React.createRef();
+    }
     
     loadPageSource() {
         fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/form/PasswordInputPage.js")
@@ -38,7 +45,7 @@ export class PasswordInputPage extends React.Component {
                 <Panel borderless elevation={Elevation.ONE}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
-                            <i className="fa fa-code" id='ifp-view-code'></i>
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
                             <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Basic</span>
@@ -49,14 +56,14 @@ export class PasswordInputPage extends React.Component {
                                 <PasswordInput scheme={Scheme.PRIMARY}/>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, 'ifp-view-code')}
+                        {getSourceInEditorR(source1, this.previewPanel1)}
                     </Accordion>
                 </Panel>
                 
                 <Panel borderless elevation={Elevation.ONE} style={{marginTop: "0px"}}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
-                            <i className="fa fa-code" id='ifp-view-code2'></i>
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
                             <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source2)}}></i>
                         </div>
                         <span className="left">With toggle</span>
@@ -75,7 +82,7 @@ export class PasswordInputPage extends React.Component {
                                 }}/>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source2, 'ifp-view-code2')}
+                        {getSourceInEditorR(source2, this.previewPanel2)}
                     </Accordion>
                 </Panel>
             </React.Fragment>
