@@ -67,7 +67,7 @@ export class AlertDialogPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(87, 118);
+        const source1 = this.getSourceWithinLine(87, 117);
         const source2 = this.getSourceWithinLine(136);
         const source3 = this.getSourceWithinLine(159, 165);
 
