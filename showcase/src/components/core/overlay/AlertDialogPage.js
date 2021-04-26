@@ -26,7 +26,8 @@ export class AlertDialogPage extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
+        this.state = { 
+            pageSource: '',
             visible: false,
             nbVisible: false,
             cobVisible: false,
@@ -67,9 +68,9 @@ export class AlertDialogPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(87, 117);
-        const source2 = this.getSourceWithinLine(136);
-        const source3 = this.getSourceWithinLine(159, 165);
+        const source1 = this.getSourceWithinLine(89, 118);
+        const source2 = this.getSourceWithinLine(137);
+        const source3 = this.getSourceWithinLine(160, 166);
 
         return (
             <React.Fragment>
@@ -95,7 +96,6 @@ export class AlertDialogPage extends React.Component {
                                         onCancel: this.onCancel
                                     });
                                 }} />
-
                                 
                                 <Button text="Show Loading Dialog" icon="fa fa-check" scheme={Scheme.PRIMARY} onClick={()=>{
                                     loadingDialog({}, {
