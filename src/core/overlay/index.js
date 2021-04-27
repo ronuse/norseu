@@ -25,4 +25,5 @@
 
 import "./Overlay.css"
 export { Dialog } from "./Dialog"
+export { Navbar } from "./Navbar"
 export { AlertDialogEvent, AlertDialog, alertDialog, loadingDialog } from "./AlertDialog"

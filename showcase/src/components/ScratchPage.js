@@ -74,13 +74,20 @@ export class ScratchPage extends React.Component {
 
         return (
             <div className="r-r-showcase-component-page">
-                <h1>Construct A Component Here</h1>
+                <h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1> 
                 <br/>
                 <br/>
                 <br/>
                 <br/>
                 <br/>
                 <br/>
+
+                <div className="r-r-sidebar-modal r-r-component-overlay r-r-sidebar-visible r-r-sidebar-left">
+                    <div className="r-r-sidebar">
+                        Yahoo
+                    </div>
+                </div>
+
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 <div onClick={()=>{}} style={{position:"relative",backgroundColor:"black",margin:"20px",color:"white",width:"220px",height:"120px"}}>

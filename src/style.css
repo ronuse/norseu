@@ -404,6 +404,16 @@
 
 /* End Margins */
 
+.r-r-fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.r-r-fullscreen-v {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
 .r-r-width-100-percent {
     width: 100% !important;
 }

@@ -191,7 +191,6 @@ import { CSSTransition } from 'react-transition-group';
         }
         if (this.props.onCloseFocusRef && this.props.onCloseFocusRef.current && ObjUtils.isFunction(this.props.onCloseFocusRef.current.focus)) {
             this.props.onCloseFocusRef.current.focus();
-            console.log("On Exited Fous: ", this.props.onCloseFocusRef.current);
         }
     }
 

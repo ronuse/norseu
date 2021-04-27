@@ -22,6 +22,7 @@ import { InputTextPage } from './components/core/form/InputTextPage'
 import { PasswordInputPage } from './components/core/form/PasswordInputPage'
 import { InputFiltersPage } from './components/core/form/InputFiltersPage'
 import { AlertDialogPage } from './components/core/overlay/AlertDialogPage'
+import { NavbarPage } from './components/core/overlay/NavbarPage'
 import { DialogPage } from './components/core/overlay/DialogPage'
 
 import { LinearLayoutPage } from './components/layouts/LinearLayoutPage'
@@ -51,6 +52,7 @@ const App = () => {
                 
                 <Route exact path="/core/overlay/alertdialog" component={AlertDialogPage}/>
                 <Route exact path="/core/overlay/dialog" component={DialogPage}/>
+                <Route exact path="/core/overlay/navbar" component={NavbarPage}/>
                 
                 <Route exact path="/core/variables/elevation" component={ElevationPage}/>
                 <Route exact path="/core/misc/tag" component={TagPage}/>

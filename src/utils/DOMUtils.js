@@ -111,18 +111,18 @@ export class DOMUtils {
         }
     }
 
-    static ZIndexHandler_() {
+    static BaseZIndexes = {
+        menu: 1000,
+        overlay: 1000,
+        modal: 1001,
+        tooltip: 10001
+    }
 
-        const BaseZIndexes = {
-            menu: 1000,
-            overlay: 1000,
-            modal: 1001,
-            tooltip: 10001
-        }
+    static ZIndexHandler_() {
         let zIndexes = [];
 
         const generateZIndex = (key, baseZIndex) => {
-            baseZIndex = baseZIndex || BaseZIndexes[key];
+            baseZIndex = baseZIndex || this.BaseZIndexes[key];
             let lastZIndex = (zIndexes.length > 0) ? zIndexes[zIndexes.length - 1] || 999 : { key, value: baseZIndex };
             let newZIndex = lastZIndex.value + (lastZIndex.key === key ? 0 : baseZIndex) + 1;
             zIndexes.push({ key, value: newZIndex });
