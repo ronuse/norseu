@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Button } from '@ronuse/react-ui/core/buttons'
 import { Panel } from "@ronuse/react-ui/core/panels/Panel";
-import { Scheme, Alignment } from "@ronuse/react-ui/core/variables";
+import { Scheme, Alignment, Position } from "@ronuse/react-ui/core/variables";
 import { InputText } from '@ronuse/react-ui/core/form';
-import { Dialog } from '@ronuse/react-ui/core/overlay';
+import { Navbar } from '@ronuse/react-ui/core/overlay';
 import { Tag } from '@ronuse/react-ui/core/misc'
 import { ObjUtils, DOMUtils, BoolUtils } from "@ronuse/react-ui/utils"
 
@@ -73,27 +73,23 @@ export class ScratchPage extends React.Component {
         var icon = this.state.buttonIcon ? this.state.buttonIcon : "fa fa-plus";
 
         return (
-            <div className="r-r-showcase-component-page">
-                <h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1> 
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+            <React.Fragment>
+                <div className="r-r-showcase-component-page">
+                    <h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1> 
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
 
-                <div className="r-r-sidebar-modal r-r-component-overlay r-r-sidebar-visible r-r-sidebar-left">
-                    <div className="r-r-sidebar">
-                        Yahoo
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div onClick={()=>{}} style={{position:"relative",backgroundColor:"black",margin:"20px",color:"white",width:"220px",height:"120px"}}>
+                        <span onClick={(e)=>this.animateRipple(e)} className="r-r-ripple r-r-noselect"/>
                     </div>
                 </div>
-
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <div onClick={()=>{}} style={{position:"relative",backgroundColor:"black",margin:"20px",color:"white",width:"220px",height:"120px"}}>
-                    <span onClick={(e)=>this.animateRipple(e)} className="r-r-ripple r-r-noselect"/>
-                </div>
-            </div>
+            </React.Fragment>
         )
     }
 }

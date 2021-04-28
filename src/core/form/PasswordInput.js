@@ -29,7 +29,7 @@ import { Scheme, Alignment } from "../variables";
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { InputText } from "./InputText"
 
-export class PasswordInput extends Component {
+export class PasswordInputComponent extends Component {
 
     static defaultProps = {
         toggleMask: false,
@@ -39,7 +39,7 @@ export class PasswordInput extends Component {
         },
         onShow: null,
         onHide: null,
-        inputRef: null
+        forwardRef: null
     }
 
     static propTypes = {
@@ -47,7 +47,7 @@ export class PasswordInput extends Component {
         toggleIcons: PropTypes.object,
         onShow: PropTypes.func,
         onHide: PropTypes.func,
-        inputRef: PropTypes.any
+        forwardRef: PropTypes.any
     }
 
     constructor(props) {
@@ -81,11 +81,13 @@ export class PasswordInput extends Component {
     render() {
         const type = this.state.hidden ? 'password' : 'text';
         const icon = this.renderToggleIcon();
-        const relayProps = ObjUtils.findDiffKeys(this.props, PasswordInput.defaultProps);
+        const relayProps = ObjUtils.findDiffKeys(this.props, PasswordInputComponent.defaultProps);
 
         return (
-            <InputText {...relayProps} ref={this.props.inputRef} type={type} rightIcon={icon}/>
+            <InputText {...relayProps} ref={this.props.forwardRef} type={type} rightIcon={icon}/>
         );
     }
 
 }
+
+export const PasswordInput = React.forwardRef((props, ref) => <PasswordInputComponent {...props} forwardRef={ref} />);

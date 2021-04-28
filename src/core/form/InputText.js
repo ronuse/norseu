@@ -30,7 +30,7 @@ import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { rrAttachToResizeListener } from "../../sensors"
 
 // TODO add fill
-export class InputText extends Component {
+export class InputTextComponent extends Component {
 
     static defaultProps = {
         scheme: null,
@@ -55,14 +55,14 @@ export class InputText extends Component {
         readOnly: false,
         floatLabel: false,
         filter: null,
-        inputRef: null,
         filterKeyOnly: false,
         onKeyPress: null,
         onInput: null,
         onPasteCapture: null,
         onFirstInput: null,
         defaultValue: "",
-        type: "text"
+        type: "text",
+        forwardRef: null
     }
 
     static propTypes = {
@@ -88,31 +88,40 @@ export class InputText extends Component {
         readOnly: PropTypes.bool,
         floatLabel: PropTypes.bool,
         filter: PropTypes.string,
-        inputRef: PropTypes.any,
         filterKeyOnly: PropTypes.bool,
         onKeyPress: PropTypes.any,
         onInput: PropTypes.any,
         onPasteCapture: PropTypes.any,
         onFirstInput: PropTypes.any,
         defaultValue: PropTypes.string,
-        type: PropTypes.string
+        type: PropTypes.string,
+        forwardRef: PropTypes.any
     }
 
     constructor(props) {
         super(props);
         this.state = ObjUtils.clone(this.props);
 
-        if (this.state.inputRef) {
-            this.state.inputRef.current = this;
-        }
         this.id = this.state.id; 
         if (!this.id) { 
             this.id = DOMUtils.UniqueElementId();
-        }
+        }        
+        this.elementRef = React.createRef(this.props.forwardRef);
 
         this.onPasteCapture = this.onPasteCapture.bind(this);
         this.onInput = this.onInput.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
+    }
+
+    resolveForwardRef() {
+        let ref = this.props.forwardRef;
+        if (ref) {
+            if (typeof ref === 'function') {
+                ref(this.elementRef.current);
+            } else {
+                ref.current = this.elementRef.current;
+            }
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -120,7 +129,7 @@ export class InputText extends Component {
     }
 
     componentDidMount() {
-
+        this.resolveForwardRef();
     }
 
     componentDidUpdate(prevProps) {
@@ -130,24 +139,6 @@ export class InputText extends Component {
     componentWillUnmount() {
 
     }
-
-    // begin Native fillers
-    getId() {
-        return this.id;
-    }
-
-    getInput() {
-        return document.getElementById(this.id);
-    }
-
-    value() {
-        return document.getElementById(this.id).value ;
-    }
-
-    focus() {
-        document.getElementById(this.id).focus();
-    }
-    // end Native fillers
 
     onPasteCapture(event) {
         if (this.state.onPasteCapture) {
@@ -186,7 +177,7 @@ export class InputText extends Component {
 
     renderInput() {
         const placeholder = (this.state.floatLabel) ? " " : this.state.placeholder;
-        let inputProps = ObjUtils.findDiffKeys(this.props, InputText.defaultProps);
+        let inputProps = ObjUtils.findDiffKeys(this.props, InputTextComponent.defaultProps);
         //inputProps = ObjUtils.removeKeys(inputProps, ['className', 'style']);
         let className = this.state.nostyle ? "" : classNames('r-r-inputtext',
             (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-hover` : null),
@@ -200,7 +191,7 @@ export class InputText extends Component {
             'r-r-disabled r-r-noselect': this.state.disabled,
             'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON
         }, 'r-r-inputtext-theme', this.state.inputClassName);
-        return <input className={className} 
+        return <input ref={this.elementRef} className={className} 
                     style={this.state.inputStyle} 
                     id={this.id} 
                     type={this.state.type}
@@ -379,3 +370,5 @@ export class InputText extends Component {
     }
 
 }
+
+export const InputText = React.forwardRef((props, ref) => <InputTextComponent {...props} forwardRef={ref} />);

@@ -15,7 +15,7 @@ export class NavbarPage extends React.Component {
 
     state = {
         pageSource: '',
-        showBasic: true,
+        showBasic: false,
         showOverflow: false,
         showFullScreen: false,
         showWithoutModal: false,
@@ -48,16 +48,16 @@ export class NavbarPage extends React.Component {
         return (
             <div style={{margin: "20px", display: "flex", flexDirection: "column"}}>
                 <span style={{fontWeight: 600}}>Select your option</span>
-                <div style={{marginTop: "10px"}}>
+                <div style={{marginTop: "10px", display: "flex", flexDirection: "column"}}>
                     <span>Email</span>
-                    <InputText scheme={Scheme.PRIMARY} ref={this.emailRef} placeholder="Enter your email address"/>
+                    <InputText ref={this.emailRef} scheme={Scheme.PRIMARY} placeholder="Enter your email address"/>
                 </div>
-                <div style={{marginTop: "10px"}}>
+                <div style={{marginTop: "10px", display: "flex", flexDirection: "column"}}>
                     <span>Password</span>
                     <PasswordInput scheme={Scheme.PRIMARY} placeholder="Enter your email address"/>
                 </div>
                 <div style={{marginTop: "10px"}}>
-                    <Checkbox label="Stay Signed in"/>
+                    <Checkbox scheme={Scheme.PRIMARY} label="Stay Signed in"/>
                 </div>
                 <div style={{marginTop: "15px"}}>
                     <Button text="Close" onClick={(e) => this.onHide(key)}/>
@@ -68,7 +68,6 @@ export class NavbarPage extends React.Component {
     }
 
     onHide(name) {
-        console.log(this.emailRef.current.focus);
         this.setState({
             [`${name}`]: false
         });
@@ -118,11 +117,11 @@ export class NavbarPage extends React.Component {
                                 <Button text="Without Modal" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithoutModal: true})} />
                                 
                                 <Navbar header="Maximizable" fullScreen isVisible={this.state.showFullScreen} onHide={(e) => this.setState({showFullScreen: false})}>
-                                    {this.navbarControls()} 
+                                    {this.navbarControls("showFullScreen")} 
                                 </Navbar>
 
                                 <Navbar header="Without Modal" noOverlay isVisible={this.state.showWithoutModal} onHide={(e) => this.setState({showWithoutModal: false})}>
-                                    {this.navbarControls()} 
+                                    {this.navbarControls("showWithoutModal")} 
                                 </Navbar>
                             </div>
                         </AccordionPanel>
@@ -145,19 +144,12 @@ export class NavbarPage extends React.Component {
                                     <option value={Position.LEFT}>{"LEFT"}</option>
                                     <option value={Position.RIGHT}>{"RIGHT"}</option>
                                     <option value={Position.TOP}>{"TOP"}</option>
-                                    <option value={Position.CENTER}>{"CENTER"}</option>
-                                    <option value={Position.TOP_CENTER}>{"TOP_CENTER"}</option>
-                                    <option value={Position.TOP_LEFT}>{"TOP_LEFT"}</option>
-                                    <option value={Position.TOP_RIGHT}>{"TOP_RIGHT"}</option>
                                     <option value={Position.BOTTOM}>{"BOTTOM"}</option>
-                                    <option value={Position.BOTTOM_LEFT}>{"BOTTOM_LEFT"}</option>
-                                    <option value={Position.BOTTOM_RIGHT}>{"BOTTOM_RIGHT"}</option>
-                                    <option value={Position.BOTTOM_CENTER}>{"BOTTOM_CENTER"}</option>
                                 </select>
                                 <Button text="Show" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithPosition: true})} />
 
                                 <Navbar position={this.state.navbarPosition} isVisible={this.state.showWithPosition} onHide={(e) => this.setState({showWithPosition: false})}>
-                                    {this.navbarControls()} 
+                                    {this.navbarControls("showWithPosition")} 
                                 </Navbar>
                             </div>
                         </AccordionPanel>

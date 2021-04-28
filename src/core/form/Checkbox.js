@@ -29,7 +29,7 @@ import BaseComponent from "../BaseComponent"
 import { Scheme, Alignment } from "../variables";
 import { DOMUtils, BoolUtils, ObjUtils } from "../../utils";
 
-export class Checkbox extends Component {
+export class CheckboxComponent extends Component {
 
     static defaultProps = {
         scheme: null,
@@ -60,7 +60,7 @@ export class Checkbox extends Component {
         readOnly: false,
         nostyle: false,
         selfManaged: false,
-        inputRef: null,
+        forwardRef: null,
         onChange: null,
         onMouseDown: null
     }
@@ -82,7 +82,7 @@ export class Checkbox extends Component {
         nostyle: PropTypes.bool,
         selfManaged: PropTypes.bool,
         onChange: PropTypes.func,
-        inputRef: PropTypes.any,
+        forwardRef: PropTypes.any,
         onMouseDown: PropTypes.func
     }
 
@@ -91,10 +91,8 @@ export class Checkbox extends Component {
         this.state = {
             checkedIndex: this.props.checkedIndex
         };
-        if (this.props.inputRef && this.props.inputRef.current !== undefined) {
-            this.props.inputRef.current = this;
-        }
 
+        this.boxRef = React.createRef(null);
         this.id = this.props.id; 
         if (!this.id) { 
             this.id = DOMUtils.UniqueElementId();
@@ -102,7 +100,18 @@ export class Checkbox extends Component {
     }
 
     componentDidMount() {
-
+        if (this.props.forwardRef) {
+            this.props.forwardRef.current = {
+                value: () => {
+                    return this.state.checkedIndex > -1 && this.props.checkStates[this.state.checkedIndex].checked;
+                },
+                focus: () => {
+                    if (this.boxRef) {
+                        this.boxRef.current.focus()
+                    };
+                }
+            };
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -112,24 +121,6 @@ export class Checkbox extends Component {
     componentWillUnmount() {
 
     }
-
-    // begin Native fillers
-    getId() {
-        return this.id;
-    }
-
-    getInput() {
-        return document.getElementById(this.id);
-    }
-
-    value() {
-        return this.state.checkedIndex > -1 && this.props.checkStates[this.state.checkedIndex].checked ;
-    }
-
-    focus() {
-        document.getElementById(this.id).focus();
-    }
-    // end Native fillers
 
     onChange(event, checkedIndex) {
         checkedIndex += 1;
@@ -186,7 +177,7 @@ export class Checkbox extends Component {
         let icon = checked.icon ? <i className={checked.icon}/> : null;
 
         return (
-            <div tabIndex="1" className={className} onClick={(e) => {
+            <div tabIndex="1" ref={this.boxRef} className={className} onClick={(e) => {
                     this.onChange(e, checkedIndex, checked);
                 }} onMouseDown={this.props.onMouseDown} 
                 aria-checked={checked.checked}>
@@ -258,3 +249,5 @@ export class Checkbox extends Component {
     }
 
 }
+
+export const Checkbox = React.forwardRef((props, ref) => <CheckboxComponent {...props} forwardRef={ref} />);

@@ -111,6 +111,23 @@ export class DOMUtils {
         }
     }
 
+    static addClasses(element, className) {
+        if (element && className) {
+            if (element.classList) {
+                let styles = className.split(' ');
+                for (let index = 0; index < styles.length; index++) {
+                    element.classList.add(styles[index]);
+                }
+
+            } else {
+                let styles = className.split(' ');
+                for (let index = 0; index < styles.length; index++) {
+                    element.className += ' ' + styles[index];
+                }
+            }
+        }
+    }
+
     static BaseZIndexes = {
         menu: 1000,
         overlay: 1000,
@@ -134,7 +151,7 @@ export class DOMUtils {
         }
         
         return {
-            get: (key) => getZIndex(key),
+            get: (key) => this.BaseZIndexes[key] || 999,
             set: (key, el, zIndex) => {
                 if (el && el.style) {
                     el.style.zIndex = String(generateZIndex(key, zIndex));
