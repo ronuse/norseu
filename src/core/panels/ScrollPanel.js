@@ -33,7 +33,7 @@ import { BoolUtils, ObjUtils, DOMUtils } from "../../utils";
 import { Elevation } from "../variables";
 import { CSSTransition } from 'react-transition-group';
 
-export class ScrollPanel extends Component {
+export class ScrollPanelComponent extends Component {
 
     static defaultProps = {
         scheme: null,
@@ -44,7 +44,8 @@ export class ScrollPanel extends Component {
         alwaysScrollY: false,
         hideScrollBars: false,
         hideScrollBarX: false,
-        hideScrollBarY: false
+        hideScrollBarY: false,
+        forwardRef: null
     }
 
     static propTypes = {
@@ -56,15 +57,28 @@ export class ScrollPanel extends Component {
         alwaysScrollY: PropTypes.bool,
         hideScrollBars: PropTypes.bool,
         hideScrollBarX: PropTypes.bool,
-        hideScrollBarY: PropTypes.bool
+        hideScrollBarY: PropTypes.bool,
+        forwardRef: PropTypes.any
     }
 
     constructor(props) {
         super(props);
+        this.elementRef = React.createRef(this.props.forwardRef);
+    }
+
+    resolveForwardRef() {
+        let ref = this.props.forwardRef;
+        if (ref) {
+            if (typeof ref === 'function') {
+                ref(this.elementRef.current);
+            } else {
+                ref.current = this.elementRef.current;
+            }
+        }
     }
 
     componentDidMount() {
-
+        this.resolveForwardRef();
     }
 
     componentDidUpdate(prevProps) {
@@ -76,7 +90,7 @@ export class ScrollPanel extends Component {
     }
 
     render() {
-        let componentProps = ObjUtils.findDiffKeys(this.props, ScrollPanel.defaultProps);
+        let componentProps = ObjUtils.findDiffKeys(this.props, ScrollPanelComponent.defaultProps);
         let className = classNames('r-r-scrollpanel', (this.props.scheme ? `${this.props.scheme}-scrollpanel` : null), this.props.elevation, {
             'r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON,
             'r-r-scrollpanel-always-show-scrollbars': this.props.alwaysScroll,
@@ -88,9 +102,10 @@ export class ScrollPanel extends Component {
         }, this.props.className);
 
         return (
-            <div className={className} {...componentProps} />
+            <div ref={this.elementRef} className={className} {...componentProps} />
         )
     }
 
 }
 
+export const ScrollPanel = React.forwardRef((props, ref) => <ScrollPanelComponent {...props} forwardRef={ref} />);

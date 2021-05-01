@@ -49,7 +49,8 @@ class ButtonComponent extends Component {
         fill: false,
         nostyle: false,
         fillIcon: null,
-        forwardRef: null
+        forwardRef: null,
+        fillOnHover: false
     }
 
     static propTypes = {
@@ -70,7 +71,8 @@ class ButtonComponent extends Component {
         fill: PropTypes.bool,
         nostyle: PropTypes.bool,
         fillIcon: PropTypes.bool,
-        forwardRef: PropTypes.any
+        forwardRef: PropTypes.any,
+        fillOnHover: PropTypes.bool
     }
 
     constructor(props) {
@@ -167,6 +169,7 @@ class ButtonComponent extends Component {
         let className = classNames(
             (this.props.scheme && !this.props.textonly && !this.props.outlined && !this.props.link) ? `${this.props.scheme}` : null, 
             (this.props.scheme && this.props.outlined) ? `${this.props.scheme}-border-1px` : null,
+            (this.props.scheme && this.props.outlined && this.props.fillOnHover) ? `${this.props.scheme}-bg-hover` : null,
             (this.props.scheme && this.props.outlined && !this.props.textonly) ? `${this.props.scheme}-border-1px-bg-hover` : null,
             (this.props.scheme && (this.props.outlined || this.props.textonly || this.props.link)) ? `${this.props.scheme}-text` : null,
             (this.props.scheme && (!this.props.nostyle && this.props.scheme)) ? `${this.props.scheme}-border-3px-focus-box-shadow` : null, {
@@ -178,7 +181,8 @@ class ButtonComponent extends Component {
             'r-r-button-rounded-border': !this.props.nostyle && this.props.rounded,
             'r-r-button-raised-border': !this.props.nostyle && this.props.raised,
             'r-r-button-textonly': !this.props.nostyle && (this.props.textonly || this.props.outlined),
-            'r-r-no-background r-r-text-decoration-underline-hover': !this.props.nostyle && this.props.link,
+            'r-r-no-background': !this.props.nostyle && (this.props.outlined || this.props.link),
+            'r-r-no-box-shadow-active r-r-text-decoration-underline-hover': !this.props.nostyle && this.props.link,
             'r-r-no-border': !this.props.nostyle && (this.props.borderless || (this.props.textonly && !this.props.outlined) || this.props.link),
             
             'r-r-button-min-size r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,

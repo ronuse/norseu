@@ -1,6 +1,6 @@
 
 
-import React from 'react'
+import React, { useRef } from 'react'
 import { HashRouter, Switch, Route, Link } from "react-router-dom"
 import { ButtonPage } from './components/core/buttons/ButtonPage'
 import { ButtonGroupPage } from './components/core/buttons/ButtonGroupPage'
@@ -34,6 +34,8 @@ import { LinearLayoutPage } from './components/layouts/LinearLayoutPage'
 import './index.css'
 
 const App = () => {
+    const componentDocumentationPanel = useRef(null);
+    
     return (
         <HashRouter>
             <LinearLayout orientation={Orientation.VERTICAL} style={{height: "100%"}}>
@@ -98,7 +100,7 @@ const App = () => {
                             </section>
                         </ScrollPanel>
                     </Navbar>
-                    <ScrollPanel style={{flex: 1, height: "100%"}}>
+                    <ScrollPanel style={{flex: 1, height: "100%"}} ref={componentDocumentationPanel}>
                         <Switch>
                             <Route exact path="/" component={HomePage}/>
                             <Route exact path="/scratch" component={ScratchPage}/>
@@ -128,7 +130,7 @@ const App = () => {
 
                             <Route exact path="/layouts/linearlayout" component={LinearLayoutPage}/>
 
-                            <Route exact path="/sensors/viewportsensor" component={ViewportSensorPage}/>
+                            <Route exact path="/sensors/viewportsensor" component={(props) => <ViewportSensorPage scrollContainerRef={componentDocumentationPanel} {...props}/>}/>
                             <Route exact path="/sensors/resizesensor" component={ResizeSensorPage}/>
                         </Switch>
                     </ScrollPanel>

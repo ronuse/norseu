@@ -26,17 +26,19 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Orientation } from '../core/variables';
-import { ObjUtils } from "../utils/";
+import { DOMUtils, ObjUtils } from "../utils/";
 
 export class ViewportSensor extends Component {
 
     static defaultProps = {
+        scrollContainerRef: null,
         onEnterViewport: null,
         onExitViewport: null,
         orientation: Orientation.HORIZONTAL_VERTICAL
     }
 
     static propTypes = {
+        scrollContainerRef: PropTypes.any,
         onEnterViewport: PropTypes.func,
         onExitViewport: PropTypes.func,
         orientation: PropTypes.string
@@ -47,10 +49,20 @@ export class ViewportSensor extends Component {
         this.state = {
             inViewport: false,
             renderChildren: false
-        };        
+        };
+        this.attachScrollEvent = this.attachScrollEvent.bind(this);
     }
 
-    componentDidMount() {
+    attachScrollEvent(waitUntilDOMReady) {
+        if (this.documentScrollListener) {
+            return;
+        }
+        let scrollContainer = (this.props.scrollContainerRef && this.props.scrollContainerRef.current && ObjUtils.isFunction(this.props.scrollContainerRef.current.addEventListener)
+                                ? this.props.scrollContainerRef.current : null);
+        if (!scrollContainer) { 
+            if (waitUntilDOMReady) { return; }
+            scrollContainer = window;
+        }
         this.documentScrollListener = (event) => {
             let inViewport = this.inViewport();
             if (inViewport) {
@@ -72,29 +84,34 @@ export class ViewportSensor extends Component {
             }
         }
 
-        window.addEventListener('scroll', this.documentScrollListener);
+        scrollContainer.addEventListener('scroll', this.documentScrollListener);
+    }
+
+    componentDidUpdate(prevProps) {
+        this.attachScrollEvent(true);
+    }
+
+    componentDidMount() {
+        this.attachScrollEvent(true);
     }
 
     componentWillUnmount() {
         if (this.documentScrollListener) {
-            window.removeEventListener('scroll', this.documentScrollListener);
+            const scrollContainer = (this.props.scrollContainerRef && this.props.scrollContainerRef.current && ObjUtils.isFunction(this.props.scrollContainerRef.current.addEventListener)
+                                    ? this.props.scrollContainerRef.current : window);
+            scrollContainer.removeEventListener('scroll', this.documentScrollListener);
             this.documentScrollListener = null;
         }
     }
 
-    inViewport() {
-        let rect = this.container.getBoundingClientRect();
-        let docElement = document.documentElement;
-        let winHeight = docElement.clientHeight;
-        let winWidth = docElement.clientWidth;
-
-        if (this.props.orientation === Orientation.VERTICAL) {
-            return (winHeight >= rect.top);
-
-        } else if (this.props.orientation === Orientation.HORIZONTAL) {
-            return (winWidth >= rect.left);
-        }
-        return ((winHeight >= rect.top) || (winWidth >= rect.left));
+    inViewport() {  
+        let rect = this.container.getBoundingClientRect();    
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
     }
 
     render() {

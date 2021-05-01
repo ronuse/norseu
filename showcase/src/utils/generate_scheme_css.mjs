@@ -136,12 +136,13 @@ export class SchemeBuilder {
 
         return schemeCss;
     }
-
+    
     static buildEssentials(parameter) {
         let schemeCss = `\n/* ${parameter.name} Scheme */\n`;
         schemeCss += `.${parameter.name} { color: ${parameter.textColor}; border: 1px solid ${parameter.baseColor}; background-color: ${parameter.baseColor}; }\n`;
         schemeCss += `.${parameter.name}-text { color: ${parameter.baseColor}; }\n`;
         schemeCss += `.${parameter.name}-bg { background-color: ${parameter.baseColor}; }\n`;
+        schemeCss += `.${parameter.name}-bg-hover:hover { color: ${parameter.textColor}; background-color: ${parameter.baseColor}; }\n`;
         schemeCss += `.${parameter.name}-text-color { color: ${parameter.textColor}; }\n`;
         schemeCss += `.${parameter.name}-text-bg { background-color: ${parameter.textColor}; }\n`;
         schemeCss += this.buildSchemeBorders(parameter.name, parameter.baseColor, parameter.everythingIsImportant);

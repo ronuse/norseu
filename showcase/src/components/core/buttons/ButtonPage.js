@@ -132,14 +132,14 @@ export class ButtonPage extends React.Component {
                 
                 <Panel title="Outlined With Over Filled Buttons" expanded collapsible borderless>
                     <Button text="Click Me" outlined/>
-                    <Button scheme={Scheme.SKELETON} outlined/>
-                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" outlined/>
-                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" outlined/>
-                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" outlined/>
-                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" outlined/>
-                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" outlined/>
-                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" outlined/>
-                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" outlined/>
+                    <Button scheme={Scheme.SKELETON} outlined fillOnHover/>
+                    <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" outlined fillOnHover/>
+                    <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" outlined fillOnHover/>
+                    <Button scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" outlined fillOnHover/>
+                    <Button scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" outlined fillOnHover/>
+                    <Button scheme={Scheme.INFO} icon="fa fa-bell" text="Info" outlined fillOnHover/>
+                    <Button scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" outlined fillOnHover/>
+                    <Button scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" outlined fillOnHover/>
                 </Panel>
                 
                 <Panel title="Text Only Buttons" expanded collapsible borderless>

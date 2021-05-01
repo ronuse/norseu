@@ -10,8 +10,16 @@ import { ViewportSensor } from "@ronuse/react-ui/sensors";
 
 export class ViewportSensorPage extends React.Component {
 
+    static defaultProps = {
+        scrollContainerRef: null
+    }
+
     state = {
         pageSource: ''
+    }
+
+    constructor(props) {
+        super(props);
     }
 
     loadPageSource() {
@@ -66,7 +74,7 @@ export class ViewportSensorPage extends React.Component {
                         flexFlow: "row-reverse"
                     }}>
                         <p>padding</p>
-                        <ViewportSensor style={{float:"right"}} direction={Orientation.HORIZONTAL}>
+                        <ViewportSensor style={{float:"right"}} direction={Orientation.HORIZONTAL} scrollContainerRef={this.props.scrollContainerRef}>
                             <img src="https://avatars3.githubusercontent.com/u/69908664?s=500"/>
                         </ViewportSensor>
                     </div>
@@ -74,7 +82,7 @@ export class ViewportSensorPage extends React.Component {
                     <h4>Scroll down to the to load the video below.</h4>
                     <div style={{height:"120vh"}}/>
                     
-                    <ViewportSensor direction={Orientation.VERTICAL} onEnterViewport={this.onEnterViewport} onExitViewport={this.onExitViewport}>
+                    <ViewportSensor direction={Orientation.VERTICAL} onEnterViewport={this.onEnterViewport} onExitViewport={this.onExitViewport} scrollContainerRef={this.props.scrollContainerRef}>
                         <iframe width="100%" height="720" src="https://www.youtube.com/embed/aSLZFdqwh7E" 
                             frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowFullScreen>
@@ -100,7 +108,7 @@ export class ViewportSensorPage extends React.Component {
                         not be rendered on leaving the view port.<br/>
                         
                         If onExitViewport return false the children will not be removed from DOM when it exit the view port , if it return true the children will 
-                        not be removed from DOM on leaving the view port.<br/>
+                        be removed from DOM on leaving the view port.<br/>
 
                         The ViewportSensor with direction HORIZONTAL will be good for carousels, or flex box with overflow items<br/>
 

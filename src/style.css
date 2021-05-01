@@ -68,7 +68,7 @@
     background-image: none;
 }
 
-.r-r-no-background:active {
+.r-r-no-box-shadow-active:active {
     box-shadow: none;
 }
 
@@ -92,6 +92,14 @@
 
 .r-r-width-max-content {
     width: max-content;
+}
+
+.r-r-height-min-content {
+    height: min-content;
+}
+
+.r-r-height-max-content {
+    height: max-content;
 }
 
 .r-r-overflow-hidden {
@@ -420,6 +428,10 @@
 
 .r-r-width-100-percent {
     width: 100% !important;
+}
+
+.r-r-height-100-percent {
+    height: 100% !important;
 }
 
 .r-r-float-right {
