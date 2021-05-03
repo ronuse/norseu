@@ -51,6 +51,8 @@ export class NavbarComponent extends Component {
         baseZIndex: null,
         transitionOptions: null,
         allowScroll: false,
+        minDimension: null,
+        maxDimension: null,
 
         onShow: null,
         onHide: null
@@ -73,6 +75,8 @@ export class NavbarComponent extends Component {
         baseZIndex: PropTypes.number,
         transitionOptions: PropTypes.object,
         allowScroll: PropTypes.bool,
+        minDimension: PropTypes.object,
+        maxDimension: PropTypes.object,
         
         onShow: PropTypes.func,
         onHide: PropTypes.func
@@ -80,6 +84,9 @@ export class NavbarComponent extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            isVisible: this.props.isVisible && this.shouldShowNavbar(this.props.minDimension, this.props.maxDimension, document.documentElement.clientWidth, document.documentElement.clientHeight)
+        }; 
         this.elementRef = React.createRef(this.props.forwardRef);
 
         this.onExit = this.onExit.bind(this);
@@ -131,6 +138,50 @@ export class NavbarComponent extends Component {
         this.modal = null;
     }
 
+    componentDidMount() {
+        if (this.props.minDimension || this.props.maxDimension) {
+            this.documentResizeListener = (event) => {
+                const width = document.documentElement.clientWidth;
+                const height = document.documentElement.clientHeight;
+                const shouldShowNavbar = this.props.isVisible && this.shouldShowNavbar(this.props.minDimension, this.props.maxDimension, width, height);
+                if (this.state.isVisible !== shouldShowNavbar) {
+                    this.setState({isVisible: shouldShowNavbar});
+                }
+            }
+            window.addEventListener('resize', this.documentResizeListener);
+        }
+    }
+
+    shouldShowNavbar(minDimension, maxDimension, screenWidth, screenHeight) {
+        if (!minDimension && !maxDimension) {
+            return true;
+        }
+        if (minDimension) {
+            if (minDimension.width !== undefined && minDimension.height !== undefined && minDimension.width < screenWidth && minDimension.height < screenHeight) {
+                return true;
+            } else if (minDimension.width !== undefined && minDimension.width < screenWidth) {
+                return true;
+            } else if (minDimension.height !== undefined && minDimension.height < screenHeight) {
+                return true;
+            }
+        } else if (maxDimension) {
+            if (maxDimension.width !== undefined && maxDimension.height !== undefined && maxDimension.width > screenWidth && maxDimension.height > screenHeight) {
+                return true;
+            } else if (maxDimension.width !== undefined && maxDimension.width > screenWidth) {
+                return true;
+            } else if (maxDimension.height !== undefined && maxDimension.height > screenHeight) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.isVisible !== undefined && this.state.isVisible !== nextProps.isVisible) {
+            this.setState({isVisible: nextProps.isVisible});
+        }
+    }
+
     componentDidUpdate(prevProps, prevState) {
         
     }
@@ -141,6 +192,10 @@ export class NavbarComponent extends Component {
             this.disableOverlay();
         }
         DOMUtils.ZIndexHandler.removeElementZIndex(this.elementRef.current);
+        if (this.documentResizeListener) {
+            window.removeEventListener('resize', this.documentResizeListener);
+            this.documentResizeListener = null;
+        }
     }
 
     onClose(event) {
@@ -203,7 +258,7 @@ export class NavbarComponent extends Component {
         };
 
         return (
-            <CSSTransition nodeRef={this.elementRef} classNames="r-r-navbar" timeout={transitionTimeout} in={this.props.isVisible} options={this.props.transitionOptions}
+            <CSSTransition nodeRef={this.elementRef} classNames="r-r-navbar" timeout={transitionTimeout} in={this.state.isVisible} options={this.props.transitionOptions}
                 unmountOnExit onEnter={this.onEnter} onEntered={this.onEntered} onExit={this.onExit} onExited={this.onExited}>
                 <div ref={this.elementRef} id={this.props.id} className={className} style={this.props.style}>
                     {this.props.children}

@@ -20,6 +20,7 @@ export class NavbarPage extends React.Component {
         showFullScreen: false,
         showWithoutModal: false,
         showWithPosition: false,
+        showCollapsibleModal: false,
         navbarPosition: Position.LEFT
     }
 
@@ -115,6 +116,7 @@ export class NavbarPage extends React.Component {
                             <div className="r-r-display-flex">
                                 <Button text="Fullscreen" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showFullScreen: true})} />
                                 <Button text="Without Modal" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithoutModal: true})} />
+                                <Button text="Toggle Responsive Navbar" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showCollapsibleModal: true})} />
                                 
                                 <Navbar header="Maximizable" fullScreen isVisible={this.state.showFullScreen} onHide={(e) => this.setState({showFullScreen: false})}>
                                     {this.navbarControls("showFullScreen")} 
@@ -122,6 +124,15 @@ export class NavbarPage extends React.Component {
 
                                 <Navbar header="Without Modal" noOverlay isVisible={this.state.showWithoutModal} onHide={(e) => this.setState({showWithoutModal: false})}>
                                     {this.navbarControls("showWithoutModal")} 
+                                </Navbar>
+                                
+                                <Navbar noOverlay header="Maximizable" isVisible={this.state.showCollapsibleModal} onHide={(e) => this.setState({showCollapsibleModal: false})} 
+                                    minDimension={{width: 500}}>
+                                    <div style={{margin: "20px"}}>
+                                        This side bar will be hidden if schreen less than 500. Click the toggle button to make it visible<br/>
+                                        Reduce the screen size to make the toggle button visible or click the button below<br/>
+                                        <Button text="Close" onClick={(e) => this.onHide("showCollapsibleModal")}/>
+                                    </div>
                                 </Navbar>
                             </div>
                         </AccordionPanel>

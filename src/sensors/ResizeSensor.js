@@ -76,9 +76,6 @@ export class ResizeSensor extends Component {
         if (!minDimension && !maxDimension) {
             return true;
         }
-        console.log(screenWidth + "- " + screenHeight);
-        console.log(minDimension);
-        console.log(maxDimension);
         if (minDimension) {
             if (minDimension.width !== undefined && minDimension.height !== undefined && minDimension.width < screenWidth && minDimension.height < screenHeight) {
                 return true;
