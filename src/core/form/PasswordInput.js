@@ -25,6 +25,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { BaseComponent } from "../BaseComponent";
 import { Scheme, Alignment } from "../variables";
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { InputText } from "./InputText"
@@ -32,36 +33,34 @@ import { InputText } from "./InputText"
 export class PasswordInputComponent extends Component {
 
     static defaultProps = {
+        hidden: true,
         toggleMask: false,
         toggleIcons: {
             show: 'fa fa-eye',
             hide: 'fa fa-eye-slash'
         },
         onShow: null,
-        onHide: null,
-        forwardRef: null
+        onHide: null
     }
 
     static propTypes = {
+        hidden: PropTypes.bool,
         toggleMask: PropTypes.bool,
         toggleIcons: PropTypes.object,
         onShow: PropTypes.func,
-        onHide: PropTypes.func,
-        forwardRef: PropTypes.any
+        onHide: PropTypes.func
     }
 
     constructor(props) {
         super(props);
-        this.state = {
-            hidden: true  
-        };
+        this.state = ObjUtils.clone(this.props);
     }
 
     renderToggleIcon() {
-        if (!this.props.toggleMask || !this.props.toggleIcons) {
+        if (!this.state.toggleMask || !this.state.toggleIcons) {
             return;
         }
-        let icon = this.state.hidden ? this.props.toggleIcons.show : this.props.toggleIcons.hide;
+        let icon = this.state.hidden ? this.state.toggleIcons.show : this.state.toggleIcons.hide;
         const isString = BoolUtils.isTypeOfAny(icon, ["string"]);
         const onClick = (e) => {
             this.setState({
@@ -81,10 +80,10 @@ export class PasswordInputComponent extends Component {
     render() {
         const type = this.state.hidden ? 'password' : 'text';
         const icon = this.renderToggleIcon();
-        const relayProps = ObjUtils.findDiffKeys(this.props, PasswordInputComponent.defaultProps);
+        const relayProps = ObjUtils.findDiffKeys(this.state, PasswordInputComponent.defaultProps);
 
         return (
-            <InputText {...relayProps} ref={this.props.forwardRef} type={type} rightIcon={icon}/>
+            <InputText {...relayProps} ref={this.state.forwardRef} type={type} rightIcon={icon}/>
         );
     }
 

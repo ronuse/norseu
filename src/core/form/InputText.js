@@ -25,12 +25,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { BaseComponent } from "../BaseComponent";
 import { Scheme, Alignment } from "../variables";
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { rrAttachToResizeListener } from "../../sensors"
 
 // TODO add fill
-export class InputTextComponent extends Component {
+export class InputTextComponent extends BaseComponent {
 
     static defaultProps = {
         scheme: null,
@@ -62,7 +63,8 @@ export class InputTextComponent extends Component {
         onFirstInput: null,
         defaultValue: "",
         type: "text",
-        forwardRef: null
+        forwardRef: null,
+        elementRef: null
     }
 
     static propTypes = {
@@ -95,45 +97,21 @@ export class InputTextComponent extends Component {
         onFirstInput: PropTypes.any,
         defaultValue: PropTypes.string,
         type: PropTypes.string,
-        forwardRef: PropTypes.any
+        forwardRef: PropTypes.any,
+        elementRef: PropTypes.any
     }
 
     constructor(props) {
         super(props);
-        this.state = ObjUtils.clone(this.props);
 
         this.id = this.state.id; 
         if (!this.id) { 
             this.id = DOMUtils.UniqueElementId();
-        }        
-        this.elementRef = React.createRef(this.props.forwardRef);
+        }
 
         this.onPasteCapture = this.onPasteCapture.bind(this);
         this.onInput = this.onInput.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
-    }
-
-    resolveForwardRef() {
-        let ref = this.props.forwardRef;
-        if (ref) {
-            if (typeof ref === 'function') {
-                ref(this.elementRef.current);
-            } else {
-                ref.current = this.elementRef.current;
-            }
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState(nextProps);
-    }
-
-    componentDidMount() {
-        this.resolveForwardRef();
-    }
-
-    componentDidUpdate(prevProps) {
-
     }
 
     componentWillUnmount() {

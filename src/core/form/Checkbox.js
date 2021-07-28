@@ -25,11 +25,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import BaseComponent from "../BaseComponent"
+import { BaseComponent } from "../BaseComponent";
 import { Scheme, Alignment } from "../variables";
 import { DOMUtils, BoolUtils, ObjUtils } from "../../utils";
 
-export class CheckboxComponent extends Component {
+export class CheckboxComponent extends BaseComponent {
 
     static defaultProps = {
         scheme: null,
@@ -60,7 +60,6 @@ export class CheckboxComponent extends Component {
         readOnly: false,
         nostyle: false,
         selfManaged: false,
-        forwardRef: null,
         onChange: null,
         onMouseDown: null
     }
@@ -82,7 +81,6 @@ export class CheckboxComponent extends Component {
         nostyle: PropTypes.bool,
         selfManaged: PropTypes.bool,
         onChange: PropTypes.func,
-        forwardRef: PropTypes.any,
         onMouseDown: PropTypes.func
     }
 
@@ -99,23 +97,15 @@ export class CheckboxComponent extends Component {
         }
     }
 
-    componentDidMount() {
-        if (this.props.forwardRef) {
-            this.props.forwardRef.current = {
-                value: () => {
-                    return this.state.checkedIndex > -1 && this.props.checkStates[this.state.checkedIndex].checked;
-                },
-                focus: () => {
-                    if (this.boxRef) {
-                        this.boxRef.current.focus()
-                    };
-                }
-            };
-        }
-    }
-
-    componentDidUpdate(prevProps) {
-
+    resolveForwardRef(extraValues) {
+        super.resolveForwardRef({
+            value: () => this.state.checkedIndex > -1 && this.props.checkStates[this.state.checkedIndex].checked,
+            focus: () => {
+                if (this.boxRef) {
+                    this.boxRef.current.focus()
+                };
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -149,7 +139,8 @@ export class CheckboxComponent extends Component {
             return;
         }
 
-        let element = <input type="checkbox" 
+        let element = <input type="checkbox"
+            ref={this.elementRef}
             id={this.id} 
             name={this.props.name} 
             required={this.props.required}
@@ -250,4 +241,4 @@ export class CheckboxComponent extends Component {
 
 }
 
-export const Checkbox = React.forwardRef((props, ref) => <CheckboxComponent {...props} forwardRef={ref} />);
+export const Checkbox = React.forwardRef((props, ref) => <CheckboxComponent forwardRef={ref} {...props} />);
