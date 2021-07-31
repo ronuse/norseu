@@ -5,7 +5,7 @@ import { Button } from '@ronuse/react-ui/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Position, Orientation, Elevation, InputFilters } from "@ronuse/react-ui/core/variables";
+import { Position, Orientation, Elevation, InputFilters, Alignment } from "@ronuse/react-ui/core/variables";
 import { LinearLayout } from "@ronuse/react-ui/layouts";
 import { PasswordInput, InputText, Checkbox } from "@ronuse/react-ui/core/form";
 import { AlertDialog, alertDialog, loadingDialog } from "@ronuse/react-ui/core/overlay";
@@ -21,7 +21,8 @@ export class AlertDialogPage extends React.Component {
         showWithoutModal: false,
         showWithPosition: false,
         showWithoutHeaderAndFooter: false,
-        dialogPosition: Position.LEFT
+        dialogPosition: Position.LEFT,
+        alignNavigator: Alignment.RIGHT
     }
 
     constructor(props) {
@@ -131,9 +132,17 @@ export class AlertDialogPage extends React.Component {
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
+                            <span>Footer Allignment </span>
+                            <select onChange={(e)=>{this.setState({ alignNavigator: e.target.value} )}}>
+                                <option value={Alignment.RIGHT}>{"RIGHT"}</option>
+                                <option value={Alignment.CENTER}>{"CENTER"}</option>
+                                <option value={Alignment.LEFT}>{"LEFT"}</option>
+                            </select> TODO change select below to ronuse select Component
                             <div className="r-r-display-flex">
                                 <Button text="Show" icon="fa fa-eye" scheme={Scheme.PRIMARY} onClick={() => this.setState({ visible: true })} />
-                                <AlertDialog visible={this.state.visible} onHide={() => this.setState({ visible: false })} message={this.basicText()} onConfirm={this.onConfirm} onCancel={this.onCancel}/>
+                                <AlertDialog visible={this.state.visible} onHide={() => this.setState({ visible: false })} message={this.basicText()} 
+                                    cancelLabel="Cancel" confirmScheme={Scheme.SUCCESS} cancelScheme={Scheme.DANGER} dismissableModal
+                                    onConfirm={this.onConfirm} onCancel={this.onCancel} alignFooter={this.state.alignNavigator}/>
                             </div>
                         </AccordionPanel>
                         {getSourceInEditorR(source2, this.previewPanel2)}

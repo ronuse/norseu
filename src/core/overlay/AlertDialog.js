@@ -28,7 +28,7 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import { ObjUtils, BoolUtils, DOMUtils } from "../../utils";
-import { Position } from "../variables";
+import { Alignment, Position } from "../variables";
 import { Portal } from "./Portal"
 import { Dialog } from "./Dialog"
 import { CSSTransition } from 'react-transition-group';
@@ -91,12 +91,16 @@ export class AlertDialog extends Component {
         icon: null,
         confirmLabel: "OK",
         cancelLabel: null,
+        confirmRef: null,
+        cancelRef: null,
         confirmIcon: null,
         cancelClassName: null,
         confirmScheme: null,
         cancelScheme: null,
         container: null,
         dismissableModal: false,
+        alignFooter: Alignment.RIGHT,
+        footerElements: null,
         
         onConfirm: null,
         onCancel: null,
@@ -107,6 +111,8 @@ export class AlertDialog extends Component {
         isVisible: PropTypes.bool,
         icon: PropTypes.any,
         message: PropTypes.any,
+        confirmRef: PropTypes.any,
+        cancelRef: PropTypes.any,
         confirmLabel: PropTypes.string,
         cancelLabel: PropTypes.string,
         confirmIcon: PropTypes.string,
@@ -115,6 +121,8 @@ export class AlertDialog extends Component {
         cancelScheme: PropTypes.string,
         container: PropTypes.any,
         dismissableModal: PropTypes.bool,
+        alignFooter: PropTypes.string,
+        footerElements: PropTypes.any,
 
         onConfirm: PropTypes.func,
         onCancel: PropTypes.func,
@@ -132,18 +140,16 @@ export class AlertDialog extends Component {
         this.resolve = this.resolve.bind(this);
     }
 
-    confirm() {
-        if (this.props.onConfirm) {
-            this.props.onConfirm();
+    confirm(event) {
+        if (!this.props.onConfirm || !this.props.onConfirm(event)) {
+            this.resolve(AlertDialogEvent.Confirm);
         }
-        this.resolve(AlertDialogEvent.Confirm);
     }
 
-    cancel() {
-        if (this.props.onCancel) {
-            this.props.onCancel();
+    cancel(event) {
+        if (!this.props.onCancel || !this.props.onCancel(event)) {
+            this.resolve(AlertDialogEvent.Cancel);
         }
-        this.resolve(AlertDialogEvent.Cancel);
     }
 
     resolve(result) {
@@ -176,15 +182,16 @@ export class AlertDialog extends Component {
 
     renderControl() {
         const confirmButton = this.props.confirmLabel || this.props.confirmIcon 
-                                ? <Button text={this.props.confirmLabel} icon={this.props.confirmIcon} scheme={this.props.confirmScheme} onClick={this.confirm}/> 
+                                ? <Button ref={this.props.confirmRef} text={this.props.confirmLabel} icon={this.props.confirmIcon} scheme={this.props.confirmScheme} onClick={this.confirm}/> 
                                 : null;
         const cancelButton = this.props.cancelLabel || this.props.cancelIcon  
-                                ? <Button text={this.props.cancelLabel} icon={this.props.cancelIcon} scheme={this.props.cancelScheme} onClick={this.cancel}/> 
+                                ? <Button ref={this.props.cancelRef} text={this.props.cancelLabel} icon={this.props.cancelIcon} scheme={this.props.cancelScheme} onClick={this.cancel}/> 
                                 : null;
         return (
-            <div className="r-r-alert-dialog-footer">
+            <div className={`r-r-alert-dialog-footer r-r-alert-dialog-footer-${this.props.alignFooter}`}>
                 {cancelButton}
                 {confirmButton}
+                {this.props.footerElements}
             </div>
         );
     }

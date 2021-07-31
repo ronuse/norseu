@@ -251,6 +251,18 @@
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
+    padding: 0rem 0.5rem 0rem 0.5rem;
+    padding-top: 0rem;
+}
+
+.r-r-alert-dialog-footer-left {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+}
+
+.r-r-alert-dialog-footer-center {
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .r-r-alert-dialog .r-r-dialog-content .r-r-dialog-content-icon.r-r-dialog-content-icon-str {
