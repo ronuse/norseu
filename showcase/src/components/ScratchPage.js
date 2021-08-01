@@ -74,8 +74,9 @@ export class ScratchPage extends React.Component {
 
         return (
             <React.Fragment>
-                <div className="r-r-showcase-component-page">
+                <div className="r-r-showcase-component-page" style={{background: "white"}}>
                     <h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1> 
+                    <textarea disabled className="r-r-textarea r-r-primary-border-hover r-r-primary-border-1px-focus r-r-primary-border-3px-focus-box-shadow r-r-disabled" placeholder="Yahoo">Wose</textarea>
                     <br/>
                     <br/>
                     <br/>

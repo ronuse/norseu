@@ -55,6 +55,7 @@ export const Elevation = {
 }
 
 export const Orientation = {
+    NONE: "none",
     HORIZONTAL: "horizontal",
     VERTICAL: "vertical",
     HORIZONTAL_VERTICAL: "horizontal_vertical"

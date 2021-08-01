@@ -71,6 +71,7 @@
 .r-r-button-group {
     display: flex;
     padding: 0px;
+    width: fit-content;
 }
 
 .r-r-button-group > .r-r-button {

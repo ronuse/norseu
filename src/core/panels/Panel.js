@@ -48,6 +48,8 @@ export class Panel extends Component {
         collapseIcon: "fa fa-minus",
         contentClassName: null,
         headerClassName: null,
+        contentStyle: null,
+        headerStyle: null,
         onCollapse: null,
         onExpand: null,
         onToggle: null,
@@ -72,6 +74,8 @@ export class Panel extends Component {
         collapseIcon: PropTypes.string,
         contentClassName: PropTypes.string,
         headerClassName: PropTypes.string,
+        contentStyle: PropTypes.object,
+        headerStyle: PropTypes.object,
         onCollapse: PropTypes.func,
         onExpand: PropTypes.func,
         onToggle: PropTypes.func,
@@ -148,7 +152,7 @@ export class Panel extends Component {
 
             return (
                 <div className="r-r-panel-header">
-                    <span className={className} aria-label={this.id + '-header'}>{this.props.title}</span>
+                    <span className={className} aria-label={this.id + '-header'} style={this.props.headerStyle}>{this.props.title}</span>
                     {this.props.collapsible ? <Button scheme={this.props.scheme} rounded textonly icon={toggleIcon} onClick={this.toggle} className="r-r-panel-toggle-button" /> : ''}
                     
                 </div>
@@ -221,7 +225,7 @@ export class Panel extends Component {
         
         return (
             <CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={expanded} unmountOnExit>
-                <div className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'}>
+                <div className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'} style={this.props.contentStyle}>
                     {children}
                 </div>
             </CSSTransition>

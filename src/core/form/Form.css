@@ -9,7 +9,7 @@
  /* InputText */ 
 
 .r-r-inputtext {
-    background-color: transparent;
+    background-color: rgba(194, 204, 207, 0.2);
     border: 1px solid #c7c7c7;
     border-radius: 3px;
     outline: none;
@@ -145,3 +145,61 @@
     margin-bottom: 0px;
     flex: 1;
 }
+
+/* TextArea */ 
+
+.r-r-textarea {
+    background-color: transparent;
+    border: 1px solid #c7c7c7;
+    border-radius: 3px;
+    outline: none;
+    padding: 8px;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 200px;
+    height: 120px;
+}
+
+.r-r-textarea-flushed {
+    border: none;
+    border-bottom: 1px solid #c7c7c7;
+    border-radius: 0px;
+}
+
+.r-r-textarea-rz-none {
+    resize: none;
+}
+
+.r-r-textarea-rz-h {
+    resize: horizontal;
+}
+
+.r-r-textarea-rz-v {
+    resize: vertical;
+}
+
+.r-r-textarea-label {
+    display: inline-block;
+}
+
+.r-r-textarea-help-label {
+    display: inline-block;
+}
+
+.r-r-floating-label > .r-r-textarea-label-flushed {
+    left: 10px;
+}
+
+.r-r-textarea:focus ~ .r-r-textarea-label,
+.r-r-textarea:not(:placeholder-shown) ~ .r-r-textarea-label {
+    top: -32px;
+    left: 0px;
+}
+
+.r-r-textarea:focus ~ .r-r-textarea-label-flushed,
+.r-r-textarea:not(:placeholder-shown) ~ .r-r-textarea-label-flushed {
+    top: -23px;
+    left: 0px;
+}
+

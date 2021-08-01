@@ -26,10 +26,11 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
+import { BaseComponent } from "../BaseComponent";
 import { ObjUtils, BoolUtils } from "../../utils";
 import { Orientation } from "../variables/";
 
-export class ButtonGroup extends Component {
+export class ButtonGroup extends BaseComponent {
 
     static defaultProps = {
         fill: null,
@@ -43,12 +44,8 @@ export class ButtonGroup extends Component {
         scheme: PropTypes.string
     }
 
-    componentDidMount() {
-
-    }
-
-    componentDidUpdate(prevProps) {
-
+    constructor(props) {
+        super(props);
     }
 
     componentWillUnmount() {
@@ -56,17 +53,17 @@ export class ButtonGroup extends Component {
     }
 
     prepareChildren() {
-        if (!this.props.scheme && !this.props.fill) {
-            return this.props.children;
-        }
-
-        let children = React.Children.map(this.props.children, child => {
+        let children = React.Children.map(this.state.children, child => {
+            if (!child) return undefined;
             var relayProps = ObjUtils.clone(child.props);
-            if (this.props.scheme && !relayProps.scheme) {
-                relayProps.scheme = this.props.scheme;
+            if (this.state.scheme && !relayProps.scheme) {
+                relayProps.scheme = this.state.scheme;
             }
-            if (this.props.fill) {
+            if (this.state.fill) {
                 relayProps.fill = true;
+            } else {
+                if (!relayProps.style) relayProps.style = {};
+                relayProps.style.width = "auto";
             }
             return React.cloneElement(child, relayProps);
         })
@@ -76,14 +73,14 @@ export class ButtonGroup extends Component {
     render() {
         
         let className = classNames('r-r-button-group', {
-            'r-r-flex-vertical': BoolUtils.equalsAny(this.props.direction, [Orientation.VERTICAL]),
-            'r-r-width-100-percent': this.props.fill
-        }, this.props.className);
+            'r-r-flex-vertical': BoolUtils.equalsAny(this.state.direction, [Orientation.VERTICAL]),
+            'r-r-width-100-percent': this.state.fill
+        }, this.state.className);
         let componentProps = ObjUtils.findDiffKeys(this.props, ButtonGroup.defaultProps);
         let children = this.prepareChildren();
 
         return (
-            <div {...componentProps} className={className}>
+            <div {...this.state.eventProps} {...componentProps} className={className}>
                 {children}
             </div>
         )

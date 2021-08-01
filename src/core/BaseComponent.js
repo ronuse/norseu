@@ -41,10 +41,11 @@ export class BaseComponent extends Component {
         elementRef: PropTypes.any
     }
 
-    constructor(props) {
+    constructor(props, ignoreList) {
         super(props);
-        this.state = ObjUtils.clone(this.props);
+        this.state = ObjUtils.clone(this.props, ignoreList);
         this.elementRef = React.createRef(this.props.elementRef);
+        this.state.eventProps = ObjUtils.extractEventProps(this.props); // TODO ignore the event captured by the component itself
     }
 
     resolveForwardRef(extraValues) {
@@ -75,9 +76,6 @@ export class BaseComponent extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps == this.props) {
-            return;
-        }
         this.resolveForwardRef({});
     }
     

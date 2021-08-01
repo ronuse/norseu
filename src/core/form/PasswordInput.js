@@ -30,7 +30,7 @@ import { Scheme, Alignment } from "../variables";
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { InputText } from "./InputText"
 
-export class PasswordInputComponent extends Component {
+export class PasswordInputComponent extends BaseComponent {
 
     static defaultProps = {
         hidden: true,
@@ -53,7 +53,6 @@ export class PasswordInputComponent extends Component {
 
     constructor(props) {
         super(props);
-        this.state = ObjUtils.clone(this.props);
     }
 
     renderToggleIcon() {

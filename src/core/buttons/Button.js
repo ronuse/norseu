@@ -184,8 +184,8 @@ class ButtonComponent extends BaseComponent {
         componentProps.children.push(iconPreText ? '' : icon);
         componentProps.children.push(rightIconPreText ? '' : rightIcon);
 
-        let element = this.state.link ? <a ref={this.elementRef} {...componentProps} className={className}/>
-                      : <button ref={this.elementRef} {...componentProps} className={className}/>
+        let element = this.state.link ? <a ref={this.elementRef} {...this.state.eventProps} {...componentProps} className={className}/>
+                      : <button ref={this.elementRef} {...this.state.eventProps} {...componentProps} className={className}/>
 
         return element;
     }

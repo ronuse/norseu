@@ -53,7 +53,7 @@
     cursor: default;
 }
 
-.r-r-readonly {
+.r-r-readOnly {
     pointer-events:none;
     cursor: default;
 }

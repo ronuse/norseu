@@ -38,6 +38,22 @@ export class ObjUtils {
         return clone;
     }
 
+    static conditionalClone(obj, conditionCallback) {
+        var clone = {};
+
+        if (!obj) { return clone; }
+        Object.keys(obj).map((key) => {
+            if (conditionCallback(key) === true) {
+                clone[key] = obj[key];
+            }
+        });
+        return clone;
+    }
+
+    static extractEventProps(obj) {
+        return this.conditionalClone(obj, (key) => key.startsWith("on") && key[2] != undefined && key[2] == key[2].toUpperCase());
+    }
+
     static typeOf(obj) {
         return typeof obj;
     }

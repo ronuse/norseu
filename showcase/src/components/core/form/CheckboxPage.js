@@ -146,8 +146,8 @@ export class CheckboxPage extends React.Component {
                     <Checkbox label="Disabled" checked={true} disabled/><br/>
                     <Checkbox label={this.state.checked ? "Checked - true" : "Checked - false"} checked={this.state.checked} 
                                 onChange={e => this.setState({ checked: e.checked })} selfManaged/><br/>
-                    <Checkbox name="readonly-checkbox" scheme={Scheme.PRIMARY} label="Read Only" readOnly checked/>
-                    <Checkbox name="readonly-checkbox" scheme={Scheme.PRIMARY} label={this.longText()} checked/>
+                    <Checkbox name="readOnly-checkbox" scheme={Scheme.PRIMARY} label="Read Only" readOnly checked/>
+                    <Checkbox name="readOnly-checkbox" scheme={Scheme.PRIMARY} label={this.longText()} checked/>
                 </Panel>
                 
                 <Panel title="With Scheme" expanded collapsible borderless>

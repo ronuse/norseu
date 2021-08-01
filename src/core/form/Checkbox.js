@@ -86,12 +86,9 @@ export class CheckboxComponent extends BaseComponent {
 
     constructor(props) {
         super(props);
-        this.state = {
-            checkedIndex: this.props.checkedIndex
-        };
 
         this.boxRef = React.createRef(null);
-        this.id = this.props.id; 
+        this.id = this.state.id; 
         if (!this.id) { 
             this.id = DOMUtils.UniqueElementId();
         }
@@ -99,7 +96,7 @@ export class CheckboxComponent extends BaseComponent {
 
     resolveForwardRef(extraValues) {
         super.resolveForwardRef({
-            value: () => this.state.checkedIndex > -1 && this.props.checkStates[this.state.checkedIndex].checked,
+            value: () => this.state.checkedIndex > -1 && this.state.checkStates[this.state.checkedIndex].checked,
             focus: () => {
                 if (this.boxRef) {
                     this.boxRef.current.focus()
@@ -108,69 +105,75 @@ export class CheckboxComponent extends BaseComponent {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        
+    }
+
     componentWillUnmount() {
 
     }
 
     onChange(event, checkedIndex) {
         checkedIndex += 1;
-        const checkStatesSize = this.props.checkStates.length;
+        const checkStatesSize = this.state.checkStates.length;
         if (checkedIndex >= checkStatesSize) {
             checkedIndex = 0;
         }
-        if (!this.props.selfManaged) {
+        if (!this.state.selfManaged) {
             this.setState({
                 checkedIndex: checkedIndex
             })
         }
-        let checkState = this.props.checkStates[checkedIndex] ;
-        if (this.props.onChange) {
-            this.props.onChange({
+        let checkState = this.state.checkStates[checkedIndex] ;
+        if (this.state.onChange) {
+            this.state.onChange({
                 event: event,
                 checked: checkState.checked,
                 value: checkState.value,
-                checkedIndex: checkedIndex
+                checkedIndex: checkedIndex,
+                ref: this.state.forwardRef
             });
         }
     }
 
     renderInput(checked) {
-        if (!this.props.name) {
+        if (!this.state.name) {
             return;
         }
 
         let element = <input type="checkbox"
             ref={this.elementRef}
             id={this.id} 
-            name={this.props.name} 
-            required={this.props.required}
-            disabled={this.props.readOnly}
+            name={this.state.name} 
+            required={this.state.required}
+            disabled={this.state.readOnly}
             defaultChecked={checked.checked}
+            {...this.state.eventProps}
         />;
         return element;
     }
 
     renderBox(checkedIndex, checked) {
-        let scheme = checked.scheme || this.props.scheme;
+        let scheme = checked.scheme || this.state.scheme;
         let className = classNames(
             (scheme && checked.icon) ? `${scheme} ${scheme}-border-2px` : null,
             (scheme && !checked.icon) ? `${scheme}-border-hover` : null, 
-            (scheme && this.props.scheme ? `${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null), {
-            'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON,
-            'r-r-checkbox-box': !this.props.nostyle,
-            'r-r-margin-right-10px': BoolUtils.equalsAny(this.props.align, [Alignment.LEFT, Alignment.CENTER]),
-            'r-r-margin-left-10px': BoolUtils.equalsAny(this.props.align, [Alignment.RIGHT]),
-            'r-r-margin-bottom-10px': BoolUtils.equalsAny(this.props.align, [Alignment.TOP, Alignment.TOP_LEFT, Alignment.TOP_CENTER, Alignment.TOP_RIGHT]),
-            'r-r-margin-top-10px': BoolUtils.equalsAny(this.props.align, [Alignment.BOTTOM, Alignment.BOTTOM_LEFT, Alignment.BOTTOM_CENTER, Alignment.BOTTOM_RIGHT]),
-            'r-r-align-self-center': this.props.align === Alignment.TOP_CENTER || this.props.align === Alignment.BOTTOM_CENTER,
-            'r-r-align-self-flex-end': this.props.align === Alignment.TOP_RIGHT || this.props.align === Alignment.BOTTOM_RIGHT
+            (scheme && this.state.scheme ? `${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null), {
+            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-checkbox-box': !this.state.nostyle,
+            'r-r-margin-right-10px': BoolUtils.equalsAny(this.state.align, [Alignment.LEFT, Alignment.CENTER]),
+            'r-r-margin-left-10px': BoolUtils.equalsAny(this.state.align, [Alignment.RIGHT]),
+            'r-r-margin-bottom-10px': BoolUtils.equalsAny(this.state.align, [Alignment.TOP, Alignment.TOP_LEFT, Alignment.TOP_CENTER, Alignment.TOP_RIGHT]),
+            'r-r-margin-top-10px': BoolUtils.equalsAny(this.state.align, [Alignment.BOTTOM, Alignment.BOTTOM_LEFT, Alignment.BOTTOM_CENTER, Alignment.BOTTOM_RIGHT]),
+            'r-r-align-self-center': this.state.align === Alignment.TOP_CENTER || this.state.align === Alignment.BOTTOM_CENTER,
+            'r-r-align-self-flex-end': this.state.align === Alignment.TOP_RIGHT || this.state.align === Alignment.BOTTOM_RIGHT
         });
         let icon = checked.icon ? <i className={checked.icon}/> : null;
 
         return (
             <div tabIndex="1" ref={this.boxRef} className={className} onClick={(e) => {
                     this.onChange(e, checkedIndex, checked);
-                }} onMouseDown={this.props.onMouseDown} 
+                }} onMouseDown={(e) => this.state.onMouseDown ? this.state.onMouseDown(e, this.state.forwardRef) : undefined} 
                 aria-checked={checked.checked}>
 
                 {icon}
@@ -179,35 +182,35 @@ export class CheckboxComponent extends BaseComponent {
     }
 
     renderLabel() {
-        if (!this.props.label) {
+        if (!this.state.label) {
             return;
         }
-        let isString = BoolUtils.isTypeOfAny(this.props.label, ["string"]);
-        if (!isString && !React.isValidElement(this.props.label)) {
+        let isString = BoolUtils.isTypeOfAny(this.state.label, ["string"]);
+        if (!isString && !React.isValidElement(this.state.label)) {
             throw new Error("Only string or a valid react element is expected as the checkbox label");
         }
 
         let className = classNames({
-            'r-r-skeleton r-r-loading': this.props.scheme === Scheme.SKELETON
+            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON
         }, 'r-r-checkbox-label'); 
         if (isString) {
             return (
-                <label className={className} htmlFor={this.id}>{this.props.label}</label>
+                <label className={className} htmlFor={this.id}>{this.state.label}</label>
             )
         }
-        var relayProps = ObjUtils.clone(this.props.label.props);
+        var relayProps = ObjUtils.clone(this.state.label.props);
         className = classNames(className, relayProps.className);
         relayProps.className = className;
-        return React.cloneElement(this.props.label, relayProps);
+        return React.cloneElement(this.state.label, relayProps);
     }
 
     getCheckStatesIndex() {
-        const checkStatesSize = this.props.checkStates.length;
-        let checkedIndex = this.props.checkedIndex;
+        const checkStatesSize = this.state.checkStates.length;
+        let checkedIndex = this.state.checkedIndex;
         if (this.state.checkedIndex !== undefined) {
             checkedIndex = this.state.checkedIndex;
         }
-        checkedIndex = checkedIndex == -1 ? (this.props.checked ? 1 : 0) : checkedIndex;
+        checkedIndex = checkedIndex == -1 ? (this.state.checked ? 1 : 0) : checkedIndex;
         if (checkedIndex >= checkStatesSize) {
             checkedIndex = 0;
         }
@@ -216,22 +219,22 @@ export class CheckboxComponent extends BaseComponent {
 
     render() {
         let checkedIndex = this.getCheckStatesIndex();
-        let checked = this.props.checkStates[checkedIndex] ;
+        let checked = this.state.checkStates[checkedIndex] ;
         let className = classNames({
-            'r-r-checkbox': !this.props.nostyle,
-            'r-r-disabled r-r-noselect': !this.props.nostyle && this.props.disabled,
-            'r-r-readonly': !this.props.nostyle && this.props.readOnly,
-            'r-r-flex-direction-row-reverse': !this.props.align.startsWith(Alignment.BOTTOM) && !this.props.align.startsWith(Alignment.TOP) && 
-                                                BoolUtils.equalsAny(this.props.align, [Alignment.RIGHT]),
-            'r-r-flex-direction-column': this.props.align.startsWith(Alignment.TOP),
-            'r-r-flex-direction-column-reverse': this.props.align.startsWith(Alignment.BOTTOM)
-        }, 'r-r-checkbox-theme', this.props.className);
+            'r-r-checkbox': !this.state.nostyle,
+            'r-r-disabled r-r-noselect': !this.state.nostyle && this.state.disabled,
+            'r-r-readOnly': !this.state.nostyle && this.state.readOnly,
+            'r-r-flex-direction-row-reverse': !this.state.align.startsWith(Alignment.BOTTOM) && !this.state.align.startsWith(Alignment.TOP) && 
+                                                BoolUtils.equalsAny(this.state.align, [Alignment.RIGHT]),
+            'r-r-flex-direction-column': this.state.align.startsWith(Alignment.TOP),
+            'r-r-flex-direction-column-reverse': this.state.align.startsWith(Alignment.BOTTOM)
+        }, 'r-r-checkbox-theme', this.state.className);
         let input = this.renderInput(checked);
         let box = this.renderBox(checkedIndex, checked);
         let label = this.renderLabel();
 
         return (
-            <div className={className} style={this.props.style}>
+            <div className={className} style={this.state.style}>
                     {input}
                     {box}
                     {label}
