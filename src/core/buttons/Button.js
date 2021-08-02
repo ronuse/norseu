@@ -163,8 +163,8 @@ class ButtonComponent extends BaseComponent {
             'r-r-no-box-shadow-active r-r-text-decoration-underline-hover': !this.state.nostyle && this.state.link,
             'r-r-no-border': !this.state.nostyle && (this.state.borderless || (this.state.textonly && !this.state.outlined) || this.state.link),
             
-            'r-r-button-min-size r-r-loading r-r-skeleton': this.state.scheme === Scheme.SKELETON /*&& !(this.state.icon || this.state.rightIcon)*/,
-            'r-r-button-min-size-icon-only r-r-loading r-r-skeleton': this.state.scheme === Scheme.SKELETON && (this.state.icon || this.state.rightIcon) && !this.state.text,
+            'r-r-button-min-size r-r-skeleton': this.state.scheme === Scheme.SKELETON /*&& !(this.state.icon || this.state.rightIcon)*/,
+            'r-r-button-min-size-icon-only r-r-skeleton': this.state.scheme === Scheme.SKELETON && (this.state.icon || this.state.rightIcon) && !this.state.text,
 
             'r-r-stateless': BoolUtils.equalsAny(this.state.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.state.link,
             'r-r-padding-0px': this.state.fillIcon

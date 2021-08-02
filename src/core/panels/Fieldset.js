@@ -141,7 +141,7 @@ export class Fieldset extends Component {
 
         const toggleIcon = (this.props.collapsible ? (expanded ? this.props.collapseIcon : this.props.expandIcon) : null);
         let className = classNames('r-r-fieldset-legend', {
-            'r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.props.scheme === Scheme.SKELETON,
             'r-r-noselect r-r-no-pointer-event': !this.props.collapsible
         }, this.props.headerClassName);
         if (!isString) {

@@ -92,7 +92,7 @@ export class ScrollPanelComponent extends Component {
     render() {
         let componentProps = ObjUtils.findDiffKeys(this.props, ScrollPanelComponent.defaultProps);
         let className = classNames('r-r-scrollpanel', (this.props.scheme ? `${this.props.scheme}-scrollpanel` : null), this.props.elevation, {
-            'r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.props.scheme === Scheme.SKELETON,
             'r-r-scrollpanel-always-show-scrollbars': this.props.alwaysScroll,
             'r-r-scrollpanel-always-show-scrollbar-x': this.props.alwaysScrollX,
             'r-r-scrollpanel-always-show-scrollbar-y': this.props.alwaysScrollY,

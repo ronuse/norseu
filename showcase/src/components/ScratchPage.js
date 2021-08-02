@@ -1,14 +1,16 @@
 
 import React, { Component } from "react"
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Button } from '@ronuse/react-ui/core/buttons'
 import { Panel } from "@ronuse/react-ui/core/panels/Panel";
 import { Scheme, Alignment, Position } from "@ronuse/react-ui/core/variables";
 import { InputText } from '@ronuse/react-ui/core/form';
-import { Navbar } from '@ronuse/react-ui/core/overlay';
+import { Navbar, Portal } from '@ronuse/react-ui/core/overlay';
 import { Tag } from '@ronuse/react-ui/core/misc'
 import { ObjUtils, DOMUtils, BoolUtils } from "@ronuse/react-ui/utils"
+import { CSSTransition } from 'react-transition-group';
 
 export class ScratchPage extends React.Component {
 
@@ -25,7 +27,61 @@ export class ScratchPage extends React.Component {
         this.cancelButton = React.createRef();
         this.recButton = React.createRef();
         this.dialogRef = React.createRef();
-        
+
+        this.props_ = {
+            children: [
+                <h3>Hello WOrld</h3>
+            ]
+        }
+        this.state_ = {
+            id: "tmp-id-1",
+            visible: true
+        }
+    }
+
+    renderElement() {
+        let className = classNames('r-r-popup r-r-popup-tmp', this.props_.className);
+
+        return (
+            <CSSTransition nodeRef={this.elementRef} classNames="r-r-popup" timeout={{ enter: 130, exit: 110 }} in={this.state_.visible} options={this.props_.transitionOptions}
+                unmountOnExit onEnter={this.onEnter} onEntered={this.onEntered} onExited={this.onExited}>
+                <div ref={this.elementRef} id={this.state_.id} className={className} style={this.props_.style}
+                    role="dialog" aria-labelledby={this.state_.id + '-header'} aria-describedby={this.state_.id + '-content'} aria-modal={this.props_.modal}>
+                    {this.props_.children}
+                </div>
+            </CSSTransition>
+        )
+    }
+
+    render() {
+        const element = this.renderElement();
+        return ReactDOM.createPortal(element, document.body);
+        return <Portal child={element} container={this.props_.container} visible/>;
+    }
+
+    render__() {
+        var icon = this.state.buttonIcon ? this.state.buttonIcon : "fa fa-plus";
+
+        return (
+            <React.Fragment>
+                <div className="r-r-showcase-component-page" style={{background: "white"}}>
+                    <h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1> 
+                    <textarea disabled className="r-r-textarea r-r-primary-border-hover r-r-primary-border-1px-focus r-r-primary-border-3px-focus-box-shadow r-r-disabled" placeholder="Yahoo">Wose</textarea>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div onClick={()=>{}} style={{position:"relative",backgroundColor:"black",margin:"20px",color:"white",width:"220px",height:"120px"}}>
+                        <span onClick={(e)=>this.animateRipple(e)} className="r-r-ripple r-r-noselect"/>
+                    </div>
+                </div>
+            </React.Fragment>
+        )
     }
 
     removeRippleStylesAndEffect(element) {
@@ -67,30 +123,5 @@ export class ScratchPage extends React.Component {
         setTimeout(function(remFunc) {
             remFunc(target);
         }, 500, this.removeRippleStylesAndEffect);
-    }
-
-    render() {
-        var icon = this.state.buttonIcon ? this.state.buttonIcon : "fa fa-plus";
-
-        return (
-            <React.Fragment>
-                <div className="r-r-showcase-component-page" style={{background: "white"}}>
-                    <h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1> 
-                    <textarea disabled className="r-r-textarea r-r-primary-border-hover r-r-primary-border-1px-focus r-r-primary-border-3px-focus-box-shadow r-r-disabled" placeholder="Yahoo">Wose</textarea>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    <div onClick={()=>{}} style={{position:"relative",backgroundColor:"black",margin:"20px",color:"white",width:"220px",height:"120px"}}>
-                        <span onClick={(e)=>this.animateRipple(e)} className="r-r-ripple r-r-noselect"/>
-                    </div>
-                </div>
-            </React.Fragment>
-        )
     }
 }

@@ -147,7 +147,7 @@ export class Panel extends Component {
         if (this.props.title || this.props.collapsible) {
             const toggleIcon = expanded ? this.props.collapseIcon : this.props.expandIcon;
             let className = classNames('r-r-panel-header-text', {
-                'r-r-loading r-r-skeleton': this.props.scheme === Scheme.SKELETON
+                'r-r-skeleton': this.props.scheme === Scheme.SKELETON
             }, this.props.headerClassName);
 
             return (
@@ -169,12 +169,12 @@ export class Panel extends Component {
                     child = this.getWithChildrenSkeletonAdded(child, skeletonize);
                     var childRelayProps = ObjUtils.clone(child.props);
                     childRelayProps.className = classNames(childRelayProps.className, {
-                        'r-r-loading r-r-skeleton': !child.props.children || skeletonize
+                        'r-r-skeleton': !child.props.children || skeletonize
                     });
                     childRelayProps.scheme = Scheme.SKELETON;
                     return React.cloneElement(child, childRelayProps);
                 }
-                return <span className={'r-r-loading r-r-skeleton'}>{child}</span>;
+                return <span className={'r-r-skeleton'}>{child}</span>;
             });
             var subRelayProps = ObjUtils.clone(element.props);
             subRelayProps.children = subChildren;
@@ -201,7 +201,7 @@ export class Panel extends Component {
             let isPanelComponent = BoolUtils.equalsAny(child.type, [Panel, TabPane, Checkbox]);
             var relayProps = ObjUtils.clone(child.props);
             relayProps.className = classNames('r-r-overflow-hidden', {
-                                        "r-r-loading r-r-skeleton" : (!isPanelComponent && (!child.props || !child.props.children)) || skeletonize
+                                        "r-r-skeleton" : (!isPanelComponent && (!child.props || !child.props.children)) || skeletonize
                                     }, relayProps.className);
             relayProps.scheme = this.props.scheme;
             if (isPanelComponent) {

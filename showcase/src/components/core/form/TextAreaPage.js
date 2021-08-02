@@ -53,6 +53,7 @@ export class TextAreaPage extends React.Component {
                                 <TextArea readOnly placeholder="readOnly"/>
                                 <TextArea flushed placeholder="flushed"/>
                                 <TextArea defaultValue="This is the default value"/>
+                                <TextArea fill placeholder="fill width and height"/>
                             </div>
                         </AccordionPanel>
                         <AccordionPanel noheader nodivier onHeaderClickRefId={'ifp-view-code'}>

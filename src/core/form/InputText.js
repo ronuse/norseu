@@ -30,7 +30,6 @@ import { Scheme, Alignment } from "../variables";
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { rrAttachToResizeListener } from "../../sensors"
 
-// TODO add fill
 export class InputTextComponent extends BaseComponent {
 
     static defaultProps = {
@@ -64,7 +63,8 @@ export class InputTextComponent extends BaseComponent {
         defaultValue: "",
         type: "text",
         forwardRef: null,
-        elementRef: null
+        elementRef: null,
+        fill: false
     }
 
     static propTypes = {
@@ -98,7 +98,8 @@ export class InputTextComponent extends BaseComponent {
         defaultValue: PropTypes.string,
         type: PropTypes.string,
         forwardRef: PropTypes.any,
-        elementRef: PropTypes.any
+        elementRef: PropTypes.any,
+        fill: PropTypes.bool
     }
 
     constructor(props) {
@@ -163,11 +164,12 @@ export class InputTextComponent extends BaseComponent {
             (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-3px-focus-box-shadow` : null),
             (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-focus` : null),
             (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-hover` : null), {
+            'r-r-max-width-100-percent': this.state.fill,
             'r-r-inputtext-outlined': this.state.outlined,
             'r-r-inputtext-flushed': this.state.flushed,
             'r-r-padding-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
             'r-r-disabled r-r-noselect': this.state.disabled,
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON
         }, 'r-r-inputtext-theme', this.state.inputClassName);
         return <input ref={this.elementRef} className={className} 
                     style={this.state.inputStyle} 
@@ -196,7 +198,7 @@ export class InputTextComponent extends BaseComponent {
             throw new Error("Only string or a valid react element is expected as the input label");
         }
         let className = classNames('r-r-inputtext-label', {
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
             'r-r-margin-bottom-7px': alignLabel === Alignment.TOP,
             'r-r-margin-top-7px': alignLabel === Alignment.BOTTOM,
             'r-r-margin-right-7px': alignLabel === Alignment.LEFT,
@@ -226,7 +228,7 @@ export class InputTextComponent extends BaseComponent {
             throw new Error("Only string or a valid react element is expected as the input help label");
         }
         let className = classNames('r-r-inputtext-help-label', {
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
             'r-r-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
             'r-r-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
             'r-r-margin-right-3px': alignHelpLabel === Alignment.LEFT,
@@ -257,7 +259,7 @@ export class InputTextComponent extends BaseComponent {
         }
         let className = classNames('r-r-inputtext-left-icon', 
             (isString ? this.state.leftIcon : null), {
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
             'r-r-inputtext-left-icon-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
@@ -286,7 +288,7 @@ export class InputTextComponent extends BaseComponent {
         }
         let className = classNames('r-r-inputtext-right-icon',
             (isString ? this.state.rightIcon : null), {
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
             'r-r-inputtext-right-icon-flushed': this.state.flushed && this.state.outlined
         }, this.state.rightIcon); 
         if (isString) {
@@ -306,6 +308,7 @@ export class InputTextComponent extends BaseComponent {
 
     render() {
         const className = classNames({
+            'r-r-width-100-percent': this.state.fill,
             'r-r-floating-label': this.state.floatLabel,
         }, this.state.className);
         const alignLabel = (this.state.floatLabel) ? Alignment.RIGHT : this.state.alignLabel;

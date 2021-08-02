@@ -71,7 +71,7 @@ export class BadgeAndTagPage extends React.Component {
                         
                         <h5>Outlined Badges</h5>
                         <div className="r-r-flex r-r-showcase-badges">
-                            <span className="r-r-badge r-r-loading r-r-skeleton">3</span>
+                            <span className="r-r-badge r-r-skeleton">3</span>
                             <span className="r-r-badge r-r-primary-border-1px">9</span>
                             <span className="r-r-badge r-r-secondary-border-1px">4</span>
                             <span className="r-r-badge r-r-success-border-1px">99+</span>
@@ -104,7 +104,7 @@ export class BadgeAndTagPage extends React.Component {
                         
                         <h5>Outlined Tags</h5>
                         <div className="r-r-flex r-r-showcase-badges">
-                            <span className="r-r-tag r-r-loading r-r-skeleton">primary</span>
+                            <span className="r-r-tag r-r-skeleton">primary</span>
                             <span className="r-r-tag r-r-primary-border-1px">primary</span>
                             <span className="r-r-tag r-r-secondary-border-1px">secondary</span>
                             <span className="r-r-tag r-r-success-border-1px">success</span>
@@ -128,7 +128,7 @@ export class BadgeAndTagPage extends React.Component {
                         
                         <h5>Outlined Pills</h5>
                         <div className="r-r-flex r-r-showcase-badges">
-                            <span className="r-r-pill r-r-loading r-r-skeleton">primary</span>
+                            <span className="r-r-pill r-r-skeleton">primary</span>
                             <span className="r-r-pill r-r-primary-border-1px">primary</span>
                             <span className="r-r-pill r-r-secondary-border-1px">secondary</span>
                             <span className="r-r-pill r-r-success-border-1px">success</span>

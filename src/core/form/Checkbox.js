@@ -159,7 +159,7 @@ export class CheckboxComponent extends BaseComponent {
             (scheme && checked.icon) ? `${scheme} ${scheme}-border-2px` : null,
             (scheme && !checked.icon) ? `${scheme}-border-hover` : null, 
             (scheme && this.state.scheme ? `${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null), {
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
             'r-r-checkbox-box': !this.state.nostyle,
             'r-r-margin-right-10px': BoolUtils.equalsAny(this.state.align, [Alignment.LEFT, Alignment.CENTER]),
             'r-r-margin-left-10px': BoolUtils.equalsAny(this.state.align, [Alignment.RIGHT]),
@@ -191,7 +191,7 @@ export class CheckboxComponent extends BaseComponent {
         }
 
         let className = classNames({
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON
         }, 'r-r-checkbox-label'); 
         if (isString) {
             return (

@@ -204,7 +204,18 @@ input {
     margin: 20px;
 }
 
-/* TextArea */
+.skeletooon {
+    opacity: 0.7;
+    box-shadow: var(--chakra-shadows-none);
+    cursor: default;
+    color: var(--chakra-colors-transparent);
+    pointer-events: none;
+    user-select: none;
+    border-radius: 2px;
+    border-color: rgb(237, 242, 247);
+    background: padding-box rgb(160, 174, 192);
+    animation: 0.8s linear 0s infinite alternate none running animation-snm94m;
+}
 
 
 /* */

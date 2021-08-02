@@ -30,7 +30,6 @@ import { Scheme, Alignment, Orientation } from "../variables";
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { rrAttachToResizeListener } from "../../sensors"
 
-// TODO add fill
 export class TextAreaComponent extends BaseComponent {
 
     static defaultProps = {
@@ -38,6 +37,8 @@ export class TextAreaComponent extends BaseComponent {
         id: null,
         className: null,
         style: null,
+        inputClassName: null,
+        inputStyle: null,
         label: null,
         alignLabel: Alignment.LEFT,
         placeholder: "",
@@ -59,7 +60,8 @@ export class TextAreaComponent extends BaseComponent {
         defaultValue: "",
         forwardRef: null,
         elementRef: null,
-        resizeOrientation: Orientation.HORIZONTAL_VERTICAL
+        resizeOrientation: Orientation.HORIZONTAL_VERTICAL,
+        fill: false
     }
 
     static propTypes = {
@@ -67,6 +69,8 @@ export class TextAreaComponent extends BaseComponent {
         id: PropTypes.string,
         className: PropTypes.string,
         style: PropTypes.object,
+        inputClassName: PropTypes.string,
+        inputStyle: PropTypes.object,
         label: PropTypes.any,
         alignLabel: PropTypes.string,
         placeholder: PropTypes.string,
@@ -88,7 +92,8 @@ export class TextAreaComponent extends BaseComponent {
         defaultValue: PropTypes.string,
         forwardRef: PropTypes.any,
         elementRef: PropTypes.any,
-        resizeOrientation: PropTypes.string
+        resizeOrientation: PropTypes.string,
+        fill: PropTypes.bool
     }
 
     constructor(props) {
@@ -153,12 +158,13 @@ export class TextAreaComponent extends BaseComponent {
             (!this.state.nostyle && this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-3px-focus-box-shadow` : null),
             (!this.state.nostyle && this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-focus` : null),
             (!this.state.nostyle && this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-hover` : null), {
+            'r-r-width-100-percent': this.state.fill,
             'r-r-textarea-rz-h': this.state.resizeOrientation == Orientation.HORIZONTAL,
             'r-r-textarea-rz-v': this.state.resizeOrientation == Orientation.VERTICAL,
             'r-r-textarea-rz-none': this.state.resizeOrientation == Orientation.NONE,
             'r-r-textarea-flushed': !this.state.nostyle && this.state.flushed,
             'r-r-disabled r-r-noselect': !this.state.nostyle && this.state.disabled,
-            'r-r-skeleton r-r-loading': !this.state.nostyle && this.state.scheme === Scheme.SKELETON
+            'r-r-skeleton': !this.state.nostyle && this.state.scheme === Scheme.SKELETON
         }, 'r-r-textarea-theme', this.state.inputClassName);
         return <textarea ref={this.elementRef} className={className} 
                     style={this.state.inputStyle} 
@@ -187,7 +193,7 @@ export class TextAreaComponent extends BaseComponent {
             throw new Error("Only string or a valid react element is expected as the input label");
         }
         let className = classNames('r-r-textarea-label', {
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
             'r-r-margin-bottom-7px': alignLabel === Alignment.TOP,
             'r-r-margin-top-7px': alignLabel === Alignment.BOTTOM,
             'r-r-margin-right-7px': alignLabel === Alignment.LEFT,
@@ -217,7 +223,7 @@ export class TextAreaComponent extends BaseComponent {
             throw new Error("Only string or a valid react element is expected as the input help label");
         }
         let className = classNames('r-r-textarea-help-label', {
-            'r-r-skeleton r-r-loading': this.state.scheme === Scheme.SKELETON,
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
             'r-r-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
             'r-r-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
             'r-r-margin-right-3px': alignHelpLabel === Alignment.LEFT,
@@ -239,6 +245,7 @@ export class TextAreaComponent extends BaseComponent {
 
     render() {
         const className = classNames({
+            'r-r-width-100-percent': this.state.fill,
             'r-r-floating-label': this.state.floatLabel,
         }, this.state.className);
         const alignLabel = (this.state.floatLabel) ? Alignment.RIGHT : this.state.alignLabel;

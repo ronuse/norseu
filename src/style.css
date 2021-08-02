@@ -434,6 +434,14 @@
     height: 100% !important;
 }
 
+.r-r-max-width-100-percent {
+    max-width: 100% !important;
+}
+
+.r-r-max-height-100-percent {
+    max-height: 100% !important;
+}
+
 .r-r-float-right {
     float: right;
 }
@@ -989,21 +997,19 @@
     overflow: hidden;
 }
 
-/* The loading Class */ 
+/* The loading Class */
 
-.r-r-skeleton {
-    border: none !important;
+span.r-r-skeleton {
+    display: inline-block;
+    max-height: 25px;
 }
 
-.r-r-skeleton > * {
-    display: none !important;
-}
-
-.r-r-loading { 
+.r-r-skeleton { 
     position: relative; 
     color: #e4e4e4 !important;
     background-color: #e4e4e4 !important;
     pointer-events: none;
+    border: none !important;
     overflow: hidden !important;
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
@@ -1012,9 +1018,13 @@
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
-} 
+}  
 
-.r-r-loading::after { 
+.r-r-skeleton > * {
+    display: none !important;
+}
+
+.r-r-skeleton::after { 
     display: block; 
     content: ""; 
     position: absolute; 
@@ -1031,10 +1041,10 @@
     background: linear-gradient(90deg, transparent, 
             rgba(255, 255, 255, 0.5), transparent); 
 
-    animation: r-r-loading 1.0s infinite; 
+    animation: r-r-skeleton 1.0s infinite; 
 } 
 
-@keyframes r-r-loading { 
+@keyframes r-r-skeleton { 
     100% { 
         transform: translateX(100%); 
     } 
