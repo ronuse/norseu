@@ -17,6 +17,7 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
+    color: orange;
 }
 
 p {
@@ -25,6 +26,14 @@ p {
 
 input {
     color: #717272;
+}
+
+.prop-desc-1 {
+    margin-bottom: 15px;
+}
+
+.prop-desc-1 > h4 {
+    margin-bottom: 10px;
 }
 
 .r-r-showcase-component-page {
@@ -183,39 +192,6 @@ input {
 }
 
 /* TMPS */
-
-.r-r-padding-5px {
-    padding: 5px;
-}
-
-.r-r-padding-10px {
-    padding: 10px;
-}
-
-.r-r-padding-15px {
-    padding: 15px;
-}
-
-.r-r-padding-20px {
-    padding: 20px;
-}
-
-.r-r-margin-20px {
-    margin: 20px;
-}
-
-.skeletooon {
-    opacity: 0.7;
-    box-shadow: var(--chakra-shadows-none);
-    cursor: default;
-    color: var(--chakra-colors-transparent);
-    pointer-events: none;
-    user-select: none;
-    border-radius: 2px;
-    border-color: rgb(237, 242, 247);
-    background: padding-box rgb(160, 174, 192);
-    animation: 0.8s linear 0s infinite alternate none running animation-snm94m;
-}
 
 
 /* */

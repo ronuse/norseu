@@ -324,6 +324,14 @@
     margin-left: 5px !important;
 }
 
+.r-r-margin-top-0px {
+    margin-top: 0px !important;
+}
+
+.r-r-margin-bottom-0px {
+    margin-bottom: 0px !important;
+}
+
 .r-r-margin-10px {
     margin: 10px;
 }
@@ -334,6 +342,26 @@
 
 .r-r-margin-1-5rem {
     margin: 1.5rem !important;
+}
+
+.r-r-margin-20px {
+    margin: 20px;
+}
+
+.r-r-padding-5px {
+    padding: 5px;
+}
+
+.r-r-padding-10px {
+    padding: 10px;
+}
+
+.r-r-padding-15px {
+    padding: 15px;
+}
+
+.r-r-padding-20px {
+    padding: 20px;
 }
 
 .r-r-padding-0px {

@@ -128,6 +128,133 @@ export class DOMUtils {
         }
     }
 
+    static getViewport() {
+        let win = window,
+            d = document,
+            e = d.documentElement,
+            g = d.getElementsByTagName('body')[0],
+            w = win.innerWidth || e.clientWidth || g.clientWidth,
+            h = win.innerHeight || e.clientHeight || g.clientHeight;
+
+        return {width: w, height: h};
+    }
+
+    static getDocumentScrollTop() {
+        let doc = document.documentElement;
+        return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+    }
+
+    static getDocumentScrollLeft() {
+        let doc = document.documentElement;
+        return (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+    }
+
+    static getElementOffset(element) {
+        if (!element) {
+            return {
+                top: 'auto',
+                left: 'auto'
+            };
+        }
+        let rect = element.getBoundingClientRect();
+        return {
+            top: rect.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0),
+            left: rect.left + (window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0),
+        };
+        
+    }
+
+    static absolutePositionRelatively(element, target) {
+        if (!element || !target) return;
+        let elementDimensions = element.offsetParent ? { width: element.offsetWidth, height: element.offsetHeight } : this.getHiddenElementDimensions(element);
+        let targetOuterWidth = target.offsetWidth;
+        let targetOuterHeight = target.offsetHeight;
+        let elementOuterWidth = elementDimensions.width;
+        let elementOuterHeight = elementDimensions.height;
+        let targetOffset = target.getBoundingClientRect();
+        let windowScrollTop = this.getDocumentScrollTop();
+        let windowScrollLeft = this.getDocumentScrollLeft();
+        let viewport = this.getViewport();
+        let top, left;
+
+        if (targetOffset.top + targetOuterHeight + elementOuterHeight > viewport.height) {
+            top = targetOffset.top + windowScrollTop - elementOuterHeight;
+            if(top < 0) top = windowScrollTop;
+            element.style.transformOrigin = 'bottom';
+        } else {
+            top = targetOuterHeight + targetOffset.top + windowScrollTop;
+            element.style.transformOrigin = 'top';
+        }
+        if (targetOffset.left + targetOuterWidth + elementOuterWidth > viewport.width) {
+            left = Math.max(0, targetOffset.left + windowScrollLeft + targetOuterWidth - elementOuterWidth);
+        } else {
+            left = targetOffset.left + windowScrollLeft;
+        }
+        element.style.top = top + 'px';
+        element.style.left = left + 'px';
+    }
+
+    static querySelector(element, selector) {
+        if (!element) return null;
+        return element.querySelector(selector);
+    }
+
+    static getElementParents(element, parents = []) {
+        return element['parentNode'] ? this.getElementParents(element.parentNode, parents.concat([element.parentNode])) : parents;
+    }
+
+    static getScrollableParents(element) {
+        let scrollableParents = [];
+        if (!element) return scrollableParents;
+
+        let elementParents = this.getElementParents(element);
+        const scrollRegex = /(auto|scroll)/;
+        const checkIfScrolable = (node) => {
+            let cssStyleDeclaration = window['getComputedStyle'](node, null);
+            return scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflow')) || 
+                scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflowX')) || 
+                scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflowY'));
+        };
+        for (let elementParent of elementParents) {
+            let scrollSelectors = elementParent.nodeType === 1 && elementParent.dataset['scrollselectors'];
+            if (scrollSelectors) {
+                let selectors = scrollSelectors.split(',');
+                for (let selector of selectors) {
+                    let el = this.querySelector(elementParent, selector);
+                    if (el && checkIfScrolable(el)) scrollableParents.push(el);
+                }
+            }
+            if (elementParent.nodeType !== 9 && checkIfScrolable(elementParent)) {
+                scrollableParents.push(elementParent);
+            }
+        }
+        return scrollableParents;
+    }
+
+    static ScrollHandler_(element, listener) {
+        let scrollableParents = !element ? [] : this.getScrollableParents(element);
+
+        const attachScrollListerner = () => {
+            for (let index = 0; index < scrollableParents.length; index++) {
+                scrollableParents[index].addEventListener('scroll', listener);
+            }
+        }
+
+        const detachScrollListerner = () => {
+            if (!scrollableParents || scrollableParents.length === 0) return;
+            for (let index = 0; index < scrollableParents.length; index++) {
+                scrollableParents[index].removeEventListener('scroll', listener);
+            }
+        }
+
+        return {
+            attach: attachScrollListerner,
+            detach: detachScrollListerner
+        };
+    }
+
+    static ScrollHandler = this.ScrollHandler_;
+
     static BaseZIndexes = {
         menu: 1000,
         overlay: 1000,

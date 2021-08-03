@@ -424,32 +424,53 @@
 
 /* Popup */
 
-.r-r-popup:before {
-    content: "";
+.r-r-popover {
+    --overlayArrowLeft: 0px;
+    position: absolute;
+    border: 0 none;
+    margin-top: 13px;
+    box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%), 0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+}
+
+.r-r-popover-arrow:before {
+    content: " ";
     display: block;
     position: absolute;
-    left: 10px;
+    left: calc(var(--popoverArrowLeftOffset, 1px) + 1.25rem);
     top: -10px;
     border-bottom: 10px solid white;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
+    pointer-events: none;
 }
 
-.r-r-popup-tmp {
-    width: 450px;
-    z-index: 1001;
-    transform-origin: center top;
-    top: 315px;
-    left: 306px;
-    position: absolute;
+.r-r-popover-arrow-flipped:before {
+    top: 100%;
+    border-bottom: 0px solid white;
+    border-top: 10px solid white;
 }
 
-.r-r-popup {
-    background: #ffffff;
-    color: #495057;
-    border: 0 none;
-    border-radius: 3px;
-    box-shadow: 0px 11px 15px -7px rgb(0 0 0 / 20%), 0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+.r-r-popover-enter {
+    opacity: 0;
+    transform: scaleY(0.8);
 }
 
+.r-r-popover-enter-active {
+    opacity: 1;
+    transform: scaleY(1);
+    transition: transform .12s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.r-r-popover-enter-done {
+    transform: none;
+}
+
+.r-r-popover-exit {
+    opacity: 1;
+}
+
+.r-r-popover-exit-active {
+    opacity: 0;
+    transition: opacity .1s linear;
+}
 

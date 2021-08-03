@@ -8,10 +8,10 @@ import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
 import { Position, Orientation, Elevation, InputFilters } from "@ronuse/react-ui/core/variables";
 import { LinearLayout } from "@ronuse/react-ui/layouts";
 import { PasswordInput, InputText, Checkbox } from "@ronuse/react-ui/core/form";
-import { Popup } from "@ronuse/react-ui/core/overlay";
+import { Popover } from "@ronuse/react-ui/core/overlay";
 import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
 
-export class PopupPage extends React.Component {
+export class PopoverPage extends React.Component {
 
     state = {
         pageSource: '',
@@ -26,13 +26,15 @@ export class PopupPage extends React.Component {
 
     constructor(props) {
         super(props)
+
         this.previewPanel1 = React.createRef();
         this.previewPanel2 = React.createRef();
         this.previewPanel3 = React.createRef();
+        this.emailRef = React.createRef();
     }
     
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/overlay/PopupPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/overlay/PopoverPage.js")
         .then(response => response.text())
         .then(data => this.setState({
             pageSource : data,
@@ -61,13 +63,27 @@ export class PopupPage extends React.Component {
         return text;
     }
     
-    renderFooter(name) {
+    formControls(onClick) {
         return (
-            <div>
-                <Button text="Cancel" icon="fa fa-times" textonly scheme={Scheme.DANGER} onClick={() => this.setState({[`${name}`]: false})} />
-                <Button text="Continue" icon="fa fa-check" scheme={Scheme.PRIMARY} onClick={() => this.setState({[`${name}`]: false})}/>
+            <div style={{margin: "20px", display: "flex", flexDirection: "column"}}>
+                <span style={{fontWeight: 600}}>Select your option</span>
+                <div style={{marginTop: "10px", display: "flex", flexDirection: "column"}}>
+                    <span>Email</span>
+                    <InputText ref={this.emailRef} scheme={Scheme.PRIMARY} placeholder="Enter your email address"/>
+                </div>
+                <div style={{marginTop: "10px", display: "flex", flexDirection: "column"}}>
+                    <span>Password</span>
+                    <PasswordInput scheme={Scheme.PRIMARY} placeholder="Enter your email address"/>
+                </div>
+                <div style={{marginTop: "10px"}}>
+                    <Checkbox scheme={Scheme.PRIMARY} label="Stay Signed in"/>
+                </div>
+                <div style={{marginTop: "15px"}}>
+                    <Button text="Close" onClick={onClick}/>
+                    <Button scheme={Scheme.SUCCESS} text="Submit" onClick={onClick}/>
+                </div>
             </div>
-        )
+        );
     }
 
     onHide(name) {
@@ -94,11 +110,12 @@ export class PopupPage extends React.Component {
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
                             <div className="r-r-display-flex">
-                                <Button text="Show Basic" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showBasic: true})} />
-
-                                <Popup header="Basic" isVisible={this.state.showBasic} onHide={(e) => this.onHide('showBasic')} footer={this.renderFooter('showBasic')}>
-                                    {this.basicText()} 
-                                </Popup>
+                                <Button text="Show Basic" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={(e) => this.popover1 && this.popover1.toggle(e)} />
+                                <Popover ref={(el) => this.popover1 = el}>
+                                    <div style={{ backgroundColor: "white", width: "200px", padding: "20px" }}>
+                                        {this.basicText()} 
+                                    </div>
+                                </Popover>
                             </div>
                         </AccordionPanel>
                         {getSourceInEditorR(source1, this.previewPanel1)}
@@ -111,26 +128,21 @@ export class PopupPage extends React.Component {
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
                             <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
                         </div>
-                        <span className="left">Other Properties</span>
+                        <span className="left">Dismisable</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex">
-                                <Button text="Maximizable" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showMaximizable: true})} />
-                                <Button text="Without Modal" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithoutModal: true})} />
-                                <Button text="Without Header And Footer" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithoutHeaderAndFooter: true})} />
-                                
-                                <Popup header="Maximizable" maximizable isVisible={this.state.showMaximizable} onHide={(e) => this.onHide('showMaximizable')} footer={this.renderFooter('showMaximizable')}>
-                                    {this.overflowText()} 
-                                </Popup>
-
-                                <Popup header="Without Modal" noOverlay isVisible={this.state.showWithoutModal} onHide={(e) => this.onHide('showWithoutModal')} footer={this.renderFooter('showWithoutModal')}>
-                                    {this.basicText()} 
-                                </Popup>
-
-                                <Popup header="Without Header And Footer" noHeader isVisible={this.state.showWithoutHeaderAndFooter} onHide={(e) => this.onHide('showWithoutHeaderAndFooter')}>
-                                    {this.basicText()} 
-                                </Popup>
+                            <div className="r-r-display-flex-column">
+                                <p>
+                                    Prevent dismissing the pop over when clicked out side the popover. The popover can be toggled by 
+                                    only clicking the toggle button.
+                                </p>
+                                <Button text="Show Popover" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={(e) => this.popover2 && this.popover2.toggle(e)} />
+                                <Popover ref={(el) => this.popover2 = el} dismissable={false}>
+                                    <div style={{ backgroundColor: "white", width: "200px", padding: "20px" }}>
+                                        {this.basicText()} 
+                                    </div>
+                                </Popover>
                             </div>
                         </AccordionPanel>
                         {getSourceInEditorR(source2, this.previewPanel2)}
@@ -140,35 +152,41 @@ export class PopupPage extends React.Component {
                 <Panel borderless elevation={Elevation.ONE}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
-                            <i className="fa fa-code" onClick={(e) => {this.previewPanel3.current.toggle()}}></i>
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
                             <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
                         </div>
-                        <span className="left">Position TODO change select below to ronuse select Component</span>
+                        <span className="left">Focus and trapping</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex">
-                                <select onChange={(e)=>{this.setState({ dialogPosition: e.target.value} )}}>
-                                    <option value={Position.LEFT}>{"LEFT"}</option>
-                                    <option value={Position.RIGHT}>{"RIGHT"}</option>
-                                    <option value={Position.TOP}>{"TOP"}</option>
-                                    <option value={Position.CENTER}>{"CENTER"}</option>
-                                    <option value={Position.TOP_CENTER}>{"TOP_CENTER"}</option>
-                                    <option value={Position.TOP_LEFT}>{"TOP_LEFT"}</option>
-                                    <option value={Position.TOP_RIGHT}>{"TOP_RIGHT"}</option>
-                                    <option value={Position.BOTTOM}>{"BOTTOM"}</option>
-                                    <option value={Position.BOTTOM_LEFT}>{"BOTTOM_LEFT"}</option>
-                                    <option value={Position.BOTTOM_RIGHT}>{"BOTTOM_RIGHT"}</option>
-                                    <option value={Position.BOTTOM_CENTER}>{"BOTTOM_CENTER"}</option>
-                                </select>
-                                <Button text="Show" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={() => this.setState({showWithPosition: true})} />
+                            <div className="r-r-display-flex-column">
+                                <p className="prop-desc-1">
+                                    <h4>Focus an element when popover show or hide</h4>
+                                    Set the element that recieve focus when the popover is shown using the <code>onOpenFocusRef</code>, 
+                                    also an element can receive when the popover is out of the DOm by passing the <code>onCloseFocusRef</code> prop.
+                                </p>
+                                <Button ref={this.btn1} text="Show Popover" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={(e) => this.popover3 && this.popover3.toggle(e)} />
+                                <Popover ref={(el) => this.popover3 = el} onOpenFocusRef={this.emailRef} onCloseFocusRef={this.btn1}>
+                                    <div style={{ backgroundColor: "white", padding: "20px" }}>
+                                        {this.formControls((e) => this.popover3 && this.popover3.toggle(e))} 
+                                    </div>
+                                </Popover>
 
-                                <Popup header={`Position ${this.state.dialogPosition}`} position={this.state.dialogPosition} isVisible={this.state.showWithPosition} onHide={(e) => this.onHide('showWithPosition')} footer={this.renderFooter('showWithPosition')}>
-                                    {this.basicText()} 
-                                </Popup>
+                                <p className="prop-desc-1">
+                                    <h4>Trapping focus in Popover</h4>
+                                    Focus can also be trapped within the pop over and close the popover when the user click the button on the form. 
+                                    Specify the <code>trapFocus</code> and <code>onOpenFocusRef</code> prop to trap a focus, if focus is trapped in the 
+                                    popover the dialog is non dismissable, excpt using the toggle.
+                                </p>
+                                <Button text="Show Popover" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={(e) => this.popover4 && this.popover4.toggle(e)} />
+                                <Popover ref={(el) => this.popover4 = el} onOpenFocusRef={this.emailRef} trapFocus>
+                                    <div style={{ backgroundColor: "white", padding: "20px" }}>
+                                        {this.formControls((e) => this.popover4 && this.popover4.toggle(e))} 
+                                    </div>
+                                </Popover>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source3, this.previewPanel3)}
+                        {getSourceInEditorR(source2, this.previewPanel2)}
                     </Accordion>
                 </Panel>
             </React.Fragment>
@@ -190,11 +208,11 @@ export class PopupPage extends React.Component {
 
         return (
             <div className="r-r-showcase-component-page">
-                <h1>Popup</h1>
+                <h1>Popover</h1>
 
                 <Panel className="r-r-padding-20px" elevation={Elevation.ONE}>
                     <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Popup } from '@ronuse/react-ui/core/overlay'`}
+                        {`import { Popover } from '@ronuse/react-ui/core/overlay'`}
                     </SyntaxHighlighter>
                 </Panel>
                 
