@@ -171,6 +171,7 @@ export class InputTextComponent extends BaseComponent {
             'r-r-disabled r-r-noselect': this.state.disabled,
             'r-r-skeleton': this.state.scheme === Scheme.SKELETON
         }, 'r-r-inputtext-theme', this.state.inputClassName);
+
         return <input ref={this.elementRef} className={className} 
                     style={this.state.inputStyle} 
                     id={this.id} 
@@ -294,12 +295,15 @@ export class InputTextComponent extends BaseComponent {
         if (isString) {
             return [
                 true, 
-                <i className={className}/>
+                <i onClick={this.state.onClick} className={className}/>
             ]
         }
         var relayProps = ObjUtils.clone(this.state.rightIcon.props);
         className = classNames(className, relayProps.className);
         relayProps.className = className;
+        if (!relayProps.onClick) {
+            relayProps.onClick = this.state.onClick;
+        }
         return [
             false, 
             React.cloneElement(this.state.rightIcon, relayProps)

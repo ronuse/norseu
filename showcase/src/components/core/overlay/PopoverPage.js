@@ -133,7 +133,7 @@ export class PopoverPage extends React.Component {
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
                             <div className="r-r-display-flex-column">
-                                <p>
+                                <p className="prop-desc-1">
                                     Prevent dismissing the pop over when clicked out side the popover. The popover can be toggled by 
                                     only clicking the toggle button.
                                 </p>

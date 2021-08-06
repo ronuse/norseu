@@ -103,6 +103,7 @@ export const PopoverArrow = {
     componentWillUnmount() {
         this.unbindDocumentClickListener();
         this.unbindScrollListener();
+        this.bindResizeListener();
         DOMUtils.ZIndexHandler.removeElementZIndex(this.modal);
     }
     
@@ -117,12 +118,14 @@ export const PopoverArrow = {
         }
         this.bindDocumentClickListener();
         this.bindScrollListener();
+        this.bindResizeListener();
         if (this.props.onShow) this.props.onShow();
     }
 
     onExit() {
         this.unbindDocumentClickListener();
         this.unbindScrollListener();
+        this.bindResizeListener();
     }
 
     onExited() {
@@ -177,6 +180,24 @@ export const PopoverArrow = {
     unbindScrollListener() {
         if (this.documentScrollHandler) {
             this.documentScrollHandler.detach();
+        }
+    }
+
+    bindResizeListener() {
+        if (!this.windowResizeListener) {
+            this.windowResizeListener = (event) => {
+                if (this.state.visible) {
+                    this.hidePopover();
+                }
+            };
+            window.addEventListener('resize', this.windowResizeListener);
+        }
+    }
+
+    unbindResizeListener() {
+        if (this.windowResizeListener) {
+            window.removeEventListener('resize', this.windowResizeListener);
+            this.windowResizeListener = null;
         }
     }
 

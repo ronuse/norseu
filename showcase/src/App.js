@@ -22,6 +22,7 @@ import { InputTextPage } from './components/core/form/InputTextPage'
 import { PasswordInputPage } from './components/core/form/PasswordInputPage'
 import { InputFiltersPage } from './components/core/form/InputFiltersPage'
 import { TextAreaPage } from './components/core/form/TextAreaPage'
+import { DropdownPage } from './components/core/form/DropdownPage'
 import { AlertDialogPage } from './components/core/overlay/AlertDialogPage'
 import { NavbarPage } from './components/core/overlay/NavbarPage'
 import { DialogPage } from './components/core/overlay/DialogPage'
@@ -74,6 +75,7 @@ const App = () => {
                                 <Link className="link" to="/core/form/inputtext">InputText</Link>
                                 <Link className="link" to="/core/form/passwordinput">PasswordInput</Link>
                                 <Link className="link" to="/core/form/inputfilterspage">InputFilters</Link>
+                                <Link className="link" to="/core/form/dropdown">Dropdown</Link>
                                 <Link className="link" to="/core/form/textareapage">TextArea</Link>
                             </section>
 
@@ -123,6 +125,7 @@ const App = () => {
                             <Route exact path="/core/form/inputtext" component={InputTextPage}/>
                             <Route exact path="/core/form/passwordinput" component={PasswordInputPage}/>
                             <Route exact path="/core/form/inputfilterspage" component={InputFiltersPage}/>
+                            <Route exact path="/core/form/dropdown" component={DropdownPage}/>
                             <Route exact path="/core/form/textareapage" component={TextAreaPage}/>
                             
                             <Route exact path="/core/overlay/alertdialog" component={AlertDialogPage}/>
