@@ -140,7 +140,7 @@ export class InputTextPage extends React.Component {
 
                 <Panel title="Icon" expanded collapsible borderless>
 
-                    <InputText placeholder="Left icon only" scheme={Scheme.PRIMARY} leftIcon="fa fa-search" outlined/>
+                    <InputText fill placeholder="Left icon only" scheme={Scheme.PRIMARY} leftIcon="fa fa-search" outlined/>
                     <br/><br/>
 
                     <InputText placeholder="Right icon only" scheme={Scheme.PRIMARY} rightIcon="fa fa-spinner fa-pulse" outlined/>

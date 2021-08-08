@@ -8,6 +8,10 @@
 
  /* InputText */ 
 
+ .r-r-inputtext-compound {
+     width: fit-content;
+ }
+
 .r-r-inputtext {
     background-color: rgba(194, 204, 207, 0.2);
     border: 1px solid #c7c7c7;
@@ -55,7 +59,7 @@
 .r-r-inputtext-left-icon {
     position: absolute;
     align-self: center;
-    margin-left: 12px;
+    padding: 10px;
     max-height: 18px !important;
     max-width: 25px !important;
     z-index: 101;
@@ -64,7 +68,8 @@
 .r-r-inputtext-right-icon {
     position: absolute;
     align-self: center;
-    right: 12px;
+    right: 0px;
+    padding: 12px;
     max-height: 18px !important;
     max-width: 25px !important;
     z-index: 101;
@@ -224,6 +229,7 @@
 
 .r-r-dropdown-popover {
     min-width: 190px;
+    max-height: 350px;
     border-radius: 0px 0px 3px 3px;
     background-color: white;
     box-shadow: 0px 2px 3px -7px rgb(0 0 0 / 20%), 0px 4px 6px 3px rgb(0 0 0 / 14%), 0px 1px 5px 1px rgb(0 0 0 / 12%) !important;

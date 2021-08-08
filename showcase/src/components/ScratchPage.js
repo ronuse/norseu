@@ -28,7 +28,13 @@ export class ScratchPage extends React.Component {
                 <div className="r-r-showcase-component-page">
                     <h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1>
                     <div>
-                        
+                        <InputText leftIcon="fa fa-key" rightIcon="fa fa-key"/>
+                        <br/><br/><br/>
+                        <div style={{ display: "flex", border: "1px solid red", width: "fit-content" }}>
+                            <i className="fa fa-key"/>
+                            <InputText style={{ flex: 1 }}/>
+                            <i className="fa fa-key"/>
+                        </div>
                     </div>
                 </div>
             </React.Fragment>

@@ -64,6 +64,7 @@ export class InputTextComponent extends BaseComponent {
         type: "text",
         forwardRef: null,
         elementRef: null,
+        compoundRef: null,
         fill: false
     }
 
@@ -99,6 +100,7 @@ export class InputTextComponent extends BaseComponent {
         type: PropTypes.string,
         forwardRef: PropTypes.any,
         elementRef: PropTypes.any,
+        compoundRef: PropTypes.any,
         fill: PropTypes.bool
     }
 
@@ -301,9 +303,6 @@ export class InputTextComponent extends BaseComponent {
         var relayProps = ObjUtils.clone(this.state.rightIcon.props);
         className = classNames(className, relayProps.className);
         relayProps.className = className;
-        if (!relayProps.onClick) {
-            relayProps.onClick = this.state.onClick;
-        }
         return [
             false, 
             React.cloneElement(this.state.rightIcon, relayProps)
@@ -311,7 +310,7 @@ export class InputTextComponent extends BaseComponent {
     }
 
     render() {
-        const className = classNames({
+        const className = classNames('r-r-inputtext-compound', {
             'r-r-width-100-percent': this.state.fill,
             'r-r-floating-label': this.state.floatLabel,
         }, this.state.className);
@@ -338,7 +337,7 @@ export class InputTextComponent extends BaseComponent {
         }
 
         return (
-            <span className={className} style={this.state.style}>
+            <div className={className} style={this.state.style} ref={this.state.compoundRef}>
                 {alignLabel === Alignment.LEFT && label ? label : null}
                 {alignLabel === Alignment.TOP && label ? <React.Fragment>{label} <br/></React.Fragment> : null}
 
@@ -352,7 +351,7 @@ export class InputTextComponent extends BaseComponent {
                 
                 {this.state.alignHelpLabel === Alignment.RIGHT && helpLabel ? helpLabel : null}
                 {this.state.alignHelpLabel === Alignment.BOTTOM && helpLabel ? <React.Fragment><br/> {helpLabel}</React.Fragment> : null}
-            </span>
+            </div>
         )
     }
 

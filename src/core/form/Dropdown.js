@@ -30,7 +30,6 @@ import { Scheme, Alignment } from "../variables";
 import { ObjUtils, BoolUtils, DOMUtils, InputFilter } from "../../utils";
 import { InputText } from "./InputText"
 import { Popover } from "../overlay/Popover"
-import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
 
 // TODO fix on drop down button click error
 export class DropdownComponent extends BaseComponent {
@@ -86,10 +85,11 @@ export class DropdownComponent extends BaseComponent {
 
     resolveForwardRef(extraValues) {
         super.resolveForwardRef({
+            getInternalElement: () => this.state.inputTextRef,
             value: () => {this.state.checkStates[this.state.selectedOptionIndex]; return this.state.checkStates[this.state.selectedOptionIndex].value},
             text: () => this.state.inputTextRef.current.value(),
             selectedOption: () => this.state.checkStates[this.state.selectedOptionIndex],
-            focus: () => this.inputTextRef.current.focus(),
+            focus: () => this.state.inputTextRef.current.focus(),
             inputTextRef: () => this.state.inputTextRef,
             popOverRef: () => this.state.popOverRef
         });
@@ -105,7 +105,7 @@ export class DropdownComponent extends BaseComponent {
 
     selectPreviousOption(event) {
         if (!this.state.editable && !this.state.popoverVisible && event.altKey) {
-            this.togglePopover(event);
+            this.togglePopover(event, true);
             return;
         }
         if (this.state.selectedOptionIndex > 0) {
@@ -118,7 +118,7 @@ export class DropdownComponent extends BaseComponent {
 
     selectNextOption(event) {
         if (!this.state.editable && !this.state.popoverVisible && event.altKey) {
-            this.togglePopover(event);
+            this.togglePopover(event, true);
             return;
         }
         if (this.state.selectedOptionIndex < this.state.options.length-1) {
@@ -141,13 +141,17 @@ export class DropdownComponent extends BaseComponent {
 
             case 32: // space
             case 13: // enter
-                this.togglePopover(event);
-                event.preventDefault();
+                if (!this.state.editable || (this.state.popoverVisible && event.which == 13)) {
+                    this.togglePopover(event, true);
+                    event.preventDefault();
+                }
                 break;
             
-            case 27: // escape 
+            case 27: // escape
             case 9:  // tab
-                this.togglePopover(event);
+                if (this.state.popoverVisible) {
+                    this.togglePopover(event, true);
+                }
                 break;
         }
     }
@@ -160,9 +164,9 @@ export class DropdownComponent extends BaseComponent {
         return this.state.options[this.state.selectedOptionIndex];
     }
 
-    togglePopover(e) {
-        if (!this.popover) return;
-        return this.popover.toggle(e, this.state.inputTextRef.current.getInternalElement().current);
+    togglePopover(e, ignoreEditable) {
+        if (!this.popover || (!ignoreEditable && this.state.editable && e.target === this.state.inputTextRef.current.getInternalElement().current)) return;
+        return this.popover.toggle(e, this.compoundRef);
     }
 
     onDropdownHide() {
@@ -179,7 +183,7 @@ export class DropdownComponent extends BaseComponent {
         this.setState({ selectedOptionIndex: index });
         if (this.state.onSelectOption) this.state.onSelectOption({ event, option: this.state.options[index] });
         this.state.inputTextRef.current.getInternalElement().current.value = option.label;
-        return this.togglePopover(null);
+        return this.togglePopover(e, false);
     }
 
     buildSingleOption(option) {
@@ -195,7 +199,9 @@ export class DropdownComponent extends BaseComponent {
 
     buildPopover() {
         if (!this.state.popoverProps) { this.state.popoverProps = {}; }
-        this.state.popoverProps.className = classNames('r-r-dropdown-popover', this.state.popoverProps.inputClassName);
+        this.state.popoverProps.className = classNames('r-r-dropdown-popover r-r-scrollpanel', 
+            (this.props.scheme ? `${this.props.scheme}-scrollpanel` : null), 
+            this.state.popoverProps.inputClassName);
         const listItems = [];
         if (this.state.options) {
             this.state.options.forEach((option, index) => {
@@ -213,7 +219,9 @@ export class DropdownComponent extends BaseComponent {
         }
 
         return (
-            <Popover pointingArrowClassName="" {...this.state.popoverProps} ref={(el) => this.popover = el} onCloseFocusRef={this.state.inputTextRef} 
+            <Popover pointingArrowClassName="" {...this.state.popoverProps} ref={(el) => this.popover = el} 
+                onOpenFocusRef={this.state.inputTextRef} 
+                onCloseFocusRef={this.state.inputTextRef} 
                 onShow={this.onDropdownShow} onHide={this.onDropdownHide}>
                 <ul role="listbox" className="r-r-dropdown-popover-list">
                     {listItems}
@@ -231,15 +239,16 @@ export class DropdownComponent extends BaseComponent {
         }, relayProps.inputClassName);
         relayProps.leftIcon = selectedOption ? (typeof selectedOption.icon === "string" ? <img src={selectedOption.icon}></img> : selectedOption.icon) : null;
         relayProps.defaultValue = selectedOption ? selectedOption.label : null;
-        relayProps.style = { ...style, ...relayProps.style};
-        relayProps.onClick = (e) => { if (!this.state.editable) { this.togglePopover(e); } };
+        relayProps.style = { ...this.state.style, ...relayProps.style};
         relayProps.onKeyDown = this.onInputTextKeyDown;
         const popover = this.buildPopover();
 
         return (
             <React.Fragment>
-                <InputText scheme={this.state.scheme} readOnly={!this.state.editable} {...relayProps} 
-                    ref={this.state.inputTextRef} rightIcon={this.state.toggleIcon} />
+                <InputText compoundRef={(el) => this.compoundRef = el} scheme={this.state.scheme} readOnly={!this.state.editable} {...relayProps} 
+                    ref={this.state.inputTextRef} rightIcon={this.state.toggleIcon} onClick={(e) => {
+                        this.togglePopover(e, false);
+                    }}/>
                 {popover}
             </React.Fragment>
         );
