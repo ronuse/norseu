@@ -56,7 +56,7 @@ export class InputTextPage extends React.Component {
         return (
             <Panel className="r-r-padding-left-right-20px">
                 <Panel title="Basic" expanded collapsible borderless>
-                    <InputText name="user-name"/>
+                    <InputText seamlesslyFocusAttrs={false} name="user-name"/>
                     <br/><br/>
 
                     <InputText placeholder="With placeholder"/>
@@ -152,7 +152,7 @@ export class InputTextPage extends React.Component {
                     <InputText placeholder="Custom Icon" scheme={Scheme.PRIMARY} leftIcon={customLeftIcon1} outlined/>
                     <br/><br/>
 
-                    <InputText placeholder="Custom left and right icon" scheme={Scheme.PRIMARY} leftIcon="fa fa-google" rightIcon="fa fa-twitter" outlined flushed/>
+                    <InputText placeholder="Custom left and right icon" scheme={Scheme.PRIMARY} leftIcon="fab fa-google" rightIcon="fab fa-twitter" outlined flushed/>
                     <br/><br/>
 
                 </Panel>

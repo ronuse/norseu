@@ -87,14 +87,6 @@ input {
     background-color: white;
 }
 
-.r-r-inputtext-icon-pack {
-    max-width: 250px;
-}
-
-.r-r-inputtext {
-    max-width: 250px;
-}
-
 .r-r-showcase-doc-title {
     font-weight: bold;
 }
@@ -192,6 +184,15 @@ input {
 }
 
 /* TMPS */
+
+.test-input-pack {
+    background-color: grey;
+}
+
+.test-input:focus {
+    background-color: transparent !important;
+    color: red;
+}
 
 /* */
 

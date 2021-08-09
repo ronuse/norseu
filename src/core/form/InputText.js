@@ -65,7 +65,8 @@ export class InputTextComponent extends BaseComponent {
         forwardRef: null,
         elementRef: null,
         compoundRef: null,
-        fill: false
+        fill: false,
+        seamlesslyFocusAttrs: true
     }
 
     static propTypes = {
@@ -101,7 +102,8 @@ export class InputTextComponent extends BaseComponent {
         forwardRef: PropTypes.any,
         elementRef: PropTypes.any,
         compoundRef: PropTypes.any,
-        fill: PropTypes.bool
+        fill: PropTypes.bool,
+        seamlesslyFocusAttrs: PropTypes.bool
     }
 
     constructor(props) {
@@ -112,13 +114,64 @@ export class InputTextComponent extends BaseComponent {
             this.id = DOMUtils.UniqueElementId();
         }
 
+        this.seamlesslyFocusAttrs = this.seamlesslyFocusAttrs.bind(this);
+        this.onInputFocus = this.onInputFocus.bind(this);
+        this.onBlur = this.onBlur.bind(this);
         this.onPasteCapture = this.onPasteCapture.bind(this);
         this.onInput = this.onInput.bind(this);
         this.onKeyPress = this.onKeyPress.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        super.componentWillReceiveProps(nextProps);
+        this.seamlesslyFocusAttrs(false);
+    }
+
+    componentDidMount() {
+        super.componentDidMount();
+        this.seamlesslyFocusAttrs(false);
+    }
+
+    componentDidUpdate(prevProps) {
+        super.componentDidUpdate(prevProps);
+        this.seamlesslyFocusAttrs(false);
+    }
+
     componentWillUnmount() {
 
+    }
+
+    seamlesslyFocusAttrs(isFocused) {
+        if (!this.state.seamlesslyFocusAttrs || this.state.outlined) return;
+        const inputPackBackgroundColor = window.getComputedStyle(this.iconPackElement, null).getPropertyValue('background-color');
+        const inputBackgroundColor = window.getComputedStyle(this.elementRef.current, null).getPropertyValue('background-color');
+        if (!isFocused && inputBackgroundColor == "rgba(0, 0, 0, 0)" && inputPackBackgroundColor) {
+            this.elementRef.current.style.backgroundColor = inputPackBackgroundColor;
+            return;
+        }
+        this.iconPackElement.style.backgroundColor = inputBackgroundColor;
+    }
+
+    onInputFocus(event) {
+        if (this.iconPackElement) {
+            if (this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.add(`${this.state.scheme}-border-bottom-color`);
+            if (!this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.add(`${this.state.scheme}-border-3px-box-shadow`);
+            if (!this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.add(`${this.state.scheme}-border-1px`);
+            if (this.state.floatLabel && this.iconPackElement.classList) this.iconPackElement.classList.add(`r-r-floating-label-float`);
+            this.seamlesslyFocusAttrs(true);
+        }
+        if (this.state.onFocus) this.state.onFocus(event);
+    }
+
+    onBlur(event) {
+        if (this.iconPackElement) {
+            if (this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.remove(`${this.state.scheme}-border-bottom-color`);
+            if (!this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.remove(`${this.state.scheme}-border-3px-box-shadow`);
+            if (!this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.remove(`${this.state.scheme}-border-1px`);
+            if (this.state.floatLabel && this.iconPackElement.classList && this.elementRef.current.value.length === 0) this.iconPackElement.classList.remove(`r-r-floating-label-float`);
+            this.seamlesslyFocusAttrs(false);
+        }
+        if (this.state.onBlur) this.state.onBlur(event);
     }
 
     onPasteCapture(event) {
@@ -160,15 +213,11 @@ export class InputTextComponent extends BaseComponent {
         const placeholder = (this.state.floatLabel) ? " " : this.state.placeholder;
         let inputProps = ObjUtils.findDiffKeys(this.props, InputTextComponent.defaultProps);
         //inputProps = ObjUtils.removeKeys(inputProps, ['className', 'style']);
-        let className = this.state.nostyle ? "" : classNames('r-r-inputtext',
-            (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-hover` : null),
-            (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-focus` : null),
-            (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-3px-focus-box-shadow` : null),
-            (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-focus` : null),
-            (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-hover` : null), {
+        let className = this.state.nostyle ? "" : classNames('r-r-inputtext', {
+            'r-r-inputtext-no-left-icon': !this.state.leftIcon,
+            'r-r-inputtext-no-right-icon': !this.state.rightIcon,
             'r-r-max-width-100-percent': this.state.fill,
             'r-r-inputtext-outlined': this.state.outlined,
-            'r-r-inputtext-flushed': this.state.flushed,
             'r-r-padding-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
             'r-r-disabled r-r-noselect': this.state.disabled,
             'r-r-skeleton': this.state.scheme === Scheme.SKELETON
@@ -185,6 +234,8 @@ export class InputTextComponent extends BaseComponent {
                     readOnly={this.state.readOnly}
                     defaultValue={this.state.defaultValue}
                     {...this.state.eventProps}
+                    onBlur={this.onBlur}
+                    onFocus={this.onInputFocus}
                     onInput={this.onInput}
                     onKeyPress={this.onKeyPress}
                     onPasteCapture={this.onPasteCapture}
@@ -310,31 +361,23 @@ export class InputTextComponent extends BaseComponent {
     }
 
     render() {
+        const iconPackClassName = classNames('r-r-inputtext-icon-pack',
+            (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-hover` : null),
+            (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-hover` : null), {
+            'r-r-inputtext-outlined': this.state.outlined,
+            'r-r-inputtext-flushed': this.state.flushed,
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON
+        }, this.state.className);
         const className = classNames('r-r-inputtext-compound', {
             'r-r-width-100-percent': this.state.fill,
             'r-r-floating-label': this.state.floatLabel,
-        }, this.state.className);
+        });
         const alignLabel = (this.state.floatLabel) ? Alignment.RIGHT : this.state.alignLabel;
-        let input = this.renderInput();
+        const input = this.renderInput();
+        const [leftIconIsString, leftIcon] = this.renderLeftIcon();
+        const [rightIconIsString, rightIcon] = this.renderRightIcon();
         const label = this.renderLabel(alignLabel);
         const helpLabel = this.renderHelpLabel(this.state.alignHelpLabel);
-        let inputAndIcon = input;
-        if (this.state.leftIcon || this.state.rightIcon) { // TODO there must be a better way to this this
-            const [leftIconIsString, leftIcon] = this.renderLeftIcon();
-            const [rightIconIsString, rightIcon] = this.renderRightIcon();
-            var relayProps = ObjUtils.clone(input.props);
-            if (!relayProps.style) {
-                relayProps.style = {};
-            }
-            if (leftIconIsString !== null && !relayProps.style.paddingLeft) {
-                relayProps.style.paddingLeft = this.state.flushed ? "25px" : "35px";
-            }
-            if (rightIconIsString !== null && !relayProps.style.paddingRight) {
-                relayProps.style.paddingRight = this.state.flushed ? "25px" : "35px";
-            }
-            input = React.cloneElement(input, relayProps);
-            inputAndIcon = <span className="r-r-inputtext-icon-pack">{leftIcon}{rightIcon} {input}</span>;
-        }
 
         return (
             <div className={className} style={this.state.style} ref={this.state.compoundRef}>
@@ -344,7 +387,7 @@ export class InputTextComponent extends BaseComponent {
                 {this.state.alignHelpLabel === Alignment.LEFT && helpLabel ? helpLabel : null}
                 {this.state.alignHelpLabel === Alignment.TOP && helpLabel ? <React.Fragment>{helpLabel} <br/></React.Fragment> : null}
 
-                {inputAndIcon}
+                <div ref={(el) => this.iconPackElement = el } className={iconPackClassName}>{leftIcon}{input}{rightIcon}</div>
 
                 {alignLabel === Alignment.RIGHT && label ? label : null}
                 {alignLabel === Alignment.BOTTOM && label ? <React.Fragment><br/> {label}</React.Fragment> : null}

@@ -89,7 +89,7 @@ export class DropdownPage extends React.Component {
                                     The property <code>lazyLoad</code> allow the dropdown to render the options in pages instead of at once. This is most useful 
                                     when the option list is very long
                                 </p>
-                                <Dropdown scheme={Scheme.PRIMARY} lazyLoad={10} options={this.dropDownOptionsNumbers} selectedOptionIndex={0}/>
+                                <Dropdown scheme={Scheme.PRIMARY} lazyLoad options={this.dropDownOptionsNumbers} selectedOptionIndex={0}/>
 
                                 <p className="prop-desc-1">
                                     <h4>editable</h4>

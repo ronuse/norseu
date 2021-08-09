@@ -959,6 +959,48 @@
 
 /* Box Shadow 3px */
 
+.r-r-primary-border-3px-box-shadow {
+    z-index: 99;
+    box-shadow: 0 0 0 3px rgba(54, 153, 255, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(54, 153, 255, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(54, 153, 255, .3);
+}
+
+.r-r-secondary-border-3px-box-shadow {
+    z-index: 99;
+    box-shadow: 0 0 0 3px rgba(228, 230, 239, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(228, 230, 239, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(228, 230, 239, .3);
+}
+
+.r-r-success-border-3px-box-shadow {
+    z-index: 99;
+    box-shadow: 0 0 0 3px rgba(27, 197, 189, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(27, 197, 189, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(27, 197, 189, .3);
+}
+
+.r-r-info-border-3px-box-shadow {
+    z-index: 99;
+    box-shadow: 0 0 0 3px rgba(137, 80, 252, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(137, 80, 252, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(137, 80, 252, .3);
+}
+
+.r-r-warning-border-3px-box-shadow {
+    z-index: 99;
+    box-shadow: 0 0 0 3px rgba(255, 168, 0, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(255, 168, 0, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(255, 168, 0, .3);
+}
+
+.r-r-danger-border-3px-box-shadow {
+    z-index: 99;
+    box-shadow: 0 0 0 3px rgba(246, 78, 96, .3);
+    -webkit-box-shadow: 0 0 0 3px rgba(246, 78, 96, .3);
+    -moz-box-shadow: 0 0 0 3px rgba(246, 78, 96, .3);
+}
+
 .r-r-primary-border-3px-focus-box-shadow:focus {
     z-index: 99;
     box-shadow: 0 0 0 3px rgba(54, 153, 255, .3);

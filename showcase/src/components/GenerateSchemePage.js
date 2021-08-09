@@ -66,12 +66,12 @@ export class GenerateSchemePage extends React.Component {
                 <Button scheme={this.state.name} icon="fa fa-times" rounded textonly/>
 
                 <Button scheme={this.state.name} icon={customIcon1}/>
-                <Button scheme={this.state.name} icon="fa fa-facebook-square"/>
-                <Button scheme={this.state.name} icon="fa fa-google" rounded outlined/>
-                <Button scheme={this.state.name} icon="fa fa-instagram"/>
-                <Button scheme={this.state.name} icon="fa fa-twitter" textonly raised/>
-                <Button scheme={this.state.name} icon="fa fa-linkedin"/>
-                <Button scheme={this.state.name} icon="fa fa-skype"/>
+                <Button scheme={this.state.name} icon="fab fa-facebook-square"/>
+                <Button scheme={this.state.name} icon="fab fa-google" rounded outlined/>
+                <Button scheme={this.state.name} icon="fab fa-instagram"/>
+                <Button scheme={this.state.name} icon="fab fa-twitter" textonly raised/>
+                <Button scheme={this.state.name} icon="fab fa-linkedin"/>
+                <Button scheme={this.state.name} icon="fab fa-skype"/>
                 <br/><br/>
 
                 <ButtonGroup scheme={this.state.name}>

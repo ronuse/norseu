@@ -8,35 +8,32 @@
 
  /* InputText */ 
 
- .r-r-inputtext-compound {
-     width: fit-content;
- }
+.r-r-inputtext-compound {
+    width: fit-content;
+}
 
 .r-r-inputtext {
-    background-color: rgba(194, 204, 207, 0.2);
-    border: 1px solid #c7c7c7;
-    border-radius: 3px;
+    font-size: 15px;
+    background-color: transparent;
+    border: none;
     outline: none;
-    padding: 8px;
-    transition: 0.3s;
+    padding: 8px 0px 8px 0px;
     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
 }
 
+.r-r-inputtext-no-left-icon {
+    padding-left: 8px;
+}
+
+.r-r-inputtext-no-right-icon {
+    padding-right: 8px;
+}
+
 .r-r-inputtext:focus {
-    background-color: transparent;
-}
-
-.r-r-inputtext-flushed {
-    border: none;
-    border-bottom: 1px solid #c7c7c7;
-    border-radius: 0px;
-}
-
-.r-r-inputtext-outlined {
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
 .r-r-inputtext-label {
@@ -48,31 +45,41 @@
 }
 
 .r-r-inputtext-icon-pack {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #c7c7c7;
+    background-color: rgba(194, 204, 207, 0.2);
     position: relative;
-    display: inline-flex;
+    display: flex;
     -webkit-box-sizing: border-box; 
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
+    transition: 0.3s;
+}
+
+.r-r-inputtext-outlined {
+    background-color: transparent;
+}
+
+.r-r-inputtext-flushed {
+    border: none;
+    border-bottom: 1px solid #c7c7c7;
+    border-radius: 0px;
 }
 
 .r-r-inputtext-left-icon {
-    position: absolute;
     align-self: center;
     padding: 10px;
-    max-height: 18px !important;
-    max-width: 25px !important;
-    z-index: 101;
+    height: 18px !important;
+    width: 20px !important;
 }
 
 .r-r-inputtext-right-icon {
-    position: absolute;
     align-self: center;
-    right: 0px;
-    padding: 12px;
-    max-height: 18px !important;
-    max-width: 25px !important;
-    z-index: 101;
+    padding: 10px;
+    height: 18px !important;
+    width: 20px !important;
 }
 
 .r-r-inputtext-left-icon-flushed {
@@ -94,6 +101,7 @@
     pointer-events: none;
     left: 8px;
     top: 0%;
+    line-height: 32px;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
     -webkit-transition: 0.2s ease all;
@@ -103,14 +111,12 @@
     left: 0px;
 }
 
-.r-r-inputtext:focus ~ .r-r-inputtext-label,
-.r-r-inputtext:not(:placeholder-shown) ~ .r-r-inputtext-label {
+.r-r-floating-label-float ~ .r-r-inputtext-label {
     top: -32px;
     left: 0px;
 }
 
-.r-r-inputtext:focus ~ .r-r-inputtext-label-flushed,
-.r-r-inputtext:not(:placeholder-shown) ~ .r-r-inputtext-label-flushed {
+.r-r-floating-label-float ~ .r-r-inputtext-label-flushed {
     top: -23px;
     left: 0px;
 }

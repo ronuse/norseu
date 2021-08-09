@@ -213,36 +213,36 @@ export class ButtonPage extends React.Component {
 
                 <Panel title="Social Icon Buttons" expanded collapsible borderless>
                     <Button scheme={Scheme.WARNING} icon={customIcon2}/>
-                    <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square"/>
-                    <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter"/>
-                    <Button scheme={Scheme.SUCCESS} icon="fa fa-google"/>
-                    <Button scheme={Scheme.INFO} icon="fa fa-instagram"/>
-                    <Button scheme={Scheme.WARNING} icon="fa fa-linkedin"/>
-                    <Button scheme={Scheme.DANGER} icon="fa fa-skype"/>
+                    <Button scheme={Scheme.PRIMARY} icon="fab fa-facebook-square"/>
+                    <Button scheme={Scheme.SECONDARY} icon="fab fa-twitter"/>
+                    <Button scheme={Scheme.SUCCESS} icon="fab fa-google"/>
+                    <Button scheme={Scheme.INFO} icon="fab fa-instagram"/>
+                    <Button scheme={Scheme.WARNING} icon="fab fa-linkedin"/>
+                    <Button scheme={Scheme.DANGER} icon="fab fa-skype"/>
                     <br/>
                     <Button scheme={Scheme.WARNING} icon={customIcon2} rounded/>
-                    <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" rounded/>
-                    <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" rounded/>
-                    <Button scheme={Scheme.SUCCESS} icon="fa fa-google" rounded/>
-                    <Button scheme={Scheme.INFO} icon="fa fa-instagram" rounded/>
-                    <Button scheme={Scheme.WARNING} icon="fa fa-linkedin" rounded/>
-                    <Button scheme={Scheme.DANGER} icon="fa fa-skype" rounded/>
+                    <Button scheme={Scheme.PRIMARY} icon="fab fa-facebook-square" rounded/>
+                    <Button scheme={Scheme.SECONDARY} icon="fab fa-twitter" rounded/>
+                    <Button scheme={Scheme.SUCCESS} icon="fab fa-google" rounded/>
+                    <Button scheme={Scheme.INFO} icon="fab fa-instagram" rounded/>
+                    <Button scheme={Scheme.WARNING} icon="fab fa-linkedin" rounded/>
+                    <Button scheme={Scheme.DANGER} icon="fab fa-skype" rounded/>
                     <br/>
                     <Button scheme={Scheme.WARNING} icon={customIcon2} rounded outlined/>
-                    <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" rounded outlined/>
-                    <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" rounded outlined/>
-                    <Button scheme={Scheme.SUCCESS} icon="fa fa-google" rounded outlined/>
-                    <Button scheme={Scheme.INFO} icon="fa fa-instagram" rounded outlined/>
-                    <Button scheme={Scheme.WARNING} icon="fa fa-linkedin" rounded outlined/>
-                    <Button scheme={Scheme.DANGER} icon="fa fa-skype" rounded outlined/>
+                    <Button scheme={Scheme.PRIMARY} icon="fab fa-facebook-square" rounded outlined/>
+                    <Button scheme={Scheme.SECONDARY} icon="fab fa-twitter" rounded outlined/>
+                    <Button scheme={Scheme.SUCCESS} icon="fab fa-google" rounded outlined/>
+                    <Button scheme={Scheme.INFO} icon="fab fa-instagram" rounded outlined/>
+                    <Button scheme={Scheme.WARNING} icon="fab fa-linkedin" rounded outlined/>
+                    <Button scheme={Scheme.DANGER} icon="fab fa-skype" rounded outlined/>
                     <br/>
                     <Button scheme={Scheme.WARNING} icon={customIcon2} textonly rounded/>
-                    <Button scheme={Scheme.PRIMARY} icon="fa fa-facebook-square" textonly rounded/>
-                    <Button scheme={Scheme.SECONDARY} icon="fa fa-twitter" textonly rounded/>
-                    <Button scheme={Scheme.SUCCESS} icon="fa fa-google" textonly rounded/>
-                    <Button scheme={Scheme.INFO} icon="fa fa-instagram" textonly rounded/>
-                    <Button scheme={Scheme.WARNING} icon="fa fa-linkedin" textonly rounded/>
-                    <Button scheme={Scheme.DANGER} icon="fa fa-skype" textonly rounded/>
+                    <Button scheme={Scheme.PRIMARY} icon="fab fa-facebook-square" textonly rounded/>
+                    <Button scheme={Scheme.SECONDARY} icon="fab fa-twitter" textonly rounded/>
+                    <Button scheme={Scheme.SUCCESS} icon="fab fa-google" textonly rounded/>
+                    <Button scheme={Scheme.INFO} icon="fab fa-instagram" textonly rounded/>
+                    <Button scheme={Scheme.WARNING} icon="fab fa-linkedin" textonly rounded/>
+                    <Button scheme={Scheme.DANGER} icon="fab fa-skype" textonly rounded/>
                 </Panel>
             </Panel>
         )
