@@ -9,272 +9,284 @@
  /* InputText */ 
 
 .r-r-inputtext-compound {
-    width: fit-content;
+	width: fit-content;
+}
+
+.r-r-inputtext-compound.r-r-skeleton {
+	width: 210px;
+	height: 38px;
 }
 
 .r-r-inputtext {
-    font-size: 15px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    padding: 8px 0px 8px 0px;
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
+	flex: 1;
+	font-size: 15px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	padding: 8px 0px 8px 0px;
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
 }
 
 .r-r-inputtext-no-left-icon {
-    padding-left: 8px;
+	padding-left: 8px;
 }
 
 .r-r-inputtext-no-right-icon {
-    padding-right: 8px;
+	padding-right: 8px;
 }
 
 .r-r-inputtext:focus {
-    background-color: transparent !important;
+	background-color: transparent !important;
 }
 
 .r-r-inputtext-label {
-    display: inline-block;
+	display: inline-block;
 }
 
 .r-r-inputtext-help-label {
-    display: inline-block;
+	display: inline-block;
 }
 
 .r-r-inputtext-icon-pack {
-    outline: none;
-    border-radius: 3px;
-    border: 1px solid #c7c7c7;
-    background-color: rgba(194, 204, 207, 0.2);
-    position: relative;
-    display: flex;
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    transition: 0.3s;
+	outline: none;
+	border-radius: 3px;
+	border: 1px solid #c7c7c7;
+	background-color: rgba(194, 204, 207, 0.2);
+	position: relative;
+	display: flex;
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	transition: 0.3s;
 }
 
 .r-r-inputtext-outlined {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 .r-r-inputtext-flushed {
-    border: none;
-    border-bottom: 1px solid #c7c7c7;
-    border-radius: 0px;
+	border: none;
+	border-bottom: 1px solid #c7c7c7;
+	border-radius: 0px;
 }
 
 .r-r-inputtext-left-icon {
-    align-self: center;
-    padding: 10px;
-    height: 18px !important;
-    width: 20px !important;
+	align-self: center;
+	padding: 10px;
+	/* height: 18px !important;
+	width: 20px !important; */
 }
 
 .r-r-inputtext-right-icon {
-    align-self: center;
-    padding: 10px;
-    height: 18px !important;
-    width: 20px !important;
+	align-self: center;
+	padding: 10px;
+	/* height: 18px !important;
+	width: 20px !important; */
 }
 
 .r-r-inputtext-left-icon-flushed {
-    margin-left: 0px;
+	margin-left: 0px;
 }
 
 .r-r-inputtext-right-icon-flushed {
-    right: 0px;
+	right: 0px;
 }
 
 .r-r-floating-label {
-    position: relative;
-    margin: 40px 0 20px;
+	position: relative;
+	margin: 40px 0 20px;
 }
 
 .r-r-floating-label > label {
-    font-weight: normal;
-    position: absolute;
-    pointer-events: none;
-    left: 8px;
-    top: 0%;
-    line-height: 32px;
-    transition: 0.2s ease all;
-    -moz-transition: 0.2s ease all;
-    -webkit-transition: 0.2s ease all;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 8px;
+	top: 0%;
+	line-height: 32px;
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
+	-webkit-transition: 0.2s ease all;
 }
 
 .r-r-floating-label > .r-r-inputtext-label-flushed {
-    left: 0px;
+	left: 0px;
 }
 
 .r-r-floating-label-float ~ .r-r-inputtext-label {
-    top: -32px;
-    left: 0px;
+	top: -32px;
+	left: 0px;
 }
 
 .r-r-floating-label-float ~ .r-r-inputtext-label-flushed {
-    top: -23px;
-    left: 0px;
+	top: -23px;
+	left: 0px;
 }
 
  /* Checkbox */
 
 .r-r-checkbox {
-    display: inline-flex;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    align-items: center;
+	display: inline-flex;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	align-items: center;
 } 
 
 .r-r-checkbox input {
-    display: none;
+	display: none;
 }
 
 .r-r-checkbox-box {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: max-content;
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #d6d6d6;
-    border-radius: 3px;
-    transition: 0.5s;
-    outline:none;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: max-content;
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	border: 2px solid #d6d6d6;
+	border-radius: 3px;
+	transition: 0.5s;
+	outline:none;
 }
 
 .r-r-checkbox-box:hover {
-    filter: brightness(90%);
+	filter: brightness(90%);
 }
 
 .r-r-checkbox-label {
-    margin-bottom: 0px;
-    flex: 1;
+	margin-bottom: 0px;
+	flex: 1;
 }
 
 /* TextArea */ 
 
 .r-r-textarea {
-    background-color: transparent;
-    border: 1px solid #c7c7c7;
-    border-radius: 3px;
-    outline: none;
-    padding: 8px;
-    -webkit-box-sizing: border-box; 
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 200px;
-    height: 120px;
+	background-color: transparent;
+	border: 1px solid #c7c7c7;
+	border-radius: 3px;
+	outline: none;
+	padding: 8px;
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 200px;
+	height: 120px;
 }
 
 .r-r-textarea-flushed {
-    border: none;
-    border-bottom: 1px solid #c7c7c7;
-    border-radius: 0px;
+	border: none;
+	border-bottom: 1px solid #c7c7c7;
+	border-radius: 0px;
 }
 
 .r-r-textarea-rz-none {
-    resize: none;
+	resize: none;
 }
 
 .r-r-textarea-rz-h {
-    resize: horizontal;
+	resize: horizontal;
 }
 
 .r-r-textarea-rz-v {
-    resize: vertical;
+	resize: vertical;
 }
 
 .r-r-textarea-label {
-    display: inline-block;
+	display: inline-block;
 }
 
 .r-r-textarea-help-label {
-    display: inline-block;
+	display: inline-block;
 }
 
 .r-r-floating-label > .r-r-textarea-label-flushed {
-    left: 10px;
+	left: 10px;
 }
 
 .r-r-textarea:focus ~ .r-r-textarea-label,
 .r-r-textarea:not(:placeholder-shown) ~ .r-r-textarea-label {
-    top: -32px;
-    left: 0px;
+	top: -32px;
+	left: 0px;
 }
 
 .r-r-textarea:focus ~ .r-r-textarea-label-flushed,
 .r-r-textarea:not(:placeholder-shown) ~ .r-r-textarea-label-flushed {
-    top: -23px;
-    left: 0px;
+	top: -23px;
+	left: 0px;
 }
 
 /* Dropdown */
 
-.r-r-dropdown-inputtext-panel > * {
-    width: 190px;
+.r-r-dropdown-inputtext-panel {
+	background-color: white;
+	width: 190px;
+}
+
+.r-r-dropdown-inputtext-panel > .r-r-inputtext-icon-pack > img {
+	width: 19px;
+	height: 19px;
 }
 
 .r-r-dropdown-inputtext-panel > * {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .r-r-dropdown-inputtext {
-    background-color: white;
-    _cursor: pointer; /* optional if not editabl */
+	background-color: white;
+	_cursor: pointer; /* optional if not editabl */
 }
 
 .r-r-dropdown-inputtext:focus {
-    background-color: white;
+	background-color: white;
 }
 
 .r-r-dropdown-popover {
-    min-width: 190px;
-    max-height: 350px;
-    border-radius: 0px 0px 3px 3px;
-    background-color: white;
-    box-shadow: 0px 2px 3px -7px rgb(0 0 0 / 20%), 0px 4px 6px 3px rgb(0 0 0 / 14%), 0px 1px 5px 1px rgb(0 0 0 / 12%) !important;
+	min-width: 190px;
+	max-height: 350px;
+	border-radius: 0px 0px 3px 3px;
+	background-color: white;
+	box-shadow: 0px 2px 3px -7px rgb(0 0 0 / 20%), 0px 4px 6px 3px rgb(0 0 0 / 14%), 0px 1px 5px 1px rgb(0 0 0 / 12%) !important;
 }
 
 .r-r-dropdown-popover-list {
-    margin: 0px;
-    padding: 0px;
-    margin-top: 7px;
-    margin-bottom: 7px;
+	margin: 0px;
+	padding: 0px;
+	margin-top: 7px;
+	margin-bottom: 7px;
 }
 
 .r-r-dropdown-popover-list > li {
-    list-style-type: none;
-    padding: 8px 15px 8px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
+	list-style-type: none;
+	padding: 8px 15px 8px 15px;
+	font-size: 14px;
+	cursor: pointer;
+	border: none;
 }
 
 .r-r-dropdown-popover-list > li.default-style:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.1);
+	cursor: pointer;
 }
 
 .r-r-dropdown-popover-list > li.default-style[aria-selected="true"] {
-    background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .r-r-dropdown-popover-li-item {
-    display: flex;
+	display: flex;
 }
 
 .r-r-dropdown-popover-li-item > img {
-    width: 20px;
-    height: 20px;
-    max-width: 20px;
-    max-height: 20px;
-    margin-right: 10px;
+	width: 20px;
+	height: 20px;
+	max-width: 20px;
+	max-height: 20px;
+	margin-right: 10px;
 }
 
 

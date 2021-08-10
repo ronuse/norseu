@@ -3,64 +3,64 @@
   "version": "0.0.4-rc1",
   "description": "Configurable React Components by Ronuse",
   "watch": {
-    "showcase:run": {
-      "patterns": [
-        "src"
-      ],
-      "extensions": "js,jsx,css"
-    }
+	"showcase:run": {
+	  "patterns": [
+		"src"
+	  ],
+	  "extensions": "js,jsx,css"
+	}
   },
   "scripts": {
-    "watch": "npm-watch",
-    "test": "jest",
-    "build": "babel src --out-dir dist --copy-files",
-    "pack": "npm run build && cp package.json dist/ && cp .*ignore dist/ && cd dist/ && npm pack && cp -Force *.tgz ../",
-    "showcase:prepare": "npm run pack && cd showcase && if exist \"node_modules/react-ui\" (robocopy \"../dist/\" \"node_modules/react-ui\" /s /e || exit /b 0) else (npm install ../ronuse-react-ui-0.0.4-rc1.tgz) ",
-    "showcase:start": "cd showcase && npm start",
-    "showcase:run": "npm run showcase:prepare && npm run showcase:start",
-    "deploy": "npm run deploy:build && npm run deploy:push",
-    "deploy:build": "cd showcase && npm run build && build-showcase.bat",
-    "deploy:push": "cd showcase && gh-pages -d build",
-    "publish": "npm run pack && cd dist/ && npm publish --access public"
+	"watch": "npm-watch",
+	"test": "jest",
+	"build": "babel src --out-dir dist --copy-files",
+	"pack": "npm run build && cp package.json dist/ && cp .*ignore dist/ && cd dist/ && npm pack && cp -Force *.tgz ../",
+	"showcase:prepare": "npm run pack && cd showcase && if exist \"node_modules/react-ui\" (robocopy \"../dist/\" \"node_modules/react-ui\" /s /e || exit /b 0) else (npm install ../ronuse-react-ui-0.0.4-rc1.tgz) ",
+	"showcase:start": "cd showcase && npm start",
+	"showcase:run": "npm run showcase:prepare && npm run showcase:start",
+	"deploy": "npm run deploy:build && npm run deploy:push",
+	"deploy:build": "cd showcase && npm run build && build-showcase.bat",
+	"deploy:push": "cd showcase && gh-pages -d build",
+	"publish": "npm run pack && cd dist/ && npm publish --access public"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ronuse/react-ui.git"
+	"type": "git",
+	"url": "git+https://github.com/ronuse/react-ui.git"
   },
   "keywords": [
-    "react",
-    "component",
-    "ui",
-    "theme",
-    "ronuse"
+	"react",
+	"component",
+	"ui",
+	"theme",
+	"ronuse"
   ],
   "author": "Adewale Azeez",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ronuse/react-ui/issues"
+	"url": "https://github.com/ronuse/react-ui/issues"
   },
   "homepage": "https://github.com/ronuse/react-ui",
   "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
-    "@babel/preset-react": "^7.12.1",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^26.6.1",
-    "classnames": "^2.3.1",
-    "gh-pages": "^3.1.0",
-    "jest": "^26.6.1",
-    "npm-watch": "^0.7.0",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-syntax-highlighter": "^15.2.1",
-    "react-transition-group": "^4.4.2",
-    "regenerator-runtime": "^0.13.7"
+	"@babel/cli": "^7.12.1",
+	"@babel/core": "^7.12.3",
+	"@babel/plugin-proposal-class-properties": "^7.12.1",
+	"@babel/preset-env": "^7.12.1",
+	"@babel/preset-react": "^7.12.1",
+	"babel-core": "^7.0.0-bridge.0",
+	"babel-jest": "^26.6.1",
+	"classnames": "^2.3.1",
+	"gh-pages": "^3.1.0",
+	"jest": "^26.6.1",
+	"npm-watch": "^0.7.0",
+	"prop-types": "^15.7.2",
+	"react": "^17.0.1",
+	"react-dom": "^17.0.1",
+	"react-syntax-highlighter": "^15.2.1",
+	"react-transition-group": "^4.4.2",
+	"regenerator-runtime": "^0.13.7"
   },
   "peerDependencies": {
-    "classnames": "^2.2.6",
-    "react-transition-group": "^4.4.1"
+	"classnames": "^2.2.6",
+	"react-transition-group": "^4.4.1"
   }
 }

@@ -29,43 +29,43 @@ import { Component } from 'react';
 
 export class Portal extends Component {
 
-    static defaultProps = {
-        child: null,
-        container: null,
-        visible: false
-    };
+	static defaultProps = {
+		child: null,
+		container: null,
+		visible: false
+	};
 
-    static propTypes = {
-        child: PropTypes.any,
-        container: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-        visible: PropTypes.bool
-    }; 
+	static propTypes = {
+		child: PropTypes.any,
+		container: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+		visible: PropTypes.bool
+	}; 
 
-    constructor(props) {
-        super(props);
+	constructor(props) {
+		super(props);
 
-        this.state = {
-            hasdom: props.visible
-        };
-    }
+		this.state = {
+			hasdom: props.visible
+		};
+	}
 
-    isDOMReady() {
-        return (typeof window !== 'undefined' && window.document && window.document.createElement);
-    }
+	isDOMReady() {
+		return (typeof window !== 'undefined' && window.document && window.document.createElement);
+	}
 
-    componentDidMount() {
-        if (this.isDOMReady() && !this.state.hasdom) {
-            this.setState({ hasdom: true });
-        }
-    }
+	componentDidMount() {
+		if (this.isDOMReady() && !this.state.hasdom) {
+			this.setState({ hasdom: true });
+		}
+	}
 
-    render() {
-        if (this.props.child && this.state.hasdom) {
-            const container = this.props.container || document.body;
-            return container === 'self' ? this.props.child : ReactDOM.createPortal(this.props.child, container);
-        }
+	render() {
+		if (this.props.child && this.state.hasdom) {
+			const container = this.props.container || document.body;
+			return container === 'self' ? this.props.child : ReactDOM.createPortal(this.props.child, container);
+		}
 
-        return null;
-    }
+		return null;
+	}
 
 }

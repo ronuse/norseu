@@ -1,217 +1,208 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #394B59;
-    background-color: #EEF0F8;
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #394B59;
+	background-color: #EEF0F8;
 }
 
 #root {
-    height: 100vh;
+	height: 100vh;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
-    color: orange;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+	color: orange;
 }
 
 p {
-    margin: 0px;
+	margin: 0px;
 }
 
 input {
-    color: #717272;
+	color: #717272;
 }
 
 .prop-desc-1 {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 .prop-desc-1 > h4 {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .r-r-showcase-component-page {
-    padding: 20px;
-    margin: 0px;
+	padding: 20px;
+	margin: 0px;
 }
 
 .r-r-showcase-component-page > .r-r-panel-content > .r-r-panel {
-    background-color: white !important;
-    padding: 10px;
+	background-color: white !important;
+	padding: 10px;
 }
 
 .r-r-showcase-component-page > .r-r-panel-content > * > .r-r-panel {
-    background-color: white !important;
-    padding: 10px;
+	background-color: white !important;
+	padding: 10px;
 }
 
 .r-r-showcase-code {
-    margin: 0px !important;
-    padding: 10px !important;
-    background-color: #EBF1F5 !important;
+	margin: 0px !important;
+	padding: 10px !important;
+	background-color: #EBF1F5 !important;
 }
 
 .r-r-showcase-elevation {
-    width: 170px;
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 60px;
-    margin-bottom: 30px;
-    font-weight: 500;
+	width: 170px;
+	height: 120px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 60px;
+	margin-bottom: 30px;
+	font-weight: 500;
 }
 
 .r-r-tag,
 .r-r-showcase-badges > .r-r-badge, 
 .r-r-showcase-badges > .r-r-tag,
 .r-r-showcase-badges > .r-r-pill {
-    margin-right: .5em;
-    margin-bottom: .5em;
+	margin-right: .5em;
+	margin-bottom: .5em;
 }
 
 .r-r-showcase-badges {
 }
 
 .r-r-panel {
-    background-color: white;
+	background-color: white;
 }
 
 .r-r-showcase-sample-component-div {
-    background-color: white;
+	background-color: white;
 }
 
 .r-r-showcase-doc-title {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .accordion-controlled-header-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: rgb(177, 200, 206);
-    flex-direction: row-reverse;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	background-color: rgb(177, 200, 206);
+	flex-direction: row-reverse;
 }
 
 .accordion-controlled-header-buttons > .left {
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 120%;
+	margin-left: 10px;
+	font-weight: bold;
+	font-size: 120%;
 }
 
 .accordion-controlled-header-buttons > .right > i {
-    margin-left: 10px;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 100%;
+	margin-left: 10px;
+	cursor: pointer;
+	padding: 10px;
+	border-radius: 100%;
 }
 
 .accordion-controlled-header-buttons > .right > i:hover {
-    background-color: rgba(2, 102, 116, 0.2);
+	background-color: rgba(2, 102, 116, 0.2);
 }
 
 .r-r-showcase-component-page-preview {
-    padding: 20px;
+	padding: 20px;
 }
 
 .s-flex-wrap > .r-r-panel{
-    display: flex;
-    background-color: green;
-    flex-direction: row;
+	display: flex;
+	background-color: green;
+	flex-direction: row;
 }
 
 .sppai {
-    flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 .sppai > * {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
 }
 
 .sppai > div > span {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .max-height-350px {
-    max-height: 350px;
+	max-height: 350px;
 }
 
 .left-sidebar {
-    width: 200px !important;
-    position: relative !important; 
-    height: auto !important;
-    display: flex;
-    flex-direction: column;
+	width: 200px !important;
+	position: relative !important; 
+	height: auto !important;
+	display: flex;
+	flex-direction: column;
 }
 
 .left-sidebar > .r-r-scrollpanel {
-    padding: 20px !important;
+	padding: 20px !important;
 }
 
 .left-sidebar > .r-r-scrollpanel > section {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .left-sidebar > .r-r-scrollpanel > section > .title {
-    font-weight: bold;
-    font-size: 14px;
-    text-transform: uppercase;
-    margin-top: 25px;
-    margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 14px;
+	text-transform: uppercase;
+	margin-top: 25px;
+	margin-bottom: 10px;
 }
 
 .left-sidebar > .r-r-scrollpanel > section > .link {
-    text-decoration: none;
-    color: rgb(22, 22, 22);
-    padding: 5px;
-    font-size: 14px;
-    padding-left: 10px;
-    border-radius: 3px;
+	text-decoration: none;
+	color: rgb(22, 22, 22);
+	padding: 5px;
+	font-size: 14px;
+	padding-left: 10px;
+	border-radius: 3px;
 }
 
 .left-sidebar > .r-r-scrollpanel > section > .link:hover {
-    background-color: rgb(216, 216, 216);
+	background-color: rgb(216, 216, 216);
 }
 
 /* TMPS */
 
-.test-input-pack {
-    background-color: grey;
-}
-
-.test-input:focus {
-    background-color: transparent !important;
-    color: red;
-}
-
 /* */
 
 .r-r-ripple {
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.0);
-    position: absolute;
-    opacity: 1;
-    z-index: 1;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.0);
+	position: absolute;
+	opacity: 1;
+	z-index: 1;
 }
 
 .r-r-ripple-effect {
-    animation: r-r-ripple-drop .6s linear;
+	animation: r-r-ripple-drop .6s linear;
 }
 
 @keyframes r-r-ripple-drop {
   100% {
-    transform: scale(2);
-    opacity: 0;
+	transform: scale(2);
+	opacity: 0;
   }
 }

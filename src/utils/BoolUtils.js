@@ -25,39 +25,39 @@
 
 export class BoolUtils {
 
-    static bothEquals(var1, var2) {
-        return (var1 === var2);
-    }
+	static bothEquals(var1, var2) {
+		return (var1 === var2);
+	}
 
-    static equalsAny(obj, compares) {
-        for (var compare of compares) {
-            if (this.bothEquals(obj, compare)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	static equalsAny(obj, compares) {
+		for (var compare of compares) {
+			if (this.bothEquals(obj, compare)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    static allEquals(obj, compares) {
-        for (var compare of compares) {
-            if (!this.bothEquals(obj, compare)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	static allEquals(obj, compares) {
+		for (var compare of compares) {
+			if (!this.bothEquals(obj, compare)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-    static noneEquals(obj, compares) {
-        for (var compare of compares) {
-            if (this.bothEquals(obj, compare)) {
-                return false;
-            }
-        }
-        return true;
-    }
+	static noneEquals(obj, compares) {
+		for (var compare of compares) {
+			if (this.bothEquals(obj, compare)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-    static isTypeOfAny(obj, compares) {
-        return this.equalsAny(typeof obj, compares)
-    }
+	static isTypeOfAny(obj, compares) {
+		return this.equalsAny(typeof obj, compares)
+	}
 
 }

@@ -24,33 +24,33 @@
  */
 
 export const Colors = {
-    NONE: "rgba(0,0,0,0)",
-    BLACK: "#10161A",
-    WHITE: "#FFFFFF",
+	NONE: "rgba(0,0,0,0)",
+	BLACK: "#10161A",
+	WHITE: "#FFFFFF",
 
-    LIGHT_GRAY1: "#E4E6EF",
+	LIGHT_GRAY1: "#E4E6EF",
 
-    DARK_GRAY1: "#182026",
+	DARK_GRAY1: "#182026",
 
-    GRAY1: "#5C7080",
+	GRAY1: "#5C7080",
 
-    BLUE1: "#3699FF",
-    
-    GREEN1: "#1BC5BD",
+	BLUE1: "#3699FF",
+	
+	GREEN1: "#1BC5BD",
 
-    ORANGE1: "#FFA800",
-    
-    RED1: "#F64E60",
+	ORANGE1: "#FFA800",
+	
+	RED1: "#F64E60",
 
-    PURPLE1: "#8950FC"
+	PURPLE1: "#8950FC"
 }
 
 export const CoreColors = {
-    TRANSPARENT: Colors.NONE,
-    PRIMARY: Colors.BLUE1,
-    SECONDARY: Colors.LIGHT_GRAY1,
-    SUCCESS: Colors.GREEN1,
-    INFO: Colors.PURPLE1,
-    WARNING: Colors.ORANGE1,
-    DANGER: Colors.RED1
+	TRANSPARENT: Colors.NONE,
+	PRIMARY: Colors.BLUE1,
+	SECONDARY: Colors.LIGHT_GRAY1,
+	SUCCESS: Colors.GREEN1,
+	INFO: Colors.PURPLE1,
+	WARNING: Colors.ORANGE1,
+	DANGER: Colors.RED1
 }

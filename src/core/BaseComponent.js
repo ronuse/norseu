@@ -31,52 +31,52 @@ import { Scheme, Alignment } from "./variables/";
  
 export class BaseComponent extends Component {
 
-    static defaultProps = {
-        forwardRef: null,
-        elementRef: null
-    }
+	static defaultProps = {
+		forwardRef: null,
+		elementRef: null
+	}
 
-    static propTypes = {
-        forwardRef: PropTypes.any,
-        elementRef: PropTypes.any
-    }
+	static propTypes = {
+		forwardRef: PropTypes.any,
+		elementRef: PropTypes.any
+	}
 
-    constructor(props, ignoreList) {
-        super(props);
-        this.state = ObjUtils.clone(this.props, ignoreList);
-        this.elementRef = React.createRef(this.props.elementRef);
-        this.state.eventProps = ObjUtils.extractEventProps(this.props); // TODO ignore the event captured by the component itself
-    }
+	constructor(props, ignoreList) {
+		super(props);
+		this.state = ObjUtils.clone(this.props, ignoreList);
+		this.elementRef = React.createRef(this.props.elementRef);
+		this.state.eventProps = ObjUtils.extractEventProps(this.props); // TODO ignore the event captured by the component itself
+	}
 
-    resolveForwardRef(extraValues) {
-        let ref = this.props.forwardRef;
-        if (ref) {
-            const refValue = {
-                value: () => this.elementRef.current.value,
-                focus: () => { if (this.elementRef) { this.elementRef.current.focus() }; },
-                getInternalElement: () => this.elementRef,
-                getState: () => this.state,
-                setState: (state) => this.setState(state),
-                ...extraValues
-            };
-            if (typeof ref === 'function') {
-                ref(refValue);
-            } else {
-                ref.current = refValue;
-            }
-        }
-    }
+	resolveForwardRef(extraValues) {
+		let ref = this.props.forwardRef;
+		if (ref) {
+			const refValue = {
+				value: () => this.elementRef.current.value,
+				focus: () => { if (this.elementRef && this.elementRef.current) { this.elementRef.current.focus() }; },
+				getInternalElement: () => this.elementRef,
+				getState: () => this.state,
+				setState: (state) => this.setState(state),
+				...extraValues
+			};
+			if (typeof ref === 'function') {
+				ref(refValue);
+			} else {
+				ref.current = refValue;
+			}
+		}
+	}
 
-    componentWillReceiveProps(nextProps) {
-        this.setState(nextProps);
-    }
+	componentWillReceiveProps(nextProps) {
+		this.setState(nextProps);
+	}
 
-    componentDidMount() {
-        this.resolveForwardRef({});
-    }
+	componentDidMount() {
+		this.resolveForwardRef({});
+	}
 
-    componentDidUpdate(prevProps) {
-        this.resolveForwardRef({});
-    }
-    
+	componentDidUpdate(prevProps) {
+		this.resolveForwardRef({});
+	}
+	
 }

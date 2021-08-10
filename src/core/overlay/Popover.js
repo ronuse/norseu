@@ -37,230 +37,235 @@ export const buildPopoverArrow = (position, color) => {
 }
 
 export const PopoverArrow = {
-    
+	
 }
  
  export class PopoverComponent extends BaseComponent {
 
-    static defaultProps = {
-        dismissable: true,
-        className: null,
-        style: null,
-        pointingArrowClassName: null,
-        transitionOptions: null,
-        onOpenFocusRef: null,
-        onCloseFocusRef: null,
-        baseZIndex: null,
-        container: null,
-        trapFocus: false,
-        onShow: null,
-        onHide: null,
-    };
+	static defaultProps = {
+		dismissable: true,
+		className: null,
+		style: null,
+		pointingArrowClassName: null,
+		transitionOptions: null,
+		onOpenFocusRef: null,
+		onCloseFocusRef: null,
+		baseZIndex: null,
+		container: null,
+		trapFocus: false,
+		matchTargetSize: false,
+		onShow: null,
+		onHide: null,
+	};
 
-    static propTypes = {
-        dismissable: PropTypes.bool,
-        className: PropTypes.string,
-        style: PropTypes.object,
-        pointingArrowClassName: null,
-        transitionOptions: PropTypes.object,
-        onOpenFocusRef: PropTypes.object,
-        onCloseFocusRef: PropTypes.object,
-        baseZIndex: PropTypes.number,
-        container: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-        trapFocus: PropTypes.bool,
-        onShow: PropTypes.func,
-        onHide: PropTypes.func,
-    };
+	static propTypes = {
+		dismissable: PropTypes.bool,
+		className: PropTypes.string,
+		style: PropTypes.object,
+		pointingArrowClassName: null,
+		transitionOptions: PropTypes.object,
+		onOpenFocusRef: PropTypes.object,
+		onCloseFocusRef: PropTypes.object,
+		baseZIndex: PropTypes.number,
+		container: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+		trapFocus: PropTypes.bool,
+		matchTargetSize: PropTypes.bool,
+		onShow: PropTypes.func,
+		onHide: PropTypes.func,
+	};
 
-    constructor(props) {
-        super(props);
-        this.state.id = props.id;
-        this.state.visible = false;
+	constructor(props) {
+		super(props);
+		this.state.id = props.id;
+		this.state.visible = false;
 
-        this.toggle = this.toggle.bind(this);
-        this.onEnter = this.onEnter.bind(this);
-        this.onExit = this.onExit.bind(this);
-        this.onExited = this.onExited.bind(this);
-        this.onEntered = this.onEntered.bind(this);
-        this.showPopover = this.showPopover.bind(this);
-        this.hidePopover = this.hidePopover.bind(this);
-        this.resolvePopoverStyle = this.resolvePopoverStyle.bind(this);
-    }
+		this.toggle = this.toggle.bind(this);
+		this.onEnter = this.onEnter.bind(this);
+		this.onExit = this.onExit.bind(this);
+		this.onExited = this.onExited.bind(this);
+		this.onEntered = this.onEntered.bind(this);
+		this.showPopover = this.showPopover.bind(this);
+		this.hidePopover = this.hidePopover.bind(this);
+		this.resolvePopoverStyle = this.resolvePopoverStyle.bind(this);
+	}
 
-    resolveForwardRef(extraValues) {
-        super.resolveForwardRef({
-            toggle: this.toggle
-        });
-    }
+	resolveForwardRef(extraValues) {
+		super.resolveForwardRef({
+			toggle: this.toggle
+		});
+	}
 
-    componentDidMount() {
-        super.componentDidMount();
-        if (!this.state.id) {
-            this.setState({ id: DOMUtils.UniqueElementId() });
-        }
-    }
+	componentDidMount() {
+		super.componentDidMount();
+		if (!this.state.id) {
+			this.setState({ id: DOMUtils.UniqueElementId() });
+		}
+	}
 
-    componentWillUnmount() {
-        this.unbindDocumentClickListener();
-        this.unbindScrollListener();
-        this.bindResizeListener();
-        DOMUtils.ZIndexHandler.removeElementZIndex(this.modal);
-    }
-    
-    onEnter() {
-        DOMUtils.ZIndexHandler.set('overlay', this.elementRef.current, this.props.baseZIndex);
-        this.resolvePopoverStyle();
-    }
+	componentWillUnmount() {
+		this.unbindDocumentClickListener();
+		this.unbindScrollListener();
+		this.bindResizeListener();
+		DOMUtils.ZIndexHandler.removeElementZIndex(this.modal);
+	}
+	
+	onEnter() {
+		DOMUtils.ZIndexHandler.set('overlay', this.elementRef.current, this.props.baseZIndex);
+		this.resolvePopoverStyle();
+	}
 
-    onEntered() {
-        if (this.props.onOpenFocusRef && this.props.onOpenFocusRef.current && ObjUtils.isFunction(this.props.onOpenFocusRef.current.focus)) {
-            this.props.onOpenFocusRef.current.focus();
-        }
-        this.bindDocumentClickListener();
-        this.bindScrollListener();
-        this.bindResizeListener();
-        if (this.props.onShow) this.props.onShow();
-    }
+	onEntered() {
+		if (this.props.onOpenFocusRef && this.props.onOpenFocusRef.current && ObjUtils.isFunction(this.props.onOpenFocusRef.current.focus)) {
+			this.props.onOpenFocusRef.current.focus();
+		}
+		this.bindDocumentClickListener();
+		this.bindScrollListener();
+		this.bindResizeListener();
+		if (this.props.onShow) this.props.onShow();
+	}
 
-    onExit() {
-        this.unbindDocumentClickListener();
-        this.unbindScrollListener();
-        this.bindResizeListener();
-    }
+	onExit() {
+		this.unbindDocumentClickListener();
+		this.unbindScrollListener();
+		this.bindResizeListener();
+	}
 
-    onExited() {
-        DOMUtils.ZIndexHandler.removeElementZIndex(this.elementRef.current);
-        if (this.props.onCloseFocusRef && this.props.onCloseFocusRef.current && ObjUtils.isFunction(this.props.onCloseFocusRef.current.focus)) {
-            this.props.onCloseFocusRef.current.focus();
-        }
-        if (this.props.onHide) this.props.onHide();
-    }
+	onExited() {
+		DOMUtils.ZIndexHandler.removeElementZIndex(this.elementRef.current);
+		if (this.props.onCloseFocusRef && this.props.onCloseFocusRef.current && ObjUtils.isFunction(this.props.onCloseFocusRef.current.focus)) {
+			this.props.onCloseFocusRef.current.focus();
+		}
+		if (this.props.onHide) this.props.onHide();
+	}
 
-    isNotToggleElement(event) {
-        return this.target && this.target != event.target && !(this.target.isSameNode(event.target) || this.target.contains(event.target)) ;
-    }
+	isNotToggleElement(event) {
+		return this.target && this.target != event.target && !(this.target.isSameNode(event.target) || this.target.contains(event.target)) ;
+	}
 
-    isOutsideClicked(target) {
-        return this.elementRef && this.elementRef.current && !(this.elementRef.current.isSameNode(target) || this.elementRef.current.contains(target));
-    }
+	isOutsideClicked(target) {
+		return this.elementRef && this.elementRef.current && !(this.elementRef.current.isSameNode(target) || this.elementRef.current.contains(target));
+	}
 
-    bindDocumentClickListener() {
-        if (!this.documentClickListener && this.props.dismissable) {
-            this.documentClickListener = (event) => {
-                if (this.isNotToggleElement(event) && this.isOutsideClicked(event.target)) {
-                    if (this.state.trapFocus && this.props.onOpenFocusRef && this.props.onOpenFocusRef.current && ObjUtils.isFunction(this.props.onOpenFocusRef.current.focus)) {
-                        this.props.onOpenFocusRef.current.focus();
-                        return;
-                    }
-                    this.hidePopover();
-                }
-            };
-            document.addEventListener('click', this.documentClickListener);
-        }
-    }
+	bindDocumentClickListener() {
+		if (!this.documentClickListener && this.props.dismissable) {
+			this.documentClickListener = (event) => {
+				if (this.isNotToggleElement(event) && this.isOutsideClicked(event.target)) {
+					if (this.state.trapFocus && this.props.onOpenFocusRef && this.props.onOpenFocusRef.current && ObjUtils.isFunction(this.props.onOpenFocusRef.current.focus)) {
+						this.props.onOpenFocusRef.current.focus();
+						return;
+					}
+					this.hidePopover();
+				}
+			};
+			document.addEventListener('click', this.documentClickListener);
+		}
+	}
 
-    unbindDocumentClickListener() {
-        if (this.documentClickListener) {
-            document.removeEventListener('click', this.documentClickListener);
-            this.documentClickListener = null;
-        }
-    }
+	unbindDocumentClickListener() {
+		if (this.documentClickListener) {
+			document.removeEventListener('click', this.documentClickListener);
+			this.documentClickListener = null;
+		}
+	}
 
-    bindScrollListener() {
-        if (!this.documentScrollHandler) {
-            this.documentScrollHandler = DOMUtils.ScrollHandler(this.target, (event) => {
-                if (this.state.visible) {
-                    this.hidePopover();
-                }
-            });
-            this.documentScrollHandler.attach();
-        }
-    }
+	bindScrollListener() {
+		if (!this.documentScrollHandler) {
+			this.documentScrollHandler = DOMUtils.ScrollHandler(this.target, (event) => {
+				if (this.state.visible) {
+					this.hidePopover();
+				}
+			});
+			this.documentScrollHandler.attach();
+		}
+	}
 
-    unbindScrollListener() {
-        if (this.documentScrollHandler) {
-            this.documentScrollHandler.detach();
-        }
-    }
+	unbindScrollListener() {
+		if (this.documentScrollHandler) {
+			this.documentScrollHandler.detach();
+		}
+	}
 
-    bindResizeListener() {
-        if (!this.windowResizeListener) {
-            this.windowResizeListener = (event) => {
-                if (this.state.visible) {
-                    this.hidePopover();
-                }
-            };
-            window.addEventListener('resize', this.windowResizeListener);
-        }
-    }
+	bindResizeListener() {
+		if (!this.windowResizeListener) {
+			this.windowResizeListener = (event) => {
+				if (this.state.visible) { // is android or ios
+					this.hidePopover();
+				}
+			};
+			window.addEventListener('resize', this.windowResizeListener);
+		}
+	}
 
-    unbindResizeListener() {
-        if (this.windowResizeListener) {
-            window.removeEventListener('resize', this.windowResizeListener);
-            this.windowResizeListener = null;
-        }
-    }
+	unbindResizeListener() {
+		if (this.windowResizeListener) {
+			window.removeEventListener('resize', this.windowResizeListener);
+			this.windowResizeListener = null;
+		}
+	}
 
-    resolvePopoverStyle() {
-        if (!this.target) return;
-        DOMUtils.absolutePositionRelatively(this.elementRef.current, this.target);
-        if (this.props.pointingArrowClassName) return;
-        const targetOffset = DOMUtils.getElementOffset(this.target);
-        const popoverOffset = DOMUtils.getElementOffset(this.elementRef.current);
-        if (targetOffset.left > popoverOffset.left) {
-            const arrowLeftOffset = targetOffset.left - popoverOffset.left - 10;
-            this.elementRef.current.style.setProperty('--popoverArrowLeftOffset', `${arrowLeftOffset}px`);
-        }
-        if (targetOffset.top > popoverOffset.top) {
-            DOMUtils.addClass(this.elementRef.current, 'r-r-popover-arrow-flipped');
-        }
-    }
+	resolvePopoverStyle() {
+		if (!this.target) return;
+		if (this.state.matchTargetSize) {
+			DOMUtils.matchStyles(this.target, [ this.elementRef.current ], [ "min-width", "width", "max-width" ]);
+		}
+		DOMUtils.absolutePositionRelatively(this.elementRef.current, this.target);
+		if (this.props.pointingArrowClassName) return;
+		const targetOffset = DOMUtils.getElementOffset(this.target);
+		const popoverOffset = DOMUtils.getElementOffset(this.elementRef.current);
+		if (targetOffset.left > popoverOffset.left) {
+			const arrowLeftOffset = targetOffset.left - popoverOffset.left - 10;
+			this.elementRef.current.style.setProperty('--popoverArrowLeftOffset', `${arrowLeftOffset}px`);
+		}
+		if (targetOffset.top > popoverOffset.top) {
+			DOMUtils.addClass(this.elementRef.current, 'r-r-popover-arrow-flipped');
+		}
+	}
 
-    toggle(event, target) {
-        if (!this.state.visible) {
-            this.showPopover(event, target);
-            return;
-        }
-        this.hidePopover(event, target);
-    }
+	toggle(event, target) {
+		if (!this.state.visible) {
+			this.showPopover(event, target);
+			return;
+		}
+		this.hidePopover(event, target);
+	}
 
-    showPopover(event, target) {
-        this.target = target || event.currentTarget || event.target;
-        if (this.state.visible) {
-            this.resolvePopoverStyle();
-            return;
-        }
-        this.setState({ visible: true }, () => {
-            // overlay event listener
-        });
-    }
+	showPopover(event, target) {
+		this.target = target || event.currentTarget || event.target;
+		if (this.state.visible) {
+			this.resolvePopoverStyle();
+			return;
+		}
+		this.setState({ visible: true }, () => {
+			// overlay event listener
+		});
+	}
 
-    hidePopover(event, target) {
-        this.setState({ visible: false }, () => {
-            // overlay event listener
-        });
-    }
+	hidePopover(event, target) {
+		this.setState({ visible: false }, () => {
+			// overlay event listener
+		});
+	}
 
-    renderElement() {
-        let className = classNames('r-r-popover', {
-            'r-r-popover-arrow': this.props.pointingArrowClassName === null,
-            'r-r-margin-top-0px': this.props.pointingArrowClassName !== null,
-        }, this.props.pointingArrowClassName, this.props.className);
+	renderElement() {
+		let className = classNames('r-r-popover', {
+			'r-r-popover-arrow': this.props.pointingArrowClassName === null,
+			'r-r-margin-top-0px': this.props.pointingArrowClassName !== null,
+		}, this.props.pointingArrowClassName, this.props.className);
 
-        return (
-            <CSSTransition nodeRef={this.elementRef} classNames="r-r-popover" timeout={{ enter: 130, exit: 110 }} in={this.state.visible} options={this.props.transitionOptions}
-                unmountOnExit onEnter={this.onEnter} onEntered={this.onEntered} onExited={this.onExited}>
-                <div ref={this.elementRef} id={this.state.id} className={className} style={this.props.style}>
-                    {this.props.children}
-                </div>
-            </CSSTransition>
-        );
-    }
+		return (
+			<CSSTransition nodeRef={this.elementRef} classNames="r-r-popover" timeout={{ enter: 130, exit: 110 }} in={this.state.visible} options={this.props.transitionOptions}
+				unmountOnExit onEnter={this.onEnter} onEntered={this.onEntered} onExited={this.onExited}>
+				<div ref={this.elementRef} id={this.state.id} className={className} style={this.props.style}>
+					{this.props.children}
+				</div>
+			</CSSTransition>
+		);
+	}
 
-    render() {
-        const element = this.renderElement();
-        return <Portal child={element} container={this.props.container} visible/>;
-    }
+	render() {
+		const element = this.renderElement();
+		return <Portal child={element} container={this.props.container} visible/>;
+	}
 }
 
 export const Popover = React.forwardRef((props, ref) => <PopoverComponent {...props} forwardRef={ref} />);

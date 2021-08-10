@@ -36,217 +36,217 @@ import { Checkbox } from '../form';
 
 export class Panel extends Component {
 
-    static defaultProps = {
-        id: null,
-        title: null,
-        scheme: null,
-        safely: null,
-        collapsible: null,
-        expanded: null,
-        borderless: null,
-        expandIcon: "fa fa-plus",
-        collapseIcon: "fa fa-minus",
-        contentClassName: null,
-        headerClassName: null,
-        contentStyle: null,
-        headerStyle: null,
-        onCollapse: null,
-        onExpand: null,
-        onToggle: null,
-        elevation: Elevation.NONE,
-        exemptedComponents: [],
-        ignoreChildrenOf: [
-            "select",
-            "span",
-            "p"
-        ]
-    }
+	static defaultProps = {
+		id: null,
+		title: null,
+		scheme: null,
+		safely: null,
+		collapsible: null,
+		expanded: null,
+		borderless: null,
+		expandIcon: "fa fa-plus",
+		collapseIcon: "fa fa-minus",
+		contentClassName: null,
+		headerClassName: null,
+		contentStyle: null,
+		headerStyle: null,
+		onCollapse: null,
+		onExpand: null,
+		onToggle: null,
+		elevation: Elevation.NONE,
+		exemptedComponents: [],
+		ignoreChildrenOf: [
+			"select",
+			"span",
+			"p"
+		]
+	}
 
-    static propTypes = {
-        id: PropTypes.string,
-        title: PropTypes.any,
-        scheme: PropTypes.string,
-        safely: PropTypes.bool,
-        collapsible: PropTypes.bool,
-        expanded: PropTypes.bool,
-        borderless: PropTypes.bool,
-        expandIcon: PropTypes.string,
-        collapseIcon: PropTypes.string,
-        contentClassName: PropTypes.string,
-        headerClassName: PropTypes.string,
-        contentStyle: PropTypes.object,
-        headerStyle: PropTypes.object,
-        onCollapse: PropTypes.func,
-        onExpand: PropTypes.func,
-        onToggle: PropTypes.func,
-        elevation: PropTypes.string,
-        exemptedComponents: PropTypes.arrayOf(Component),
-        ignoreChildrenOf: PropTypes.array
-    }
+	static propTypes = {
+		id: PropTypes.string,
+		title: PropTypes.any,
+		scheme: PropTypes.string,
+		safely: PropTypes.bool,
+		collapsible: PropTypes.bool,
+		expanded: PropTypes.bool,
+		borderless: PropTypes.bool,
+		expandIcon: PropTypes.string,
+		collapseIcon: PropTypes.string,
+		contentClassName: PropTypes.string,
+		headerClassName: PropTypes.string,
+		contentStyle: PropTypes.object,
+		headerStyle: PropTypes.object,
+		onCollapse: PropTypes.func,
+		onExpand: PropTypes.func,
+		onToggle: PropTypes.func,
+		elevation: PropTypes.string,
+		exemptedComponents: PropTypes.arrayOf(Component),
+		ignoreChildrenOf: PropTypes.array
+	}
 
-    constructor(props) {
-        super(props);
-        if (!this.props.onToggle) {
-            this.state = {
-                expanded: this.props.expanded
-            };
-        }
+	constructor(props) {
+		super(props);
+		if (!this.props.onToggle) {
+			this.state = {
+				expanded: this.props.expanded
+			};
+		}
 
-        this.toggle = this.toggle.bind(this);
-        this.id = this.props.id || DOMUtils.UniqueElementId();
-    }
+		this.toggle = this.toggle.bind(this);
+		this.id = this.props.id || DOMUtils.UniqueElementId();
+	}
 
-    toggle(event) {
-        if (this.props.collapsible) {
-            const expanded = this.props.onToggle ? this.props.expanded : this.state.expanded;
+	toggle(event) {
+		if (this.props.collapsible) {
+			const expanded = this.props.onToggle ? this.props.expanded : this.state.expanded;
 
-            if (expanded) {
-                if (!this.props.onToggle) {
-                    this.setState({expanded: false});
-                }
-                if (this.props.onCollapse) {
-                    this.props.onCollapse(event);
-                }
-            } else {
-                if (!this.props.onToggle) {
-                    this.setState({expanded: true});
-                }        
-                if (this.props.onExpand) {
-                    this.props.onExpand(event);
-                }
-            }
+			if (expanded) {
+				if (!this.props.onToggle) {
+					this.setState({expanded: false});
+				}
+				if (this.props.onCollapse) {
+					this.props.onCollapse(event);
+				}
+			} else {
+				if (!this.props.onToggle) {
+					this.setState({expanded: true});
+				}		
+				if (this.props.onExpand) {
+					this.props.onExpand(event);
+				}
+			}
 
-            if (this.props.onToggle) {
-                this.props.onToggle({
-                    event: event,
-                    value: !expanded
-                });
-            }
-        }
+			if (this.props.onToggle) {
+				this.props.onToggle({
+					event: event,
+					value: !expanded
+				});
+			}
+		}
 
-        event.preventDefault();
-    }
+		event.preventDefault();
+	}
 
-    componentDidMount() {
+	componentDidMount() {
 
-    }
+	}
 
-    componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps) {
 
-    }
+	}
 
-    componentWillUnmount() {
+	componentWillUnmount() {
 
-    }
+	}
 
-    isExpanded() {
-        return this.props.collapsible ? (this.props.onToggle ? this.props.expanded : this.state.expanded) : true;
-    }
+	isExpanded() {
+		return this.props.collapsible ? (this.props.onToggle ? this.props.expanded : this.state.expanded) : true;
+	}
 
-    renderHeader(expanded) {
-        if (this.props.title || this.props.collapsible) {
-            const toggleIcon = expanded ? this.props.collapseIcon : this.props.expandIcon;
-            let className = classNames('r-r-panel-header-text', {
-                'r-r-skeleton': this.props.scheme === Scheme.SKELETON
-            }, this.props.headerClassName);
+	renderHeader(expanded) {
+		if (this.props.title || this.props.collapsible) {
+			const toggleIcon = expanded ? this.props.collapseIcon : this.props.expandIcon;
+			let className = classNames('r-r-panel-header-text', {
+				'r-r-skeleton': this.props.scheme === Scheme.SKELETON
+			}, this.props.headerClassName);
 
-            return (
-                <div className="r-r-panel-header">
-                    <span className={className} aria-label={this.id + '-header'} style={this.props.headerStyle}>{this.props.title}</span>
-                    {this.props.collapsible ? <Button scheme={this.props.scheme} rounded textonly icon={toggleIcon} onClick={this.toggle} className="r-r-panel-toggle-button" /> : ''}
-                    
-                </div>
-            );
-        }
-    }
+			return (
+				<div className="r-r-panel-header">
+					<span className={className} aria-label={this.id + '-header'} style={this.props.headerStyle}>{this.props.title}</span>
+					{this.props.collapsible ? <Button scheme={this.props.scheme} rounded textonly icon={toggleIcon} onClick={this.toggle} className="r-r-panel-toggle-button" /> : ''}
+					
+				</div>
+			);
+		}
+	}
 
-    getWithChildrenSkeletonAdded(element, skeletonize) {
-        if (!this.props.safely && (element.props && element.props.children) && !skeletonize) {
-            let isPanelComponent = BoolUtils.equalsAny(element.type, [Panel, TabPane, Checkbox]);
-            let subChildren = isPanelComponent ? element.props.children : React.Children.map(element.props.children, child => {
-                if (React.isValidElement(child)) {
-                    let skeletonize = BoolUtils.equalsAny(child.type, this.props.ignoreChildrenOf);
-                    child = this.getWithChildrenSkeletonAdded(child, skeletonize);
-                    var childRelayProps = ObjUtils.clone(child.props);
-                    childRelayProps.className = classNames(childRelayProps.className, {
-                        'r-r-skeleton': !child.props.children || skeletonize
-                    });
-                    childRelayProps.scheme = Scheme.SKELETON;
-                    return React.cloneElement(child, childRelayProps);
-                }
-                return <span className={'r-r-skeleton'}>{child}</span>;
-            });
-            var subRelayProps = ObjUtils.clone(element.props);
-            subRelayProps.children = subChildren;
-            if (isPanelComponent) {
-                subRelayProps.scheme = Scheme.SKELETON;
-            }
-            return React.cloneElement(element, subRelayProps);
-        }
-        return element;
-    }
+	getWithChildrenSkeletonAdded(element, skeletonize) {
+		if (!this.props.safely && (element.props && element.props.children) && !skeletonize) {
+			let isPanelComponent = BoolUtils.equalsAny(element.type, [Panel, TabPane, Checkbox]);
+			let subChildren = isPanelComponent ? element.props.children : React.Children.map(element.props.children, child => {
+				if (React.isValidElement(child)) {
+					let skeletonize = BoolUtils.equalsAny(child.type, this.props.ignoreChildrenOf);
+					child = this.getWithChildrenSkeletonAdded(child, skeletonize);
+					var childRelayProps = ObjUtils.clone(child.props);
+					childRelayProps.className = classNames(childRelayProps.className, {
+						'r-r-skeleton': !child.props.children || skeletonize
+					});
+					childRelayProps.scheme = Scheme.SKELETON;
+					return React.cloneElement(child, childRelayProps);
+				}
+				return <span className={'r-r-skeleton'}>{child}</span>;
+			});
+			var subRelayProps = ObjUtils.clone(element.props);
+			subRelayProps.children = subChildren;
+			if (isPanelComponent) {
+				subRelayProps.scheme = Scheme.SKELETON;
+			}
+			return React.cloneElement(element, subRelayProps);
+		}
+		return element;
+	}
 
-    renderContent(expanded) {
-        const id = this.id + '-content';
-        let children = this.props.children.length === 0 || this.props.scheme != Scheme.SKELETON ? 
-                        this.props.children : 
-                        React.Children.map(this.props.children, child => {
+	renderContent(expanded) {
+		const id = this.id + '-content';
+		let children = this.props.children.length === 0 || this.props.scheme != Scheme.SKELETON ? 
+						this.props.children : 
+						React.Children.map(this.props.children, child => {
 
-            let isExemptedComponent = BoolUtils.equalsAny(child.type, this.props.exemptedComponents);
-            if (isExemptedComponent || (!child.type && this.props.safely)) {
-                return child;
-            }
-            let skeletonize = BoolUtils.equalsAny(child.type, this.props.ignoreChildrenOf);
-            child = this.getWithChildrenSkeletonAdded(child, skeletonize);
-            let isPanelComponent = BoolUtils.equalsAny(child.type, [Panel, TabPane, Checkbox]);
-            var relayProps = ObjUtils.clone(child.props);
-            relayProps.className = classNames('r-r-overflow-hidden', {
-                                        "r-r-skeleton" : (!isPanelComponent && (!child.props || !child.props.children)) || skeletonize
-                                    }, relayProps.className);
-            relayProps.scheme = this.props.scheme;
-            if (isPanelComponent) {
-                relayProps.safely = this.props.safely;
-                relayProps.exemptedComponents = this.props.exemptedComponents;
-            }
-            if (React.isValidElement(child) && child.props.scheme !== undefined && this.props.safely) {
-                return React.cloneElement(child, relayProps);
+			let isExemptedComponent = BoolUtils.equalsAny(child.type, this.props.exemptedComponents);
+			if (isExemptedComponent || (!child.type && this.props.safely)) {
+				return child;
+			}
+			let skeletonize = BoolUtils.equalsAny(child.type, this.props.ignoreChildrenOf);
+			child = this.getWithChildrenSkeletonAdded(child, skeletonize);
+			let isPanelComponent = BoolUtils.equalsAny(child.type, [Panel, TabPane, Checkbox]);
+			var relayProps = ObjUtils.clone(child.props);
+			relayProps.className = classNames('r-r-overflow-hidden', {
+										"r-r-skeleton" : (!isPanelComponent && (!child.props || !child.props.children)) || skeletonize
+									}, relayProps.className);
+			relayProps.scheme = this.props.scheme;
+			if (isPanelComponent) {
+				relayProps.safely = this.props.safely;
+				relayProps.exemptedComponents = this.props.exemptedComponents;
+			}
+			if (React.isValidElement(child) && child.props.scheme !== undefined && this.props.safely) {
+				return React.cloneElement(child, relayProps);
 
-            }
-            if (!this.props.safely) {
-                if (React.isValidElement(child)) {
-                    return React.cloneElement(child, relayProps);
-                }
-                return null;
+			}
+			if (!this.props.safely) {
+				if (React.isValidElement(child)) {
+					return React.cloneElement(child, relayProps);
+				}
+				return null;
 
-            }
-            return child;
-        });
-        let className = classNames('r-r-panel-content', this.props.contentClassName);
-        
-        return (
-            <CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={expanded} unmountOnExit>
-                <div className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'} style={this.props.contentStyle}>
-                    {children}
-                </div>
-            </CSSTransition>
-        );
-    }
+			}
+			return child;
+		});
+		let className = classNames('r-r-panel-content', this.props.contentClassName);
+		
+		return (
+			<CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={expanded} unmountOnExit>
+				<div className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'} style={this.props.contentStyle}>
+					{children}
+				</div>
+			</CSSTransition>
+		);
+	}
 
-    render() {
-        let className = classNames('r-r-panel', this.props.elevation, {
-            'r-r-border-1px-radius-5px': !this.props.borderless,
-            'r-panel-collapsible': this.props.collapsible
-        }, this.props.className);
-        let expanded = !this.props.children ? false : this.isExpanded();
-        let header = this.renderHeader(expanded);
-        let content = !this.props.children ? '' : this.renderContent(expanded);
+	render() {
+		let className = classNames('r-r-panel', this.props.elevation, {
+			'r-r-border-1px-radius-5px': !this.props.borderless,
+			'r-panel-collapsible': this.props.collapsible
+		}, this.props.className);
+		let expanded = !this.props.children ? false : this.isExpanded();
+		let header = this.renderHeader(expanded);
+		let content = !this.props.children ? '' : this.renderContent(expanded);
 
-        return (
-            <div id={this.props.id} className={className} style={this.props.style}>
-                {header}
-                {content}
-            </div>
-        )
-    }
+		return (
+			<div id={this.props.id} className={className} style={this.props.style}>
+				{header}
+				{content}
+			</div>
+		)
+	}
 
 }

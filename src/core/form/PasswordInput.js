@@ -55,6 +55,8 @@ export class PasswordInputComponent extends BaseComponent {
         super(props);
     }
 
+    resolveForwardRef(extraValues) {}
+
     renderToggleIcon() {
         if (!this.state.toggleMask || !this.state.toggleIcons) {
             return;

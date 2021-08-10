@@ -3,11 +3,11 @@
 }
 
 .r-r-layout-horizontal {
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .r-r-layout-vertical {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }

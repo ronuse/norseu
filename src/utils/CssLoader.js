@@ -24,8 +24,8 @@
  */
 
 export function loadCSS(cssfile) {
-    if (!window.ronuse_react_loaded_css) {
-        window.ronuse_react_loaded_css = []
-    }
-    require(cssfile);
+	if (!window.ronuse_react_loaded_css) {
+		window.ronuse_react_loaded_css = []
+	}
+	require(cssfile);
 }

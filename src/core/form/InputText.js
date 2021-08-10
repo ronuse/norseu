@@ -38,7 +38,9 @@ export class InputTextComponent extends BaseComponent {
         className: null,
         style: null,
         inputClassName: null,
+        internalInputClassName: null,
         inputStyle: null,
+        internalInputStyle: null,
         label: null,
         alignLabel: Alignment.LEFT,
         placeholder: "",
@@ -75,7 +77,9 @@ export class InputTextComponent extends BaseComponent {
         className: PropTypes.string,
         style: PropTypes.object,
         inputClassName: PropTypes.string,
+        internalInputClassName: PropTypes.string,
         inputStyle: PropTypes.object,
+        internalInputStyle: PropTypes.object,
         label: PropTypes.any,
         alignLabel: PropTypes.string,
         placeholder: PropTypes.string,
@@ -145,11 +149,11 @@ export class InputTextComponent extends BaseComponent {
         if (!this.state.seamlesslyFocusAttrs || this.state.outlined) return;
         const inputPackBackgroundColor = window.getComputedStyle(this.iconPackElement, null).getPropertyValue('background-color');
         const inputBackgroundColor = window.getComputedStyle(this.elementRef.current, null).getPropertyValue('background-color');
-        if (!isFocused && inputBackgroundColor == "rgba(0, 0, 0, 0)" && inputPackBackgroundColor) {
-            this.elementRef.current.style.backgroundColor = inputPackBackgroundColor;
+        if (!isFocused && inputBackgroundColor == "rgba(0, 0, 0, 0)" && inputPackBackgroundColor != inputBackgroundColor) {
+            this.cachedBackgroundColor = inputPackBackgroundColor;
             return;
         }
-        this.iconPackElement.style.backgroundColor = inputBackgroundColor;
+        this.iconPackElement.style.backgroundColor = (isFocused ? inputBackgroundColor : null);
     }
 
     onInputFocus(event) {
@@ -221,10 +225,10 @@ export class InputTextComponent extends BaseComponent {
             'r-r-padding-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
             'r-r-disabled r-r-noselect': this.state.disabled,
             'r-r-skeleton': this.state.scheme === Scheme.SKELETON
-        }, 'r-r-inputtext-theme', this.state.inputClassName);
+        }, 'r-r-inputtext-theme', this.state.internalInputClassName);
 
         return <input ref={this.elementRef} className={className} 
-                    style={this.state.inputStyle} 
+                    style={this.state.internalInputStyle} 
                     id={this.id} 
                     type={this.state.type}
                     name={this.state.name} 
@@ -367,11 +371,12 @@ export class InputTextComponent extends BaseComponent {
             'r-r-inputtext-outlined': this.state.outlined,
             'r-r-inputtext-flushed': this.state.flushed,
             'r-r-skeleton': this.state.scheme === Scheme.SKELETON
-        }, this.state.className);
+        }, this.state.inputClassName);
         const className = classNames('r-r-inputtext-compound', {
             'r-r-width-100-percent': this.state.fill,
             'r-r-floating-label': this.state.floatLabel,
-        });
+            'r-r-skeleton': this.state.scheme === Scheme.SKELETON
+        }, this.state.className);
         const alignLabel = (this.state.floatLabel) ? Alignment.RIGHT : this.state.alignLabel;
         const input = this.renderInput();
         const [leftIconIsString, leftIcon] = this.renderLeftIcon();
@@ -382,18 +387,18 @@ export class InputTextComponent extends BaseComponent {
         return (
             <div className={className} style={this.state.style} ref={this.state.compoundRef}>
                 {alignLabel === Alignment.LEFT && label ? label : null}
-                {alignLabel === Alignment.TOP && label ? <React.Fragment>{label} <br/></React.Fragment> : null}
+                {alignLabel === Alignment.TOP && label ? label : null}
 
                 {this.state.alignHelpLabel === Alignment.LEFT && helpLabel ? helpLabel : null}
-                {this.state.alignHelpLabel === Alignment.TOP && helpLabel ? <React.Fragment>{helpLabel} <br/></React.Fragment> : null}
+                {this.state.alignHelpLabel === Alignment.TOP && helpLabel ? helpLabel : null}
 
-                <div ref={(el) => this.iconPackElement = el } className={iconPackClassName}>{leftIcon}{input}{rightIcon}</div>
+                <div ref={(el) => this.iconPackElement = el } style={this.state.inputStyle} className={iconPackClassName}>{leftIcon}{input}{rightIcon}</div>
 
                 {alignLabel === Alignment.RIGHT && label ? label : null}
-                {alignLabel === Alignment.BOTTOM && label ? <React.Fragment><br/> {label}</React.Fragment> : null}
+                {alignLabel === Alignment.BOTTOM && label ? label : null}
                 
                 {this.state.alignHelpLabel === Alignment.RIGHT && helpLabel ? helpLabel : null}
-                {this.state.alignHelpLabel === Alignment.BOTTOM && helpLabel ? <React.Fragment><br/> {helpLabel}</React.Fragment> : null}
+                {this.state.alignHelpLabel === Alignment.BOTTOM && helpLabel ? helpLabel : null}
             </div>
         )
     }

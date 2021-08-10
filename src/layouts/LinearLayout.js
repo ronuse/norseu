@@ -31,79 +31,79 @@ import { ObjUtils, BoolUtils } from "../utils";
 
 export class LinearLayout extends Component {
 
-    static defaultProps = {
-        orientation: Orientation.HORIZONTAL,
-        padding: null,
-        overflow: Overflow.Scroll,
-        nofill: false,
-        wrap: false,
-        style: null,
-        className: null,
-        elevation: Elevation.NONE
-    }
+	static defaultProps = {
+		orientation: Orientation.HORIZONTAL,
+		padding: null,
+		overflow: Overflow.Scroll,
+		nofill: false,
+		wrap: false,
+		style: null,
+		className: null,
+		elevation: Elevation.NONE
+	}
 
-    static propTypes = {
-        orientation: PropTypes.string,
-        padding: PropTypes.number,
-        overflow: PropTypes.string,
-        nofill: PropTypes.bool,
-        wrap: PropTypes.bool,
-        style: PropTypes.object,
-        className: PropTypes.string,
-        elevation: PropTypes.string
-    }
+	static propTypes = {
+		orientation: PropTypes.string,
+		padding: PropTypes.number,
+		overflow: PropTypes.string,
+		nofill: PropTypes.bool,
+		wrap: PropTypes.bool,
+		style: PropTypes.object,
+		className: PropTypes.string,
+		elevation: PropTypes.string
+	}
 
-    constructor() {
-        super();        
-    }
+	constructor() {
+		super();		
+	}
 
-    componentDidMount() {
-        
-    }
+	componentDidMount() {
+		
+	}
 
-    componentWillUnmount() {
-        
-    }
+	componentWillUnmount() {
+		
+	}
 
-    render() {
-        let componentProps = ObjUtils.findDiffKeys(this.props, LinearLayout.defaultProps);
-        let className = classNames('r-r-linear-layout', this.props.elevation, {
-            'r-r-layout-horizontal': this.props.orientation !== Orientation.VERTICAL,
-            'r-r-layout-vertical': this.props.orientation === Orientation.VERTICAL,
-            'r-r-width-max-content': this.props.nofill,
-            'r-r-flex-wrap': this.props.wrap
-        }, this.props.className);
-        let childrenSize = this.props.children ? this.props.children.length : 0;
-        let children = !this.props.padding || !this.props.children ? this.props.children : React.Children.map(this.props.children, (child, index) => {
-            if (React.isValidElement(child)) {
-                var childRelayProps = ObjUtils.clone(child.props);
-                if (!childRelayProps.style) {
-                    childRelayProps.style = {};
-                }
-                childRelayProps.style.margin = this.props.padding;
-                if (index == 0 && childrenSize > 1) {
-                    if (this.props.orientation === Orientation.VERTICAL) {
-                        childRelayProps.style.marginBottom = 0;
-                    } else {
-                        childRelayProps.style.marginRight = 0;
-                    }
-                } else if (index+1 === childrenSize && childrenSize > 2) {
-                    if (this.props.orientation === Orientation.VERTICAL) {
-                        childRelayProps.style.marginTop = 0;
-                    } else {
-                        childRelayProps.style.marginLeft = 0;
-                    }
-                }
-                return React.cloneElement(child, childRelayProps);
-            }
-            return child;
-        });
+	render() {
+		let componentProps = ObjUtils.findDiffKeys(this.props, LinearLayout.defaultProps);
+		let className = classNames('r-r-linear-layout', this.props.elevation, {
+			'r-r-layout-horizontal': this.props.orientation !== Orientation.VERTICAL,
+			'r-r-layout-vertical': this.props.orientation === Orientation.VERTICAL,
+			'r-r-width-max-content': this.props.nofill,
+			'r-r-flex-wrap': this.props.wrap
+		}, this.props.className);
+		let childrenSize = this.props.children ? this.props.children.length : 0;
+		let children = !this.props.padding || !this.props.children ? this.props.children : React.Children.map(this.props.children, (child, index) => {
+			if (React.isValidElement(child)) {
+				var childRelayProps = ObjUtils.clone(child.props);
+				if (!childRelayProps.style) {
+					childRelayProps.style = {};
+				}
+				childRelayProps.style.margin = this.props.padding;
+				if (index == 0 && childrenSize > 1) {
+					if (this.props.orientation === Orientation.VERTICAL) {
+						childRelayProps.style.marginBottom = 0;
+					} else {
+						childRelayProps.style.marginRight = 0;
+					}
+				} else if (index+1 === childrenSize && childrenSize > 2) {
+					if (this.props.orientation === Orientation.VERTICAL) {
+						childRelayProps.style.marginTop = 0;
+					} else {
+						childRelayProps.style.marginLeft = 0;
+					}
+				}
+				return React.cloneElement(child, childRelayProps);
+			}
+			return child;
+		});
 
-        return (
-            <div ref={(el) => this.container = el} {...componentProps} style={this.props.style} className={className}>
-                {children}
-            </div>
-        )
-    }
+		return (
+			<div ref={(el) => this.container = el} {...componentProps} style={this.props.style} className={className}>
+				{children}
+			</div>
+		)
+	}
 
 }

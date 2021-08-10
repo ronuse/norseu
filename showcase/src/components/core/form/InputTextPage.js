@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
-import { InputText } from '@ronuse/react-ui/core/form';
+import { InputText, Dropdown } from '@ronuse/react-ui/core/form';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
@@ -82,6 +82,9 @@ export class InputTextPage extends React.Component {
                 
                 <Panel title="With schemes" expanded collapsible borderless>
 
+                    <InputText placeholder="Skeleton" scheme={Scheme.SKELETON}/>
+                    <br/><br/>
+
                     <InputText placeholder="Primary scheme" scheme={Scheme.PRIMARY}/>
                     <br/><br/>
 
@@ -146,7 +149,7 @@ export class InputTextPage extends React.Component {
                     <InputText placeholder="Right icon only" scheme={Scheme.PRIMARY} rightIcon="fa fa-spinner fa-pulse" outlined/>
                     <br/><br/>
 
-                    <InputText placeholder="Right and left icon only" scheme={Scheme.PRIMARY} leftIcon="fa fa-user" rightIcon="fa fa-cog fa-spin" outlined/>
+                    <InputText placeholder="Right and left icon only" scheme={Scheme.PRIMARY} leftIcon="fa fa-user" rightIcon="fa fa-cog fa-spin"/>
                     <br/><br/>
 
                     <InputText placeholder="Custom Icon" scheme={Scheme.PRIMARY} leftIcon={customLeftIcon1} outlined/>
@@ -172,18 +175,20 @@ export class InputTextPage extends React.Component {
                     <br/><br/>
 
                     <h5>Change label alignment</h5>
-                    Label Alignment: <select onChange={(e)=>{this.setState({ alignLabel2: e.target.value} )}}>
-                        <option value={Alignment.TOP}>{"TOP"}</option>
-                        <option value={Alignment.LEFT}>{"LEFT"}</option>
-                        <option value={Alignment.RIGHT}>{"RIGHT"}</option>
-                        <option value={Alignment.BOTTOM}>{"BOTTOM"}</option>
-                    </select><br/><br/>
-                    Help Label Alignment: <select onChange={(e)=>{this.setState({ alignHelpLabel: e.target.value} )}}>
-                        <option value={Alignment.BOTTOM}>{"BOTTOM"}</option>
-                        <option value={Alignment.TOP}>{"TOP"}</option>
-                        <option value={Alignment.LEFT}>{"LEFT"}</option>
-                        <option value={Alignment.RIGHT}>{"RIGHT"}</option>
-                    </select><br/><br/>
+                    <Dropdown alignLabel={Alignment.LEFT} label="Label Alignment:" scheme={Scheme.PRIMARY} selectedOptionIndex={0} options={[
+                        { label: "TOP", value: Alignment.TOP  },
+                        { label: "LEFT", value: Alignment.LEFT  },
+                        { label: "RIGHT", value: Alignment.RIGHT  },
+                        { label: "BOTTOM", value: Alignment.BOTTOM  }
+                    ]} onSelectOption={(e)=>{this.setState({ alignLabel2: e.option.value} )}}/>
+                    <br/>
+                    <Dropdown alignLabel={Alignment.LEFT} label="Help Label Alignment:" scheme={Scheme.PRIMARY} selectedOptionIndex={0} options={[
+                        { label: "BOTTOM", value: Alignment.BOTTOM  },
+                        { label: "TOP", value: Alignment.TOP  },
+                        { label: "LEFT", value: Alignment.LEFT  },
+                        { label: "RIGHT", value: Alignment.RIGHT  }
+                    ]} onSelectOption={(e)=>{this.setState({ alignHelpLabel: e.option.value} )}}/>
+                    <br/>
                     <InputText placeholder="alignLabel={Alignment.?}" scheme={Scheme.PRIMARY} 
                         label="Fullname" 
                         helpLabel="Enter your username to login to  your accout"

@@ -24,55 +24,55 @@
  */
 
 export const Alignment = {
-    CENTER: 'center',
-    LEFT: 'left',
-    RIGHT: 'right',
-    TOP: 'top',
-    BOTTOM: 'bottom',
-    TOP_LEFT: 'top-left',
-    TOP_RIGHT: 'top-right',
-    TOP_CENTER: 'top-center',
-    BOTTOM_LEFT: 'bottom-left',
-    BOTTOM_RIGHT: 'bottom-right',
-    BOTTOM_CENTER: 'bottom-center'
+	CENTER: 'center',
+	LEFT: 'left',
+	RIGHT: 'right',
+	TOP: 'top',
+	BOTTOM: 'bottom',
+	TOP_LEFT: 'top-left',
+	TOP_RIGHT: 'top-right',
+	TOP_CENTER: 'top-center',
+	BOTTOM_LEFT: 'bottom-left',
+	BOTTOM_RIGHT: 'bottom-right',
+	BOTTOM_CENTER: 'bottom-center'
 }
 
 export const Elevation = {
-    NONE: '',
-    ONE: 'r-r-elevation-1',
-    TWO: 'r-r-elevation-2',
-    THREE: 'r-r-elevation-3',
-    FOUR: 'r-r-elevation-4',
-    FIVE: 'r-r-elevation-5',
-    SIX: 'r-r-elevation-6',
-    SEVEN: 'r-r-elevation-7',
-    EIGHT: 'r-r-elevation-8',
-    NINE: 'r-r-elevation-9',
-    TEN: 'r-r-elevation-10',
-    ELEVEN: 'r-r-elevation-11',
-    TWELVE: 'r-r-elevation-12',
-    THIRTEEN: 'r-r-elevation-13'
+	NONE: '',
+	ONE: 'r-r-elevation-1',
+	TWO: 'r-r-elevation-2',
+	THREE: 'r-r-elevation-3',
+	FOUR: 'r-r-elevation-4',
+	FIVE: 'r-r-elevation-5',
+	SIX: 'r-r-elevation-6',
+	SEVEN: 'r-r-elevation-7',
+	EIGHT: 'r-r-elevation-8',
+	NINE: 'r-r-elevation-9',
+	TEN: 'r-r-elevation-10',
+	ELEVEN: 'r-r-elevation-11',
+	TWELVE: 'r-r-elevation-12',
+	THIRTEEN: 'r-r-elevation-13'
 }
 
 export const Orientation = {
-    NONE: "none",
-    HORIZONTAL: "horizontal",
-    VERTICAL: "vertical",
-    HORIZONTAL_VERTICAL: "horizontal_vertical"
+	NONE: "none",
+	HORIZONTAL: "horizontal",
+	VERTICAL: "vertical",
+	HORIZONTAL_VERTICAL: "horizontal_vertical"
 }
 
 export const Scheme = {
-    STATELESS: "r-r-stateless",
-    PRIMARY: "r-r-primary",
-    SECONDARY: "r-r-secondary",
-    SUCCESS: "r-r-success",
-    INFO: "r-r-info",
-    WARNING: "r-r-warning",
-    DANGER: "r-r-danger",
-    SKELETON: "r-r-skeleton"
+	STATELESS: "r-r-stateless",
+	PRIMARY: "r-r-primary",
+	SECONDARY: "r-r-secondary",
+	SUCCESS: "r-r-success",
+	INFO: "r-r-info",
+	WARNING: "r-r-warning",
+	DANGER: "r-r-danger",
+	SKELETON: "r-r-skeleton"
 }
 
 export const Overflow = {
-    Scroll: "scroll",
-    Fixed: "fixed"
+	Scroll: "scroll",
+	Fixed: "fixed"
 }

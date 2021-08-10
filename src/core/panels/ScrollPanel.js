@@ -35,76 +35,76 @@ import { CSSTransition } from 'react-transition-group';
 
 export class ScrollPanelComponent extends Component {
 
-    static defaultProps = {
-        scheme: null,
-        elevation: null,
-        className: null,
-        alwaysScroll: false,
-        alwaysScrollX: false,
-        alwaysScrollY: false,
-        hideScrollBars: false,
-        hideScrollBarX: false,
-        hideScrollBarY: false,
-        forwardRef: null
-    }
+	static defaultProps = {
+		scheme: null,
+		elevation: null,
+		className: null,
+		alwaysScroll: false,
+		alwaysScrollX: false,
+		alwaysScrollY: false,
+		hideScrollBars: false,
+		hideScrollBarX: false,
+		hideScrollBarY: false,
+		forwardRef: null
+	}
 
-    static propTypes = {
-        scheme: PropTypes.string,
-        elevation: PropTypes.string,
-        className: PropTypes.string,
-        alwaysScroll: PropTypes.bool,
-        alwaysScrollX: PropTypes.bool,
-        alwaysScrollY: PropTypes.bool,
-        hideScrollBars: PropTypes.bool,
-        hideScrollBarX: PropTypes.bool,
-        hideScrollBarY: PropTypes.bool,
-        forwardRef: PropTypes.any
-    }
+	static propTypes = {
+		scheme: PropTypes.string,
+		elevation: PropTypes.string,
+		className: PropTypes.string,
+		alwaysScroll: PropTypes.bool,
+		alwaysScrollX: PropTypes.bool,
+		alwaysScrollY: PropTypes.bool,
+		hideScrollBars: PropTypes.bool,
+		hideScrollBarX: PropTypes.bool,
+		hideScrollBarY: PropTypes.bool,
+		forwardRef: PropTypes.any
+	}
 
-    constructor(props) {
-        super(props);
-        this.elementRef = React.createRef(this.props.forwardRef);
-    }
+	constructor(props) {
+		super(props);
+		this.elementRef = React.createRef(this.props.forwardRef);
+	}
 
-    resolveForwardRef() {
-        let ref = this.props.forwardRef;
-        if (ref) {
-            if (typeof ref === 'function') {
-                ref(this.elementRef.current);
-            } else {
-                ref.current = this.elementRef.current;
-            }
-        }
-    }
+	resolveForwardRef() {
+		let ref = this.props.forwardRef;
+		if (ref) {
+			if (typeof ref === 'function') {
+				ref(this.elementRef.current);
+			} else {
+				ref.current = this.elementRef.current;
+			}
+		}
+	}
 
-    componentDidMount() {
-        this.resolveForwardRef();
-    }
+	componentDidMount() {
+		this.resolveForwardRef();
+	}
 
-    componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps) {
 
-    }
+	}
 
-    componentWillUnmount() {
+	componentWillUnmount() {
 
-    }
+	}
 
-    render() {
-        let componentProps = ObjUtils.findDiffKeys(this.props, ScrollPanelComponent.defaultProps);
-        let className = classNames('r-r-scrollpanel', (this.props.scheme ? `${this.props.scheme}-scrollpanel` : null), this.props.elevation, {
-            'r-r-skeleton': this.props.scheme === Scheme.SKELETON,
-            'r-r-scrollpanel-always-show-scrollbars': this.props.alwaysScroll,
-            'r-r-scrollpanel-always-show-scrollbar-x': this.props.alwaysScrollX,
-            'r-r-scrollpanel-always-show-scrollbar-y': this.props.alwaysScrollY,
-            'r-r-scrollpanel-hidden-scrollbars': this.props.hideScrollBars,
-            'r-r-scrollpanel-hidden-scrollbar-x': this.props.hideScrollBarX,
-            'r-r-scrollpanel-hidden-scrollbar-y': this.props.hideScrollBarY
-        }, this.props.className);
+	render() {
+		let componentProps = ObjUtils.findDiffKeys(this.props, ScrollPanelComponent.defaultProps);
+		let className = classNames('r-r-scrollpanel', (this.props.scheme ? `${this.props.scheme}-scrollpanel` : null), this.props.elevation, {
+			'r-r-skeleton': this.props.scheme === Scheme.SKELETON,
+			'r-r-scrollpanel-always-show-scrollbars': this.props.alwaysScroll,
+			'r-r-scrollpanel-always-show-scrollbar-x': this.props.alwaysScrollX,
+			'r-r-scrollpanel-always-show-scrollbar-y': this.props.alwaysScrollY,
+			'r-r-scrollpanel-hidden-scrollbars': this.props.hideScrollBars,
+			'r-r-scrollpanel-hidden-scrollbar-x': this.props.hideScrollBarX,
+			'r-r-scrollpanel-hidden-scrollbar-y': this.props.hideScrollBarY
+		}, this.props.className);
 
-        return (
-            <div ref={this.elementRef} className={className} {...componentProps} />
-        )
-    }
+		return (
+			<div ref={this.elementRef} className={className} {...componentProps} />
+		)
+	}
 
 }
 

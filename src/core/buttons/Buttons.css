@@ -7,31 +7,31 @@
  /* Button */
 
 .r-r-button-min-size {
-    min-height: 35px;
-    min-width: 90px;
+	min-height: 35px;
+	min-width: 90px;
 }
 
 .r-r-button-min-size-icon-only {
-    min-height: 35px;
-    min-width: 35px;
+	min-height: 35px;
+	min-width: 35px;
 }
 
 .r-r-button {
-    margin: 5px;
-    display: inline-flex;
-    cursor: pointer;
-    user-select: none;
-    align-items: center;
-    vertical-align: bottom;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-    background-color: #F5F8FA;
-    color: #293742;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #A7B6C2;
-    text-decoration: none;
+	margin: 5px;
+	display: inline-flex;
+	cursor: pointer;
+	user-select: none;
+	align-items: center;
+	vertical-align: bottom;
+	text-align: center;
+	overflow: hidden;
+	position: relative;
+	background-color: #F5F8FA;
+	color: #293742;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #A7B6C2;
+	text-decoration: none;
     width: fit-content;
 }
 

@@ -27,276 +27,307 @@ let uniqueElementIdsCount = 0;
 
 export class DOMUtils {
 
-    static getBrowser() {
-        if(!this.browser) {
-            let matched = this.resolveUserAgent();
-            this.browser = {};
+	static getBrowser() {
+		if(!this.browser) {
+			let matched = this.resolveUserAgent();
+			this.browser = {};
 
-            if (matched.browser) {
-                this.browser[matched.browser] = true;
-                this.browser['version'] = matched.version;
-            }
-            if (this.browser['chrome']) {
-                this.browser['webkit'] = true;
-            } else if (this.browser['webkit']) {
-                this.browser['safari'] = true;
-            }
-        }
+			if (matched.browser) {
+				this.browser[matched.browser] = true;
+				this.browser['version'] = matched.version;
+			}
+			if (this.browser['chrome']) {
+				this.browser['webkit'] = true;
+			} else if (this.browser['webkit']) {
+				this.browser['safari'] = true;
+			}
+		}
 
-        return this.browser;
-    }
+		return this.browser;
+	}
 
-    static resolveUserAgent() {
-        let ua = navigator.userAgent.toLowerCase();
-        let match = /(chrome)[ ]([\w.]+)/.exec(ua) ||
-            /(webkit)[ ]([\w.]+)/.exec(ua) ||
-            /(opera)(?:.*version|)[ ]([\w.]+)/.exec(ua) ||
-            /(msie) ([\w.]+)/.exec(ua) ||
-            (ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua)) ||
-            [];
+	static resolveUserAgent() {
+		let ua = navigator.userAgent.toLowerCase();
+		let match = /(chrome)[ ]([\w.]+)/.exec(ua) ||
+			/(webkit)[ ]([\w.]+)/.exec(ua) ||
+			/(opera)(?:.*version|)[ ]([\w.]+)/.exec(ua) ||
+			/(msie) ([\w.]+)/.exec(ua) ||
+			(ua.indexOf("compatible") < 0 && /(mozilla)(?:.*? rv:([\w.]+)|)/.exec(ua)) ||
+			[];
 
-        return {
-            browser: match[1] || "",
-            version: match[2] || "0"
-        };
-    }
+		return {
+			browser: match[1] || "",
+			version: match[2] || "0"
+		};
+	}
 
-    static UniqueElementId() {
-        return 'ronuse-auto-id-' + (uniqueElementIdsCount++)
-    }
+	static UniqueElementId() {
+		return 'ronuse-auto-id-' + (uniqueElementIdsCount++)
+	}
 
-    static hasClass(el, className) {
-        if (el) {
-            if (el.classList) {
-                return el.classList.contains(className);
-            } else {
-                return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
-            } 
-        }
-    }
-    
-    static addClass(el, className) {
-        if (el && className) {
-            if (el.classList) {
-                el.classList.add(className);
-            } else {
-                el.className += ' ' + className;
-            }
-        }
-    }
+	static matchStyles(sourceElement, targetElements, styleKeys) {
+		if (!sourceElement || !targetElements || !styleKeys || 
+			!targetElements.length || !styleKeys.length || 
+			targetElements.length < 1 || styleKeys.length < 1) return;
 
-    static removeClass(el, className) {
-        if (el && className) {
-            if (el.classList) {
-                el.classList.remove(className);
-            } else {
-                el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-            } 
-        }
-    }
+		function convertToCamelCase(styleKey) {
+			if (styleKey.indexOf("-") < 0) return styleKey;
+			let newStyleKey = "";
+			for (let index = 0; index < styleKey.length; index++) {
+				let ch = styleKey[index];
+				if (ch === '-') {
+					if (index+1 < styleKey.length) {
+						newStyleKey += styleKey[++index].toUpperCase();
+					}
+					continue;
+				}
+				newStyleKey += ch;
+			}
+			return newStyleKey;
+		}
 
-    static isElement(obj) {
-        return (typeof HTMLElement === "object" ? obj instanceof HTMLElement :
-            obj && typeof obj === "object" && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === "string"
-        );
-    }
+		styleKeys.forEach(styleKey => {
+			const styleProp = window.getComputedStyle(sourceElement, null).getPropertyValue(styleKey);
+			targetElements.forEach(targetElement => {
+				if (!targetElement.style) targetElement.style = {};
+				targetElement.style[convertToCamelCase(styleKey)] = styleProp;
+			});
+		});
+	}
 
-    static appendChild(element, target) {
-        if (this.isElement(target)) {
-            target.appendChild(element);
-        } else if(target.el && target.el.nativeElement) {
-            target.el.nativeElement.appendChild(element);
-        } else {
-            throw new Error('AppendChild: Cannot append ' + target + ' to ' + element);
-        }
-    }
+	static hasClass(el, className) {
+		if (el) {
+			if (el.classList) {
+				return el.classList.contains(className);
+			} else {
+				return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+			} 
+		}
+	}
+	
+	static addClass(el, className) {
+		if (el && className) {
+			if (el.classList) {
+				el.classList.add(className);
+			} else {
+				el.className += ' ' + className;
+			}
+		}
+	}
 
-    static addClasses(element, className) {
-        if (element && className) {
-            if (element.classList) {
-                let styles = className.split(' ');
-                for (let index = 0; index < styles.length; index++) {
-                    element.classList.add(styles[index]);
-                }
+	static removeClass(el, className) {
+		if (el && className) {
+			if (el.classList) {
+				el.classList.remove(className);
+			} else {
+				el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+			} 
+		}
+	}
 
-            } else {
-                let styles = className.split(' ');
-                for (let index = 0; index < styles.length; index++) {
-                    element.className += ' ' + styles[index];
-                }
-            }
-        }
-    }
+	static isElement(obj) {
+		return (typeof HTMLElement === "object" ? obj instanceof HTMLElement :
+			obj && typeof obj === "object" && obj !== null && obj.nodeType === 1 && typeof obj.nodeName === "string"
+		);
+	}
 
-    static getViewport() {
-        let win = window,
-            d = document,
-            e = d.documentElement,
-            g = d.getElementsByTagName('body')[0],
-            w = win.innerWidth || e.clientWidth || g.clientWidth,
-            h = win.innerHeight || e.clientHeight || g.clientHeight;
+	static appendChild(element, target) {
+		if (this.isElement(target)) {
+			target.appendChild(element);
+		} else if(target.el && target.el.nativeElement) {
+			target.el.nativeElement.appendChild(element);
+		} else {
+			throw new Error('AppendChild: Cannot append ' + target + ' to ' + element);
+		}
+	}
 
-        return {width: w, height: h};
-    }
+	static addClasses(element, className) {
+		if (element && className) {
+			if (element.classList) {
+				let styles = className.split(' ');
+				for (let index = 0; index < styles.length; index++) {
+					element.classList.add(styles[index]);
+				}
 
-    static getDocumentScrollTop() {
-        let doc = document.documentElement;
-        return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-    }
+			} else {
+				let styles = className.split(' ');
+				for (let index = 0; index < styles.length; index++) {
+					element.className += ' ' + styles[index];
+				}
+			}
+		}
+	}
 
-    static getDocumentScrollLeft() {
-        let doc = document.documentElement;
-        return (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
-    }
+	static getViewport() {
+		let win = window,
+			d = document,
+			e = d.documentElement,
+			g = d.getElementsByTagName('body')[0],
+			w = win.innerWidth || e.clientWidth || g.clientWidth,
+			h = win.innerHeight || e.clientHeight || g.clientHeight;
 
-    static getElementOffset(element) {
-        if (!element) {
-            return {
-                top: 'auto',
-                left: 'auto'
-            };
-        }
-        let rect = element.getBoundingClientRect();
-        return {
-            top: rect.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0),
-            left: rect.left + (window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0),
-        };
-        
-    }
+		return {width: w, height: h};
+	}
 
-    static absolutePositionRelatively(element, target) {
-        if (!element || !target) return;
-        let elementDimensions = element.offsetParent ? { width: element.offsetWidth, height: element.offsetHeight } : this.getHiddenElementDimensions(element);
-        let targetOuterWidth = target.offsetWidth;
-        let targetOuterHeight = target.offsetHeight;
-        let elementOuterWidth = elementDimensions.width;
-        let elementOuterHeight = elementDimensions.height;
-        let targetOffset = target.getBoundingClientRect();
-        let windowScrollTop = this.getDocumentScrollTop();
-        let windowScrollLeft = this.getDocumentScrollLeft();
-        let viewport = this.getViewport();
-        let top, left;
+	static getDocumentScrollTop() {
+		let doc = document.documentElement;
+		return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+	}
 
-        if (targetOffset.top + targetOuterHeight + elementOuterHeight > viewport.height) {
-            top = targetOffset.top + windowScrollTop - elementOuterHeight;
-            if(top < 0) top = windowScrollTop;
-            element.style.transformOrigin = 'bottom';
-        } else {
-            top = targetOuterHeight + targetOffset.top + windowScrollTop;
-            element.style.transformOrigin = 'top';
-        }
-        if (targetOffset.left + targetOuterWidth + elementOuterWidth > viewport.width) {
-            left = Math.max(0, targetOffset.left + windowScrollLeft + targetOuterWidth - elementOuterWidth);
-        } else {
-            left = targetOffset.left + windowScrollLeft;
-        }
-        element.style.top = top + 'px';
-        element.style.left = left + 'px';
-    }
+	static getDocumentScrollLeft() {
+		let doc = document.documentElement;
+		return (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+	}
 
-    static querySelector(element, selector) {
-        if (!element) return null;
-        return element.querySelector(selector);
-    }
+	static getElementOffset(element) {
+		if (!element) {
+			return {
+				top: 'auto',
+				left: 'auto'
+			};
+		}
+		let rect = element.getBoundingClientRect();
+		return {
+			top: rect.top + (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0),
+			left: rect.left + (window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0),
+		};
+		
+	}
 
-    static getElementParents(element, parents = []) {
-        return element['parentNode'] ? this.getElementParents(element.parentNode, parents.concat([element.parentNode])) : parents;
-    }
+	static absolutePositionRelatively(element, target) {
+		if (!element || !target) return;
+		let elementDimensions = element.offsetParent ? { width: element.offsetWidth, height: element.offsetHeight } : this.getHiddenElementDimensions(element);
+		let targetOuterWidth = target.offsetWidth;
+		let targetOuterHeight = target.offsetHeight;
+		let elementOuterWidth = elementDimensions.width;
+		let elementOuterHeight = elementDimensions.height;
+		let targetOffset = target.getBoundingClientRect();
+		let windowScrollTop = this.getDocumentScrollTop();
+		let windowScrollLeft = this.getDocumentScrollLeft();
+		let viewport = this.getViewport();
+		let top, left;
 
-    static getScrollableParents(element) {
-        let scrollableParents = [];
-        if (!element) return scrollableParents;
+		if (targetOffset.top + targetOuterHeight + elementOuterHeight > viewport.height) {
+			top = targetOffset.top + windowScrollTop - elementOuterHeight;
+			if(top < 0) top = windowScrollTop;
+			element.style.transformOrigin = 'bottom';
+		} else {
+			top = targetOuterHeight + targetOffset.top + windowScrollTop;
+			element.style.transformOrigin = 'top';
+		}
+		if (targetOffset.left + targetOuterWidth + elementOuterWidth > viewport.width) {
+			//left = targetOffset.left;
+			left = Math.max(0, targetOffset.left + windowScrollLeft + targetOuterWidth - elementOuterWidth);
+		} else {
+			left = targetOffset.left + windowScrollLeft;
+		}
+		element.style.top = top + 'px';
+		element.style.left = left + 'px';
+	}
 
-        let elementParents = this.getElementParents(element);
-        const scrollRegex = /(auto|scroll)/;
-        const checkIfScrolable = (node) => {
-            let cssStyleDeclaration = window['getComputedStyle'](node, null);
-            return scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflow')) || 
-                scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflowX')) || 
-                scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflowY'));
-        };
-        for (let elementParent of elementParents) {
-            let scrollSelectors = elementParent.nodeType === 1 && elementParent.dataset['scrollselectors'];
-            if (scrollSelectors) {
-                let selectors = scrollSelectors.split(',');
-                for (let selector of selectors) {
-                    let el = this.querySelector(elementParent, selector);
-                    if (el && checkIfScrolable(el)) scrollableParents.push(el);
-                }
-            }
-            if (elementParent.nodeType !== 9 && checkIfScrolable(elementParent)) {
-                scrollableParents.push(elementParent);
-            }
-        }
-        return scrollableParents;
-    }
+	static querySelector(element, selector) {
+		if (!element) return null;
+		return element.querySelector(selector);
+	}
 
-    static ScrollHandler_(element, listener) {
-        let scrollableParents = !element ? [] : this.getScrollableParents(element);
+	static getElementParents(element, parents = []) {
+		return element['parentNode'] ? this.getElementParents(element.parentNode, parents.concat([element.parentNode])) : parents;
+	}
 
-        const attachScrollListerner = () => {
-            for (let index = 0; index < scrollableParents.length; index++) {
-                scrollableParents[index].addEventListener('scroll', listener);
-            }
-        }
+	static getScrollableParents(element) {
+		let scrollableParents = [];
+		if (!element) return scrollableParents;
 
-        const detachScrollListerner = () => {
-            if (!scrollableParents || scrollableParents.length === 0) return;
-            for (let index = 0; index < scrollableParents.length; index++) {
-                scrollableParents[index].removeEventListener('scroll', listener);
-            }
-        }
+		let elementParents = this.getElementParents(element);
+		const scrollRegex = /(auto|scroll)/;
+		const checkIfScrolable = (node) => {
+			let cssStyleDeclaration = window['getComputedStyle'](node, null);
+			return scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflow')) || 
+				scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflowX')) || 
+				scrollRegex.test(cssStyleDeclaration.getPropertyValue('overflowY'));
+		};
+		for (let elementParent of elementParents) {
+			let scrollSelectors = elementParent.nodeType === 1 && elementParent.dataset['scrollselectors'];
+			if (scrollSelectors) {
+				let selectors = scrollSelectors.split(',');
+				for (let selector of selectors) {
+					let el = this.querySelector(elementParent, selector);
+					if (el && checkIfScrolable(el)) scrollableParents.push(el);
+				}
+			}
+			if (elementParent.nodeType !== 9 && checkIfScrolable(elementParent)) {
+				scrollableParents.push(elementParent);
+			}
+		}
+		return scrollableParents;
+	}
 
-        return {
-            attach: attachScrollListerner,
-            detach: detachScrollListerner
-        };
-    }
+	static ScrollHandler_(element, listener) {
+		let scrollableParents = !element ? [] : this.getScrollableParents(element);
 
-    static ScrollHandler = this.ScrollHandler_;
+		const attachScrollListerner = () => {
+			for (let index = 0; index < scrollableParents.length; index++) {
+				scrollableParents[index].addEventListener('scroll', listener);
+			}
+		}
 
-    static BaseZIndexes = {
-        menu: 1000,
-        overlay: 1000,
-        modal: 1001,
-        tooltip: 10001
-    }
+		const detachScrollListerner = () => {
+			if (!scrollableParents || scrollableParents.length === 0) return;
+			for (let index = 0; index < scrollableParents.length; index++) {
+				scrollableParents[index].removeEventListener('scroll', listener);
+			}
+		}
 
-    static ZIndexHandler_() {
-        let zIndexes = [];
+		return {
+			attach: attachScrollListerner,
+			detach: detachScrollListerner
+		};
+	}
 
-        const generateZIndex = (key, baseZIndex) => {
-            baseZIndex = baseZIndex || this.BaseZIndexes[key];
-            let lastZIndex = (zIndexes.length > 0) ? zIndexes[zIndexes.length - 1] || 999 : { key, value: baseZIndex };
-            let newZIndex = lastZIndex.value + (lastZIndex.key === key ? 0 : baseZIndex) + 1;
-            zIndexes.push({ key, value: newZIndex });
-            return newZIndex;
-        }
-    
-        const getCurrentZIndex = () => {
-            return zIndexes.length > 0 ? zIndexes[zIndexes.length - 1].value : 0;
-        }
-        
-        return {
-            get: (key) => this.BaseZIndexes[key] || 999,
-            set: (key, el, zIndex) => {
-                if (el && el.style) {
-                    el.style.zIndex = String(generateZIndex(key, zIndex));
-                }
-            },
-            remove: (key) => delete zIndexes[key],
-            removeElementZIndex: (el) => {
-                if (el) {
-                    const zIndex = this.ZIndexHandler.getElementZIndex(el);
-                    zIndexes = zIndexes.filter(item => item.value !== zIndex);
-                    el.style.zIndex = '';
-                }
-            },
-            getElementZIndex: (el) => (el && el.style) ? parseInt(el.style.zIndex) || 0 : 0,
-            getCurrentZIndex
-        };
-    }
+	static ScrollHandler = this.ScrollHandler_;
 
-    static ZIndexHandler = this.ZIndexHandler_();
+	static BaseZIndexes = {
+		menu: 1000,
+		overlay: 1000,
+		modal: 1001,
+		tooltip: 10001
+	}
+
+	static ZIndexHandler_() {
+		let zIndexes = [];
+
+		const generateZIndex = (key, baseZIndex) => {
+			baseZIndex = baseZIndex || this.BaseZIndexes[key];
+			let lastZIndex = (zIndexes.length > 0) ? zIndexes[zIndexes.length - 1] || 999 : { key, value: baseZIndex };
+			let newZIndex = lastZIndex.value + (lastZIndex.key === key ? 0 : baseZIndex) + 1;
+			zIndexes.push({ key, value: newZIndex });
+			return newZIndex;
+		}
+	
+		const getCurrentZIndex = () => {
+			return zIndexes.length > 0 ? zIndexes[zIndexes.length - 1].value : 0;
+		}
+		
+		return {
+			get: (key) => this.BaseZIndexes[key] || 999,
+			set: (key, el, zIndex) => {
+				if (el && el.style) {
+					el.style.zIndex = String(generateZIndex(key, zIndex));
+				}
+			},
+			remove: (key) => delete zIndexes[key],
+			removeElementZIndex: (el) => {
+				if (el) {
+					const zIndex = this.ZIndexHandler.getElementZIndex(el);
+					zIndexes = zIndexes.filter(item => item.value !== zIndex);
+					el.style.zIndex = '';
+				}
+			},
+			getElementZIndex: (el) => (el && el.style) ? parseInt(el.style.zIndex) || 0 : 0,
+			getCurrentZIndex
+		};
+	}
+
+	static ZIndexHandler = this.ZIndexHandler_();
 
 }

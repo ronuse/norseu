@@ -30,47 +30,47 @@ import { Scheme, Alignment } from "../variables";
 
 export class Checkbox extends Component {
 
-    static defaultProps = {
-        scheme: null,
-        label: null,
-        inputId: null,
-        name: null
-    }
+	static defaultProps = {
+		scheme: null,
+		label: null,
+		inputId: null,
+		name: null
+	}
 
-    static propTypes = {
-        scheme: PropTypes.string,
-        label: PropTypes.string,
-        inputId: PropTypes.string,
-        name: PropTypes.string
-    }
+	static propTypes = {
+		scheme: PropTypes.string,
+		label: PropTypes.string,
+		inputId: PropTypes.string,
+		name: PropTypes.string
+	}
 
-    constructor(props) {
-        super(props);
-        if (!this.props.onToggle) {
-            this.state = {
-                expanded: this.props.expanded
-            };
-        }
+	constructor(props) {
+		super(props);
+		if (!this.props.onToggle) {
+			this.state = {
+				expanded: this.props.expanded
+			};
+		}
 
-        this.id = this.props.id || DOMUtils.UniqueElementId();
-    }
+		this.id = this.props.id || DOMUtils.UniqueElementId();
+	}
 
-    componentDidMount() {
+	componentDidMount() {
 
-    }
+	}
 
-    componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps) {
 
-    }
+	}
 
-    componentWillUnmount() {
+	componentWillUnmount() {
 
-    }
+	}
 
-    render() {
-        return (
-            <div></div>
-        )
-    }
+	render() {
+		return (
+			<div></div>
+		)
+	}
 
 }

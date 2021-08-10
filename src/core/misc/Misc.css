@@ -9,23 +9,23 @@
 }
 
 .r-r-tag-icon {
-    margin-top: 2px;
+	margin-top: 2px;
 }
 
 .r-r-tag-remove-icon {
-    font-size: 120%;
-    margin-left: 5px;
-    float: right;
-    font-weight: 100;
-    cursor: pointer;
+	font-size: 120%;
+	margin-left: 5px;
+	float: right;
+	font-weight: 100;
+	cursor: pointer;
 }
 
 .r-r-tag-min-size {
-    /*min-height: 14px;*/
-    min-width: 35px;
+	/*min-height: 14px;*/
+	min-width: 35px;
 }
 
 .r-r-tag-min-size-icon-only {
-    /*min-height: 14px;*/
-    min-width: 35px;
+	/*min-height: 14px;*/
+	min-width: 35px;
 }
