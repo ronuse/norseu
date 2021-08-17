@@ -66,4 +66,29 @@ export class ObjUtils {
 		return this.isFunction(obj) ? obj(...params) : obj;
 	}
 
+	static expandStringTemplate(valueMap, unprocessed) {
+		let value = "";
+		let teamplateValue = "";
+		let openedTemplate = false;
+		for (let index = 0; index < unprocessed.length; index++) {
+			const ch = unprocessed[index];
+			if (ch == '{') {
+				openedTemplate = true;
+				continue;
+			}
+			if (ch == '}') {
+				value += valueMap[teamplateValue] || "";
+				openedTemplate = false;
+				teamplateValue = "";
+				continue;
+			};
+			if (openedTemplate) {
+				teamplateValue += ch;
+			} else {
+				value += ch;
+			}
+		}
+	  return value;
+	}
+
 }

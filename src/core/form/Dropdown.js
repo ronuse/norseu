@@ -122,7 +122,7 @@ export class DropdownComponent extends BaseComponent {
 		if (this.state.selectedOptionIndex > 0) {
 			this.setState({ selectedOptionIndex: this.state.selectedOptionIndex-1 });
 			if (this.state.onSelectOption) this.state.onSelectOption({ event, option: this.state.options[this.state.selectedOptionIndex-1] });
-			this.state.inputTextRef.current.getInternalElement().current.value = this.state.options[this.state.selectedOptionIndex-1].label;
+			this.state.inputTextRef.current.getInternalElement().current.value = this.resolveOptionLabel(this.state.options[this.state.selectedOptionIndex-1]);
 		}
 		event.preventDefault();
 	}
@@ -135,7 +135,7 @@ export class DropdownComponent extends BaseComponent {
 		if (this.state.selectedOptionIndex < this.state.options.length-1) {
 			this.setState({ selectedOptionIndex: this.state.selectedOptionIndex+1 });
 			if (this.state.onSelectOption) this.state.onSelectOption({ event, option: this.state.options[this.state.selectedOptionIndex+1] });
-			this.state.inputTextRef.current.getInternalElement().current.value = this.state.options[this.state.selectedOptionIndex+1].label;
+			this.state.inputTextRef.current.getInternalElement().current.value = this.resolveOptionLabel(this.state.options[this.state.selectedOptionIndex+1]);;
 		}
 		event.preventDefault();
 	}
@@ -195,10 +195,30 @@ export class DropdownComponent extends BaseComponent {
 		if (this.state.onDropdownShow) this.state.onDropdownShow();
 	}
 
+	resolveOptionLabel(selectedOption) {
+		if (!selectedOption) return "";
+		if (!this.state.optionMap || !this.state.optionMap.label) {
+			return selectedOption.label ? selectedOption.label : "";
+		}
+		if (this.state.optionMap.label.indexOf('{') < 0) {
+			return selectedOption[this.state.optionMap.label];
+		}
+		return ObjUtils.expandStringTemplate(selectedOption, this.state.optionMap.label);
+	}
+
+	resolveOptionIcon(selectedOption) {
+		if (!selectedOption) return null;
+		let icon = selectedOption.icon;
+		if (this.state.optionMap && this.state.optionMap.icon) {
+			icon = selectedOption[this.state.optionMap.icon];
+		}
+		return selectedOption ? (typeof icon === "string" ? <img src={icon}></img> : icon) : null;
+	}
+
 	selectOption(e, index, option) {
 		this.setState({ selectedOptionIndex: index });
 		if (this.state.onSelectOption) this.state.onSelectOption({ event, option: this.state.options[index] });
-		this.state.inputTextRef.current.getInternalElement().current.value = option.label;
+		this.state.inputTextRef.current.getInternalElement().current.value = this.resolveOptionLabel(option);
 		return this.togglePopover(e, false);
 	}
 
@@ -249,27 +269,6 @@ export class DropdownComponent extends BaseComponent {
 
 	expandStringTemplate() {
 
-	}
-
-	resolveOptionLabel(selectedOption) {
-		if (!selectedOption) return "";
-		if (!this.state.optionMap || !this.state.optionMap.label) {
-			return selectedOption.label ? selectedOption.label : "";
-		}	
-		let label = "";
-		for (let index = 0; index < this.state.optionMap.label; index++) {
-			
-		}
-		return selectedOption[this.state.optionMap.label];
-	}
-
-	resolveOptionIcon(selectedOption) {
-		if (!selectedOption) return null;
-		let icon = selectedOption.icon;
-		if (this.state.optionMap && this.state.optionMap.icon) {
-			icon = selectedOption[this.state.optionMap.icon];
-		}
-		return selectedOption ? (typeof icon === "string" ? <img src={icon}></img> : icon) : null;
 	}
 
 	render() {
