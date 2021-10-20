@@ -1,3 +1,4 @@
+
 /**
  * MIT License
  * 
@@ -22,56 +23,14 @@
  * SOFTWARE.
  */
 
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import React, { Component } from 'react';
-import { ObjUtils, BoolUtils } from "../../utils";
-import { Scheme, Alignment } from "../variables";
-import { BaseComponent } from "../core/BaseComponent";
-
-export class Checkbox extends BaseComponent {
-
-	static defaultProps = {
-		scheme: null,
-		label: null,
-		inputId: null,
-		name: null
-	}
-
-	static propTypes = {
-		scheme: PropTypes.string,
-		label: PropTypes.string,
-		inputId: PropTypes.string,
-		name: PropTypes.string
-	}
-
-	constructor(props) {
-		super(props);
-		if (!this.props.onToggle) {
-			this.state = {
-				expanded: this.props.expanded
-			};
-		}
-
-		this.id = this.props.id || DOMUtils.UniqueElementId();
-	}
-
-	componentDidMount() {
-
-	}
-
-	componentDidUpdate(prevProps) {
-
-	}
-
-	componentWillUnmount() {
-
-	}
-
-	render() {
-		return (
-			<div></div>
-		)
-	}
-
+export const FilePreviewType = {
+	NONE: "none",
+	IMAGE: "image",
+	VIDEO: "video",
+	AUDIO: "audio",
+	PDF: "pdf",
+	TEXT: "text",
+	BINARY: "binary",
+	CUSTOM: "custom"
 }
+

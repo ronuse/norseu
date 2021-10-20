@@ -29,3 +29,4 @@ export { Colors, CoreColors } from "./Colors"
 export { Scheme, Alignment, Alignment as Position, Elevation, Orientation, Overflow } from "./Stylers"
 export const InputFilters = InputFilter.DEFAULT_FILTER;
 export const SpecialKeys = InputFilter.SpecialKeys;
+export { FilePreviewType } from "./FilePreviewType"

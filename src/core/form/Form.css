@@ -289,6 +289,29 @@
 	margin-right: 10px;
 }
 
+/* FileInput */
 
+.r-r-fileinput {
+	outline: none;
+}
+
+.r-r-fileinput-preview-type-image {
+	height: 150px;
+    width: 150px;
+	border-radius: 5px;
+	border: 1px solid rgba(36, 52, 71, 0.5);
+	background-size: 100% 100% !important;
+	background-repeat: no-repeat !important;
+	background-position: center center;
+}
+  
+/*  .select-image-div .label {
+	font-weight: bold;
+	color: white;
+  }
+  
+  .bg-fade-grey1 {
+	background-color: red;
+  }*/
 
 
