@@ -7,6 +7,7 @@ import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
 import { Alignment, Orientation, Elevation, FilePreviewType } from "@ronuse/react-ui/core/variables";
 import { LinearLayout } from "@ronuse/react-ui/layouts";
+import { ObjUtils } from "@ronuse/react-ui/utils";
 import { PasswordInput, InputText, FileInput } from "@ronuse/react-ui/core/form";
 import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
 
@@ -42,6 +43,44 @@ export class FileInputPage extends React.Component {
 
         return (
             <React.Fragment>
+
+                <Panel borderless elevation={Elevation.ONE}>
+                    <div className="accordion-controlled-header-buttons">
+                        <div className="right">
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                        </div>
+                        <span className="left">Custom FilePreviewType</span>
+                    </div>
+                    <Accordion borderless multiple activeIndex={[0]}>
+                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
+                            <div className="r-r-display-flex sppai">
+								<span>click or drag a file into the panel to add file</span>
+                                <FileInput scheme={Scheme.SECONDARY} style={{ width: "100%", minHeight: "100px" }}
+									previewType={FilePreviewType.CUSTOM}
+									previewPanelClassName={"r-r-fileinput-custom"}
+									customItemTemplate={(url, name, size, type) => {
+										let previewElement = null;
+										if (type && type.includes("image")) previewElement = <img src={url} />;
+										if (type && type.includes("video")) previewElement = <video controls><source src={url}/></video>;
+										return (
+											<div id={`el-${name}`}>
+												{previewElement}
+												<span>{name}</span>
+												<span>{ObjUtils.humanFileSize(size)}</span>
+												<Button text="Remove" scheme={Scheme.DANGER} 
+													onClick={(e)=> {
+														document.getElementById(`el-${name}`).remove();
+														e.stopPropagation();
+													}}/>
+											</div>
+										);
+									}} multiple allowFileDrag/>
+                            </div>
+                        </AccordionPanel>
+                        {getSourceInEditorR(source1, this.previewPanel1)}
+                    </Accordion>
+                </Panel>
                 <Panel borderless elevation={Elevation.ONE}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
@@ -54,8 +93,9 @@ export class FileInputPage extends React.Component {
                         <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
                             <div className="r-r-display-flex sppai">
                                 <FileInput scheme={Scheme.PRIMARY}
-									default={"https://i.pinimg.com/originals/4e/aa/b6/4eaab69fcf8d928738072cd355a980db.jpg"}
-									/*fileExtensions={["png", "jpg", "jpeg", "JPG", "PNG", "JPEG"]}*/
+									defaultFileUrl={"https://i.pinimg.com/originals/4e/aa/b6/4eaab69fcf8d928738072cd355a980db.jpg"}
+									fileExtensions={["png", "jpg", "jpeg", "JPG", "PNG", "JPEG"]}
+									label={"Select"}
 									previewType={FilePreviewType.IMAGE}/>
                             </div>
                         </AccordionPanel>
@@ -69,29 +109,99 @@ export class FileInputPage extends React.Component {
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
                             <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source2)}}></i>
                         </div>
-                        <span className="left">Custom Preview Type</span>
+                        <span className="left">Preview Types</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex sppai" style={{ flexDirection: "column" }}>
+                            <div className="r-r-display-flex sppai" style={{ flexDirection: "row" }}>
 								<div>
 									<span style={{ fontWeight: "bold" }}>FilePreviewType.NONE</span>
-									<FileInput scheme={Scheme.PRIMARY}
-										fileExtensions={["png", "jpg", "jpeg"]}
+									<FileInput scheme={Scheme.PRIMARY} style={{ minWidth: "200px", minHeight: "200px" }}
 										previewType={FilePreviewType.NONE}/>
 								</div>
 
 								<div>
 									<span style={{ fontWeight: "bold" }}>FilePreviewType.IMAGE</span>
-									<FileInput scheme={Scheme.PRIMARY} style={{ borderRadius: "100px" }}
-										default={"https://i1.sndcdn.com/artworks-dPQoalo9P0AVBekC-3l4WaQ-t500x500.jpg"}
+									<FileInput scheme={Scheme.PRIMARY} previewItemScheme={Scheme.PRIMARY}
+										previewItemStyle={{ borderRadius: "100px" }}
+										defaultFileUrl={"https://i1.sndcdn.com/artworks-dPQoalo9P0AVBekC-3l4WaQ-t500x500.jpg"}
 										fileExtensions={["png", "jpg", "jpeg"]}
-										previewType={FilePreviewType.IMAGE}/>
-										<span>Click so select new image</span>
+										label={"Select"}
+										previewType={FilePreviewType.IMAGE} multiple noBorder/>
+										<span>Click to select new image(s)</span>
+								</div>
+
+								<div>
+									<span style={{ fontWeight: "bold" }}>FilePreviewType.VIDEO</span>
+									<FileInput scheme={Scheme.PRIMARY} previewItemScheme={Scheme.SECONDARY}
+										defaultFileUrl={"https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4"}
+										fileExtensions={["mp4", "mpeg", "mov"]}
+										label={"Select"}
+										previewType={FilePreviewType.VIDEO} multiple noBorder/>
+										<span>Click to select new video(s)</span>
+								</div>
+
+								<div>
+									<span style={{ fontWeight: "bold" }}>FilePreviewType.AUDIO</span>
+									<FileInput scheme={Scheme.PRIMARY}
+										defaultFileUrl={"https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"}
+										fileExtensions={["mp3", "wav"]}
+										label={"Select"}
+										previewType={FilePreviewType.AUDIO} multiple noBorder/>
+										<span>Click to select new audio(s)</span>
+								</div>
+
+								<div>
+									<span style={{ fontWeight: "bold" }}>FilePreviewType.PDF</span>
+									<FileInput scheme={Scheme.PRIMARY} previewItemScheme={Scheme.SECONDARY}
+										defaultFileUrl={"https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf"}
+										fileExtensions={["pdf"]}
+										label={"Select"}
+										previewType={FilePreviewType.PDF} multiple noBorder/>
+										<span>Click to select new pdf(s)</span>
+								</div>
+
+								<div>
+									<span style={{ fontWeight: "bold" }}>FilePreviewType.TEXT</span>
+									<FileInput scheme={Scheme.PRIMARY} previewItemScheme={Scheme.SECONDARY}
+										defaultFileUrl={"https://file-examples-com.github.io/uploads/2017/02/file_example_JSON_1kb.json"}
+										fileExtensions={["txt", "js", "h", "c", "cpp"]}
+										label={"Select"}
+										previewType={FilePreviewType.TEXT} multiple noBorder/>
+										<span>Click to select new text file(s)</span>
+								</div>
+
+								<div>
+									<span style={{ fontWeight: "bold" }}>FilePreviewType.BINARY</span>
+									<FileInput scheme={Scheme.PRIMARY}
+										defaultFileUrl={"https://file-examples-com.github.io/uploads/2017/02/zip_2MB.zip"}
+										previewType={FilePreviewType.BINARY} multiple noBorder/>
+										<span>Click to select any file(s)</span>
 								</div>
                             </div>
                         </AccordionPanel>
                         {getSourceInEditorR(source2, this.previewPanel2)}
+                    </Accordion>
+                </Panel>
+
+                <Panel borderless elevation={Elevation.ONE}>
+                    <div className="accordion-controlled-header-buttons">
+                        <div className="right">
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                        </div>
+                        <span className="left">Custom FilePreviewType</span>
+                    </div>
+                    <Accordion borderless multiple activeIndex={[0]}>
+                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
+                            <div className="r-r-display-flex sppai">
+                                <FileInput scheme={Scheme.PRIMARY} style={{ width: "100%", minHeight: "200px" }}
+									defaultFileUrl={"https://i.pinimg.com/originals/4e/aa/b6/4eaab69fcf8d928738072cd355a980db.jpg"}
+									label={"Select File"}
+									previewType={FilePreviewType.CUSTOM}/>
+                            </div>
+                        </AccordionPanel>
+                        {getSourceInEditorR(source1, this.previewPanel1)}
                     </Accordion>
                 </Panel>
             </React.Fragment>
@@ -102,6 +212,8 @@ export class FileInputPage extends React.Component {
         return (
             <LinearLayout className="r-r-panel r-r-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
                 <span className="r-r-showcase-doc-title">Documentation</span>
+				If an element is clickable do not forget to stop propagation at the end of the element on cliick 
+				event.stopPropagation()
             </LinearLayout>
         )
     }

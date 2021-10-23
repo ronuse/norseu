@@ -293,16 +293,93 @@
 
 .r-r-fileinput {
 	outline: none;
+	width: fit-content;
+	position: relative;
 }
 
-.r-r-fileinput-preview-type-image {
+.r-r-fileinput-no-default {
+	_border: 1px solid rgba(36, 52, 71, 0.5);
+}
+
+.r-r-fileinput-label {
+	border-radius: 5px;
+	width: fit-content;
+	font-weight: bold;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 5px;
+	padding: 7px 10px 7px 10px;
+	color: white;
+	background: rgba(152, 149, 149, 0.5);
+}
+
+.r-r-fileinput-image {
 	height: 150px;
     width: 150px;
 	border-radius: 5px;
-	border: 1px solid rgba(36, 52, 71, 0.5);
 	background-size: 100% 100% !important;
 	background-repeat: no-repeat !important;
 	background-position: center center;
+}
+
+.r-r-fileinput-preview-panel {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.r-r-fileinput-preview-type-image {
+	min-height: 150px;
+    min-width: 150px;
+	height: 150px;
+    width: 150px;
+	border-radius: 5px;
+	margin: 2px;
+	_border: 1px solid rgba(36, 52, 71, 0.5);
+	background-size: 100% 100% !important;
+	background-repeat: no-repeat !important;
+	background-position: center center;
+}
+
+.r-r-fileinput-preview-type-video {
+	min-height: 130px;
+    min-width: 200px;
+	height: 130px;
+    width: 200px;
+	border-radius: 5px;
+	margin: 2px;
+	object-fit: fill;
+}
+
+.r-r-fileinput-preview-type-audio {
+    min-width: 400px;
+    width: 100%;
+	border-radius: 5px;
+	margin: 2px;
+	object-fit: fill;
+}
+
+.r-r-fileinput-preview-type-pdf {
+	min-height: 200px;
+    min-width: 200px;
+	height: 200px;
+    width: 200px;
+	border-radius: 5px;
+	margin: 2px;
+}
+
+.r-r-fileinput-preview-type-binary {
+    min-width: 100px;
+    width: 100%;
+	border-radius: 5px;
+	margin: 2px;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.r-r-fileinput-preview-type-binary > .fa {
+	font-size: 15px;
+    margin-right: 3px;
 }
   
 /*  .select-image-div .label {

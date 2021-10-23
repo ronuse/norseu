@@ -183,6 +183,41 @@ input {
 	background-color: rgb(216, 216, 216);
 }
 
+.r-r-fileinput-custom {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow: auto;
+	flex-wrap: wrap;
+}
+
+.r-r-fileinput-custom > div {
+	display: flex;
+	margin: 20px;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.r-r-fileinput-custom > div > * {
+	margin-right: 20px;
+	align-self: center;
+}
+
+.r-r-fileinput-custom > div > img {
+	width: 150px;
+	height: 100px;
+}
+
+.r-r-fileinput-custom > div > video {
+	width: 150px;
+	height: 100px;
+	object-fit: fill;
+}
+
+.r-r-fileinput-custom > div > button {
+	height: 40px;
+}
+
 /* TMPS */
 
 /* */

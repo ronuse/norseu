@@ -27,14 +27,19 @@ export class ScratchPage extends React.Component {
 			<React.Fragment>
 				<div className="r-r-showcase-component-page">
 					<h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1>
-					<div>
-						<InputText label={"Adewale"} style={{ marginBottom: "90px" }} alignLabel={Alignment.LEFT}
-							className={"test-input-pack"} inputClassName="test-input" scheme={Scheme.PRIMARY} leftIcon="fa fa-key" rightIcon="fa fa-key"/>
-						<br/><br/><br/>
-						<div style={{ display: "flex", border: "1px solid red", width: "fit-content" }}>
-							<i className="fa fa-key"/>
-							<InputText style={{ flex: 1 }}/>
-							<i className="fa fa-key"/>
+					<div className="r-r-fileinput-custom"
+						onDragOver={(e) => {
+							e.preventDefault();
+						}}
+						onDrop={(e) => {
+							console.log(e.dataTransfer.files);
+							e.preventDefault();
+						}}>
+						<div>
+							<img src="https://i.pinimg.com/originals/4e/aa/b6/4eaab69fcf8d928738072cd355a980db.jpg" />
+							<span>4eaab69fcf8d928738072cd355a980db.jpg</span>
+							<span>200.5 KB</span>
+							<Button text="Remove" scheme={Scheme.DANGER} />
 						</div>
 					</div>
 				</div>

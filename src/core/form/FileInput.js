@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import React, { Component } from 'react';
@@ -39,15 +40,22 @@ export class FileInputComponent extends BaseComponent {
         noDefaultLabel: false,
 		inputId: null,
 		fileExtensions: null,
-		previewType: "none",
+		previewType: FilePreviewType.IMAGE,
 		className: null,
 		style: null,
+		previewPanelClassName: null,
+		previewPanelStyle: null,
+		previewItemScheme: null,
+		previewItemClassName: null,
+		previewItemStyle: null,
         forwardRef: null,
         elementRef: null,
         fill: false,
-        default: null,
+        defaultFileUrl: null,
         disablePreviewClick: false,
         multiple: false,
+        noBorder: false,
+        allowFileDrag: false,
         customItemTemplate: null,
 		onFilesSelected: null,
 		onCompleteDialog: null,
@@ -65,12 +73,19 @@ export class FileInputComponent extends BaseComponent {
 		previewType: PropTypes.string,
 		className: PropTypes.string,
 		style: PropTypes.object,
+		previewPanelClassName: PropTypes.string,
+		previewPanelStyle: PropTypes.object,
+		previewItemScheme: PropTypes.string,
+		previewItemClassName: PropTypes.string,
+		previewItemStyle: PropTypes.object,
         forwardRef: PropTypes.any,
         elementRef: PropTypes.any,
         fill: PropTypes.bool,
-        default: PropTypes.any,
+        defaultFileUrl: PropTypes.any,
         disablePreviewClick: PropTypes.bool,
         multiple: PropTypes.bool,
+        noBorder: PropTypes.bool,
+        allowFileDrag: PropTypes.bool,
 		customItemTemplate: PropTypes.func,
 		onFilesSelected: PropTypes.func,
 		onCompleteDialog: PropTypes.func,
@@ -79,14 +94,11 @@ export class FileInputComponent extends BaseComponent {
 
 	constructor(props) {
 		super(props);
-		if (!this.props.onToggle) {
-			this.state = {
-				expanded: this.props.expanded
-			};
-		}
-
 		this.id = this.props.id || DOMUtils.UniqueElementId();
+		this.buildLabel = this.buildLabel.bind(this);
+		this.onDropEvent = this.onDropEvent.bind(this);
 		this.changePreview = this.changePreview.bind(this);
+		this.onDropOverEvent = this.onDropOverEvent.bind(this);
 		this.onChangeHandler = this.onChangeHandler.bind(this);
 		this.onPreviewClickHandler = this.onPreviewClickHandler.bind(this);
 	}
@@ -95,15 +107,14 @@ export class FileInputComponent extends BaseComponent {
 		super.resolveForwardRef({
 			values: () => this.elementRef.files,
 			value: () => ((this.elementRef.files && this.elementRef.files.len) ? event.target.files[0] : null),
-			changePreview: this.changePreview,
-			//toggle: this.togglePopover,
-			/*showDropDown: () => { if (!this.state.popoverVisible) { this.togglePopover(event, true); } },
-			hideDropDown: () => { if (this.state.popoverVisible) { this.togglePopover(event, true); } }*/
+			changePreview: this.changePreview
 		});
 	}
 
 	componentDidMount() {
-
+		if (this.props.defaultFileUrl) {
+			this.changePreview([this.props.defaultFileUrl], null, null, null);
+		}
 	}
 
 	componentDidUpdate(prevProps) {
@@ -112,16 +123,6 @@ export class FileInputComponent extends BaseComponent {
 
 	componentWillUnmount() {
 
-	}
-
-	getSpecificStyling() {
-		if (!this.state.previewType) return {};
-		if (this.state.previewType === FilePreviewType.IMAGE) {
-			return {
-				background: `url(${this.state.default})`
-			};
-		}
-		return {};
 	}
 
 	formatAcceptedFileExtensions() {
@@ -140,49 +141,130 @@ export class FileInputComponent extends BaseComponent {
 		this.elementRef.current.click();
 	}
 
-	changePreview(url) {
-		if (this.compoundRef && this.state.previewType !== FilePreviewType.NONE) {
+	changePreview(urls, names, sizes, types) {
+		if (urls && urls.length > 0 && this.compoundRef && this.state.previewType !== FilePreviewType.NONE) {
+			this.compoundRef.style.background = `none`;
+			const imputElementNode = this.elementRef.current;
+			const scheme = this.state.previewItemScheme;
+			const previewItems = [];
+			let nodeClassName = classNames(this.state.previewItemClassName, 
+				(scheme ? `${scheme} ${scheme}-border-2px ${scheme}-border-hover ${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null));
 			if (this.state.previewType === FilePreviewType.IMAGE) {
-				this.compoundRef.style.background = `url(${url})`;
+				nodeClassName += ` r-r-fileinput-preview-type-image`;
+				urls.forEach(url => previewItems.push(<img className={nodeClassName} style={this.state.previewItemStyle} alt={url} src={url}/>));
+			} else if (this.state.previewType === FilePreviewType.VIDEO) {
+				nodeClassName += ` r-r-fileinput-preview-type-video`;
+				urls.forEach(url => {
+					previewItems.push(<video className={nodeClassName} style={this.state.previewItemStyle} controls>
+							<source src={url}/> Your browser does not support the video tag.
+						</video>);
+				});
+			} else if (this.state.previewType === FilePreviewType.AUDIO) {
+				nodeClassName += ` r-r-fileinput-preview-type-audio`;
+				urls.forEach(url => previewItems.push(<audio className={nodeClassName} style={this.state.previewItemStyle} controls>
+							<source src={url}/> Your browser does not support the video tag.
+						</audio>)
+				);
+			} else if (this.state.previewType === FilePreviewType.PDF || this.state.previewType === FilePreviewType.TEXT) {
+				nodeClassName += ` r-r-fileinput-preview-type-pdf`;
+				urls.forEach(url => previewItems.push(<iframe className={nodeClassName} style={this.state.previewItemStyle} src={url} frameborder="0" />));
+			} else if (this.state.previewType === FilePreviewType.BINARY || this.state.previewType === FilePreviewType.CUSTOM) {
+				this.previewRef.style.flexDirection = "column";
+				nodeClassName += ` r-r-fileinput-preview-type-binary`;
+				urls.forEach((url, index) => {
+					if (this.state.previewType === FilePreviewType.BINARY) {
+						const name = (names) ? names[index] : "Unknown File " + index;
+						const size =  (sizes) ? ObjUtils.humanFileSize(sizes[index]) : "0.00 kb";
+						previewItems.push(<span className={nodeClassName} style={this.state.previewItemStyle}><i class="fa fa-file"></i> {name} ({size})</span>);
+					} else if (this.state.previewType === FilePreviewType.CUSTOM && this.state.customItemTemplate) {
+						previewItems.push(this.state.customItemTemplate(url, (names ? names[index] : null), (sizes ? sizes[index] : null), (types ? types[index] : null)));
+					}
+				});
 			}
+			ReactDOM.render(previewItems, this.previewRef);
 		}
+	}
+
+	resolveSelectedFiles(files) {
+		const urls = [];
+		const names = [];
+		const sizes = [];
+		const types = [];
+		for (const file of files) {
+			urls.push(URL.createObjectURL(file));
+			names.push(file.name);
+			sizes.push(file.size);
+			types.push(file.type);
+		};
+		this.changePreview(urls, names, sizes, types);
 	}
 
 	onChangeHandler(event) {
 		if (!event.target || !event.target.files || event.target.files.length == 0) {
 			if (this.state.onCancelDialog) this.state.onCancelDialog({ event });
+			return;
 		}
 		if (this.state.onCompleteDialog) this.state.onCompleteDialog({ event });
-		this.changePreview(URL.createObjectURL(event.target.files[0]));
+		if (this.state.previewType !== FilePreviewType.NONE) {
+			this.resolveSelectedFiles(event.target.files);
+		}
 		if (this.state.onFilesSelected) this.state.onFilesSelected({ event, files: event.target.files });
+	}
+
+	onDropOverEvent(event) {
+		if (this.state.onDrop) this.state.onDropOver(event);
+		event.preventDefault();
+	}
+
+	onDropEvent(event) {
+		if (this.state.allowFileDrag && event.dataTransfer && event.dataTransfer.files) {
+			this.resolveSelectedFiles(event.dataTransfer.files);
+			event.preventDefault();
+		}
+		if (this.state.onDrop) this.state.onDrop(event);
+	}
+
+	buildLabel() {
+		if (!this.state.label) return;
+		let isString = BoolUtils.isTypeOfAny(this.state.label, ["string"]);
+		let className = 'r-r-fileinput-label';
+		if (!isString) {
+			var relayProps = ObjUtils.clone(this.state.label.props);
+			relayProps.className = className + " " + relayProps.className;
+			return React.cloneElement(this.state.label, relayProps);
+		}
+		return <div className={className}>{this.state.label}</div>;
 	}
 
 	render() {
 		const scheme = this.state.scheme;
-		const className = classNames('r-r-fileinput', `r-r-fileinput-preview-type-${this.state.previewType}`, 
-				(this.state.previewType !== FilePreviewType.NONE)
+		const className = classNames('r-r-fileinput', /*`r-r-fileinput-${this.state.previewType}`,*/
+				(!this.state.noBorder)
 				? `${scheme} ${scheme}-border-2px ${scheme}-border-hover ${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow`
 				: null, {
             'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-            /*'r-r-margin-bottom-7px': alignLabel === Alignment.TOP,
-            'r-r-margin-top-7px': alignLabel === Alignment.BOTTOM,
-            'r-r-margin-right-7px': alignLabel === Alignment.LEFT,
-            'r-r-margin-left-7px': alignLabel === Alignment.RIGHT,*/
+            'r-r-fileinput-no-default': this.state.defaultFileUrl
         }, this.state.className); 
-		const specificStyling = this.getSpecificStyling();
+		const previewClassName = classNames('r-r-fileinput-preview-panel', this.state.previewPanelClassName); 
+		const label = this.buildLabel();
 		const cursor = this.state.disablePreviewClick ? "initial" : "pointer";
-		const style = { cursor, ...specificStyling, ...this.state.style };
+		const style = { cursor, ...this.state.style };
 		const supportedFileExtension = this.formatAcceptedFileExtensions();
 
 		return (
-			<div tabIndex="0" ref={(el) => this.compoundRef = el} className={className} style={style} onClick={this.onPreviewClickHandler}>
+			<div tabIndex="0" ref={(el) => this.compoundRef = el} className={className} style={style} onClick={this.onPreviewClickHandler} 
+				onDragOver={this.onDropOverEvent} onDrop={this.onDropEvent}>
+
+				<div ref={(el) => this.previewRef = el} className={previewClassName} style={this.state.previewPanelStyle}> </div>
 				<input ref={this.elementRef} 
 					name={this.state.name} 
 					style={ {display: "none"} } 
+					multiple={this.state.multiple ? "multiple" : ""}
 					type="file" 
 					id={this.state.id} 
 					accept={supportedFileExtension}
 					onChange={this.onChangeHandler}/>
+				{label}
 			</div>
 		)
 	}

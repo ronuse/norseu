@@ -2,13 +2,31 @@
 
 export class ObjUtils {
 
-	static findDiffKeys(obj1, obj2) {
+	static copyFields(original, supplement) {
+		if (!original || !supplement) {
+			return {};
+		}
+		Object.keys(supplement).forEach(key => {
+			original.setProperty(key, supplement[key]);
+		});
+		return original;
+	}
+
+	static styleObjToCSSText(style) {
+		if (!style) return "";
+		return Object.entries(style).map(([k, v]) => {
+			k = k.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
+			return `${k}:${v}`;
+		}).join(';');
+	}
+
+	static findDiffKeys(obj1, obj2, exclusions = ["eventProps", "forwardRef"]) {
 		if (!obj1 || !obj2) {
 			return {};
 		}
 
 		return Object.keys(obj1).filter(key => !obj2.hasOwnProperty(key)).reduce((result, current) => {
-			result[current] = obj1[current];
+			if (!exclusions.includes(current)) result[current] = obj1[current];
 			return result;
 		}, {});
 	}
@@ -51,6 +69,9 @@ export class ObjUtils {
 	}
 
 	static extractEventProps(obj) {
+		return {
+			onClick: (e) => alert("Yeah")
+		};
 		return this.conditionalClone(obj, (key) => key.startsWith("on") && key[2] != undefined && key[2] == key[2].toUpperCase());
 	}
 
@@ -90,5 +111,37 @@ export class ObjUtils {
 		}
 	  return value;
 	}
+
+	/**
+	 * Format bytes as human-readable text.
+	 * 
+	 * @param bytes Number of bytes.
+	 * @param si True to use metric (SI) units, aka powers of 1000. False to use 
+	 *           binary (IEC), aka powers of 1024.
+	 * @param dp Number of decimal places to display.
+	 * 
+	 * @return Formatted string.
+	 *///https://stackoverflow.com/questions/10420352/converting-file-size-in-bytes-to-human-readable-string/10420404
+	static humanFileSize(bytes, si=false, dp=1) {
+		const thresh = si ? 1000 : 1024;
+	  
+		if (Math.abs(bytes) < thresh) {
+		  return bytes + ' B';
+		}
+	  
+		const units = si 
+		  ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'] 
+		  : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+		let u = -1;
+		const r = 10**dp;
+	  
+		do {
+		  bytes /= thresh;
+		  ++u;
+		} while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
+	  
+	  
+		return bytes.toFixed(dp) + ' ' + units[u];
+	  }
 
 }

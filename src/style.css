@@ -148,6 +148,14 @@
 	font-size: 1.5rem !important;
 }
 
+.r-r-size-lxxx {
+	width: 5.2rem;
+	height: 5.2rem;
+	min-width: 5.2rem !important;
+	min-height: 5.2rem !important;
+	font-size: 1.5rem !important;
+}
+
 /* Displays */
 
 .r-r-display-none {
