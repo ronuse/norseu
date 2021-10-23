@@ -122,6 +122,7 @@ export class SchemeBuilder {
 
     static buildAlternateColors(parameter, alternateColors) {
         let schemeCss = '';
+		if (!alternateColors || !alternateColors.length) return schemeCss;
 
         for (let alternateColor of alternateColors) {
             schemeCss += `\n/* ${alternateColor.name} */\n`;

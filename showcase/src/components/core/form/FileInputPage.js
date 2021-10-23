@@ -20,8 +20,11 @@ export class FileInputPage extends React.Component {
     constructor(props) {
         super(props)
 
-        this.previewPanel1 = React.createRef();
-        this.previewPanel2 = React.createRef();
+        this.previewPanels = [
+			React.createRef(),
+			React.createRef(),
+			React.createRef()
+		];
     }
     
     loadPageSource() {
@@ -38,54 +41,19 @@ export class FileInputPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(49);
-        const source2 = this.getSourceWithinLine(67, 75);
+        const sources = [
+			this.getSourceWithinLine(63, 67),
+			this.getSourceWithinLine(84, 149),
+			this.getSourceWithinLine(167, 186)
+		];
 
         return (
             <React.Fragment>
-
                 <Panel borderless elevation={Elevation.ONE}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
-                            <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
-                        </div>
-                        <span className="left">Custom FilePreviewType</span>
-                    </div>
-                    <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex sppai">
-								<span>click or drag a file into the panel to add file</span>
-                                <FileInput scheme={Scheme.SECONDARY} style={{ width: "100%", minHeight: "100px" }}
-									previewType={FilePreviewType.CUSTOM}
-									previewPanelClassName={"r-r-fileinput-custom"}
-									customItemTemplate={(url, name, size, type) => {
-										let previewElement = null;
-										if (type && type.includes("image")) previewElement = <img src={url} />;
-										if (type && type.includes("video")) previewElement = <video controls><source src={url}/></video>;
-										return (
-											<div id={`el-${name}`}>
-												{previewElement}
-												<span>{name}</span>
-												<span>{ObjUtils.humanFileSize(size)}</span>
-												<Button text="Remove" scheme={Scheme.DANGER} 
-													onClick={(e)=> {
-														document.getElementById(`el-${name}`).remove();
-														e.stopPropagation();
-													}}/>
-											</div>
-										);
-									}} multiple allowFileDrag/>
-                            </div>
-                        </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
-                    </Accordion>
-                </Panel>
-                <Panel borderless elevation={Elevation.ONE}>
-                    <div className="accordion-controlled-header-buttons">
-                        <div className="right">
-                            <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanels[0].current.toggle()}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(sources[0])}}></i>
                         </div>
                         <span className="left">Basic</span>
                     </div>
@@ -99,15 +67,15 @@ export class FileInputPage extends React.Component {
 									previewType={FilePreviewType.IMAGE}/>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
+                        {getSourceInEditorR(sources[0], this.previewPanels[0])}
                     </Accordion>
                 </Panel>
                 
                 <Panel borderless elevation={Elevation.ONE} style={{marginTop: "0px"}}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
-                            <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source2)}}></i>
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanels[1].current.toggle()}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(sources[1])}}></i>
                         </div>
                         <span className="left">Preview Types</span>
                     </div>
@@ -180,28 +148,45 @@ export class FileInputPage extends React.Component {
 								</div>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source2, this.previewPanel2)}
+                        {getSourceInEditorR(sources[1], this.previewPanels[1])}
                     </Accordion>
                 </Panel>
 
                 <Panel borderless elevation={Elevation.ONE}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
-                            <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-code" onClick={(e) => {this.previewPanels[3].current.toggle()}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(sources[2])}}></i>
                         </div>
                         <span className="left">Custom FilePreviewType</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
                             <div className="r-r-display-flex sppai">
-                                <FileInput scheme={Scheme.PRIMARY} style={{ width: "100%", minHeight: "200px" }}
-									defaultFileUrl={"https://i.pinimg.com/originals/4e/aa/b6/4eaab69fcf8d928738072cd355a980db.jpg"}
-									label={"Select File"}
-									previewType={FilePreviewType.CUSTOM}/>
+								<span>click or drag a file into the panel to add file</span>
+                                <FileInput scheme={Scheme.SECONDARY} style={{ width: "100%", minHeight: "100px" }}
+									previewType={FilePreviewType.CUSTOM}
+									previewPanelClassName={"r-r-fileinput-custom"}
+									customItemTemplate={(url, name, size, type) => {
+										let previewElement = null;
+										if (type && type.includes("image")) previewElement = <img src={url} />;
+										if (type && type.includes("video")) previewElement = <video controls><source src={url}/></video>;
+										return (
+											<div id={`el-${name}`}>
+												{previewElement}
+												<span>{name}</span>
+												<span>{ObjUtils.humanFileSize(size)}</span>
+												<Button text="Remove" scheme={Scheme.DANGER} 
+													onClick={(e)=> {
+														document.getElementById(`el-${name}`).remove();
+														e.stopPropagation();
+													}}/>
+											</div>
+										);
+									}} multiple allowFileDrag/>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
+                        {getSourceInEditorR(sources[2], this.previewPanels[3])}
                     </Accordion>
                 </Panel>
             </React.Fragment>
