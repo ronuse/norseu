@@ -33,8 +33,9 @@ import { Elevation } from "../variables/";
 import { CSSTransition } from 'react-transition-group';
 import { TabPane } from "./TabPane";
 import { Checkbox } from '../form';
+import { BaseComponent } from '../BaseComponent';
 
-export class Panel extends Component {
+export class Panel extends BaseComponent {
 
 	static defaultProps = {
 		id: null,
@@ -51,8 +52,12 @@ export class Panel extends Component {
 		contentStyle: null,
 		headerStyle: null,
 		onCollapse: null,
+		contentRef: null,
+		headerRef: null,
 		onExpand: null,
 		onToggle: null,
+		isForm: false,
+		onSubmit: null,
 		elevation: Elevation.NONE,
 		exemptedComponents: [],
 		ignoreChildrenOf: [
@@ -77,8 +82,12 @@ export class Panel extends Component {
 		contentStyle: PropTypes.object,
 		headerStyle: PropTypes.object,
 		onCollapse: PropTypes.func,
+		contentRef: PropTypes.any,
+		headerRef: PropTypes.any,
 		onExpand: PropTypes.func,
 		onToggle: PropTypes.func,
+		isForm: PropTypes.bool,
+		onSubmit: PropTypes.func,
 		elevation: PropTypes.string,
 		exemptedComponents: PropTypes.arrayOf(Component),
 		ignoreChildrenOf: PropTypes.array
@@ -127,12 +136,12 @@ export class Panel extends Component {
 		event.preventDefault();
 	}
 
-	componentDidMount() {
-
-	}
-
-	componentDidUpdate(prevProps) {
-
+	resolveForwardRef(extraValues) {
+		super.resolveForwardRef({
+			toggle: this.toggle,
+			getContentRef: () => this.props.contentRef,
+			getHeaderRef: () => this.props.headerRef
+		});
 	}
 
 	componentWillUnmount() {
@@ -151,7 +160,7 @@ export class Panel extends Component {
 			}, this.props.headerClassName);
 
 			return (
-				<div className="r-r-panel-header">
+				<div ref={this.props.headerRef} className="r-r-panel-header">
 					<span className={className} aria-label={this.id + '-header'} style={this.props.headerStyle}>{this.props.title}</span>
 					{this.props.collapsible ? <Button scheme={this.props.scheme} rounded textonly icon={toggleIcon} onClick={this.toggle} className="r-r-panel-toggle-button" /> : ''}
 					
@@ -222,12 +231,18 @@ export class Panel extends Component {
 			return child;
 		});
 		let className = classNames('r-r-panel-content', this.props.contentClassName);
+		const contentElement =  this.props.isForm  
+			? (<form ref={this.props.contentRef} onSubmit={this.props.onSubmit} className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'} 
+					style={this.props.contentStyle}>
+					{children}
+				</form>)
+			: (<div ref={this.props.contentRef} className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'} style={this.props.contentStyle}>
+					{children}
+				</div>)
 		
 		return (
 			<CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={expanded} unmountOnExit>
-				<div className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'} style={this.props.contentStyle}>
-					{children}
-				</div>
+				{contentElement}
 			</CSSTransition>
 		);
 	}
@@ -242,7 +257,7 @@ export class Panel extends Component {
 		let content = !this.props.children ? '' : this.renderContent(expanded);
 
 		return (
-			<div id={this.props.id} className={className} style={this.props.style}>
+			<div ref={this.elementRef} id={this.props.id} className={className} style={this.props.style}>
 				{header}
 				{content}
 			</div>

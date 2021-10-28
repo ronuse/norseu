@@ -30,6 +30,7 @@ export const getTextBetweenLine = (source, from, to, trimLeadingTab) => {
         let line = lines[from];
         let index = 0;
         if (firstTab === "" && trimLeadingTab) {
+			console.log(line);
             while (line[index] === ' ') {
                 firstTab += ' ';
                 index++;

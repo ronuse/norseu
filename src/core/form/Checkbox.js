@@ -29,7 +29,7 @@ import { BaseComponent } from "../BaseComponent";
 import { Scheme, Alignment } from "../variables";
 import { DOMUtils, BoolUtils, ObjUtils } from "../../utils";
 
-export class CheckboxComponent extends BaseComponent {
+class CheckboxComponent extends BaseComponent {
 
 	static defaultProps = {
 		scheme: null,
@@ -122,7 +122,10 @@ export class CheckboxComponent extends BaseComponent {
 		if (!this.state.selfManaged) {
 			this.setState({
 				checkedIndex: checkedIndex
-			})
+			});
+			if (this.elementRef.current && checkStatesSize > 0) {
+				this.elementRef.current.checked = this.state.checkStates[checkedIndex].checked;
+			}
 		}
 		let checkState = this.state.checkStates[checkedIndex] ;
 		if (this.state.onChange) {

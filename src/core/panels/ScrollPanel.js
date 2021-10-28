@@ -45,6 +45,8 @@ export class ScrollPanelComponent extends Component {
 		hideScrollBars: false,
 		hideScrollBarX: false,
 		hideScrollBarY: false,
+		isForm: false,
+		onSubmit: null,
 		forwardRef: null
 	}
 
@@ -58,6 +60,8 @@ export class ScrollPanelComponent extends Component {
 		hideScrollBars: PropTypes.bool,
 		hideScrollBarX: PropTypes.bool,
 		hideScrollBarY: PropTypes.bool,
+		isForm: PropTypes.bool,
+		onSubmit: PropTypes.func,
 		forwardRef: PropTypes.any
 	}
 
@@ -101,8 +105,9 @@ export class ScrollPanelComponent extends Component {
 			'r-r-scrollpanel-hidden-scrollbar-y': this.props.hideScrollBarY
 		}, this.props.className);
 
-		return (
-			<div ref={this.elementRef} className={className} {...componentProps} />
+		return (this.props.isForm
+			? <form ref={this.elementRef} className={className} {...componentProps} onSubmit={this.props.onSubmit}/>
+			: <div ref={this.elementRef} className={className} {...componentProps} />
 		)
 	}
 

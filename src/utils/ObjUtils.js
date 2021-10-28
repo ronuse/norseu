@@ -69,9 +69,6 @@ export class ObjUtils {
 	}
 
 	static extractEventProps(obj) {
-		return {
-			onClick: (e) => alert("Yeah")
-		};
 		return this.conditionalClone(obj, (key) => key.startsWith("on") && key[2] != undefined && key[2] == key[2].toUpperCase());
 	}
 

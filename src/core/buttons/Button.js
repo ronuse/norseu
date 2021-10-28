@@ -76,6 +76,8 @@ class ButtonComponent extends BaseComponent {
 
 	constructor(props) {
 		super(props);
+
+        this.onButtonClick = this.onButtonClick.bind(this);
 	}
 
 	componentWillUnmount() {
@@ -185,9 +187,14 @@ class ButtonComponent extends BaseComponent {
 		componentProps.children.push(rightIconPreText ? '' : rightIcon);
 
 		let element = this.state.link ? <a ref={this.elementRef} {...this.state.eventProps} {...componentProps} className={className}/>
-					  : <button ref={this.elementRef} {...this.state.eventProps} {...componentProps} className={className}/>
+					  : <button ref={this.elementRef} {...this.state.eventProps} {...componentProps} className={className} onClick={this.onButtonClick}/>
 
 		return element;
+	}
+
+	onButtonClick(event) {
+		event.rruiRef = { current: this.getRefValue({}) };
+		if (this.state.eventProps.onClick) this.state.eventProps.onClick(event);
 	}
 
 }

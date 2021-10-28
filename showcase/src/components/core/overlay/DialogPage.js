@@ -141,7 +141,7 @@ export class DialogPage extends React.Component {
                         {getSourceInEditorR(source2, this.previewPanel2)}
                     </Accordion>
                 </Panel>
-                
+
                 <Panel borderless elevation={Elevation.ONE}>
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">

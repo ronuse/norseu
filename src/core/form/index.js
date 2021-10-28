@@ -30,3 +30,13 @@ export { TextArea } from "./TextArea"
 export { PasswordInput } from "./PasswordInput"
 export { Dropdown } from "./Dropdown"
 export { FileInput } from "./FileInput"
+
+export function rruiBuildFormData(target, component)  {
+	const formData = new FormData(target);
+	for (let input of target.elements) {
+		if (input.type === "checkbox") {
+			formData.append(input.name, input.checked ? "on" : "off");
+		}
+	}
+	return formData;
+}

@@ -18,6 +18,7 @@
 
 .r-r-button {
 	margin: 5px;
+	height: fit-content;
 	display: inline-flex;
 	cursor: pointer;
 	user-select: none;

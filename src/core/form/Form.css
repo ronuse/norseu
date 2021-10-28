@@ -336,8 +336,8 @@
 	border-radius: 5px;
 	margin: 2px;
 	_border: 1px solid rgba(36, 52, 71, 0.5);
-	background-size: 100% 100% !important;
-	background-repeat: no-repeat !important;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 	background-position: center center;
 }
 

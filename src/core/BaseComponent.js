@@ -48,17 +48,22 @@ export class BaseComponent extends Component {
 		this.state.eventProps = ObjUtils.extractEventProps(this.props); // TODO ignore the event captured by the component itself
 	}
 
+	getRefValue(extraValues) {
+		return {
+			value: () => this.elementRef.current.value,
+			setValue: (value) => { this.elementRef.current.value = value},
+			focus: () => { if (this.elementRef && this.elementRef.current) { this.elementRef.current.focus() }; },
+			getInternalElement: () => this.elementRef,
+			getState: () => this.state,
+			setState: (state, afterfunc) => this.setState(state, afterfunc),
+			...extraValues
+		};
+	}
+
 	resolveForwardRef(extraValues) {
 		let ref = this.props.forwardRef;
 		if (ref) {
-			const refValue = {
-				value: () => this.elementRef.current.value,
-				focus: () => { if (this.elementRef && this.elementRef.current) { this.elementRef.current.focus() }; },
-				getInternalElement: () => this.elementRef,
-				getState: () => this.state,
-				setState: (state) => this.setState(state),
-				...extraValues
-			};
+			const refValue = this.getRefValue(extraValues);
 			if (typeof ref === 'function') {
 				ref(refValue);
 			} else {

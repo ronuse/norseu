@@ -79,11 +79,12 @@ export class ScrollPanelPage extends React.Component {
                         {this.overflowText()}
                     </ScrollPanel>
 
-                    <ScrollPanel style={{flex: 1, width:"400px", height:"300px"}}>
+                    <ScrollPanel style={{flex: 1, width:"400px", height:"300px"}} isForm onSubmit={(e) => console.log("Yeah")}>
                         <h3>Auto Scrollbars</h3>
                         <div style={{width: "500px"}}>
                             {this.overflowText()}
                         </div>
+						<Button text="Submit"/>
                     </ScrollPanel>
                     
                     <ScrollPanel style={{flex: 1, width:"400px", height:"300px"}} hideScrollBarX>

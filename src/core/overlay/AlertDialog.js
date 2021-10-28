@@ -58,7 +58,8 @@ export function alertDialog(props) {
 			}});
 		},
 		hide: () => {
-			updateConfirmDialog({ isVisible: false });
+			//updateConfirmDialog({ isVisible: false });
+			ReactDOM.unmountComponentAtNode(alertDialogWrapper);
 		},
 		update: (newProps) => {
 			updateConfirmDialog(newProps);
