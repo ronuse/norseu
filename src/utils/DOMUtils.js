@@ -134,7 +134,7 @@ export class DOMUtils {
 	static appendChild(element, target) {
 		if (this.isElement(target)) {
 			target.appendChild(element);
-		} else if(target.el && target.el.nativeElement) {
+		} else if (target && target.el && target.el.nativeElement) {
 			target.el.nativeElement.appendChild(element);
 		} else {
 			throw new Error('AppendChild: Cannot append ' + target + ' to ' + element);
@@ -290,7 +290,8 @@ export class DOMUtils {
 		menu: 1000,
 		overlay: 1000,
 		modal: 1001,
-		tooltip: 10001
+		tooltip: 10001,
+		toast: 10002
 	}
 
 	static ZIndexHandler_() {

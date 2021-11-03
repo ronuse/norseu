@@ -94,13 +94,13 @@ export class GenerateSchemePage extends React.Component {
                 <br/><br/>
 
                 <Accordion scheme={this.state.name} >
-                    <AccordionPanel title={<React.Fragment><i class="fa fa-user-o r-r-margin-right-5px"/>User</React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-user-o r-r-margin-right-5px"/>User</React.Fragment>}>
                         {"Panel 1"}
                     </AccordionPanel>
-                    <AccordionPanel title={<React.Fragment><i class="fa fa-gear r-r-margin-right-5px"/>Settings</React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-gear r-r-margin-right-5px"/>Settings</React.Fragment>}>
                         {"Panel 2"}
                     </AccordionPanel>
-                    <AccordionPanel title={<React.Fragment><i class="fa fa-search r-r-margin-right-5px"/>Search Profiles<i class="fa fa-eye r-r-margin-left-5px"/></React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-search r-r-margin-right-5px"/>Search Profiles<i className="fa fa-eye r-r-margin-left-5px"/></React.Fragment>}>
                          {"Panel 3"}
                     </AccordionPanel>
                 </Accordion>

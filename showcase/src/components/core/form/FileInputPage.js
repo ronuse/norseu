@@ -178,7 +178,9 @@ export class FileInputPage extends React.Component {
 												<span>{ObjUtils.humanFileSize(size)}</span>
 												<Button text="Remove" scheme={Scheme.DANGER} 
 													onClick={(e)=> {
-														document.getElementById(`el-${name}`).remove();
+														e.rruiRef.current.getInternalElement().current.parentNode.parentNode.removeChild(
+															e.rruiRef.current.getInternalElement().current.parentNode
+														);
 														e.stopPropagation();
 													}}/>
 											</div>

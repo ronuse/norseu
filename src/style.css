@@ -462,6 +462,14 @@
 	height: 100vh !important;
 }
 
+.r-r-width-auto-ni {
+	width: auto;
+}
+
+.r-r-width-auto {
+	width: auto !important;
+}
+
 .r-r-width-100-percent {
 	width: 100% !important;
 }

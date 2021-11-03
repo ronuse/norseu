@@ -175,7 +175,7 @@ export class FileInputComponent extends BaseComponent {
 					if (this.state.previewType === FilePreviewType.BINARY) {
 						const name = (names) ? names[index] : "Unknown File " + index;
 						const size =  (sizes) ? ObjUtils.humanFileSize(sizes[index]) : "0.00 kb";
-						previewItems.push(<span className={nodeClassName} style={this.state.previewItemStyle}><i class="fa fa-file"></i> {name} ({size})</span>);
+						previewItems.push(<span className={nodeClassName} style={this.state.previewItemStyle}><i className="fa fa-file"></i> {name} ({size})</span>);
 					} else if (this.state.previewType === FilePreviewType.CUSTOM && this.state.customItemTemplate) {
 						previewItems.push(this.state.customItemTemplate(url, (names ? names[index] : null), (sizes ? sizes[index] : null), (types ? types[index] : null)));
 					}

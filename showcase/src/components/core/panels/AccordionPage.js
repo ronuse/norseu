@@ -149,13 +149,13 @@ export class AccordionPage extends React.Component {
                 </ButtonGroup>
                 
                 <Accordion activeIndex={this.state.activeIndex} onTabChange={(e) => this.setState({ activeIndex: [e.index] })}>
-                    <AccordionPanel header={<React.Fragment><i class="fa fa-user-o r-r-margin-right-5px"/>User</React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i className="fa fa-user-o r-r-margin-right-5px"/>User</React.Fragment>}>
                         {this.text1()}
                     </AccordionPanel>
-                    <AccordionPanel header={<React.Fragment><i class="fa fa-gear r-r-margin-right-5px"/>Settings</React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i className="fa fa-gear r-r-margin-right-5px"/>Settings</React.Fragment>}>
                         {this.text2()}
                     </AccordionPanel>
-                    <AccordionPanel header={<React.Fragment><i class="fa fa-search r-r-margin-right-5px"/>Search Profiles<i class="fa fa-eye r-r-margin-left-5px"/></React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i className="fa fa-search r-r-margin-right-5px"/>Search Profiles<i className="fa fa-eye r-r-margin-left-5px"/></React.Fragment>}>
                         {this.text3()}
                     </AccordionPanel>
                 </Accordion>

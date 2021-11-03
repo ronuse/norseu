@@ -218,6 +218,11 @@ input {
 	height: 40px;
 }
 
+.r-r-preview-messages > div {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
 /* TMPS */
 
 /* */

@@ -28,6 +28,7 @@ import { AlertDialogPage } from './components/core/overlay/AlertDialogPage'
 import { NavbarPage } from './components/core/overlay/NavbarPage'
 import { DialogPage } from './components/core/overlay/DialogPage'
 import { PopoverPage } from './components/core/overlay/PopoverPage'
+import { MessagePage } from './components/core/overlay/MessagePage'
 import { Navbar } from "@ronuse/react-ui/core/overlay";
 import { Button } from "@ronuse/react-ui/core/buttons";
 import { Panel, ScrollPanel } from "@ronuse/react-ui/core/panels";
@@ -87,6 +88,7 @@ const App = () => {
                                 <Link className="link" to="/core/overlay/dialog">Dialog</Link>
                                 <Link className="link" to="/core/overlay/navbar">Navbar</Link>
                                 <Link className="link" to="/core/overlay/popup">Popover</Link>
+                                <Link className="link" to="/core/overlay/message">Message</Link>
                             </section>
 
                             <section>
@@ -135,6 +137,7 @@ const App = () => {
                             <Route exact path="/core/overlay/dialog" component={DialogPage}/>
                             <Route exact path="/core/overlay/navbar" component={NavbarPage}/>
                             <Route exact path="/core/overlay/popup" component={PopoverPage}/>
+                            <Route exact path="/core/overlay/message" component={MessagePage}/>
                             
                             <Route exact path="/core/variables/elevation" component={ElevationPage}/>
                             <Route exact path="/core/misc/tag" component={TagPage}/>
