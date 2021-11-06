@@ -21,7 +21,8 @@ export class InputTextPage extends React.Component {
     loadPageSource() {
         fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/form/InputTextPage.js")
         .then(response => response.text())
-        .then(data => this.setState({pageSource : data}));
+        .then(data => this.setState({pageSource : data}))
+		.catch(error => { throw error});
     }
 
     renderInteractiveEditor() {

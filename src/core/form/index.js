@@ -40,3 +40,15 @@ export function rruiBuildFormData(target, component)  {
 	}
 	return formData;
 }
+
+export function rruiFormDataToJson(formData) {
+	const dataObject = {};
+	formData.forEach(function (value, prop) {
+		dataObject[prop] = value;
+	});
+	return dataObject;
+}
+
+export function rruiFormToJson(form) {
+	return rruiFormDataToJson(rruiBuildFormData(form));
+}

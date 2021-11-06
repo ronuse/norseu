@@ -32,7 +32,8 @@ export class FileInputPage extends React.Component {
         .then(response => response.text())
         .then(data => this.setState({
             pageSource : data,
-        }));
+        }))
+		.catch(error => { throw error});
     }
 
     getSourceWithinLine(from, to) {

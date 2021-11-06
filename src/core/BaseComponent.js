@@ -33,12 +33,14 @@ export class BaseComponent extends Component {
 
 	static defaultProps = {
 		forwardRef: null,
-		elementRef: null
+		elementRef: null,
+		onSetState: null
 	}
 
 	static propTypes = {
 		forwardRef: PropTypes.any,
-		elementRef: PropTypes.any
+		elementRef: PropTypes.any,
+		onSetState: PropTypes.func
 	}
 
 	constructor(props, ignoreList) {
@@ -55,7 +57,10 @@ export class BaseComponent extends Component {
 			focus: () => { if (this.elementRef && this.elementRef.current) { this.elementRef.current.focus() }; },
 			getInternalElement: () => this.elementRef,
 			getState: () => this.state,
-			setState: (state, afterfunc) => this.setState(state, afterfunc),
+			setState: (state, afterfunc) => {
+				this.setState(state, afterfunc);
+				if (this.state.onSetState) this.state.onSetState(this.constructor.name, state);
+			},
 			...extraValues
 		};
 	}

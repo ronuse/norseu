@@ -17,7 +17,8 @@ export class BadgeAndTagPage extends React.Component {
     loadPageSource() {
         fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/misc/BadgeAndTagPage.js")
         .then(response => response.text())
-        .then(data => this.setState({pageSource : data}));
+        .then(data => this.setState({pageSource : data}))
+		.catch(error => { throw error});
     }
 
     renderInteractiveEditor() {

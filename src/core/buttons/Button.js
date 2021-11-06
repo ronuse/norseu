@@ -105,9 +105,10 @@ class ButtonComponent extends BaseComponent {
 			var relayProps = ObjUtils.clone(this.state.icon.props);
 			className = classNames(className, relayProps.className);
 			relayProps.className = className;
+			if (!relayProps.key) relayProps.key = "button-left-icon";
 			return React.cloneElement(this.state.icon, relayProps);
 		}
-		return <i className={className}></i>;
+		return <i key={"button-left-icon"} className={className}></i>;
 	}
 
 	renderRightIcon() {
@@ -125,9 +126,10 @@ class ButtonComponent extends BaseComponent {
 		if (!isString) {
 			var relayProps = ObjUtils.clone(this.state.rightIcon.props);
 			relayProps.className = className;
+			if (!relayProps.key) relayProps.key = "button-right-icon";
 			return React.cloneElement(this.state.rightIcon, relayProps);
 		}
-		return <i className={className}></i>;
+		return <i key={"button-right-icon"} className={className}></i>;
 	}
 
 	renderText() {
@@ -142,7 +144,7 @@ class ButtonComponent extends BaseComponent {
 			'r-r-float-left': this.state.alignText === Alignment.LEFT,
 			'r-r-float-right': this.state.alignText === Alignment.RIGHT
 		})
-		return <span className={className}>{this.state.text}</span>;
+		return <span key={"button-text"} className={className}>{this.state.text}</span>;
 	}
 
 	render() {

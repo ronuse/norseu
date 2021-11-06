@@ -100,7 +100,7 @@ export class ToastComponent extends BaseComponent {
 		if (!props) return;
 
 		let newMessagesProps;
-		console.log("show", this.state.messagesProps);
+		//console.log("show", this.state.messagesProps);
 		if (Array.isArray(props)) {
 			let messagesPropsLength = this.state.messagesProps.length;
 			for (let index = 0; index < props.length; index++) {
@@ -108,7 +108,7 @@ export class ToastComponent extends BaseComponent {
 				newMessagesProps = [...this.state.messagesProps, ...props];
 			}
 		} else {
-			console.log(this.state)
+			//console.log(this.state)
 			props.key = "toast-key-0";
 			newMessagesProps = this.state.messagesProps ? [...this.state.messagesProps, props] : [value];
 		}
@@ -122,7 +122,7 @@ export class ToastComponent extends BaseComponent {
     }
 
 	onClose(event, messageProp) {
-		console.log("onClose", this.state.messagesProps);
+		//console.log("onClose", this.state.messagesProps);
 		let newMessagesProps = this.state.messagesProps.filter(message => message.id !== messageProp.id);
 		this.setState({ messagesProps: newMessagesProps });
 
@@ -148,7 +148,7 @@ export class ToastComponent extends BaseComponent {
 		if (this.state.position === Position.CENTER) this.state.position = Position.CENTER_TOP;
 		if (this.state.position === Position.BOTTOM) this.state.position = Position.CENTER_BOTTOM;
 		let className = classNames('r-r-toast r-r-toast-position-' + this.state.position, this.state.className);
-		console.log("MESSAGE-REF", this.state.messagesProps);
+		//console.log("MESSAGE-REF", this.state.messagesProps);
 
 		return (
             <div ref={(el) => { this.container = el; }} id={this.id} className={className} style={this.state.style}>

@@ -15,7 +15,8 @@ export class FieldsetPage extends React.Component {
     loadPageSource() {
         fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/panels/FieldsetPage.js")
         .then(response => response.text())
-        .then(data => this.setState({pageSource : data}));
+        .then(data => this.setState({pageSource : data}))
+		.catch(error => { throw error});
     }
 
     // TODO chage alerts to taost component
