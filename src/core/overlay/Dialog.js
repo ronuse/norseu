@@ -170,7 +170,7 @@ import { CSSTransition } from 'react-transition-group';
 	
 	onEnter() {
 		if ((!this.props.allowScroll || (this.props.maximizable && this.state.maximized)) && !this.props.noOverlay) {
-			DOMUtils.addClass(document.body, 'r-r-overflow-hidden');
+			DOMUtils.addClass(document.body, 'norseu-overflow-hidden');
 		}
 	}
 
@@ -187,7 +187,7 @@ import { CSSTransition } from 'react-transition-group';
 		DOMUtils.ZIndexHandler.removeElementZIndex(this.modal);
 		this.setState({ modalVisible: false });
 		if ((!this.props.allowScroll || (this.props.maximizable && this.state.maximized)) && !this.props.noOverlay) {
-			DOMUtils.removeClass(document.body, 'r-r-overflow-hidden');
+			DOMUtils.removeClass(document.body, 'norseu-overflow-hidden');
 		}
 		if (this.props.onCloseFocusRef && this.props.onCloseFocusRef.current && ObjUtils.isFunction(this.props.onCloseFocusRef.current.focus)) {
 			this.props.onCloseFocusRef.current.focus();
@@ -219,7 +219,7 @@ import { CSSTransition } from 'react-transition-group';
 	updateScrollOnMaximizable() {
 		if (this.props.allowScroll) {
 			let funcIdentifier = this.state.maximized ? 'addClass' : 'removeClass';
-			DOMUtils[funcIdentifier](document.body, 'r-r-overflow-hidden');
+			DOMUtils[funcIdentifier](document.body, 'norseu-overflow-hidden');
 		}
 	}
 
@@ -230,10 +230,10 @@ import { CSSTransition } from 'react-transition-group';
 
 		const isString = BoolUtils.isTypeOfAny(this.props.closeIcon, ["string"]);
 		if (isString) {
-			return <i className={`r-r-dialog-header-close-icon ${this.props.closeIcon}`} onClick={this.onClose}></i>;
+			return <i className={`norseu-dialog-header-close-icon ${this.props.closeIcon}`} onClick={this.onClose}></i>;
 		}
 		const relayProps = ObjUtils.clone(this.props.closeIcon.props);
-		relayProps.className = classNames('r-r-dialog-header-close-icon', relayProps.className);
+		relayProps.className = classNames('norseu-dialog-header-close-icon', relayProps.className);
 		if (!relayProps.onClick) {
 			relayProps.onClick = this.onClose;
 		}
@@ -247,14 +247,14 @@ import { CSSTransition } from 'react-transition-group';
 
 		const isString = BoolUtils.isTypeOfAny(this.props.maximizeIcon, ["string"]);
 		if (isString) {
-			const className = classNames('r-r-dialog-header-maximize-icon', { 
+			const className = classNames('norseu-dialog-header-maximize-icon', { 
 				'fa fa-window-maximize': !this.state.maximized, 
 				'fa fa-window-minimize': this.state.maximized, 
 			});
 			return <i className={className} onClick={this.toggleMaximize}></i>;
 		}
 		const relayProps = ObjUtils.clone(this.props.maximizeIcon.props);
-		relayProps.className = classNames('r-r-dialog-header-maximize-icon', relayProps.className);
+		relayProps.className = classNames('norseu-dialog-header-maximize-icon', relayProps.className);
 		if (!relayProps.onClick) {
 			relayProps.onClick = this.toggleMaximize;
 		}
@@ -269,9 +269,9 @@ import { CSSTransition } from 'react-transition-group';
 			const header = ObjUtils.selectJSXElement(this.props.header, this.props);
 
 			return (
-				<div ref={el => this.headerEl = el} className="r-r-dialog-header" onMouseDown={this.onDragStart}>
-					<span id={this.state.id + '-header'} className="r-r-dialog-title">{header}</span>
-					<div className="r-r-dialog-header-right">
+				<div ref={el => this.headerEl = el} className="norseu-dialog-header" onMouseDown={this.onDragStart}>
+					<span id={this.state.id + '-header'} className="norseu-dialog-title">{header}</span>
+					<div className="norseu-dialog-header-right">
 						{icons}
 						{maximizeIcon}
 						{closeIcon}
@@ -284,7 +284,7 @@ import { CSSTransition } from 'react-transition-group';
 	}
 
 	renderContent() {
-		let contentClassName = classNames('r-r-dialog-content', this.props.contentClassName);
+		let contentClassName = classNames('norseu-dialog-content', this.props.contentClassName);
 
 		return (
 			<div id={this.state.id + '-content'} ref={el => this.contentEl = el} className={contentClassName} style={this.props.contentStyle}>
@@ -295,17 +295,17 @@ import { CSSTransition } from 'react-transition-group';
 
 	renderFooter() {
 		const footer = ObjUtils.selectJSXElement(this.props.footer, this.props);
-		return footer && <div ref={el => this.footerElement = el} className="r-r-dialog-footer">{footer}</div>
+		return footer && <div ref={el => this.footerElement = el} className="norseu-dialog-footer">{footer}</div>
 	}
 
 	renderElement() {
-		const className = classNames('r-r-dialog', this.props.className, {
-			'r-r-dialog-maximized': this.state.maximized
+		const className = classNames('norseu-dialog', this.props.className, {
+			'norseu-dialog-maximized': this.state.maximized
 		});
-		const modalClassName = classNames('r-r-dialog-modal', {
-			'r-r-component-overlay': !this.props.noOverlay,
-			'r-r-dialog-visible': this.state.modalVisible
-		}, `r-r-dialog-${this.props.position}`, this.props.modalClassName);
+		const modalClassName = classNames('norseu-dialog-modal', {
+			'norseu-component-overlay': !this.props.noOverlay,
+			'norseu-dialog-visible': this.state.modalVisible
+		}, `norseu-dialog-${this.props.position}`, this.props.modalClassName);
 		let transitionTimeout = {
 			enter: this.props.position === Position.CENTER ? 150 : 300,
 			exit: this.props.position === Position.CENTER ? 150 : 300
@@ -316,7 +316,7 @@ import { CSSTransition } from 'react-transition-group';
 
 		return (
 			<div ref={(el) => this.modal = el} className={modalClassName} onClick={this.onModalClick}>
-				<CSSTransition nodeRef={this.elementRef} classNames="r-r-dialog" timeout={transitionTimeout} in={this.state.visible} options={this.props.transitionOptions}
+				<CSSTransition nodeRef={this.elementRef} classNames="norseu-dialog" timeout={transitionTimeout} in={this.state.visible} options={this.props.transitionOptions}
 					unmountOnExit onEnter={this.onEnter} onEntered={this.onEntered} onExited={this.onExited}>
 					<div ref={this.elementRef} id={this.state.id} className={className} style={this.props.style}
 						role="dialog" aria-labelledby={this.state.id + '-header'} aria-describedby={this.state.id + '-content'} aria-modal={this.props.modal}>

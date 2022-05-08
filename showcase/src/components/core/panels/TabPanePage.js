@@ -1,8 +1,8 @@
 
 import React from "react"
-import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels'
-import { Button } from '@ronuse/react-ui/core/buttons'
-import { Alignment, Scheme } from "@ronuse/react-ui/core/variables"
+import { Panel, TabPane, TabPanel } from 'norseu/core/panels'
+import { Button } from 'norseu/core/buttons'
+import { Alignment, Scheme } from "norseu/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -15,7 +15,7 @@ export class TabPanePage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/panels/TabPanePage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/core/panels/TabPanePage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -49,19 +49,19 @@ export class TabPanePage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -73,7 +73,7 @@ export class TabPanePage extends React.Component {
     renderSampleComponents() {
         return (
             <div>
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>Basic</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
@@ -89,7 +89,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
                 
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>Header with Icon</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye">
@@ -105,7 +105,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
                 
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>Extra TabNavigator Elements</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye">
@@ -119,14 +119,14 @@ export class TabPanePage extends React.Component {
                             {this.text3()}
                         </TabPanel>
 
-                        <div className="r-r-flex" style={{alignItems:"center",float:"right"}}>
+                        <div className="norseu-flex" style={{alignItems:"center",float:"right"}}>
                             <input type="text" placeholder="" style={{height:"30px"}}/>
                             <Button scheme={Scheme.PRIMARY} text="Search"/>
                         </div>
                     </TabPane>
                 </Panel>
                 
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>TabPanel with Scheme</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye" scheme={Scheme.PRIMARY}>
@@ -145,7 +145,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
 
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>Skeleton</h3>
                     <TabPane activeTabIndex={0} scheme={Scheme.SKELETON} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
@@ -162,7 +162,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
 
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>Disabled tab</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
@@ -177,7 +177,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
 
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>Custom Logic</h3>
                     <Button text="Switch to Panel 1" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 0 })} outlined/>
                     <Button text="Switch to Panel 2" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 1 })} outlined/>
@@ -196,7 +196,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
                 
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>Tab Navigator Allignment, TODO change select below to ronuse select Component</h3>
                     <select onChange={(e)=>{this.setState({ alignNavigator: e.target.value} )}}>
                         <option value={Alignment.TOP}>{"TOP"}</option>
@@ -233,14 +233,14 @@ export class TabPanePage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -252,12 +252,12 @@ export class TabPanePage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page" >
+            <div className="norseu-showcase-component-page" >
                 <h1>TabPane</h1>
 
                 <Panel borderless>
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { TabPane, TabPanel } from '@ronuse/react-ui/core/panels'`}
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { TabPane, TabPanel } from 'norseu/core/panels'`}
                     </SyntaxHighlighter>
                 </Panel>
 

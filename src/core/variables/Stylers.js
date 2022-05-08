@@ -39,19 +39,19 @@ export const Alignment = {
 
 export const Elevation = {
 	NONE: '',
-	ONE: 'r-r-elevation-1',
-	TWO: 'r-r-elevation-2',
-	THREE: 'r-r-elevation-3',
-	FOUR: 'r-r-elevation-4',
-	FIVE: 'r-r-elevation-5',
-	SIX: 'r-r-elevation-6',
-	SEVEN: 'r-r-elevation-7',
-	EIGHT: 'r-r-elevation-8',
-	NINE: 'r-r-elevation-9',
-	TEN: 'r-r-elevation-10',
-	ELEVEN: 'r-r-elevation-11',
-	TWELVE: 'r-r-elevation-12',
-	THIRTEEN: 'r-r-elevation-13'
+	ONE: 'norseu-elevation-1',
+	TWO: 'norseu-elevation-2',
+	THREE: 'norseu-elevation-3',
+	FOUR: 'norseu-elevation-4',
+	FIVE: 'norseu-elevation-5',
+	SIX: 'norseu-elevation-6',
+	SEVEN: 'norseu-elevation-7',
+	EIGHT: 'norseu-elevation-8',
+	NINE: 'norseu-elevation-9',
+	TEN: 'norseu-elevation-10',
+	ELEVEN: 'norseu-elevation-11',
+	TWELVE: 'norseu-elevation-12',
+	THIRTEEN: 'norseu-elevation-13'
 }
 
 export const Orientation = {
@@ -62,14 +62,14 @@ export const Orientation = {
 }
 
 export const Scheme = {
-	STATELESS: "r-r-stateless",
-	PRIMARY: "r-r-primary",
-	SECONDARY: "r-r-secondary",
-	SUCCESS: "r-r-success",
-	INFO: "r-r-info",
-	WARNING: "r-r-warning",
-	DANGER: "r-r-danger",
-	SKELETON: "r-r-skeleton"
+	STATELESS: "norseu-stateless",
+	PRIMARY: "norseu-primary",
+	SECONDARY: "norseu-secondary",
+	SUCCESS: "norseu-success",
+	INFO: "norseu-info",
+	WARNING: "norseu-warning",
+	DANGER: "norseu-danger",
+	SKELETON: "norseu-skeleton"
 }
 
 export const Overflow = {

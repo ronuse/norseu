@@ -150,27 +150,27 @@ export class FileInputComponent extends BaseComponent {
 			let nodeClassName = classNames(this.state.previewItemClassName, 
 				(scheme ? `${scheme} ${scheme}-border-2px ${scheme}-border-hover ${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null));
 			if (this.state.previewType === FilePreviewType.IMAGE) {
-				nodeClassName += ` r-r-fileinput-preview-type-image`;
+				nodeClassName += ` norseu-fileinput-preview-type-image`;
 				urls.forEach(url => previewItems.push(<img className={nodeClassName} style={this.state.previewItemStyle} alt={url} src={url}/>));
 			} else if (this.state.previewType === FilePreviewType.VIDEO) {
-				nodeClassName += ` r-r-fileinput-preview-type-video`;
+				nodeClassName += ` norseu-fileinput-preview-type-video`;
 				urls.forEach(url => {
 					previewItems.push(<video className={nodeClassName} style={this.state.previewItemStyle} controls>
 							<source src={url}/> Your browser does not support the video tag.
 						</video>);
 				});
 			} else if (this.state.previewType === FilePreviewType.AUDIO) {
-				nodeClassName += ` r-r-fileinput-preview-type-audio`;
+				nodeClassName += ` norseu-fileinput-preview-type-audio`;
 				urls.forEach(url => previewItems.push(<audio className={nodeClassName} style={this.state.previewItemStyle} controls>
 							<source src={url}/> Your browser does not support the video tag.
 						</audio>)
 				);
 			} else if (this.state.previewType === FilePreviewType.PDF || this.state.previewType === FilePreviewType.TEXT) {
-				nodeClassName += ` r-r-fileinput-preview-type-pdf`;
+				nodeClassName += ` norseu-fileinput-preview-type-pdf`;
 				urls.forEach(url => previewItems.push(<iframe className={nodeClassName} style={this.state.previewItemStyle} src={url} frameborder="0" />));
 			} else if (this.state.previewType === FilePreviewType.BINARY || this.state.previewType === FilePreviewType.CUSTOM) {
 				this.previewRef.style.flexDirection = "column";
-				nodeClassName += ` r-r-fileinput-preview-type-binary`;
+				nodeClassName += ` norseu-fileinput-preview-type-binary`;
 				urls.forEach((url, index) => {
 					if (this.state.previewType === FilePreviewType.BINARY) {
 						const name = (names) ? names[index] : "Unknown File " + index;
@@ -227,7 +227,7 @@ export class FileInputComponent extends BaseComponent {
 	buildLabel() {
 		if (!this.state.label) return;
 		let isString = BoolUtils.isTypeOfAny(this.state.label, ["string"]);
-		let className = 'r-r-fileinput-label';
+		let className = 'norseu-fileinput-label';
 		if (!isString) {
 			var relayProps = ObjUtils.clone(this.state.label.props);
 			relayProps.className = className + " " + relayProps.className;
@@ -238,14 +238,14 @@ export class FileInputComponent extends BaseComponent {
 
 	render() {
 		const scheme = this.state.scheme;
-		const className = classNames('r-r-fileinput', /*`r-r-fileinput-${this.state.previewType}`,*/
+		const className = classNames('norseu-fileinput', /*`norseu-fileinput-${this.state.previewType}`,*/
 				(!this.state.noBorder)
 				? `${scheme} ${scheme}-border-2px ${scheme}-border-hover ${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow`
 				: null, {
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-            'r-r-fileinput-no-default': this.state.defaultFileUrl
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
+            'norseu-fileinput-no-default': this.state.defaultFileUrl
         }, this.state.className); 
-		const previewClassName = classNames('r-r-fileinput-preview-panel', this.state.previewPanelClassName); 
+		const previewClassName = classNames('norseu-fileinput-preview-panel', this.state.previewPanelClassName); 
 		const label = this.buildLabel();
 		const cursor = this.state.disablePreviewClick ? "initial" : "pointer";
 		const style = { cursor, ...this.state.style };

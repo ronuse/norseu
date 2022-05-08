@@ -4,15 +4,15 @@
  * Copyright (c) 2020 Ronuse Agency, Adewale Azeez, Oyeleke Damilola.
  */
 
-.r-r-tag {
+.norseu-tag {
 
 }
 
-.r-r-tag-icon {
+.norseu-tag-icon {
 	margin-top: 2px;
 }
 
-.r-r-tag-remove-icon {
+.norseu-tag-remove-icon {
 	font-size: 120%;
 	margin-left: 5px;
 	float: right;
@@ -20,12 +20,12 @@
 	cursor: pointer;
 }
 
-.r-r-tag-min-size {
+.norseu-tag-min-size {
 	/*min-height: 14px;*/
 	min-width: 35px;
 }
 
-.r-r-tag-min-size-icon-only {
+.norseu-tag-min-size-icon-only {
 	/*min-height: 14px;*/
 	min-width: 35px;
 }

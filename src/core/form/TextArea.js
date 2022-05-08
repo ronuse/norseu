@@ -152,20 +152,20 @@ export class TextAreaComponent extends BaseComponent {
         const placeholder = (this.state.floatLabel) ? " " : this.state.placeholder;
         let inputProps = ObjUtils.findDiffKeys(this.props, TextAreaComponent.defaultProps);
         //inputProps = ObjUtils.removeKeys(inputProps, ['className', 'style']);
-        let className = classNames('r-r-textarea',
+        let className = classNames('norseu-textarea',
             (!this.state.nostyle && this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-hover` : null),
             (!this.state.nostyle && this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-focus` : null),
             (!this.state.nostyle && this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-3px-focus-box-shadow` : null),
             (!this.state.nostyle && this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-focus` : null),
             (!this.state.nostyle && this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-hover` : null), {
-            'r-r-width-100-percent': this.state.fill,
-            'r-r-textarea-rz-h': this.state.resizeOrientation == Orientation.HORIZONTAL,
-            'r-r-textarea-rz-v': this.state.resizeOrientation == Orientation.VERTICAL,
-            'r-r-textarea-rz-none': this.state.resizeOrientation == Orientation.NONE,
-            'r-r-textarea-flushed': !this.state.nostyle && this.state.flushed,
-            'r-r-disabled r-r-noselect': !this.state.nostyle && this.state.disabled,
-            'r-r-skeleton': !this.state.nostyle && this.state.scheme === Scheme.SKELETON
-        }, 'r-r-textarea-theme', this.state.inputClassName);
+            'norseu-width-100-percent': this.state.fill,
+            'norseu-textarea-rz-h': this.state.resizeOrientation == Orientation.HORIZONTAL,
+            'norseu-textarea-rz-v': this.state.resizeOrientation == Orientation.VERTICAL,
+            'norseu-textarea-rz-none': this.state.resizeOrientation == Orientation.NONE,
+            'norseu-textarea-flushed': !this.state.nostyle && this.state.flushed,
+            'norseu-disabled norseu-noselect': !this.state.nostyle && this.state.disabled,
+            'norseu-skeleton': !this.state.nostyle && this.state.scheme === Scheme.SKELETON
+        }, 'norseu-textarea-theme', this.state.inputClassName);
         return <textarea ref={this.elementRef} className={className} 
                     style={this.state.inputStyle} 
                     id={this.id} 
@@ -192,13 +192,13 @@ export class TextAreaComponent extends BaseComponent {
         if (!isString && !React.isValidElement(this.state.label)) {
             throw new Error("Only string or a valid react element is expected as the input label");
         }
-        let className = classNames('r-r-textarea-label', {
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-            'r-r-margin-bottom-7px': alignLabel === Alignment.TOP,
-            'r-r-margin-top-7px': alignLabel === Alignment.BOTTOM,
-            'r-r-margin-right-7px': alignLabel === Alignment.LEFT,
-            'r-r-margin-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
-            'r-r-textarea-label-flushed': this.state.flushed
+        let className = classNames('norseu-textarea-label', {
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
+            'norseu-margin-bottom-7px': alignLabel === Alignment.TOP,
+            'norseu-margin-top-7px': alignLabel === Alignment.BOTTOM,
+            'norseu-margin-right-7px': alignLabel === Alignment.LEFT,
+            'norseu-margin-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'norseu-textarea-label-flushed': this.state.flushed
         }); 
         if (isString) {
             return (
@@ -222,13 +222,13 @@ export class TextAreaComponent extends BaseComponent {
         if (!isString && !React.isValidElement(this.state.helpLabel)) {
             throw new Error("Only string or a valid react element is expected as the input help label");
         }
-        let className = classNames('r-r-textarea-help-label', {
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-            'r-r-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
-            'r-r-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
-            'r-r-margin-right-3px': alignHelpLabel === Alignment.LEFT,
-            'r-r-margin-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
-            'r-r-textarea-label-flushed': this.state.flushed
+        let className = classNames('norseu-textarea-help-label', {
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
+            'norseu-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
+            'norseu-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
+            'norseu-margin-right-3px': alignHelpLabel === Alignment.LEFT,
+            'norseu-margin-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'norseu-textarea-label-flushed': this.state.flushed
         }); 
         if (isString) {
             return (
@@ -245,8 +245,8 @@ export class TextAreaComponent extends BaseComponent {
 
     render() {
         const className = classNames({
-            'r-r-width-100-percent': this.state.fill,
-            'r-r-floating-label': this.state.floatLabel,
+            'norseu-width-100-percent': this.state.fill,
+            'norseu-floating-label': this.state.floatLabel,
         }, this.state.className);
         const alignLabel = (this.state.floatLabel) ? Alignment.RIGHT : this.state.alignLabel;
         let input = this.renderInput();

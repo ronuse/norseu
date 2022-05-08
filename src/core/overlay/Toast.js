@@ -147,7 +147,7 @@ export class ToastComponent extends BaseComponent {
 	render() {
 		if (this.state.position === Position.CENTER) this.state.position = Position.CENTER_TOP;
 		if (this.state.position === Position.BOTTOM) this.state.position = Position.CENTER_BOTTOM;
-		let className = classNames('r-r-toast r-r-toast-position-' + this.state.position, this.state.className);
+		let className = classNames('norseu-toast norseu-toast-position-' + this.state.position, this.state.className);
 		//console.log("MESSAGE-REF", this.state.messagesProps);
 
 		return (

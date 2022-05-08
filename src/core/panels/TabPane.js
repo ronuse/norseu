@@ -136,12 +136,12 @@ export class TabPane extends Component {
 		const ariaControls = this.id + '-content-' + index;
 		const tabIndex = tab.props.disabled ? null : '0';
 		const fill = BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT]) ? true : null;
-		const className = classNames('r-r-tab-button', {
-			'r-r-tab-button-top': this.props.alignNavigator.startsWith(Alignment.BOTTOM),
+		const className = classNames('norseu-tab-button', {
+			'norseu-tab-button-top': this.props.alignNavigator.startsWith(Alignment.BOTTOM),
 			'active': selectedTab,
-			'r-r-disabled': tab.props.disabled
+			'norseu-disabled': tab.props.disabled
 		}, 
-		(this.props.alignNavigator.startsWith(Alignment.BOTTOM) ? `r-r-tab-button-top-${tab.props.scheme}` : `r-r-tab-button-${tab.props.scheme}`),
+		(this.props.alignNavigator.startsWith(Alignment.BOTTOM) ? `norseu-tab-button-top-${tab.props.scheme}` : `norseu-tab-button-${tab.props.scheme}`),
 		tab.props.headerClassName);
 
 		return (
@@ -171,13 +171,13 @@ export class TabPane extends Component {
 
 	renderTabBar() {
 		const headers = this.renderTabHeaders();
-		const className = classNames('r-r-tabpane-navigator r-r-noselect', {
-			'r-r-border-bottom-2px-grey1': this.props.alignNavigator === Alignment.TOP,
-			'r-r-border-top-2px-grey1': this.props.alignNavigator === Alignment.BOTTOM,
-			'r-r-display-flex-justify-center':  BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.CENTER, Alignment.TOP_CENTER, Alignment.BOTTOM_CENTER]),
-			'r-r-display-flex-justify-flex-end':  BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])
+		const className = classNames('norseu-tabpane-navigator norseu-noselect', {
+			'norseu-border-bottom-2px-grey1': this.props.alignNavigator === Alignment.TOP,
+			'norseu-border-top-2px-grey1': this.props.alignNavigator === Alignment.BOTTOM,
+			'norseu-display-flex-justify-center':  BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.CENTER, Alignment.TOP_CENTER, Alignment.BOTTOM_CENTER]),
+			'norseu-display-flex-justify-flex-end':  BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])
 		});
-		let leftRightClassName = BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT]) ? 'r-r-tabpane-navigator-width-max-content' : '';
+		let leftRightClassName = BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT]) ? 'norseu-tabpane-navigator-width-max-content' : '';
 
 		return (
 			<div className={className} borderless>
@@ -188,7 +188,7 @@ export class TabPane extends Component {
 
 	renderTabContent(tab, index) {
 		const selectedTab = this.isSelectedTab(index);
-		const className = classNames({'r-r-display-none': !selectedTab}, tab.props.contentClassName);
+		const className = classNames({'norseu-display-none': !selectedTab}, tab.props.contentClassName);
 		const id = this.id + '-content-' + index;
 		const ariaLabelledBy = this.id + '-header-' + index;
 		const sanitizedScheme = this.props.scheme === Scheme.SKELETON ? Scheme.SKELETON : '';
@@ -212,15 +212,15 @@ export class TabPane extends Component {
 		});
 
 		return (
-			<div className="r-r-tabpane-content">
+			<div className="norseu-tabpane-content">
 				{contents}
 			</div>
 		)
 	}
 
 	render() {
-		const className = classNames('r-r-tabpane', {
-			'r-r-display-flex': BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT])
+		const className = classNames('norseu-tabpane', {
+			'norseu-display-flex': BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT])
 		}, this.props.className);
 		const tabNavBelow = this.props.alignNavigator === Alignment.RIGHT || this.props.alignNavigator.startsWith(Alignment.BOTTOM);
 		const tabBar = this.renderTabBar();

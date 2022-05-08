@@ -120,7 +120,7 @@ export class NavbarComponent extends Component {
 
 		this.modal = document.createElement('div');
 		this.modal.style.zIndex = String(DOMUtils.ZIndexHandler.getElementZIndex(this.elementRef.current) - 1);
-		const modalClassName = classNames("r-r-navbar-modal r-r-component-overlay", this.props.modalClassName);
+		const modalClassName = classNames("norseu-navbar-modal norseu-component-overlay", this.props.modalClassName);
 		DOMUtils.addClasses(this.modal, modalClassName);
 		if (this.props.dismissableModal) {
 			this.bindModalClickListener();
@@ -208,7 +208,7 @@ export class NavbarComponent extends Component {
 	onEnter() {
 		DOMUtils.ZIndexHandler.set('modal', this.elementRef.current, this.props.baseZIndex);
 		if ((!this.props.allowScroll || (this.props.fullScreen)) && !this.props.noOverlay) {
-			DOMUtils.addClass(document.body, 'r-r-overflow-hidden');
+			DOMUtils.addClass(document.body, 'norseu-overflow-hidden');
 		}
 		if (!this.props.fullScreen && !this.props.noOverlay) {
 			this.enableOverlay();
@@ -227,7 +227,7 @@ export class NavbarComponent extends Component {
 	onExited() {
 		DOMUtils.ZIndexHandler.removeElementZIndex(this.elementRef.current);
 		if ((!this.props.allowScroll || (this.props.fullScreen)) && !this.props.noOverlay) {
-			DOMUtils.removeClass(document.body, 'r-r-overflow-hidden');
+			DOMUtils.removeClass(document.body, 'norseu-overflow-hidden');
 		}
 		if (this.props.onCloseFocusRef && this.props.onCloseFocusRef.current && ObjUtils.isFunction(this.props.onCloseFocusRef.current.focus)) {
 			this.props.onCloseFocusRef.current.focus();
@@ -245,12 +245,12 @@ export class NavbarComponent extends Component {
 	}
 
 	render() {
-		const className = classNames('r-r-navbar', {
-			'r-r-fullscreen': this.props.fullScreen,
-			'r-r-navbar-left': !this.props.fullScreen && BoolUtils.equalsAny(this.props.position, [ Position.LEFT, Position.TOP_LEFT, Position.BOTTOM_LEFT]),
-			'r-r-navbar-right': !this.props.fullScreen && BoolUtils.equalsAny(this.props.position, [ Position.RIGHT, Position.TOP_RIGHT, Position.BOTTOM_RIGHT]),
-			'r-r-navbar-top': !this.props.fullScreen && BoolUtils.equalsAny(this.props.position, [ Position.TOP, Position.TOP_CENTER]),
-			'r-r-navbar-bottom': !this.props.fullScreen && BoolUtils.equalsAny(this.props.position, [ Position.BOTTOM, Position.BOTTOM_CENTER])
+		const className = classNames('norseu-navbar', {
+			'norseu-fullscreen': this.props.fullScreen,
+			'norseu-navbar-left': !this.props.fullScreen && BoolUtils.equalsAny(this.props.position, [ Position.LEFT, Position.TOP_LEFT, Position.BOTTOM_LEFT]),
+			'norseu-navbar-right': !this.props.fullScreen && BoolUtils.equalsAny(this.props.position, [ Position.RIGHT, Position.TOP_RIGHT, Position.BOTTOM_RIGHT]),
+			'norseu-navbar-top': !this.props.fullScreen && BoolUtils.equalsAny(this.props.position, [ Position.TOP, Position.TOP_CENTER]),
+			'norseu-navbar-bottom': !this.props.fullScreen && BoolUtils.equalsAny(this.props.position, [ Position.BOTTOM, Position.BOTTOM_CENTER])
 		}, this.props.className);
 		let transitionTimeout = {
 			enter: this.props.position === Position.CENTER ? 150 : 300,
@@ -258,7 +258,7 @@ export class NavbarComponent extends Component {
 		};
 
 		return (
-			<CSSTransition nodeRef={this.elementRef} classNames="r-r-navbar" timeout={transitionTimeout} in={this.state.isVisible} options={this.props.transitionOptions}
+			<CSSTransition nodeRef={this.elementRef} classNames="norseu-navbar" timeout={transitionTimeout} in={this.state.isVisible} options={this.props.transitionOptions}
 				unmountOnExit onEnter={this.onEnter} onEntered={this.onEntered} onExit={this.onExit} onExited={this.onExited}>
 				<div ref={this.elementRef} id={this.props.id} className={className} style={this.props.style}>
 					{this.props.children}

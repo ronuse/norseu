@@ -93,13 +93,13 @@ class ButtonComponent extends BaseComponent {
 		if (!isString && !React.isValidElement(this.state.icon)) {
 			throw new Error("Only string or a valid react element is expected as the checkbox label");
 		}
-		let className = classNames('r-r-button-icon', isString ? this.state.icon : this.state.icon.props.className, {
-			'r-r-float-center': this.state.alignIcon === Alignment.CENTER,
-			'r-r-margin-right-15px': this.state.rightIcon && (BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
+		let className = classNames('norseu-button-icon', isString ? this.state.icon : this.state.icon.props.className, {
+			'norseu-float-center': this.state.alignIcon === Alignment.CENTER,
+			'norseu-margin-right-15px': this.state.rightIcon && (BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
 									BoolUtils.equalsAny(this.state.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
-			'r-r-float-left': this.state.alignIcon === Alignment.LEFT,
-			'r-r-float-right': this.state.alignIcon === Alignment.RIGHT,
-			'r-r-width-100-percent': this.state.fillIcon
+			'norseu-float-left': this.state.alignIcon === Alignment.LEFT,
+			'norseu-float-right': this.state.alignIcon === Alignment.RIGHT,
+			'norseu-width-100-percent': this.state.fillIcon
 		});
 		if (!isString) {
 			var relayProps = ObjUtils.clone(this.state.icon.props);
@@ -120,8 +120,8 @@ class ButtonComponent extends BaseComponent {
 		if (!isString && !React.isValidElement(this.state.rightIcon)) {
 			return null;
 		}
-		let className = classNames('r-r-button-icon', isString ? this.state.rightIcon : this.state.rightIcon.props.className, {
-			'r-r-float-right': this.state.fill
+		let className = classNames('norseu-button-icon', isString ? this.state.rightIcon : this.state.rightIcon.props.className, {
+			'norseu-float-right': this.state.fill
 		});
 		if (!isString) {
 			var relayProps = ObjUtils.clone(this.state.rightIcon.props);
@@ -138,11 +138,11 @@ class ButtonComponent extends BaseComponent {
 		}
 
 		let className = classNames({
-			'r-r-float-center': this.state.alignText === Alignment.CENTER,
-			'r-r-margin-left-15px': this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.LEFT, Alignment.CENTER, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
-			'r-r-margin-right-15px': (this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.state.rightIcon),
-			'r-r-float-left': this.state.alignText === Alignment.LEFT,
-			'r-r-float-right': this.state.alignText === Alignment.RIGHT
+			'norseu-float-center': this.state.alignText === Alignment.CENTER,
+			'norseu-margin-left-15px': this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.LEFT, Alignment.CENTER, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
+			'norseu-margin-right-15px': (this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.state.rightIcon),
+			'norseu-float-left': this.state.alignText === Alignment.LEFT,
+			'norseu-float-right': this.state.alignText === Alignment.RIGHT
 		})
 		return <span key={"button-text"} className={className}>{this.state.text}</span>;
 	}
@@ -155,24 +155,24 @@ class ButtonComponent extends BaseComponent {
 			(this.state.scheme && this.state.outlined && !this.state.textonly) ? `${this.state.scheme}-border-1px-bg-hover` : null,
 			(this.state.scheme && (this.state.outlined || this.state.textonly || this.state.link)) ? `${this.state.scheme}-text` : null,
 			(this.state.scheme && (!this.state.nostyle && this.state.scheme)) ? `${this.state.scheme}-border-3px-focus-box-shadow` : null, {
-			'r-r-button': !this.state.nostyle,
-			'r-r-button-vertical': BoolUtils.equalsAny(this.state.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
-			'r-r-disabled': !this.state.nostyle && this.state.disabled,
-			'r-r-padding-left-right-20px': this.state.text,
-			'r-r-width-100-percent r-r-display-block': this.state.fill,
-			'r-r-button-rounded-border': !this.state.nostyle && this.state.rounded,
-			'r-r-button-raised-border': !this.state.nostyle && this.state.raised,
-			'r-r-button-textonly': !this.state.nostyle && (this.state.textonly || this.state.outlined),
-			'r-r-no-background': !this.state.nostyle && (this.state.outlined || this.state.link),
-			'r-r-no-box-shadow-active r-r-text-decoration-underline-hover': !this.state.nostyle && this.state.link,
-			'r-r-no-border': !this.state.nostyle && (this.state.borderless || (this.state.textonly && !this.state.outlined) || this.state.link),
+			'norseu-button': !this.state.nostyle,
+			'norseu-button-vertical': BoolUtils.equalsAny(this.state.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
+			'norseu-disabled': !this.state.nostyle && this.state.disabled,
+			'norseu-padding-left-right-20px': this.state.text,
+			'norseu-width-100-percent norseu-display-block': this.state.fill,
+			'norseu-button-rounded-border': !this.state.nostyle && this.state.rounded,
+			'norseu-button-raised-border': !this.state.nostyle && this.state.raised,
+			'norseu-button-textonly': !this.state.nostyle && (this.state.textonly || this.state.outlined),
+			'norseu-no-background': !this.state.nostyle && (this.state.outlined || this.state.link),
+			'norseu-no-box-shadow-active norseu-text-decoration-underline-hover': !this.state.nostyle && this.state.link,
+			'norseu-no-border': !this.state.nostyle && (this.state.borderless || (this.state.textonly && !this.state.outlined) || this.state.link),
 			
-			'r-r-button-min-size r-r-skeleton': this.state.scheme === Scheme.SKELETON /*&& !(this.state.icon || this.state.rightIcon)*/,
-			'r-r-button-min-size-icon-only r-r-skeleton': this.state.scheme === Scheme.SKELETON && (this.state.icon || this.state.rightIcon) && !this.state.text,
+			'norseu-button-min-size norseu-skeleton': this.state.scheme === Scheme.SKELETON /*&& !(this.state.icon || this.state.rightIcon)*/,
+			'norseu-button-min-size-icon-only norseu-skeleton': this.state.scheme === Scheme.SKELETON && (this.state.icon || this.state.rightIcon) && !this.state.text,
 
-			'r-r-stateless': BoolUtils.equalsAny(this.state.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.state.link,
-			'r-r-padding-0px': this.state.fillIcon
-		}, 'r-r-button-theme', this.state.className);
+			'norseu-stateless': BoolUtils.equalsAny(this.state.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.state.link,
+			'norseu-padding-0px': this.state.fillIcon
+		}, 'norseu-button-theme', this.state.className);
 		let icon = this.renderIcon();
 		let rightIcon = this.renderRightIcon();
 		let text = this.renderText();

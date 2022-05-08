@@ -1,8 +1,8 @@
 
 import React from "react"
-import { Button } from '@ronuse/react-ui/core/buttons'
-import { Panel } from "@ronuse/react-ui/core/panels/Panel";
-import { Scheme, Alignment } from "@ronuse/react-ui/core/variables";
+import { Button } from 'norseu/core/buttons'
+import { Panel } from "norseu/core/panels/Panel";
+import { Scheme, Alignment } from "norseu/core/variables";
 
 export class HomePage extends React.Component {
 
@@ -12,7 +12,7 @@ export class HomePage extends React.Component {
 
     render() {
         return (
-            <Panel className="r-r-margin-20px">
+            <Panel className="norseu-margin-20px">
 
                 HOME SWEET HOME
                 

@@ -1,6 +1,6 @@
 {
-	"name": "@ronuse/react-ui",
-	"version": "0.0.4-rc1",
+	"name": "norseu",
+	"version": "0.0.1",
 	"description": "Configurable React Components by Ronuse",
 	"watch": {
 		"showcase:run": {
@@ -15,7 +15,7 @@
 		"test": "jest",
 		"build": "babel src --out-dir dist --copy-files",
 		"pack": "npm run build && cp package.json dist/ && cp .*ignore dist/ && cd dist/ && npm pack && cp -f *.tgz ../",
-		"showcase:prepare": "npm run pack && cd showcase && if exist \"node_modules/react-ui\" (robocopy \"../dist/\" \"node_modules/react-ui\" /s /e || exit /b 0) else (npm install ../ronuse-react-ui-0.0.4-rc1.tgz) ",
+		"showcase:prepare": "npm run pack && cd showcase && if exist \"node_modules/norseu\" (robocopy \"../dist/\" \"node_modules/norseu\" /s /e || exit /b 0) else (npm install ../norseu-0.0.1.tgz) ",
 		"showcase:start": "cd showcase && npm start",
 		"showcase:run": "npm run showcase:prepare && npm run showcase:start",
 		"deploy": "npm run deploy:build && npm run deploy:push",
@@ -25,7 +25,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ronuse/react-ui.git"
+		"url": "git+https://github.com/ronuse/norseu.git"
 	},
 	"keywords": [
 		"react",
@@ -37,9 +37,9 @@
 	"author": "Adewale Azeez",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/ronuse/react-ui/issues"
+		"url": "https://github.com/ronuse/norseu/issues"
 	},
-	"homepage": "https://github.com/ronuse/react-ui",
+	"homepage": "https://ronuse.github.io/norseu",
 	"devDependencies": {
 		"@babel/cli": "^7.12.1",
 		"@babel/core": "^7.12.3",
@@ -49,7 +49,6 @@
 		"babel-core": "^7.0.0-bridge.0",
 		"classnames": "^2.3.1",
 		"gh-pages": "^3.1.0",
-		"jest": "^26.6.1",
 		"npm-watch": "^0.7.0",
 		"prop-types": "^15.7.2",
 		"react": "^17.0.1",
@@ -60,6 +59,5 @@
 	"peerDependencies": {
 		"classnames": "^2.2.6",
 		"react-transition-group": "^4.4.1"
-	},
-	"dependencies": {}
+	}
 }

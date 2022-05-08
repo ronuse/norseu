@@ -1,8 +1,8 @@
 
 import React from "react"
-import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels'
-import { Button } from '@ronuse/react-ui/core/buttons'
-import { Alignment, Scheme } from "@ronuse/react-ui/core/variables"
+import { Panel, TabPane, TabPanel } from 'norseu/core/panels'
+import { Button } from 'norseu/core/buttons'
+import { Alignment, Scheme } from "norseu/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -13,7 +13,7 @@ export class ButtonPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/buttons/ButtonPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/core/buttons/ButtonPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -21,19 +21,19 @@ export class ButtonPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -48,7 +48,7 @@ export class ButtonPage extends React.Component {
         let customIcon3 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/14879387?s=100"/>;
 
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <Panel title="Basic" expanded collapsible borderless>
                     <Button text="Click Me" />
                     <Button icon="fa fa-user-circle" text="View Profile" />
@@ -255,14 +255,14 @@ export class ButtonPage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -274,12 +274,12 @@ export class ButtonPage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>Button</h1>
 
                 <Panel borderless>
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Button } from '@ronuse/react-ui/core/buttons'`}
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { Button } from 'norseu/core/buttons'`}
                     </SyntaxHighlighter>
                 </Panel>
 

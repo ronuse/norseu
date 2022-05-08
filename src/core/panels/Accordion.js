@@ -182,10 +182,10 @@ class AccordionComponent extends Component {
 		const ariaControls = `${this.id}-content-${index}`;
 		const id = `${this.id}-header-${index}`;
 		const scheme = (panel.props.scheme ? panel.props.scheme : this.props.scheme);
-		const className = classNames('r-r-accordion-tab-header', panel.props.headerClassName, scheme,
+		const className = classNames('norseu-accordion-tab-header', panel.props.headerClassName, scheme,
 			(panel.props.scheme) ? `${scheme}-border-1px-hover` : null,
 			(panel.props.scheme) ? `${scheme}-border-3px-focus-box-shadow` : null, {
-			'r-r-disabled': panel.props.disabled,
+			'norseu-disabled': panel.props.disabled,
 		});
 		const arrowIcon = isToggled ? this.props.collapseIcon : this.props.expandIcon;
 
@@ -193,7 +193,7 @@ class AccordionComponent extends Component {
 			<div className={className} style={panel.props.headerStyle} //href={`#${ariaControls}`}
 				role="tab" aria-controls={ariaControls} aria-expanded={isToggled} id={id}
 				onClick={(e)=> !panel.props.nonCollapsible ? this.onPanelHeaderClick(this, e, panel, index) : null}>
-					{!panel.props.noicon ? <i className={`r-r-accordion-tab-header-icon fa ${arrowIcon}`}></i>: null}
+					{!panel.props.noicon ? <i className={`norseu-accordion-tab-header-icon fa ${arrowIcon}`}></i>: null}
 					{panel.props.header}
 			</div>
 		)
@@ -205,7 +205,7 @@ class AccordionComponent extends Component {
 			//return null;
 		}
 		const scheme = (panel.props.scheme ? panel.props.scheme : this.props.scheme);
-		const className = classNames('r-r-accordion-tab-panel', panel.props.contentClassName, {
+		const className = classNames('norseu-accordion-tab-panel', panel.props.contentClassName, {
 			
 		});
 		return (
@@ -221,9 +221,9 @@ class AccordionComponent extends Component {
 		const isToggled = this.isActiveIndex(index);
 		const panelContent = this.renderAccordionPanelContent(panel, isToggled);
 		const panelHeader = !panel.props.noheader ? this.renderAccordionPanelHeader(panel, index, childrenCount, isToggled) : null;
-		const className = classNames('r-r-accordion-tab', panel.props.className);
-		const headerDivider = (index < childrenCount-1 || (isToggled)) && !panel.props.noheader && !panel.props.nodivier ? <hr className="r-r-accordion-divider"/> : null;
-		const contentDivider = (isToggled && index < childrenCount-1) && !panel.props.nodivier ? <hr className="r-r-accordion-divider"/> : null;
+		const className = classNames('norseu-accordion-tab', panel.props.className);
+		const headerDivider = (index < childrenCount-1 || (isToggled)) && !panel.props.noheader && !panel.props.nodivier ? <hr className="norseu-accordion-divider"/> : null;
+		const contentDivider = (isToggled && index < childrenCount-1) && !panel.props.nodivier ? <hr className="norseu-accordion-divider"/> : null;
 		if (panel.props.forwardRef) {
 			panel.props.forwardRef.current = {
 				toggle: (e) => this.onPanelHeaderClick(this, e, panel, index)
@@ -252,8 +252,8 @@ class AccordionComponent extends Component {
 	}
 
 	render() {
-		const className = classNames('r-r-accordion', this.props.elevation,  this.props.className, (this.props.scheme) ? `${this.props.scheme}-border-1px` : null, {
-			'r-r-no-border' : this.props.borderless
+		const className = classNames('norseu-accordion', this.props.elevation,  this.props.className, (this.props.scheme) ? `${this.props.scheme}-border-1px` : null, {
+			'norseu-no-border' : this.props.borderless
 		});
 		const content = this.renderAccordionPanels(); 
 

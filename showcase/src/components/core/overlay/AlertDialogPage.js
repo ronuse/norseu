@@ -1,14 +1,14 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from '@ronuse/react-ui/core/panels';
-import { Button } from '@ronuse/react-ui/core/buttons';
+import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from 'norseu/core/panels';
+import { Button } from 'norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Position, Orientation, Elevation, InputFilters, Alignment } from "@ronuse/react-ui/core/variables";
-import { LinearLayout } from "@ronuse/react-ui/layouts";
-import { PasswordInput, InputText, Checkbox } from "@ronuse/react-ui/core/form";
-import { AlertDialog, alertDialog, loadingDialog } from "@ronuse/react-ui/core/overlay";
+import { Scheme } from "norseu/core/variables/Stylers";
+import { Position, Orientation, Elevation, InputFilters, Alignment } from "norseu/core/variables";
+import { LinearLayout } from "norseu/layouts";
+import { PasswordInput, InputText, Checkbox } from "norseu/core/form";
+import { AlertDialog, alertDialog, loadingDialog } from "norseu/core/overlay";
 import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
 
 export class AlertDialogPage extends React.Component {
@@ -85,8 +85,8 @@ export class AlertDialogPage extends React.Component {
                         <span className="left">Basic</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex">
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <div className="norseu-display-flex">
                                 <Button text="Show Alert Dialog" icon="fa fa-check" scheme={Scheme.PRIMARY} onClick={()=>{
                                     alertDialog({
                                         message: <p>Are you sure you want to delete the email <br/><b>address@domain.com</b> from this account. <br/>You can always add another email.</p>,
@@ -132,14 +132,14 @@ export class AlertDialogPage extends React.Component {
                         <span className="left">Using Alert Dialog Tag</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
                             <span>Footer Allignment </span>
                             <select onChange={(e)=>{this.setState({ alignNavigator: e.target.value} )}}>
                                 <option value={Alignment.RIGHT}>{"RIGHT"}</option>
                                 <option value={Alignment.CENTER}>{"CENTER"}</option>
                                 <option value={Alignment.LEFT}>{"LEFT"}</option>
                             </select> TODO change select below to ronuse select Component
-                            <div className="r-r-display-flex">
+                            <div className="norseu-display-flex">
                                 <Button text="Show" icon="fa fa-eye" scheme={Scheme.PRIMARY} onClick={() => this.setState({ visible: true })} />
                                 <AlertDialog visible={this.state.visible} onHide={() => this.setState({ visible: false })} message={this.basicText()} 
                                     cancelLabel="Cancel" confirmScheme={Scheme.SUCCESS} cancelScheme={Scheme.DANGER} dismissableModal
@@ -159,8 +159,8 @@ export class AlertDialogPage extends React.Component {
                         <span className="left">Optional Properties</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex">
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <div className="norseu-display-flex">
                                 <Button text="No Buttons"scheme={Scheme.PRIMARY} onClick={() => this.setState({ nbVisible: true })} />
                                 <Button text="Cancel Button Only"scheme={Scheme.PRIMARY} onClick={() => this.setState({ cobVisible: true })} />
                                 <Button text="With Icon"scheme={Scheme.PRIMARY} onClick={() => this.setState({ wiVisible: true })} />
@@ -184,8 +184,8 @@ export class AlertDialogPage extends React.Component {
 
     renderDocumentation() {        
         return (
-            <LinearLayout className="r-r-panel r-r-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
-                <span className="r-r-showcase-doc-title">Documentation</span>
+            <LinearLayout className="norseu-panel norseu-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
+                <span className="norseu-showcase-doc-title">Documentation</span>
             </LinearLayout>
         )
     }
@@ -196,12 +196,12 @@ export class AlertDialogPage extends React.Component {
         }
 
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>AlertDialog</h1>
 
-                <Panel className="r-r-padding-20px" elevation={Elevation.ONE}>
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { AlertDialog } from '@ronuse/react-ui/core/overlay'`}
+                <Panel className="norseu-padding-20px" elevation={Elevation.ONE}>
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { AlertDialog } from 'norseu/core/overlay'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

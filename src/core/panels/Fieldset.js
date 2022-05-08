@@ -140,9 +140,9 @@ export class Fieldset extends Component {
 		}
 
 		const toggleIcon = (this.props.collapsible ? (expanded ? this.props.collapseIcon : this.props.expandIcon) : null);
-		let className = classNames('r-r-fieldset-legend', {
-			'r-r-skeleton': this.props.scheme === Scheme.SKELETON,
-			'r-r-noselect r-r-no-pointer-event': !this.props.collapsible
+		let className = classNames('norseu-fieldset-legend', {
+			'norseu-skeleton': this.props.scheme === Scheme.SKELETON,
+			'norseu-noselect norseu-no-pointer-event': !this.props.collapsible
 		}, this.props.headerClassName);
 		if (!isString) {
 			var relayProps = ObjUtils.clone(this.props.legend.props);
@@ -160,7 +160,7 @@ export class Fieldset extends Component {
 
 	renderContent(expanded) {
 		const id = this.id + '-panel';
-		let className = classNames('r-r-fieldset-content', this.props.contentClassName);
+		let className = classNames('norseu-fieldset-content', this.props.contentClassName);
 
 		return (
 			<CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={expanded} unmountOnExit>
@@ -173,7 +173,7 @@ export class Fieldset extends Component {
 
 	render() {
 		let expanded = !this.props.children ? false : this.isExpanded();
-		let className = classNames('r-r-fieldset', this.props.elevation, 
+		let className = classNames('norseu-fieldset', this.props.elevation, 
 			((this.props.scheme && !this.props.borderless)? `${this.props.scheme}-border-1px` : null), {
 			'r-panel-collapsible': this.props.collapsible,
 		}, this.props.className);

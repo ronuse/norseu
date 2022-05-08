@@ -2,13 +2,13 @@
 import React, { Component } from "react"
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button } from '@ronuse/react-ui/core/buttons'
-import { Panel } from "@ronuse/react-ui/core/panels/Panel";
-import { Scheme, Alignment, Position } from "@ronuse/react-ui/core/variables";
-import { InputText } from '@ronuse/react-ui/core/form';
-import { Popover, Message, showMessage, Toast } from '@ronuse/react-ui/core/overlay';
-import { Tag } from '@ronuse/react-ui/core/misc'
-import { ObjUtils, DOMUtils, BoolUtils } from "@ronuse/react-ui/utils"
+import { Button } from 'norseu/core/buttons'
+import { Panel } from "norseu/core/panels/Panel";
+import { Scheme, Alignment, Position } from "norseu/core/variables";
+import { InputText } from 'norseu/core/form';
+import { Popover, Message, showMessage, Toast } from 'norseu/core/overlay';
+import { Tag } from 'norseu/core/misc'
+import { ObjUtils, DOMUtils, BoolUtils } from "norseu/utils"
 import ReactDOM from 'react-dom';
 
 let index = 0;
@@ -29,9 +29,9 @@ export class ScratchPage extends React.Component {
 
 		return (
 			<React.Fragment>
-				<div className="r-r-showcase-component-page">
+				<div className="norseu-showcase-component-page">
 					<h1>Construct A Component Here <i className="fas fa-bars" style={{float: "right", display: "none"}}></i></h1>
-					<div ref={this.containerRef} className={"r-r-toast r-r-toast-top-center"}>
+					<div ref={this.containerRef} className={"norseu-toast norseu-toast-top-center"}>
 					</div>
 					<Toast ref={this.toast}/>
 					<Button text={"Show Toast"} onClick={(e) => {

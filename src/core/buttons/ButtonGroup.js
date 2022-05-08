@@ -72,9 +72,9 @@ export class ButtonGroup extends BaseComponent {
 
 	render() {
 		
-		let className = classNames('r-r-button-group', {
-			'r-r-flex-vertical': BoolUtils.equalsAny(this.state.direction, [Orientation.VERTICAL]),
-			'r-r-width-100-percent': this.state.fill
+		let className = classNames('norseu-button-group', {
+			'norseu-flex-vertical': BoolUtils.equalsAny(this.state.direction, [Orientation.VERTICAL]),
+			'norseu-width-100-percent': this.state.fill
 		}, this.state.className);
 		let componentProps = ObjUtils.findDiffKeys(this.props, ButtonGroup.defaultProps);
 		let children = this.prepareChildren();

@@ -155,14 +155,14 @@ export class Panel extends BaseComponent {
 	renderHeader(expanded) {
 		if (this.props.title || this.props.collapsible) {
 			const toggleIcon = expanded ? this.props.collapseIcon : this.props.expandIcon;
-			let className = classNames('r-r-panel-header-text', {
-				'r-r-skeleton': this.props.scheme === Scheme.SKELETON
+			let className = classNames('norseu-panel-header-text', {
+				'norseu-skeleton': this.props.scheme === Scheme.SKELETON
 			}, this.props.headerClassName);
 
 			return (
-				<div ref={this.props.headerRef} className="r-r-panel-header">
+				<div ref={this.props.headerRef} className="norseu-panel-header">
 					<span className={className} aria-label={this.id + '-header'} style={this.props.headerStyle}>{this.props.title}</span>
-					{this.props.collapsible ? <Button scheme={this.props.scheme} rounded textonly icon={toggleIcon} onClick={this.toggle} className="r-r-panel-toggle-button" /> : ''}
+					{this.props.collapsible ? <Button scheme={this.props.scheme} rounded textonly icon={toggleIcon} onClick={this.toggle} className="norseu-panel-toggle-button" /> : ''}
 					
 				</div>
 			);
@@ -178,12 +178,12 @@ export class Panel extends BaseComponent {
 					child = this.getWithChildrenSkeletonAdded(child, skeletonize);
 					var childRelayProps = ObjUtils.clone(child.props);
 					childRelayProps.className = classNames(childRelayProps.className, {
-						'r-r-skeleton': !child.props.children || skeletonize
+						'norseu-skeleton': !child.props.children || skeletonize
 					});
 					childRelayProps.scheme = Scheme.SKELETON;
 					return React.cloneElement(child, childRelayProps);
 				}
-				return <span className={'r-r-skeleton'}>{child}</span>;
+				return <span className={'norseu-skeleton'}>{child}</span>;
 			});
 			var subRelayProps = ObjUtils.clone(element.props);
 			subRelayProps.children = subChildren;
@@ -209,8 +209,8 @@ export class Panel extends BaseComponent {
 			child = this.getWithChildrenSkeletonAdded(child, skeletonize);
 			let isPanelComponent = BoolUtils.equalsAny(child.type, [Panel, TabPane, Checkbox]);
 			var relayProps = ObjUtils.clone(child.props);
-			relayProps.className = classNames('r-r-overflow-hidden', {
-										"r-r-skeleton" : (!isPanelComponent && (!child.props || !child.props.children)) || skeletonize
+			relayProps.className = classNames('norseu-overflow-hidden', {
+										"norseu-skeleton" : (!isPanelComponent && (!child.props || !child.props.children)) || skeletonize
 									}, relayProps.className);
 			relayProps.scheme = this.props.scheme;
 			if (isPanelComponent) {
@@ -230,7 +230,7 @@ export class Panel extends BaseComponent {
 			}
 			return child;
 		});
-		let className = classNames('r-r-panel-content', this.props.contentClassName);
+		let className = classNames('norseu-panel-content', this.props.contentClassName);
 		const contentElement =  this.props.isForm  
 			? (<form ref={this.props.contentRef} onSubmit={this.props.onSubmit} className={className} aria-hidden={!expanded} role="region" id={id} aria-labelledby={this.id + '-header'} 
 					style={this.props.contentStyle}>
@@ -248,8 +248,8 @@ export class Panel extends BaseComponent {
 	}
 
 	render() {
-		let className = classNames('r-r-panel', this.props.elevation, {
-			'r-r-border-1px-radius-5px': !this.props.borderless,
+		let className = classNames('norseu-panel', this.props.elevation, {
+			'norseu-border-1px-radius-5px': !this.props.borderless,
 			'r-panel-collapsible': this.props.collapsible
 		}, this.props.className);
 		let expanded = !this.props.children ? false : this.isExpanded();

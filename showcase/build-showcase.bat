@@ -12,8 +12,8 @@ exit /b 0
 
 :: Clean
 :clean
-    if exist build\\ronuse-react-ui.css (
-        del build\\ronuse-react-ui.css
+    if exist build\\norseu.css (
+        del build\\norseu.css
     )
     if exist build\\ronuse-generated.css (
         del build\\ronuse-generated.css
@@ -27,12 +27,12 @@ exit /b 0
 :: Copy Css
 :copy_css
     for %%a in (%CSS_FILES%) do ( 
-        type %%a >> build\\ronuse-react-ui.css
+        type %%a >> build\\norseu.css
     )
     exit /b 0
 
 :: Minify
 :minify
-    node ./node_modules/minify/bin/minify.js build\\ronuse-react-ui.css > build\\ronuse-react-ui.min.css
+    node ./node_modules/minify/bin/minify.js build\\norseu.css > build\\norseu.min.css
     call:clean
     exit /b 0

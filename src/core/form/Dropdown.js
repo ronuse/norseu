@@ -238,13 +238,13 @@ export class DropdownComponent extends BaseComponent {
 		}
 
 		return (
-			<span className="r-r-dropdown-popover-li-item">{icon}{option.label}</span>
+			<span className="norseu-dropdown-popover-li-item">{icon}{option.label}</span>
 		);
 	}
 
 	buildPopover() {
 		if (!this.state.popoverProps) { this.state.popoverProps = {}; }
-		this.state.popoverProps.className = classNames('r-r-dropdown-popover r-r-scrollpanel', 
+		this.state.popoverProps.className = classNames('norseu-dropdown-popover norseu-scrollpanel', 
 			(this.state.scheme ? `${this.state.scheme}-scrollpanel` : null), 
 			this.state.popoverProps.inputClassName);
 		const listItems = [];
@@ -272,7 +272,7 @@ export class DropdownComponent extends BaseComponent {
 				onOpenFocusRef={this.state.inputTextRef} 
 				onCloseFocusRef={this.state.inputTextRef} 
 				onShow={this.onDropdownShow} onHide={this.onDropdownHide}>
-				<ul role="listbox" className="r-r-dropdown-popover-list">
+				<ul role="listbox" className="norseu-dropdown-popover-list">
 					{listItems}
 				</ul>
 			</Popover>
@@ -286,9 +286,9 @@ export class DropdownComponent extends BaseComponent {
 	render() {
 		const selectedOption = this.getSelectedOption();
 		const relayProps = ObjUtils.findDiffKeys(this.state, DropdownComponent.defaultProps);
-		relayProps.className = classNames('r-r-dropdown-inputtext-panel', this.state.className, relayProps.className);
-		relayProps.inputClassName = classNames('r-r-dropdown-inputtext', {
-			'r-r-cursor-pointer': !this.state.editable,
+		relayProps.className = classNames('norseu-dropdown-inputtext-panel', this.state.className, relayProps.className);
+		relayProps.inputClassName = classNames('norseu-dropdown-inputtext', {
+			'norseu-cursor-pointer': !this.state.editable,
 		}, relayProps.inputClassName);
 		relayProps.leftIcon = this.resolveOptionIcon(selectedOption);
 		relayProps.defaultValue = this.resolveOptionLabel(selectedOption);

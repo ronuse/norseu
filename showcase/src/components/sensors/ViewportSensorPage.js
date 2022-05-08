@@ -1,12 +1,12 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
-import { Button } from '@ronuse/react-ui/core/buttons';
+import { Panel, TabPane, TabPanel } from 'norseu/core/panels';
+import { Button } from 'norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Orientation } from "@ronuse/react-ui/core/variables";
-import { ViewportSensor } from "@ronuse/react-ui/sensors";
+import { Scheme } from "norseu/core/variables/Stylers";
+import { Orientation } from "norseu/core/variables";
+import { ViewportSensor } from "norseu/sensors";
 
 export class ViewportSensorPage extends React.Component {
 
@@ -23,7 +23,7 @@ export class ViewportSensorPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/sensors/ViewportSensorPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/sensors/ViewportSensorPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -31,19 +31,19 @@ export class ViewportSensorPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -65,7 +65,7 @@ export class ViewportSensorPage extends React.Component {
 
     renderSampleComponents() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <Panel> 
                     
                     <h4>Scroll to right to load the image</h4>
@@ -100,7 +100,7 @@ export class ViewportSensorPage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Documentation" icon="fa fa-book">
                         Can be used to defer rendering if no event listener is specified<br/>
@@ -117,7 +117,7 @@ export class ViewportSensorPage extends React.Component {
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -129,12 +129,12 @@ export class ViewportSensorPage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>ViewportSensor</h1>
 
-                <Panel className="r-r-padding-left-right-20px">
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { ViewportSensor } from '@ronuse/react-ui/sensors'`}
+                <Panel className="norseu-padding-left-right-20px">
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { ViewportSensor } from 'norseu/sensors'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

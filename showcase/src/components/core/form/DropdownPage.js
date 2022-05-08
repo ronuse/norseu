@@ -1,13 +1,13 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from '@ronuse/react-ui/core/panels';
-import { Button } from '@ronuse/react-ui/core/buttons';
+import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from 'norseu/core/panels';
+import { Button } from 'norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Alignment, Orientation, Elevation, InputFilters } from "@ronuse/react-ui/core/variables";
-import { LinearLayout } from "@ronuse/react-ui/layouts";
-import { Dropdown, InputText } from "@ronuse/react-ui/core/form";
+import { Scheme } from "norseu/core/variables/Stylers";
+import { Alignment, Orientation, Elevation, InputFilters } from "norseu/core/variables";
+import { LinearLayout } from "norseu/layouts";
+import { Dropdown, InputText } from "norseu/core/form";
 import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
 
 export class DropdownPage extends React.Component {
@@ -65,8 +65,8 @@ export class DropdownPage extends React.Component {
 						<span className="left">Basic</span>
 					</div>
 					<Accordion borderless multiple activeIndex={[0]}>
-						<AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-							<div className="r-r-display-flex sppai">
+						<AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+							<div className="norseu-display-flex sppai">
 								<Dropdown options={this.dropDownOptions}/>
 							</div>
 						</AccordionPanel>
@@ -83,8 +83,8 @@ export class DropdownPage extends React.Component {
 						<span className="left">Properties</span>
 					</div>
 					<Accordion borderless multiple activeIndex={[0]}>
-						<AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-							<div className="r-r-display-flex-column">
+						<AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+							<div className="norseu-display-flex-column">
 								<p className="prop-desc-1">
 									<h4>lazyLoad</h4>
 									The property <code>lazyLoad</code> allow the dropdown to render the options in pages instead of at once. This is most useful 
@@ -122,8 +122,8 @@ export class DropdownPage extends React.Component {
 						<span className="left">Option Template</span>
 					</div>
 					<Accordion borderless multiple activeIndex={[0]}>
-						<AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-							<div className="r-r-display-flex-column">
+						<AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+							<div className="norseu-display-flex-column">
 								<p className="prop-desc-1">
 									Each object in the <code>options</code> must should have the following keys.
 									<ul>
@@ -138,7 +138,7 @@ export class DropdownPage extends React.Component {
 									the needed keys. <br/><br/>
 									Below is a sample list of options and the optionMap that map the keys in the options obeject to the required keys.<br/>
 
-									<SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
+									<SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
 										{`const options = [
 	{ continent: "Africa", name: "Nigera", image: "https://cdn.countryflags.com/thumbs/nigeria/flag-3d-round-250.png" },
 	{ continent: "Asia", name: "India", image: "https://cdn.countryflags.com/thumbs/india/flag-3d-round-250.png" }
@@ -161,7 +161,7 @@ const optionMap = {
 										value: "name",
 										icon: "image"
 									}}
-									optionTemplate={(county) => <span className="r-r-dropdown-popover-li-item"><img src={county.image}/>{county.continent} - {county.name}</span>} />
+									optionTemplate={(county) => <span className="norseu-dropdown-popover-li-item"><img src={county.image}/>{county.continent} - {county.name}</span>} />
 							</div>
 						</AccordionPanel>
 						{getSourceInEditorR(source2, this.previewPanel2)}
@@ -177,8 +177,8 @@ const optionMap = {
 						<span className="left">Events</span>
 					</div>
 					<Accordion borderless multiple activeIndex={[0]}>
-						<AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-							<div className="r-r-display-flex-column">
+						<AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+							<div className="norseu-display-flex-column">
 								<p className="prop-desc-1">
 									<h4>onSearch</h4>
 									The property <code>lazyLoad</code> allow the dropdown to render the options in pages instead of at once. This is most useful 
@@ -202,8 +202,8 @@ const optionMap = {
 						<span className="left">Schemes</span>
 					</div>
 					<Accordion borderless multiple activeIndex={[0]}>
-						<AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-							<div className="r-r-display-flex sppai">
+						<AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+							<div className="norseu-display-flex sppai">
 								<Dropdown scheme={Scheme.SKELETON} options={this.dropDownOptions} placeholder={"Skeleton"}/>
 								<Dropdown scheme={Scheme.PRIMARY} options={this.dropDownOptions} placeholder={"Primary"}/>
 								<Dropdown scheme={Scheme.SECONDARY} options={this.dropDownOptions} placeholder={"Secondary"}/>
@@ -222,8 +222,8 @@ const optionMap = {
 
 	renderDocumentation() {		
 		return (
-			<LinearLayout className="r-r-panel r-r-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
-				<span className="r-r-showcase-doc-title">Documentation</span>
+			<LinearLayout className="norseu-panel norseu-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
+				<span className="norseu-showcase-doc-title">Documentation</span>
 			</LinearLayout>
 		)
 	}
@@ -234,12 +234,12 @@ const optionMap = {
 		}
 
 		return (
-			<div className="r-r-showcase-component-page">
+			<div className="norseu-showcase-component-page">
 				<h1>Dropdown</h1>
 
-				<Panel className="r-r-padding-20px" elevation={Elevation.ONE}>
-					<SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-						{`import { Dropdown } from '@ronuse/react-ui/core/form''`}
+				<Panel className="norseu-padding-20px" elevation={Elevation.ONE}>
+					<SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+						{`import { Dropdown } from 'norseu/core/form''`}
 					</SyntaxHighlighter>
 				</Panel>
 				

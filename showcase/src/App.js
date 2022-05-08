@@ -29,11 +29,11 @@ import { NavbarPage } from './components/core/overlay/NavbarPage'
 import { DialogPage } from './components/core/overlay/DialogPage'
 import { PopoverPage } from './components/core/overlay/PopoverPage'
 import { MessagePage } from './components/core/overlay/MessagePage'
-import { Navbar } from "@ronuse/react-ui/core/overlay";
-import { Button } from "@ronuse/react-ui/core/buttons";
-import { Panel, ScrollPanel } from "@ronuse/react-ui/core/panels";
-import { Position, Scheme, Orientation, Elevation, InputFilters } from "@ronuse/react-ui/core/variables";
-import { LinearLayout } from '@ronuse/react-ui/layouts'
+import { Navbar } from "norseu/core/overlay";
+import { Button } from "norseu/core/buttons";
+import { Panel, ScrollPanel } from "norseu/core/panels";
+import { Position, Scheme, Orientation, Elevation, InputFilters } from "norseu/core/variables";
+import { LinearLayout } from 'norseu/layouts'
 
 import { LinearLayoutPage } from './components/layouts/LinearLayoutPage'
 import './index.css'

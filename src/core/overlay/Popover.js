@@ -217,7 +217,7 @@ export const PopoverArrow = {
 			this.elementRef.current.style.setProperty('--popoverArrowLeftOffset', `${arrowLeftOffset}px`);
 		}
 		if (targetOffset.top > popoverOffset.top) {
-			DOMUtils.addClass(this.elementRef.current, 'r-r-popover-arrow-flipped');
+			DOMUtils.addClass(this.elementRef.current, 'norseu-popover-arrow-flipped');
 		}
 	}
 
@@ -247,13 +247,13 @@ export const PopoverArrow = {
 	}
 
 	renderElement() {
-		let className = classNames('r-r-popover', {
-			'r-r-popover-arrow': this.props.pointingArrowClassName === null,
-			'r-r-margin-top-0px': this.props.pointingArrowClassName !== null,
+		let className = classNames('norseu-popover', {
+			'norseu-popover-arrow': this.props.pointingArrowClassName === null,
+			'norseu-margin-top-0px': this.props.pointingArrowClassName !== null,
 		}, this.props.pointingArrowClassName, this.props.className);
 
 		return (
-			<CSSTransition nodeRef={this.elementRef} classNames="r-r-popover" timeout={{ enter: 130, exit: 110 }} in={this.state.visible} options={this.props.transitionOptions}
+			<CSSTransition nodeRef={this.elementRef} classNames="norseu-popover" timeout={{ enter: 130, exit: 110 }} in={this.state.visible} options={this.props.transitionOptions}
 				unmountOnExit onEnter={this.onEnter} onEntered={this.onEntered} onExited={this.onExited}>
 				<div ref={this.elementRef} id={this.state.id} className={className} style={this.props.style}>
 					{this.props.children}

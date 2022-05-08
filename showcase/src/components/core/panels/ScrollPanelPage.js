@@ -1,11 +1,11 @@
 
 import React from "react"
-import { Panel, TabPane, TabPanel, ScrollPanel } from '@ronuse/react-ui/core/panels'
-import { Button } from '@ronuse/react-ui/core/buttons'
-import { Elevation, Scheme } from "@ronuse/react-ui/core/variables"
+import { Panel, TabPane, TabPanel, ScrollPanel } from 'norseu/core/panels'
+import { Button } from 'norseu/core/buttons'
+import { Elevation, Scheme } from "norseu/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { LinearLayout } from "@ronuse/react-ui/layouts";
+import { LinearLayout } from "norseu/layouts";
 
 export class ScrollPanelPage extends React.Component {
 
@@ -14,7 +14,7 @@ export class ScrollPanelPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/panels/ScrollPanelPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/core/panels/ScrollPanelPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -50,19 +50,19 @@ export class ScrollPanelPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -73,7 +73,7 @@ export class ScrollPanelPage extends React.Component {
 
     renderSampleComponents() {
         return (
-            <div className="r-r-showcase-sample-component-div">
+            <div className="norseu-showcase-sample-component-div">
                 <LinearLayout style={{padding:"20px"}} padding={60}>
                     <ScrollPanel style={{flex: 1, width:"400px", height:"300px"}} hideScrollBars>
                         <h3>Hidden Scrollbars</h3>
@@ -122,14 +122,14 @@ export class ScrollPanelPage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -141,12 +141,12 @@ export class ScrollPanelPage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>Panel</h1>
 
                 <Panel borderless>
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Panel } from '@ronuse/react-ui/core/panels'`}
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { Panel } from 'norseu/core/panels'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

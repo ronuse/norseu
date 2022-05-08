@@ -161,7 +161,7 @@ export class InputTextComponent extends BaseComponent {
             if (this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.add(`${this.state.scheme}-border-bottom-color`);
             if (!this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.add(`${this.state.scheme}-border-3px-box-shadow`);
             if (!this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.add(`${this.state.scheme}-border-1px`);
-            if (this.state.floatLabel && this.iconPackElement.classList) this.iconPackElement.classList.add(`r-r-floating-label-float`);
+            if (this.state.floatLabel && this.iconPackElement.classList) this.iconPackElement.classList.add(`norseu-floating-label-float`);
             this.seamlesslyFocusAttrs(true);
         }
         if (this.state.onFocus) this.state.onFocus(event);
@@ -172,7 +172,7 @@ export class InputTextComponent extends BaseComponent {
             if (this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.remove(`${this.state.scheme}-border-bottom-color`);
             if (!this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.remove(`${this.state.scheme}-border-3px-box-shadow`);
             if (!this.state.flushed && this.iconPackElement.classList && this.state.scheme) this.iconPackElement.classList.remove(`${this.state.scheme}-border-1px`);
-            if (this.state.floatLabel && this.iconPackElement.classList && this.elementRef.current.value.length === 0) this.iconPackElement.classList.remove(`r-r-floating-label-float`);
+            if (this.state.floatLabel && this.iconPackElement.classList && this.elementRef.current.value.length === 0) this.iconPackElement.classList.remove(`norseu-floating-label-float`);
             this.seamlesslyFocusAttrs(false);
         }
         if (this.state.onBlur) this.state.onBlur(event);
@@ -217,15 +217,15 @@ export class InputTextComponent extends BaseComponent {
         const placeholder = (this.state.floatLabel) ? " " : this.state.placeholder;
         let inputProps = ObjUtils.findDiffKeys(this.props, InputTextComponent.defaultProps);
         //inputProps = ObjUtils.removeKeys(inputProps, ['className', 'style']);
-        let className = this.state.nostyle ? "" : classNames('r-r-inputtext', {
-            'r-r-inputtext-no-left-icon': !this.state.leftIcon,
-            'r-r-inputtext-no-right-icon': !this.state.rightIcon,
-            'r-r-max-width-100-percent': this.state.fill,
-            'r-r-inputtext-outlined': this.state.outlined,
-            'r-r-padding-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
-            'r-r-disabled r-r-noselect': this.state.disabled,
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON
-        }, 'r-r-inputtext-theme', this.state.internalInputClassName);
+        let className = this.state.nostyle ? "" : classNames('norseu-inputtext', {
+            'norseu-inputtext-no-left-icon': !this.state.leftIcon,
+            'norseu-inputtext-no-right-icon': !this.state.rightIcon,
+            'norseu-max-width-100-percent': this.state.fill,
+            'norseu-inputtext-outlined': this.state.outlined,
+            'norseu-padding-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
+            'norseu-disabled norseu-noselect': this.state.disabled,
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON
+        }, 'norseu-inputtext-theme', this.state.internalInputClassName);
 
         return <input ref={this.elementRef} className={className} 
                     style={this.state.internalInputStyle} 
@@ -255,13 +255,13 @@ export class InputTextComponent extends BaseComponent {
         if (!isString && !React.isValidElement(this.state.label)) {
             throw new Error("Only string or a valid react element is expected as the input label");
         }
-        let className = classNames('r-r-inputtext-label', {
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-            'r-r-margin-bottom-7px': alignLabel === Alignment.TOP,
-            'r-r-margin-top-7px': alignLabel === Alignment.BOTTOM,
-            'r-r-margin-right-7px': alignLabel === Alignment.LEFT,
-            'r-r-margin-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
-            'r-r-inputtext-label-flushed': this.state.flushed && this.state.outlined
+        let className = classNames('norseu-inputtext-label', {
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
+            'norseu-margin-bottom-7px': alignLabel === Alignment.TOP,
+            'norseu-margin-top-7px': alignLabel === Alignment.BOTTOM,
+            'norseu-margin-right-7px': alignLabel === Alignment.LEFT,
+            'norseu-margin-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'norseu-inputtext-label-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
             return (
@@ -285,13 +285,13 @@ export class InputTextComponent extends BaseComponent {
         if (!isString && !React.isValidElement(this.state.helpLabel)) {
             throw new Error("Only string or a valid react element is expected as the input help label");
         }
-        let className = classNames('r-r-inputtext-help-label', {
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-            'r-r-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
-            'r-r-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
-            'r-r-margin-right-3px': alignHelpLabel === Alignment.LEFT,
-            'r-r-margin-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
-            'r-r-inputtext-label-flushed': this.state.flushed && this.state.outlined
+        let className = classNames('norseu-inputtext-help-label', {
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
+            'norseu-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
+            'norseu-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
+            'norseu-margin-right-3px': alignHelpLabel === Alignment.LEFT,
+            'norseu-margin-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'norseu-inputtext-label-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
             return (
@@ -315,10 +315,10 @@ export class InputTextComponent extends BaseComponent {
         if (!isString && !React.isValidElement(this.state.leftIcon)) {
             throw new Error("Only string or a valid react element is expected as the input left icon");
         }
-        let className = classNames('r-r-inputtext-left-icon', 
+        let className = classNames('norseu-inputtext-left-icon', 
             (isString ? this.state.leftIcon : null), {
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-            'r-r-inputtext-left-icon-flushed': this.state.flushed && this.state.outlined
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
+            'norseu-inputtext-left-icon-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
             return [
@@ -344,10 +344,10 @@ export class InputTextComponent extends BaseComponent {
         if (!isString && !React.isValidElement(this.state.rightIcon)) {
             throw new Error("Only string or a valid react element is expected as the input left icon");
         }
-        let className = classNames('r-r-inputtext-right-icon',
+        let className = classNames('norseu-inputtext-right-icon',
             (isString ? this.state.rightIcon : null), {
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-            'r-r-inputtext-right-icon-flushed': this.state.flushed && this.state.outlined
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
+            'norseu-inputtext-right-icon-flushed': this.state.flushed && this.state.outlined
         }, this.state.rightIcon); 
         if (isString) {
             return [
@@ -365,17 +365,17 @@ export class InputTextComponent extends BaseComponent {
     }
 
     render() {
-        const iconPackClassName = classNames('r-r-inputtext-icon-pack',
+        const iconPackClassName = classNames('norseu-inputtext-icon-pack',
             (this.state.scheme && this.state.flushed ? `${this.state.scheme}-border-bottom-color-hover` : null),
             (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-hover` : null), {
-            'r-r-inputtext-outlined': this.state.outlined,
-            'r-r-inputtext-flushed': this.state.flushed,
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON
+            'norseu-inputtext-outlined': this.state.outlined,
+            'norseu-inputtext-flushed': this.state.flushed,
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON
         }, this.state.inputClassName);
-        const className = classNames('r-r-inputtext-compound', {
-            'r-r-width-100-percent': this.state.fill,
-            'r-r-floating-label': this.state.floatLabel,
-            'r-r-skeleton': this.state.scheme === Scheme.SKELETON
+        const className = classNames('norseu-inputtext-compound', {
+            'norseu-width-100-percent': this.state.fill,
+            'norseu-floating-label': this.state.floatLabel,
+            'norseu-skeleton': this.state.scheme === Scheme.SKELETON
         }, this.state.className);
         const alignLabel = (this.state.floatLabel) ? Alignment.RIGHT : this.state.alignLabel;
         const input = this.renderInput();

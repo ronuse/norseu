@@ -1,14 +1,14 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from '@ronuse/react-ui/core/panels';
-import { Button } from '@ronuse/react-ui/core/buttons';
+import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from 'norseu/core/panels';
+import { Button } from 'norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Position, Orientation, Elevation, InputFilters } from "@ronuse/react-ui/core/variables";
-import { LinearLayout } from "@ronuse/react-ui/layouts";
-import { PasswordInput, InputText, Checkbox } from "@ronuse/react-ui/core/form";
-import { Popover } from "@ronuse/react-ui/core/overlay";
+import { Scheme } from "norseu/core/variables/Stylers";
+import { Position, Orientation, Elevation, InputFilters } from "norseu/core/variables";
+import { LinearLayout } from "norseu/layouts";
+import { PasswordInput, InputText, Checkbox } from "norseu/core/form";
+import { Popover } from "norseu/core/overlay";
 import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
 
 export class PopoverPage extends React.Component {
@@ -109,8 +109,8 @@ export class PopoverPage extends React.Component {
                         <span className="left">Basic</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex">
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <div className="norseu-display-flex">
                                 <Button text="Show Basic" icon="fa fa-clone fa-flip-vertical" scheme={Scheme.PRIMARY} onClick={(e) => this.popover1 && this.popover1.toggle(e)} />
                                 <Popover ref={(el) => this.popover1 = el}>
                                     <div style={{ backgroundColor: "white", width: "200px", padding: "20px" }}>
@@ -132,8 +132,8 @@ export class PopoverPage extends React.Component {
                         <span className="left">Dismisable</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex-column">
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <div className="norseu-display-flex-column">
                                 <p className="prop-desc-1">
                                     Prevent dismissing the pop over when clicked out side the popover. The popover can be toggled by 
                                     only clicking the toggle button.
@@ -159,8 +159,8 @@ export class PopoverPage extends React.Component {
                         <span className="left">Focus and trapping</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex-column">
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <div className="norseu-display-flex-column">
                                 <p className="prop-desc-1">
                                     <h4>Focus an element when popover show or hide</h4>
                                     Set the element that recieve focus when the popover is shown using the <code>onOpenFocusRef</code>, 
@@ -196,8 +196,8 @@ export class PopoverPage extends React.Component {
 
     renderDocumentation() {        
         return (
-            <LinearLayout className="r-r-panel r-r-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
-                <span className="r-r-showcase-doc-title">Documentation</span>
+            <LinearLayout className="norseu-panel norseu-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
+                <span className="norseu-showcase-doc-title">Documentation</span>
             </LinearLayout>
         )
     }
@@ -208,12 +208,12 @@ export class PopoverPage extends React.Component {
         }
 
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>Popover</h1>
 
-                <Panel className="r-r-padding-20px" elevation={Elevation.ONE}>
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Popover } from '@ronuse/react-ui/core/overlay'`}
+                <Panel className="norseu-padding-20px" elevation={Elevation.ONE}>
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { Popover } from 'norseu/core/overlay'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

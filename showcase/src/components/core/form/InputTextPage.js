@@ -1,11 +1,11 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
-import { InputText, Dropdown } from '@ronuse/react-ui/core/form';
+import { Panel, TabPane, TabPanel } from 'norseu/core/panels';
+import { InputText, Dropdown } from 'norseu/core/form';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Alignment } from "@ronuse/react-ui/core/variables";
+import { Scheme } from "norseu/core/variables/Stylers";
+import { Alignment } from "norseu/core/variables";
 
 export class InputTextPage extends React.Component {
 
@@ -19,7 +19,7 @@ export class InputTextPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/form/InputTextPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/core/form/InputTextPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -27,19 +27,19 @@ export class InputTextPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -49,13 +49,13 @@ export class InputTextPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const customLabel1 = <label className="r-r-secondary-text fa fa-user" > Schemed And Styled Label</label>;
+        const customLabel1 = <label className="norseu-secondary-text fa fa-user" > Schemed And Styled Label</label>;
         const customLabel2 = <label>First name <span style={{color: "red"}}>*</span></label>;
         const customLeftIcon1 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/14879387?s=16" style={{borderRadius:"50%"}}/>;
         const customLeftIcon2 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/69908664?s=16" style={{borderRadius:"50%"}}/>;
 
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <Panel title="Basic" expanded collapsible borderless>
                     <InputText seamlesslyFocusAttrs={false} name="user-name"/>
                     <br/><br/>
@@ -226,14 +226,14 @@ export class InputTextPage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -245,12 +245,12 @@ export class InputTextPage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>InputText</h1>
 
-                <Panel className="r-r-padding-left-right-20px">
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { InputText } from '@ronuse/react-ui/core/form''`}
+                <Panel className="norseu-padding-left-right-20px">
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { InputText } from 'norseu/core/form''`}
                     </SyntaxHighlighter>
                 </Panel>
                 

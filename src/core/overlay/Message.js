@@ -142,7 +142,7 @@ export class MessageComponent extends BaseComponent {
 	}
 
 	onClick(event) {
-		if (this.state.onClick && !DOMUtils.hasClass(event.target, 'r-r-message-close-icon')) {
+		if (this.state.onClick && !DOMUtils.hasClass(event.target, 'norseu-message-close-icon')) {
             this.state.onClick(event, this.state.extraData);
         }
 	}
@@ -160,7 +160,7 @@ export class MessageComponent extends BaseComponent {
 	renderCloseIcon() {
 		if (this.state.notClosable) return null;
 		return (
-			<i className={"r-r-message-close-icon fa fa-times"} onClick={this.onClose}/>
+			<i className={"norseu-message-close-icon fa fa-times"} onClick={this.onClose}/>
 		);
 	}
 
@@ -168,7 +168,7 @@ export class MessageComponent extends BaseComponent {
 		if (!this.state.icon) return null;
 		let isString = BoolUtils.isTypeOfAny(this.state.icon, ["string"]);
 		if (!isString && !React.isValidElement(this.state.icon)) return null;
-		let className = classNames('r-r-message-content-icon', isString ? this.state.icon : this.state.icon.props.className);
+		let className = classNames('norseu-message-content-icon', isString ? this.state.icon : this.state.icon.props.className);
 		if (!isString) {
 			let relayProps = ObjUtils.clone(this.state.icon.props);
 			relayProps.className = className;
@@ -181,7 +181,7 @@ export class MessageComponent extends BaseComponent {
 		if (!this.state.title) return null;
 		let isString = BoolUtils.isTypeOfAny(this.state.title, ["string"]);
 		if (!isString && !React.isValidElement(this.state.title)) return null;
-		let className = classNames('r-r-message-message-title', isString ? null : this.state.title.props.className);
+		let className = classNames('norseu-message-message-title', isString ? null : this.state.title.props.className);
 		if (!isString) {
 			let relayProps = ObjUtils.clone(this.state.title.props);
 			relayProps.className = className;
@@ -194,7 +194,7 @@ export class MessageComponent extends BaseComponent {
 		if (!this.state.description) return null;
 		let isString = BoolUtils.isTypeOfAny(this.state.description, ["string"]);
 		if (!isString && !React.isValidElement(this.state.description)) return null;
-		let className = classNames('r-r-message-message-description', isString ? null : this.state.description.props.className);
+		let className = classNames('norseu-message-message-description', isString ? null : this.state.description.props.className);
 		if (!isString) {
 			let relayProps = ObjUtils.clone(this.state.description.props);
 			relayProps.className = className;
@@ -209,9 +209,9 @@ export class MessageComponent extends BaseComponent {
 		const description = this.renderDescription();
 
 		return (
-			<div className={"r-r-message-content"}>
+			<div className={"norseu-message-content"}>
 				{icon}
-				<div className={"r-r-message-message"}>
+				<div className={"norseu-message-message"}>
 					{title}
 					{description}
 				</div>
@@ -220,8 +220,8 @@ export class MessageComponent extends BaseComponent {
 	}
 
 	render() {
-        const className = classNames('r-r-message', `r-r-message-${this.state.scheme}`, {
-			'r-r-width-auto': this.state.fill
+        const className = classNames('norseu-message', `norseu-message-${this.state.scheme}`, {
+			'norseu-width-auto': this.state.fill
         }, this.state.className);
 		const closeIcon = this.renderCloseIcon();
 		const message = this.renderMessage();

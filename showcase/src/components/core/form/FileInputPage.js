@@ -1,14 +1,14 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from '@ronuse/react-ui/core/panels';
-import { Button } from '@ronuse/react-ui/core/buttons';
+import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from 'norseu/core/panels';
+import { Button } from 'norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Alignment, Orientation, Elevation, FilePreviewType } from "@ronuse/react-ui/core/variables";
-import { LinearLayout } from "@ronuse/react-ui/layouts";
-import { ObjUtils } from "@ronuse/react-ui/utils";
-import { PasswordInput, InputText, FileInput } from "@ronuse/react-ui/core/form";
+import { Scheme } from "norseu/core/variables/Stylers";
+import { Alignment, Orientation, Elevation, FilePreviewType } from "norseu/core/variables";
+import { LinearLayout } from "norseu/layouts";
+import { ObjUtils } from "norseu/utils";
+import { PasswordInput, InputText, FileInput } from "norseu/core/form";
 import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
 
 export class FileInputPage extends React.Component {
@@ -59,8 +59,8 @@ export class FileInputPage extends React.Component {
                         <span className="left">Basic</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex sppai">
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <div className="norseu-display-flex sppai">
                                 <FileInput scheme={Scheme.PRIMARY}
 									defaultFileUrl={"https://i.pinimg.com/originals/4e/aa/b6/4eaab69fcf8d928738072cd355a980db.jpg"}
 									fileExtensions={["png", "jpg", "jpeg", "JPG", "PNG", "JPEG"]}
@@ -81,8 +81,8 @@ export class FileInputPage extends React.Component {
                         <span className="left">Preview Types</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex sppai" style={{ flexDirection: "row" }}>
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <div className="norseu-display-flex sppai" style={{ flexDirection: "row" }}>
 								<div>
 									<span style={{ fontWeight: "bold" }}>FilePreviewType.NONE</span>
 									<FileInput scheme={Scheme.PRIMARY} style={{ minWidth: "200px", minHeight: "200px" }}
@@ -162,12 +162,12 @@ export class FileInputPage extends React.Component {
                         <span className="left">Custom FilePreviewType</span>
                     </div>
                     <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="r-r-showcase-component-page-preview">
-                            <div className="r-r-display-flex sppai">
+                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <div className="norseu-display-flex sppai">
 								<span>click or drag a file into the panel to add file</span>
                                 <FileInput scheme={Scheme.SECONDARY} style={{ width: "100%", minHeight: "100px" }}
 									previewType={FilePreviewType.CUSTOM}
-									previewPanelClassName={"r-r-fileinput-custom"}
+									previewPanelClassName={"norseu-fileinput-custom"}
 									customItemTemplate={(url, name, size, type) => {
 										let previewElement = null;
 										if (type && type.includes("image")) previewElement = <img src={url} />;
@@ -198,8 +198,8 @@ export class FileInputPage extends React.Component {
 
     renderDocumentation() {        
         return (
-            <LinearLayout className="r-r-panel r-r-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
-                <span className="r-r-showcase-doc-title">Documentation</span>
+            <LinearLayout className="norseu-panel norseu-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
+                <span className="norseu-showcase-doc-title">Documentation</span>
 				If an element is clickable do not forget to stop propagation at the end of the element on cliick 
 				event.stopPropagation()
             </LinearLayout>
@@ -212,12 +212,12 @@ export class FileInputPage extends React.Component {
         }
 
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>FileInput</h1>
 
-                <Panel className="r-r-padding-20px" elevation={Elevation.ONE}>
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { FileInput } from '@ronuse/react-ui/core/form''`}
+                <Panel className="norseu-padding-20px" elevation={Elevation.ONE}>
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { FileInput } from 'norseu/core/form''`}
                     </SyntaxHighlighter>
                 </Panel>
                 

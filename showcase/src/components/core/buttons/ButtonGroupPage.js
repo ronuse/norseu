@@ -1,10 +1,10 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
-import { Button, ButtonGroup } from '@ronuse/react-ui/core/buttons';
+import { Panel, TabPane, TabPanel } from 'norseu/core/panels';
+import { Button, ButtonGroup } from 'norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme, Alignment, Orientation } from "@ronuse/react-ui/core/variables";
+import { Scheme, Alignment, Orientation } from "norseu/core/variables";
 
 export class ButtonGroupPage extends React.Component {
 
@@ -13,7 +13,7 @@ export class ButtonGroupPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/buttons/ButtonGroupPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/core/buttons/ButtonGroupPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -21,19 +21,19 @@ export class ButtonGroupPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -44,7 +44,7 @@ export class ButtonGroupPage extends React.Component {
 
     renderSampleComponents() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <Panel title="Horizontal" expanded collapsible borderless>
                     <h5>Basic</h5>
                     <ButtonGroup>
@@ -131,14 +131,14 @@ export class ButtonGroupPage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -150,12 +150,12 @@ export class ButtonGroupPage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>ButtonGroup</h1>
 
-                <Panel className="r-r-padding-left-right-20px">
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { ButtonGroup } from '@ronuse/react-ui/buttons/ButtonGroup'`}
+                <Panel className="norseu-padding-left-right-20px">
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { ButtonGroup } from 'norseu/buttons/ButtonGroup'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

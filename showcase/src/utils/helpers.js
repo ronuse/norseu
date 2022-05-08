@@ -2,7 +2,7 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { AccordionPanel } from '@ronuse/react-ui/core/panels';
+import { AccordionPanel } from 'norseu/core/panels';
 
 const __microSourceCache = {};
 
@@ -69,7 +69,7 @@ export const copyToClipboard = (text) => {
 export const getSourceInEditorR = (source, panelForwardRef) => {
     return (
         <AccordionPanel noheader nodivier forwardRef={panelForwardRef}>
-            <SyntaxHighlighter language="javascript" style={prism} className={"max-height-350px r-r-showcase-code"}>
+            <SyntaxHighlighter language="javascript" style={prism} className={"max-height-350px norseu-showcase-code"}>
                 {source}
             </SyntaxHighlighter>
         </AccordionPanel>

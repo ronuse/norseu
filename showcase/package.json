@@ -1,5 +1,5 @@
 {
-  "name": "ronuse-react-ui-example",
+  "name": "norseu-showcase",
   "homepage": ".",
   "version": "0.0.0",
   "private": true,
@@ -11,8 +11,8 @@
     "eject": "node ./node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
-    "@ronuse/react-ui": "file:../ronuse-react-ui-0.0.4-rc1.tgz",
     "ace-builds": "^1.4.12",
+    "norseu": "file:../norseu-0.0.1.tgz",
     "react": "^17.0.1",
     "react-ace": "^9.2.1",
     "react-dom": "^17.0.1",

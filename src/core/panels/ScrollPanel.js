@@ -95,14 +95,14 @@ export class ScrollPanelComponent extends Component {
 
 	render() {
 		let componentProps = ObjUtils.findDiffKeys(this.props, ScrollPanelComponent.defaultProps);
-		let className = classNames('r-r-scrollpanel', (this.props.scheme ? `${this.props.scheme}-scrollpanel` : null), this.props.elevation, {
-			'r-r-skeleton': this.props.scheme === Scheme.SKELETON,
-			'r-r-scrollpanel-always-show-scrollbars': this.props.alwaysScroll,
-			'r-r-scrollpanel-always-show-scrollbar-x': this.props.alwaysScrollX,
-			'r-r-scrollpanel-always-show-scrollbar-y': this.props.alwaysScrollY,
-			'r-r-scrollpanel-hidden-scrollbars': this.props.hideScrollBars,
-			'r-r-scrollpanel-hidden-scrollbar-x': this.props.hideScrollBarX,
-			'r-r-scrollpanel-hidden-scrollbar-y': this.props.hideScrollBarY
+		let className = classNames('norseu-scrollpanel', (this.props.scheme ? `${this.props.scheme}-scrollpanel` : null), this.props.elevation, {
+			'norseu-skeleton': this.props.scheme === Scheme.SKELETON,
+			'norseu-scrollpanel-always-show-scrollbars': this.props.alwaysScroll,
+			'norseu-scrollpanel-always-show-scrollbar-x': this.props.alwaysScrollX,
+			'norseu-scrollpanel-always-show-scrollbar-y': this.props.alwaysScrollY,
+			'norseu-scrollpanel-hidden-scrollbars': this.props.hideScrollBars,
+			'norseu-scrollpanel-hidden-scrollbar-x': this.props.hideScrollBarX,
+			'norseu-scrollpanel-hidden-scrollbar-y': this.props.hideScrollBarY
 		}, this.props.className);
 
 		return (this.props.isForm

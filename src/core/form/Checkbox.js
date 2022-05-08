@@ -162,14 +162,14 @@ class CheckboxComponent extends BaseComponent {
 			(scheme && checked.icon) ? `${scheme} ${scheme}-border-2px` : null,
 			(scheme && !checked.icon) ? `${scheme}-border-hover` : null, 
 			(scheme && this.state.scheme ? `${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null), {
-			'r-r-skeleton': this.state.scheme === Scheme.SKELETON,
-			'r-r-checkbox-box': !this.state.nostyle,
-			'r-r-margin-right-10px': BoolUtils.equalsAny(this.state.align, [Alignment.LEFT, Alignment.CENTER]),
-			'r-r-margin-left-10px': BoolUtils.equalsAny(this.state.align, [Alignment.RIGHT]),
-			'r-r-margin-bottom-10px': BoolUtils.equalsAny(this.state.align, [Alignment.TOP, Alignment.TOP_LEFT, Alignment.TOP_CENTER, Alignment.TOP_RIGHT]),
-			'r-r-margin-top-10px': BoolUtils.equalsAny(this.state.align, [Alignment.BOTTOM, Alignment.BOTTOM_LEFT, Alignment.BOTTOM_CENTER, Alignment.BOTTOM_RIGHT]),
-			'r-r-align-self-center': this.state.align === Alignment.TOP_CENTER || this.state.align === Alignment.BOTTOM_CENTER,
-			'r-r-align-self-flex-end': this.state.align === Alignment.TOP_RIGHT || this.state.align === Alignment.BOTTOM_RIGHT
+			'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
+			'norseu-checkbox-box': !this.state.nostyle,
+			'norseu-margin-right-10px': BoolUtils.equalsAny(this.state.align, [Alignment.LEFT, Alignment.CENTER]),
+			'norseu-margin-left-10px': BoolUtils.equalsAny(this.state.align, [Alignment.RIGHT]),
+			'norseu-margin-bottom-10px': BoolUtils.equalsAny(this.state.align, [Alignment.TOP, Alignment.TOP_LEFT, Alignment.TOP_CENTER, Alignment.TOP_RIGHT]),
+			'norseu-margin-top-10px': BoolUtils.equalsAny(this.state.align, [Alignment.BOTTOM, Alignment.BOTTOM_LEFT, Alignment.BOTTOM_CENTER, Alignment.BOTTOM_RIGHT]),
+			'norseu-align-self-center': this.state.align === Alignment.TOP_CENTER || this.state.align === Alignment.BOTTOM_CENTER,
+			'norseu-align-self-flex-end': this.state.align === Alignment.TOP_RIGHT || this.state.align === Alignment.BOTTOM_RIGHT
 		});
 		let icon = checked.icon ? <i className={checked.icon}/> : null;
 
@@ -194,8 +194,8 @@ class CheckboxComponent extends BaseComponent {
 		}
 
 		let className = classNames({
-			'r-r-skeleton': this.state.scheme === Scheme.SKELETON
-		}, 'r-r-checkbox-label'); 
+			'norseu-skeleton': this.state.scheme === Scheme.SKELETON
+		}, 'norseu-checkbox-label'); 
 		if (isString) {
 			return (
 				<label className={className} htmlFor={this.id}>{this.state.label}</label>
@@ -224,14 +224,14 @@ class CheckboxComponent extends BaseComponent {
 		let checkedIndex = this.getCheckStatesIndex();
 		let checked = this.state.checkStates[checkedIndex] ;
 		let className = classNames({
-			'r-r-checkbox': !this.state.nostyle,
-			'r-r-disabled r-r-noselect': !this.state.nostyle && this.state.disabled,
-			'r-r-readOnly': !this.state.nostyle && this.state.readOnly,
-			'r-r-flex-direction-row-reverse': !this.state.align.startsWith(Alignment.BOTTOM) && !this.state.align.startsWith(Alignment.TOP) && 
+			'norseu-checkbox': !this.state.nostyle,
+			'norseu-disabled norseu-noselect': !this.state.nostyle && this.state.disabled,
+			'norseu-readOnly': !this.state.nostyle && this.state.readOnly,
+			'norseu-flex-direction-row-reverse': !this.state.align.startsWith(Alignment.BOTTOM) && !this.state.align.startsWith(Alignment.TOP) && 
 												BoolUtils.equalsAny(this.state.align, [Alignment.RIGHT]),
-			'r-r-flex-direction-column': this.state.align.startsWith(Alignment.TOP),
-			'r-r-flex-direction-column-reverse': this.state.align.startsWith(Alignment.BOTTOM)
-		}, 'r-r-checkbox-theme', this.state.className);
+			'norseu-flex-direction-column': this.state.align.startsWith(Alignment.TOP),
+			'norseu-flex-direction-column-reverse': this.state.align.startsWith(Alignment.BOTTOM)
+		}, 'norseu-checkbox-theme', this.state.className);
 		let input = this.renderInput(checked);
 		let box = this.renderBox(checkedIndex, checked);
 		let label = this.renderLabel();

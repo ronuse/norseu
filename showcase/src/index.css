@@ -36,28 +36,28 @@ input {
 	margin-bottom: 10px;
 }
 
-.r-r-showcase-component-page {
+.norseu-showcase-component-page {
 	padding: 20px;
 	margin: 0px;
 }
 
-.r-r-showcase-component-page > .r-r-panel-content > .r-r-panel {
+.norseu-showcase-component-page > .norseu-panel-content > .norseu-panel {
 	background-color: white !important;
 	padding: 10px;
 }
 
-.r-r-showcase-component-page > .r-r-panel-content > * > .r-r-panel {
+.norseu-showcase-component-page > .norseu-panel-content > * > .norseu-panel {
 	background-color: white !important;
 	padding: 10px;
 }
 
-.r-r-showcase-code {
+.norseu-showcase-code {
 	margin: 0px !important;
 	padding: 10px !important;
 	background-color: #EBF1F5 !important;
 }
 
-.r-r-showcase-elevation {
+.norseu-showcase-elevation {
 	width: 170px;
 	height: 120px;
 	display: flex;
@@ -68,26 +68,26 @@ input {
 	font-weight: 500;
 }
 
-.r-r-tag,
-.r-r-showcase-badges > .r-r-badge, 
-.r-r-showcase-badges > .r-r-tag,
-.r-r-showcase-badges > .r-r-pill {
+.norseu-tag,
+.norseu-showcase-badges > .norseu-badge, 
+.norseu-showcase-badges > .norseu-tag,
+.norseu-showcase-badges > .norseu-pill {
 	margin-right: .5em;
 	margin-bottom: .5em;
 }
 
-.r-r-showcase-badges {
+.norseu-showcase-badges {
 }
 
-.r-r-panel {
+.norseu-panel {
 	background-color: white;
 }
 
-.r-r-showcase-sample-component-div {
+.norseu-showcase-sample-component-div {
 	background-color: white;
 }
 
-.r-r-showcase-doc-title {
+.norseu-showcase-doc-title {
 	font-weight: bold;
 }
 
@@ -117,11 +117,11 @@ input {
 	background-color: rgba(2, 102, 116, 0.2);
 }
 
-.r-r-showcase-component-page-preview {
+.norseu-showcase-component-page-preview {
 	padding: 20px;
 }
 
-.s-flex-wrap > .r-r-panel{
+.s-flex-wrap > .norseu-panel{
 	display: flex;
 	background-color: green;
 	flex-direction: row;
@@ -153,16 +153,16 @@ input {
 	flex-direction: column;
 }
 
-.left-sidebar > .r-r-scrollpanel {
+.left-sidebar > .norseu-scrollpanel {
 	padding: 20px !important;
 }
 
-.left-sidebar > .r-r-scrollpanel > section {
+.left-sidebar > .norseu-scrollpanel > section {
 	display: flex;
 	flex-direction: column;
 }
 
-.left-sidebar > .r-r-scrollpanel > section > .title {
+.left-sidebar > .norseu-scrollpanel > section > .title {
 	font-weight: bold;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -170,7 +170,7 @@ input {
 	margin-bottom: 10px;
 }
 
-.left-sidebar > .r-r-scrollpanel > section > .link {
+.left-sidebar > .norseu-scrollpanel > section > .link {
 	text-decoration: none;
 	color: rgb(22, 22, 22);
 	padding: 5px;
@@ -179,11 +179,11 @@ input {
 	border-radius: 3px;
 }
 
-.left-sidebar > .r-r-scrollpanel > section > .link:hover {
+.left-sidebar > .norseu-scrollpanel > section > .link:hover {
 	background-color: rgb(216, 216, 216);
 }
 
-.r-r-fileinput-custom {
+.norseu-fileinput-custom {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -191,34 +191,34 @@ input {
 	flex-wrap: wrap;
 }
 
-.r-r-fileinput-custom > div {
+.norseu-fileinput-custom > div {
 	display: flex;
 	margin: 20px;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
-.r-r-fileinput-custom > div > * {
+.norseu-fileinput-custom > div > * {
 	margin-right: 20px;
 	align-self: center;
 }
 
-.r-r-fileinput-custom > div > img {
+.norseu-fileinput-custom > div > img {
 	width: 150px;
 	height: 100px;
 }
 
-.r-r-fileinput-custom > div > video {
+.norseu-fileinput-custom > div > video {
 	width: 150px;
 	height: 100px;
 	object-fit: fill;
 }
 
-.r-r-fileinput-custom > div > button {
+.norseu-fileinput-custom > div > button {
 	height: 40px;
 }
 
-.r-r-preview-messages > div {
+.norseu-preview-messages > div {
 	margin-top: 10px;
 	margin-right: 10px;
 }
@@ -227,7 +227,7 @@ input {
 
 /* */
 
-.r-r-ripple {
+.norseu-ripple {
 	width: 100%;
 	height: 100%;
 	background: rgba(255, 255, 255, 0.0);
@@ -236,11 +236,11 @@ input {
 	z-index: 1;
 }
 
-.r-r-ripple-effect {
-	animation: r-r-ripple-drop .6s linear;
+.norseu-ripple-effect {
+	animation: norseu-ripple-drop .6s linear;
 }
 
-@keyframes r-r-ripple-drop {
+@keyframes norseu-ripple-drop {
   100% {
 	transform: scale(2);
 	opacity: 0;

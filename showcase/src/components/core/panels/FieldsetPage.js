@@ -1,8 +1,8 @@
 
 import React from "react"
-import { Panel, TabPane, TabPanel, Fieldset } from '@ronuse/react-ui/core/panels'
-import { Button } from '@ronuse/react-ui/core/buttons'
-import { Elevation, Scheme } from "@ronuse/react-ui/core/variables"
+import { Panel, TabPane, TabPanel, Fieldset } from 'norseu/core/panels'
+import { Button } from 'norseu/core/buttons'
+import { Elevation, Scheme } from "norseu/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -13,7 +13,7 @@ export class FieldsetPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/panels/FieldsetPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/core/panels/FieldsetPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -30,19 +30,19 @@ export class FieldsetPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -66,7 +66,7 @@ export class FieldsetPage extends React.Component {
 
         return (
             <div>
-                <Panel className="r-r-padding-left-right-20px">
+                <Panel className="norseu-padding-left-right-20px">
                     <h3>Basic</h3>
                     <Fieldset legend="Header">
                         {this.text1()}
@@ -107,14 +107,14 @@ export class FieldsetPage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px r-r-padding-bottom-20px">
+            <Panel className="norseu-padding-left-right-20px norseu-padding-bottom-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -126,12 +126,12 @@ export class FieldsetPage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>Panel</h1>
 
                 <Panel borderless>
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Fieldset } from '@ronuse/react-ui/core/panels'`}
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { Fieldset } from 'norseu/core/panels'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

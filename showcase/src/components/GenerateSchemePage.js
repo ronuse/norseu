@@ -1,11 +1,11 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel, ScrollPanel } from '@ronuse/react-ui/core/panels';
-import { Button, ButtonGroup } from '@ronuse/react-ui/core/buttons';
-import { InputText, Checkbox } from '@ronuse/react-ui/core/form';
-import { LinearLayout } from '@ronuse/react-ui/layouts';
-import { Tag } from '@ronuse/react-ui/core/misc';
-import { Scheme, Alignment, Orientation } from "@ronuse/react-ui/core/variables";
+import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel, ScrollPanel } from 'norseu/core/panels';
+import { Button, ButtonGroup } from 'norseu/core/buttons';
+import { InputText, Checkbox } from 'norseu/core/form';
+import { LinearLayout } from 'norseu/layouts';
+import { Tag } from 'norseu/core/misc';
+import { Scheme, Alignment, Orientation } from "norseu/core/variables";
 import { SchemeBuilder } from '../utils/generate_scheme_css.mjs';
 import AceEditor from "react-ace";
 
@@ -94,13 +94,13 @@ export class GenerateSchemePage extends React.Component {
                 <br/><br/>
 
                 <Accordion scheme={this.state.name} >
-                    <AccordionPanel title={<React.Fragment><i className="fa fa-user-o r-r-margin-right-5px"/>User</React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-user-o norseu-margin-right-5px"/>User</React.Fragment>}>
                         {"Panel 1"}
                     </AccordionPanel>
-                    <AccordionPanel title={<React.Fragment><i className="fa fa-gear r-r-margin-right-5px"/>Settings</React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-gear norseu-margin-right-5px"/>Settings</React.Fragment>}>
                         {"Panel 2"}
                     </AccordionPanel>
-                    <AccordionPanel title={<React.Fragment><i className="fa fa-search r-r-margin-right-5px"/>Search Profiles<i className="fa fa-eye r-r-margin-left-5px"/></React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-search norseu-margin-right-5px"/>Search Profiles<i className="fa fa-eye norseu-margin-left-5px"/></React.Fragment>}>
                          {"Panel 3"}
                     </AccordionPanel>
                 </Accordion>
@@ -173,7 +173,7 @@ export class GenerateSchemePage extends React.Component {
         const alternateColorsView = this.buildAlternateColorPanels(this.state.altColors);
 
         return (
-            <div className="r-r-showcase-component-page" style={{backgroundColor: "white"}}>
+            <div className="norseu-showcase-component-page" style={{backgroundColor: "white"}}>
                 <h1>Scheme Builder</h1>
                 <LinearLayout padding={20}>
                     <Panel style={{flex: 0.4}}>

@@ -5,7 +5,7 @@ import { SchemeBuilder } from './generate_scheme_css.mjs';
 
 const everythingIsImportant = true;
 const prefix = "r-r";
-let generatedCss = "/* RONMUSE 2020 - THIS CSS WAS AUTO GENERATED */\n";
+let generatedCss = "/* RONUSE 2022 - THIS CSS WAS AUTO GENERATED */\n";
 
 let schemes = [['primary', '#3699FF'], ['secondary', '#3F4254'], ['success', '#1BC5BD'], ['info', '#8950FC'], ['warning', '#FFA800'], ['danger', '#F64E60']];
 for (let scheme of schemes) {

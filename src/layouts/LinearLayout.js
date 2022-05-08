@@ -67,11 +67,11 @@ export class LinearLayout extends Component {
 
 	render() {
 		let componentProps = ObjUtils.findDiffKeys(this.props, LinearLayout.defaultProps);
-		let className = classNames('r-r-linear-layout', this.props.elevation, {
-			'r-r-layout-horizontal': this.props.orientation !== Orientation.VERTICAL,
-			'r-r-layout-vertical': this.props.orientation === Orientation.VERTICAL,
-			'r-r-width-max-content': this.props.nofill,
-			'r-r-flex-wrap': this.props.wrap
+		let className = classNames('norseu-linear-layout', this.props.elevation, {
+			'norseu-layout-horizontal': this.props.orientation !== Orientation.VERTICAL,
+			'norseu-layout-vertical': this.props.orientation === Orientation.VERTICAL,
+			'norseu-width-max-content': this.props.nofill,
+			'norseu-flex-wrap': this.props.wrap
 		}, this.props.className);
 		let childrenSize = this.props.children ? this.props.children.length : 0;
 		let children = !this.props.padding || !this.props.children ? this.props.children : React.Children.map(this.props.children, (child, index) => {

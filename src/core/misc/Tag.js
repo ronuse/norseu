@@ -103,13 +103,13 @@ export class Tag extends Component {
 		if (!isString && !React.isValidElement(this.props.icon)) {
 			return null;
 		}
-		let className = classNames('r-r-tag-icon', isString ? this.props.icon : this.props.icon.props.className, {
-			'r-r-float-center': this.props.alignIcon === Alignment.CENTER,
-			'r-r-margin-right-5px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
+		let className = classNames('norseu-tag-icon', isString ? this.props.icon : this.props.icon.props.className, {
+			'norseu-float-center': this.props.alignIcon === Alignment.CENTER,
+			'norseu-margin-right-5px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
 									BoolUtils.equalsAny(this.props.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
-			'r-r-float-left': this.props.alignIcon === Alignment.LEFT,
-			'r-r-float-right': this.props.alignIcon === Alignment.RIGHT,
-			'r-r-width-100-percent': this.props.fillIcon
+			'norseu-float-left': this.props.alignIcon === Alignment.LEFT,
+			'norseu-float-right': this.props.alignIcon === Alignment.RIGHT,
+			'norseu-width-100-percent': this.props.fillIcon
 		});
 		if (!isString) {
 			var relayProps = ObjUtils.clone(this.props.icon.props);
@@ -128,8 +128,8 @@ export class Tag extends Component {
 		if (!isString && !React.isValidElement(this.props.rightIcon)) {
 			return null;
 		}
-		let className = classNames('r-r-tag-icon', isString ? this.props.rightIcon : this.props.rightIcon.props.className, {
-			'r-r-float-right': this.props.fill
+		let className = classNames('norseu-tag-icon', isString ? this.props.rightIcon : this.props.rightIcon.props.className, {
+			'norseu-float-right': this.props.fill
 		});
 		if (!isString) {
 			var relayProps = ObjUtils.clone(this.props.rightIcon.props);
@@ -148,7 +148,7 @@ export class Tag extends Component {
 		if (!isString && !React.isValidElement(this.props.removeIcon)) {
 			return null;
 		}
-		let className = classNames('r-r-tag-icon r-r-tag-remove-icon', isString ? this.props.removeIcon : this.props.removeIcon.props.className);
+		let className = classNames('norseu-tag-icon norseu-tag-remove-icon', isString ? this.props.removeIcon : this.props.removeIcon.props.className);
 		if (!isString) {
 			var relayProps = ObjUtils.clone(this.props.removeIcon.props);
 			relayProps.className = className;
@@ -164,11 +164,11 @@ export class Tag extends Component {
 		}
 
 		let className = classNames({
-			'r-r-float-center': this.props.alignText === Alignment.CENTER,
-			'r-r-margin-left-5px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
-			'r-r-margin-right-5px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
-			'r-r-float-left': this.props.alignText === Alignment.LEFT,
-			'r-r-float-right': this.props.alignText === Alignment.RIGHT
+			'norseu-float-center': this.props.alignText === Alignment.CENTER,
+			'norseu-margin-left-5px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
+			'norseu-margin-right-5px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
+			'norseu-float-left': this.props.alignText === Alignment.LEFT,
+			'norseu-float-right': this.props.alignText === Alignment.RIGHT
 		})
 		return <span className={className}>{this.props.scheme === Scheme.SKELETON ? "Ronuse Tag" : this.props.text}</span>;
 	}
@@ -179,23 +179,23 @@ export class Tag extends Component {
 			(this.props.scheme && (this.props.outlined && !this.props.textonly)) ? `${this.props.scheme}-bg-hover`: null,
 			(this.props.scheme && (this.props.outlined || this.props.textonly || this.props.link)) ? `${this.props.scheme}-text`: null,
 			(this.props.scheme && (!this.props.nostyle)) ? `${this.props.scheme}-border-3px-focus-box-shadow`: null, {
-			'r-r-tag': !this.props.nostyle,
-			'r-r-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
-			'r-r-disabled': !this.props.nostyle && this.props.disabled,
-			'r-r-padding-left-right-20px': this.props.text,
-			'r-r-width-100-percent r-r-display-block': this.props.fill,
-			'r-r-button-rounded-border': !this.props.nostyle && this.props.rounded,
-			'r-r-button-raised-border': !this.props.nostyle && this.props.raised,
-			'r-r-button-textonly': !this.props.nostyle && (this.props.textonly || this.props.outlined),
-			'r-r-no-background r-r-text-decoration-underline-hover': !this.props.nostyle && this.props.link,
-			'r-r-no-border': !this.props.nostyle && (this.props.borderless || (this.props.textonly && !this.props.outlined) || this.props.link),
+			'norseu-tag': !this.props.nostyle,
+			'norseu-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
+			'norseu-disabled': !this.props.nostyle && this.props.disabled,
+			'norseu-padding-left-right-20px': this.props.text,
+			'norseu-width-100-percent norseu-display-block': this.props.fill,
+			'norseu-button-rounded-border': !this.props.nostyle && this.props.rounded,
+			'norseu-button-raised-border': !this.props.nostyle && this.props.raised,
+			'norseu-button-textonly': !this.props.nostyle && (this.props.textonly || this.props.outlined),
+			'norseu-no-background norseu-text-decoration-underline-hover': !this.props.nostyle && this.props.link,
+			'norseu-no-border': !this.props.nostyle && (this.props.borderless || (this.props.textonly && !this.props.outlined) || this.props.link),
 			
-			'r-r-tag-min-size r-r-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,
-			'r-r-tag-min-size-icon-only r-r-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
+			'norseu-tag-min-size norseu-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,
+			'norseu-tag-min-size-icon-only norseu-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
 
-			'r-r-stateless': BoolUtils.equalsAny(this.props.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.props.link,
-			'r-r-padding-0px': this.props.fillIcon
-		}, 'r-r-button-theme', this.props.className);
+			'norseu-stateless': BoolUtils.equalsAny(this.props.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.props.link,
+			'norseu-padding-0px': this.props.fillIcon
+		}, 'norseu-button-theme', this.props.className);
 		let icon = this.renderIcon();
 		let rightIcon = this.renderRightIcon();
 		let removeIcon = this.props.removable ? this.renderRemoveIcon() : null;

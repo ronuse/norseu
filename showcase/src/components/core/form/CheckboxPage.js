@@ -1,11 +1,11 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
-import { Checkbox } from '@ronuse/react-ui/core/form';
+import { Panel, TabPane, TabPanel } from 'norseu/core/panels';
+import { Checkbox } from 'norseu/core/form';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Alignment } from "@ronuse/react-ui/core/variables";
+import { Scheme } from "norseu/core/variables/Stylers";
+import { Alignment } from "norseu/core/variables";
 
 export class CheckboxPage extends React.Component {
 
@@ -20,7 +20,7 @@ export class CheckboxPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/core/form/CheckboxPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/core/form/CheckboxPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -28,19 +28,19 @@ export class CheckboxPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Button text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -136,10 +136,10 @@ export class CheckboxPage extends React.Component {
         let checkStates2 = this.checkStates2();
         let checkStates3 = this.checkStates3();
         let checkStates5 = this.checkStates5();
-        let customLabel = <label className="r-r-primary-text fa fa-book" > Schemed And Styled Text</label>;
+        let customLabel = <label className="norseu-primary-text fa fa-book" > Schemed And Styled Text</label>;
 
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <Panel title="Basic" expanded collapsible borderless>
                     <Checkbox/><br/>
                     <Checkbox label="Default Uncheked"/><br/>
@@ -209,7 +209,7 @@ export class CheckboxPage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
@@ -219,7 +219,7 @@ export class CheckboxPage extends React.Component {
                         Change alert and console to popups
                     </TabPanel>
                     <TabPanel title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -231,12 +231,12 @@ export class CheckboxPage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>Checkbox</h1>
 
-                <Panel className="r-r-padding-left-right-20px">
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Checkbox } from '@ronuse/react-ui/core/form'`}
+                <Panel className="norseu-padding-left-right-20px">
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { Checkbox } from 'norseu/core/form'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

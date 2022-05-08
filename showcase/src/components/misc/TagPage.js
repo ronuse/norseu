@@ -1,11 +1,11 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from '@ronuse/react-ui/core/panels';
-import { Tag } from '@ronuse/react-ui/core/misc';
+import { Panel, TabPane, TabPanel } from 'norseu/core/panels';
+import { Tag } from 'norseu/core/misc';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "@ronuse/react-ui/core/variables/Stylers";
-import { Alignment } from "@ronuse/react-ui/core/variables";
+import { Scheme } from "norseu/core/variables/Stylers";
+import { Alignment } from "norseu/core/variables";
 
 export class TagPage extends React.Component {
 
@@ -14,7 +14,7 @@ export class TagPage extends React.Component {
     }
 
     loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/@ronuse/react-ui/main/showcase/src/components/misc/TagPage.js")
+        fetch("https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/misc/TagPage.js")
         .then(response => response.text())
         .then(data => this.setState({pageSource : data}))
 		.catch(error => { throw error});
@@ -22,19 +22,19 @@ export class TagPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
                         
                     </TabPanel>
                     <TabPanel title="Generated Source (React)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Tag text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
                     <TabPanel title="Generated Source (HTML)" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {`<Tag text="Click Me" />`}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -48,7 +48,7 @@ export class TagPage extends React.Component {
         let customIcon2 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/69908664?s=12" style={{borderRadius:"50%"}}/>;
 
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <p>Click the X button to remove the tag</p>
 
                 <Panel title="Removable Basic Tags" expanded collapsible borderless>
@@ -177,14 +177,14 @@ export class TagPage extends React.Component {
         }
         
         return (
-            <Panel className="r-r-padding-left-right-20px">
+            <Panel className="norseu-padding-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
                         <h2>CSS</h2>
                     </TabPanel>
                     <TabPanel scheme={Scheme.SUCCESS} title="Page Source" icon="fa fa-code">
-                        <SyntaxHighlighter language="jsx" style={prism} className={"r-r-showcase-code"} >
+                        <SyntaxHighlighter language="jsx" style={prism} className={"norseu-showcase-code"} >
                             {this.state.pageSource}
                         </SyntaxHighlighter>
                     </TabPanel>
@@ -196,12 +196,12 @@ export class TagPage extends React.Component {
 
     render() {
         return (
-            <div className="r-r-showcase-component-page">
+            <div className="norseu-showcase-component-page">
                 <h1>Tag</h1>
 
-                <Panel className="r-r-padding-left-right-20px">
-                    <SyntaxHighlighter language="javascript" style={prism} className={"r-r-showcase-code"}>
-                        {`import { Tag } from '@ronuse/react-ui/core/misc'`}
+                <Panel className="norseu-padding-left-right-20px">
+                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
+                        {`import { Tag } from 'norseu/core/misc'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

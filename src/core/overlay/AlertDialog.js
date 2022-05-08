@@ -174,10 +174,10 @@ export class AlertDialog extends Component {
 
 		const isString = BoolUtils.isTypeOfAny(this.props.icon, ["string"]);
 		if (isString) {
-			return <i className={`r-r-dialog-content-icon r-r-dialog-content-icon-str ${this.props.icon} ${!hasMessage ? 'r-r-margin-1-5rem' : ''}`} />;
+			return <i className={`norseu-dialog-content-icon norseu-dialog-content-icon-str ${this.props.icon} ${!hasMessage ? 'norseu-margin-1-5rem' : ''}`} />;
 		}
 		const relayProps = ObjUtils.clone(this.props.icon.props);
-		relayProps.className = classNames('r-r-dialog-content-icon', (!hasMessage ? 'r-r-margin-1-5rem' : null), relayProps.className);
+		relayProps.className = classNames('norseu-dialog-content-icon', (!hasMessage ? 'norseu-margin-1-5rem' : null), relayProps.className);
 		return React.cloneElement(this.props.icon, relayProps);
 	}
 
@@ -189,7 +189,7 @@ export class AlertDialog extends Component {
 								? <Button ref={this.props.cancelRef} text={this.props.cancelLabel} icon={this.props.cancelIcon} scheme={this.props.cancelScheme} onClick={this.cancel}/> 
 								: null;
 		return (
-			<div className={`r-r-alert-dialog-footer r-r-alert-dialog-footer-${this.props.alignFooter}`}>
+			<div className={`norseu-alert-dialog-footer norseu-alert-dialog-footer-${this.props.alignFooter}`}>
 				{cancelButton}
 				{confirmButton}
 				{this.props.footerElements}
@@ -198,7 +198,7 @@ export class AlertDialog extends Component {
 	}
 
 	renderElement() {
-		const className = classNames('r-r-alert-dialog', this.props.className);
+		const className = classNames('norseu-alert-dialog', this.props.className);
 		const icon = this.renderIcon(!!this.props.message);
 		const dialogProps = ObjUtils.findDiffKeys(this.props, AlertDialog.defaultProps);
 		const message = ObjUtils.selectJSXElement(this.props.message, this.props);
@@ -206,7 +206,7 @@ export class AlertDialog extends Component {
 
 		return (
 			<Dialog {...dialogProps} dismissableModal={this.props.dismissableModal} noHeader isVisible={this.state.visible} className={className} onHide={this.resolve}>
-				<div className="r-r-alert-dialog-content">
+				<div className="norseu-alert-dialog-content">
 					{icon}
 					{message}
 				</div>

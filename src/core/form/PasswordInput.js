@@ -69,12 +69,12 @@ export class PasswordInputComponent extends BaseComponent {
             });
         };
         if (isString) {
-            icon += ' r-r-cursor-pointer';
+            icon += ' norseu-cursor-pointer';
             return <i className={icon} onClick={onClick}/>
         }
         const relayProps = ObjUtils.clone(icon.props);
         relayProps.onClick = onClick;
-        relayProps.className = classNames(relayProps.className, 'r-r-cursor-pointer');
+        relayProps.className = classNames(relayProps.className, 'norseu-cursor-pointer');
         return React.cloneElement(icon, relayProps);
     }
 

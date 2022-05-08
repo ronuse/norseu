@@ -1,13 +1,13 @@
 
-.r-r-linear-layout {
+.norseu-linear-layout {
 }
 
-.r-r-layout-horizontal {
+.norseu-layout-horizontal {
 	display: flex;
 	flex-direction: row;
 }
 
-.r-r-layout-vertical {
+.norseu-layout-vertical {
 	display: flex;
 	flex-direction: column;
 }
