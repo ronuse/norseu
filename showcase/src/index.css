@@ -7,7 +7,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	color: #394B59;
-	background-color: #EEF0F8;
 }
 
 #root {
@@ -28,6 +27,12 @@ input {
 	color: #717272;
 }
 
+a {
+	color: #1667A1;
+	font-weight: 600;
+	text-decoration: none;
+}
+
 .prop-desc-1 {
 	margin-bottom: 15px;
 }
@@ -35,6 +40,164 @@ input {
 .prop-desc-1 > h4 {
 	margin-bottom: 10px;
 }
+
+.top-navbar {
+	display: flex;
+	justify-content: center;
+	position: sticky;
+	padding: 15px 2.5rem 15px 2.5rem;
+}
+
+.top-navbar > .container {
+	width: 100%;
+	max-width: 1580px;
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: space-between;
+}
+
+.to-navbar-links {
+	display: flex;
+	align-items: center;
+	margin-left: 30px;
+}
+
+.to-navbar-links > a {
+	color: #666363;
+	margin-right: 40px;
+	text-decoration: none;
+}
+
+.to-navbar-links > a:hover {
+	color: #3699FF;
+}
+
+.landing {
+}
+
+.landing-hero {
+	display: flex;
+	padding: 5rem;
+	justify-content: center;
+	justify-items: center;
+}
+
+.landing-hero-text-panel {
+	display: flex;
+	max-width: 470px;
+	flex-direction: column;
+}
+
+.landing-hero-cards {
+	display: flex;
+	align-items: center;
+}
+
+.landing-hero-card {
+	width: 151px;
+	height: 126px;
+	display: flex;
+	color: inherit;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	border-radius: 10px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+	background-color: #FAFFFE;
+	border: solid 1px #3699FF;
+}
+
+.landing-hero-card:hover {
+	color: #3699FF;
+}
+
+.landing-hero-card > .title {
+	margin-top: 10px;
+}
+
+.landing-hero-card > .desc {
+	font-size: 12px;
+}
+
+.features-panel-content {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.landing-feature-card {
+	display: flex;
+	margin: 50px;
+	max-width: 330px;
+	flex-direction: column;
+}
+
+.landing-feature-card > .title {
+	margin-top: 18px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.landing-feature-card > .desc {
+	margin-top: 7px;
+}
+
+.scheme-preview-panel {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.used-by-panel {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.used-by-card {
+	width: 170px;
+	height: 170px;
+	display: flex;
+	margin: 40px;
+	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(54, 153, 255, 0.3);
+}
+
+.used-by-card > img {
+	max-width: 60px;
+	filter: sepia(100%) saturate(0%) brightness(50%) hue-rotate(180deg);
+}
+
+.footer {
+	width: 100%;
+	padding: 10px;
+	max-width: 1580px;
+	display: flex;
+	padding: 15px 2.5rem 15px 2.5rem;
+	justify-content: space-between;
+}
+
+/* General Styles */
+
+.max-width-1500px {
+	max-width: 1500px;
+}
+
+/* norseu custom styles */
+
+.norseu-panel {
+	border: none;
+}
+
+/* EXCOMMUNICATED */
 
 .norseu-showcase-component-page {
 	padding: 20px;

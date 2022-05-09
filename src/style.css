@@ -470,6 +470,13 @@
 	width: auto !important;
 }
 
+.norseu-width-fill {
+	width: 100%;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+}
+
 .norseu-width-100-percent {
 	width: 100% !important;
 }
