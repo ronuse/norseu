@@ -45,7 +45,7 @@ export class Tag extends Component {
 		raised: null,
 		rounded: null,
 		borderless: null,
-		textonly: null,
+		textOnly: null,
 		outlined: null,
 		fill: false,
 		nostyle: false,
@@ -66,7 +66,7 @@ export class Tag extends Component {
 		raised: PropTypes.bool,
 		rounded: PropTypes.bool,
 		borderless: PropTypes.bool,
-		textonly: PropTypes.bool,
+		textOnly: PropTypes.bool,
 		outlined: PropTypes.bool,
 		fill: PropTypes.bool,
 		nostyle: PropTypes.bool,
@@ -105,7 +105,7 @@ export class Tag extends Component {
 		}
 		let className = classNames('norseu-tag-icon', isString ? this.props.icon : this.props.icon.props.className, {
 			'norseu-float-center': this.props.alignIcon === Alignment.CENTER,
-			'norseu-margin-right-5px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
+			'norseu-m-right-5px': this.props.rightIcon && (BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
 									BoolUtils.equalsAny(this.props.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
 			'norseu-float-left': this.props.alignIcon === Alignment.LEFT,
 			'norseu-float-right': this.props.alignIcon === Alignment.RIGHT,
@@ -165,8 +165,8 @@ export class Tag extends Component {
 
 		let className = classNames({
 			'norseu-float-center': this.props.alignText === Alignment.CENTER,
-			'norseu-margin-left-5px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
-			'norseu-margin-right-5px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
+			'norseu-m-left-5px': this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.LEFT, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
+			'norseu-m-right-5px': (this.props.icon && BoolUtils.equalsAny(this.props.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.props.rightIcon),
 			'norseu-float-left': this.props.alignText === Alignment.LEFT,
 			'norseu-float-right': this.props.alignText === Alignment.RIGHT
 		})
@@ -174,27 +174,27 @@ export class Tag extends Component {
 	}
 
 	render() {
-		let className = classNames((this.props.scheme && (!this.props.textonly && !this.props.outlined && !this.props.link)) ? `${this.props.scheme}`: null, 
+		let className = classNames((this.props.scheme && (!this.props.textOnly && !this.props.outlined && !this.props.link)) ? `${this.props.scheme}`: null, 
 			(this.props.scheme && (this.props.outlined)) ? `${this.props.scheme}-border-1px`: null,
-			(this.props.scheme && (this.props.outlined && !this.props.textonly)) ? `${this.props.scheme}-bg-hover`: null,
-			(this.props.scheme && (this.props.outlined || this.props.textonly || this.props.link)) ? `${this.props.scheme}-text`: null,
+			(this.props.scheme && (this.props.outlined && !this.props.textOnly)) ? `${this.props.scheme}-bg-hover`: null,
+			(this.props.scheme && (this.props.outlined || this.props.textOnly || this.props.link)) ? `${this.props.scheme}-text`: null,
 			(this.props.scheme && (!this.props.nostyle)) ? `${this.props.scheme}-border-3px-focus-box-shadow`: null, {
 			'norseu-tag': !this.props.nostyle,
 			'norseu-button-vertical': BoolUtils.equalsAny(this.props.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
 			'norseu-disabled': !this.props.nostyle && this.props.disabled,
-			'norseu-padding-left-right-20px': this.props.text,
+			'norseu-p-left-right-20px': this.props.text,
 			'norseu-width-100-percent norseu-display-block': this.props.fill,
 			'norseu-button-rounded-border': !this.props.nostyle && this.props.rounded,
 			'norseu-button-raised-border': !this.props.nostyle && this.props.raised,
-			'norseu-button-textonly': !this.props.nostyle && (this.props.textonly || this.props.outlined),
+			'norseu-button-textOnly': !this.props.nostyle && (this.props.textOnly || this.props.outlined),
 			'norseu-no-background norseu-text-decoration-underline-hover': !this.props.nostyle && this.props.link,
-			'norseu-no-border': !this.props.nostyle && (this.props.borderless || (this.props.textonly && !this.props.outlined) || this.props.link),
+			'norseu-no-border': !this.props.nostyle && (this.props.borderless || (this.props.textOnly && !this.props.outlined) || this.props.link),
 			
 			'norseu-tag-min-size norseu-skeleton': this.props.scheme === Scheme.SKELETON /*&& !(this.props.icon || this.props.rightIcon)*/,
 			'norseu-tag-min-size-icon-only norseu-skeleton': this.props.scheme === Scheme.SKELETON && (this.props.icon || this.props.rightIcon) && !this.props.text,
 
 			'norseu-stateless': BoolUtils.equalsAny(this.props.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.props.link,
-			'norseu-padding-0px': this.props.fillIcon
+			'norseu-p-0px': this.props.fillIcon
 		}, 'norseu-button-theme', this.props.className);
 		let icon = this.renderIcon();
 		let rightIcon = this.renderRightIcon();

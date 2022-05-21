@@ -31,7 +31,7 @@ export class ViewportSensorPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -65,7 +65,7 @@ export class ViewportSensorPage extends React.Component {
 
     renderSampleComponents() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <Panel> 
                     
                     <h4>Scroll to right to load the image</h4>
@@ -100,7 +100,7 @@ export class ViewportSensorPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Documentation" icon="fa fa-book">
                         Can be used to defer rendering if no event listener is specified<br/>
@@ -132,7 +132,7 @@ export class ViewportSensorPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>ViewportSensor</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { ViewportSensor } from 'norseu/sensors'`}
                     </SyntaxHighlighter>

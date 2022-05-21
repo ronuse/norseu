@@ -249,7 +249,7 @@ export const PopoverArrow = {
 	renderElement() {
 		let className = classNames('norseu-popover', {
 			'norseu-popover-arrow': this.props.pointingArrowClassName === null,
-			'norseu-margin-top-0px': this.props.pointingArrowClassName !== null,
+			'norseu-m-top-0px': this.props.pointingArrowClassName !== null,
 		}, this.props.pointingArrowClassName, this.props.className);
 
 		return (

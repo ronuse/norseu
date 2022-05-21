@@ -633,3 +633,8 @@
     overflow: hidden;
     transition: max-height .45s cubic-bezier(0, 1, 0, 1), opacity .3s, margin-bottom .3s;
 }
+
+/* Generated Schemes Update Below */
+.norseu-message-norseu-dark { background-color: rgba(0, 0, 0, .7); border-left: 5px solid #000000; color: white; }
+
+.norseu-message-norseu-light { background-color: rgba(255, 255, 255, .7); border-left: 5px solid #FFFFFF; color: black; }

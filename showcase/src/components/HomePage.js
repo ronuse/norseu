@@ -6,6 +6,7 @@ import { LinearLayout } from "norseu/layouts";
 import { Message, Navbar } from "norseu/core/overlay";
 import { Link } from "react-router-dom";
 import { ResizeSensor } from "norseu/sensors";
+import { UsedByPage } from "./pages/UsedByPage";
 import { CompaniesUsingNorseu } from "../utils/companies_using_norseu"
 import { Panel, ScrollPanel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel } from "norseu/core/panels";
 import { InputText, Checkbox, Dropdown, FileInput, TextArea } from "norseu/core/form";
@@ -58,10 +59,10 @@ export class HomePage extends React.Component {
         Sed imperdiet volutpat nunc non iaculis.`;
     }
 
-    buildPreviewComponentss() {
+    buildPreviewComponents() {
         return (
-            <Panel style={{}} scheme={this.state.previewScheme}>
-                <div style={{ display: "flex" }}>
+            <Panel style={{ display: "flex", justifyContent: "center" }} scheme={this.state.previewScheme} contentClassName="max-width-1500px scheme-preview-panel">
+                <div style={{ display: "flex", flexWrap: "wrap" }}>
                     <Panel title="Title" collapsible expanded style={{ flex: 1, marginRight: 20 }} contentStyle={{ padding: "20px 0px 10px 0px" }} scheme={this.state.previewScheme}>
                         <div style={{ display: "flex" }}>
                             <ButtonGroup direction={Orientation.VERTICAL} scheme={this.state.previewScheme}>
@@ -74,14 +75,14 @@ export class HomePage extends React.Component {
                                 <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me"/>
                                 <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" rounded/>
                                 <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" raised/>
-                                <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" textonly outlined/>
+                                <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" textOnly outlined/>
                                 <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" outlined fillOnHover/>
-                                <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" textonly/>
-                                <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" textonly raised/>
+                                <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" textOnly/>
+                                <Button scheme={this.state.previewScheme} icon="fa fa-circle" text="Click me" textOnly raised/>
                                 <Button scheme={this.state.previewScheme} icon="fa fa-circle"/>
                                 <Button scheme={this.state.previewScheme} icon="fa fa-circle" rounded/>
                                 <Button scheme={this.state.previewScheme} icon="fa fa-circle" rounded outlined/>
-                                <Button scheme={this.state.previewScheme} icon="fa fa-circle" rounded textonly/>
+                                <Button scheme={this.state.previewScheme} icon="fa fa-circle" rounded textOnly/>
                                 <Button scheme={this.state.previewScheme} icon="fab fa-facebook-square"/>
                                 <ButtonGroup scheme={this.state.previewScheme} style={{ marginTop: 20 }}>
                                     <Button icon="fa fa-folder-open" text="Open"/>
@@ -137,7 +138,7 @@ export class HomePage extends React.Component {
 
     render() {
         return (
-            <LinearLayout orientation={Orientation.VERTICAL} className="landing" style={{ width: "100%" }}>
+            <ScrollPanel orientation={Orientation.VERTICAL} className="landing" style={{ width: "100%" }}>
                 <Panel contentClassName="landing-hero" style={{ width: "100%", backgroundColor: "rgba(54, 153, 255, 0.1)", margin: 0 }}>
                     <Panel contentClassName="landing-hero-text-panel" style={{ backgroundColor: "inherit", display: "flex", justifyContent: "center", flexDirection: "column" }}>
                         <span style={{ fontWeight: "bold", fontSize: "30px" }}>Say hello to <span style={{ color: "#3699FF" }}>norseu</span> React UI <br/>Framework</span>
@@ -145,7 +146,7 @@ export class HomePage extends React.Component {
                             A collection of simple, customizable and accessible react components library for building ambitious web applications.
                             Brought to you by <a href="https://ronuse.com" target="_blank">Ronuse</a>.
                         </span>
-                        <Button scheme={Scheme.PRIMARY} text="Get Started" rightIcon="fa fa-arrow-right" style={{ marginLeft: 0, marginTop: 30 }} href="/#/site/introduction"/>
+                        <Button scheme={Scheme.PRIMARY} text="Get Started" rightIcon="fa fa-arrow-right" style={{ marginLeft: 0, marginTop: 30 }} href="/p/introduction"/>
                     </Panel>
 
                     <ResizeSensor minDimension={{ width: 1180 }}>
@@ -157,7 +158,7 @@ export class HomePage extends React.Component {
                                 <div className="landing-hero-card" style={{ opacity: 0.4, marginTop: 0, marginLeft: 30 }}></div>
                             </div>
                             <Panel contentClassName="landing-hero-cards" style={{ backgroundColor: "transparent", position: "relative" }}>
-                                {this.buildLandingHeroCard("Schemes", "Design ready schemes",
+                                {this.buildLandingHeroCard("Schemes", "Import ready schemes",
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g clip-path="url(#clip0_903_262)">
                                             <path d="M26.475 19.0556L29.6906 20.6644C30.1031 20.8706 30.1031 21.4594 29.6906 21.6656L15.5006 28.7625C15.3451 28.8401 15.1738 28.8805 15 28.8805C14.8262 28.8805 14.6549 28.8401 14.4994 28.7625L0.309376 21.6656C0.216679 21.6189 0.138775 21.5474 0.0843434 21.459C0.0299118 21.3706 0.0010904 21.2688 0.0010904 21.165C0.0010904 21.0612 0.0299118 20.9594 0.0843434 20.871C0.138775 20.7826 0.216679 20.7111 0.309376 20.6644L3.52688 19.0556L13.4963 24.0412C14.4431 24.5137 15.5588 24.5137 16.5038 24.0412L26.4731 19.0537L26.475 19.0556ZM14.4994 0.11812C14.6549 0.0405375 14.8262 0.000152588 15 0.000152588C15.1738 0.000152588 15.3451 0.0405375 15.5006 0.11812L29.6906 7.21312C29.7833 7.26014 29.861 7.3319 29.9154 7.42043C29.9697 7.50896 29.9985 7.61081 29.9985 7.71468C29.9985 7.81856 29.9697 7.92041 29.9154 8.00894C29.861 8.09747 29.7833 8.16922 29.6906 8.21625L15.5006 15.3094C15.3451 15.387 15.1738 15.4273 15 15.4273C14.8262 15.4273 14.6549 15.387 14.4994 15.3094L0.309376 8.21625C0.216188 8.16971 0.137807 8.09813 0.0830238 8.00954C0.0282406 7.92095 -0.000778198 7.81884 -0.000778198 7.71468C-0.000778198 7.61052 0.0282406 7.50842 0.0830238 7.41983C0.137807 7.33123 0.216188 7.25966 0.309376 7.21312L14.4994 0.11812Z" fill="#666363"/>
@@ -177,7 +178,7 @@ export class HomePage extends React.Component {
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M9.375 2.49999C7.1375 3.93749 5.625 6.47499 5.625 9.37499C5.625 12.275 7.1375 14.8125 9.4125 16.25C5.575 16.25 2.5 13.175 2.5 9.37499C2.5 7.55163 3.22433 5.80295 4.51364 4.51363C5.80295 3.22432 7.55164 2.49999 9.375 2.49999V2.49999ZM23.8375 4.37499L25.625 6.16249L6.1625 25.625L4.375 23.8375L23.8375 4.37499ZM16.1125 7.41249L14.2625 6.24999L12.4625 7.49999L12.9875 5.37499L11.25 4.04999L13.4375 3.89999L14.1625 1.83749L15 3.87499L17.1625 3.91249L15.475 5.32499L16.1125 7.41249ZM11.9875 11.925L10.5375 11.0125L9.1375 11.9875L9.5625 10.3375L8.2 9.29999L9.9 9.18749L10.4625 7.57499L11.1 9.16249L12.8 9.19999L11.4875 10.2875L11.9875 11.925V11.925ZM23.75 16.875C23.75 18.6984 23.0257 20.447 21.7364 21.7364C20.447 23.0257 18.6984 23.75 16.875 23.75C15.35 23.75 13.9375 23.25 12.8 22.4125L22.4125 12.8C23.25 13.9375 23.75 15.35 23.75 16.875V16.875ZM18.25 25.1L21.7125 23.6625L21.4125 27.85L18.25 25.1V25.1ZM23.6625 21.725L25.1 18.2625L27.85 21.4375L23.6625 21.725V21.725ZM25.1 15.525L23.675 12.05L27.85 12.35L25.1 15.525ZM12.0375 23.6625L15.5 25.1L12.3375 27.8375L12.0375 23.6625Z" fill="#666363"/>
                                         </svg>,
-                                        "/#/site/theming"
+                                        "/#/p/theming"
                                     )}
                                     {this.buildLandingHeroCard("Components", "30+ UI Components",
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -256,59 +257,55 @@ export class HomePage extends React.Component {
                     )}
                 </Panel>
 
-                <Panel style={{ marginTop: "50px", display: "flex", justifyContent: "center" }} contentClassName="max-width-1500px scheme-preview-panel">
-                    <span style={{ fontSize: 30, fontWeight: "bold" }}>Schemes</span>
-                    <span style={{ textAlign: "center" }}>
-                        norseu support six scheme out of the box, you can customize your project with the available schemes
-                        <br/>Click a scheme button below for preview
-                    </span>
-                    <ButtonGroup style={{ marginTop: 30 }}>
-                        <Button scheme={Scheme.PRIMARY} text="Primary" onClick={() => this.setState({ previewScheme: Scheme.PRIMARY })}/>
-                        <Button scheme={Scheme.SECONDARY} text="Secondary" onClick={() => this.setState({ previewScheme: Scheme.SECONDARY })}/>
-                        <Button scheme={Scheme.SUCCESS} text="Success" onClick={() => this.setState({ previewScheme: Scheme.SUCCESS })}/>
-                        <Button scheme={Scheme.INFO} text="Info" onClick={() => this.setState({ previewScheme: Scheme.INFO })}/>
-                        <Button scheme={Scheme.WARNING} text="Warning" onClick={() => this.setState({ previewScheme: Scheme.WARNING })}/>
-                        <Button scheme={Scheme.DANGER} text="Danger" onClick={() => this.setState({ previewScheme: Scheme.DANGER })}/>
-                    </ButtonGroup>
-                    <Panel>
-                        {this.buildPreviewComponentss()}
-                    </Panel>
-                </Panel>
+                <ResizeSensor minDimension={{ width: 1600 }}>
+                    <Panel style={{ marginTop: "50px", display: "flex", justifyContent: "center" }} contentClassName="max-width-1500px scheme-preview-panel">
+                        <span style={{ fontSize: 30, fontWeight: "bold" }}>Schemes</span>
+                        <span style={{ textAlign: "center" }}>
+                            norseu support six scheme out of the box, you can customize your project with the available schemes
+                            <br/>Click a scheme button below for preview
+                        </span>
 
-                <Panel style={{ marginTop: "70px", display: "flex", justifyContent: "center" }} contentClassName="max-width-1500px scheme-preview-panel">
+                        <ButtonGroup style={{ marginTop: 30, marginBottom: 30 }}>
+                            <Button scheme={Scheme.PRIMARY} text="Primary" onClick={() => this.setState({ previewScheme: Scheme.PRIMARY })}/>
+                            <Button scheme={Scheme.SECONDARY} text="Secondary" onClick={() => this.setState({ previewScheme: Scheme.SECONDARY })}/>
+                            <Button scheme={Scheme.SUCCESS} text="Success" onClick={() => this.setState({ previewScheme: Scheme.SUCCESS })}/>
+                            <Button scheme={Scheme.INFO} text="Info" onClick={() => this.setState({ previewScheme: Scheme.INFO })}/>
+                            <Button scheme={Scheme.WARNING} text="Warning" onClick={() => this.setState({ previewScheme: Scheme.WARNING })}/>
+                            <Button scheme={Scheme.DANGER} text="Danger" onClick={() => this.setState({ previewScheme: Scheme.DANGER })}/>
+                        </ButtonGroup>
+                        
+                        {this.buildPreviewComponents()}
+                    </Panel>
+                </ResizeSensor>
+
+                <Panel style={{ marginTop: "70px", marginBottom: "70px", display: "flex", justifyContent: "center" }} contentClassName="max-width-1500px scheme-preview-panel">
                     <span style={{ fontSize: 30, fontWeight: "bold" }}>Used by</span>
                     <Panel style={{ marginTop: 40, marginBottom: 0 }} contentClassName="used-by-panel">
-                        {CompaniesUsingNorseu.map(company_icon => {
-                            return (
-                                <div className="used-by-card">
-                                    <img src={company_icon}/>
-                                </div>
-                            )
-                        })}
+                        {UsedByPage.buildOrgIconList()}
                     </Panel>
-                    <Link style={{ fontSize: 20 }} to="/used_by">View more</Link>
+                    <Link style={{ fontSize: 20 }} to="/p/used_by">View more</Link>
                 </Panel>
 
-                <Panel style={{ marginTop: "70px", display: "flex", justifyContent: "center" }} contentClassName="max-width-1500px scheme-preview-panel">
+                {/* <Panel style={{ marginTop: "70px", display: "flex", justifyContent: "center", marginBottom: 70 }} contentClassName="max-width-1500px scheme-preview-panel">
                     <span style={{ fontSize: 30, fontWeight: "bold" }}>Resources</span>
                     <Panel style={{ marginTop: 40, marginBottom: 0 }} contentClassName="used-by-panel">
-                        <div style={{ display: "flex", width: "60vw" }}>
-                            <Button scheme={Scheme.PRIMARY} text="Ronuse Figma Library" style={{ flex: 1, margin: 20, fontSize: 13, height: 30 }}
+                        <div style={{ display: "flex", width: "60vw", flexWrap: "wrap" }}>
+                            <Button scheme={Scheme.PRIMARY} text="Ronuse Figma Library" style={{ flex: 1, margin: 20, fontSize: 13, height: 30, minWidth: 200 }}
                                 icon={<img style={{ width: 30 }} src="https://avatars.githubusercontent.com/u/69908664"/>}
                                 href="https://www.linkedin.com/company/ronuse"/>
-                            <Button scheme={Scheme.PRIMARY} text="Schemes" icon="fa fa-list" style={{ flex: 1, margin: 20, height: 30 }}
+                            <Button scheme={Scheme.PRIMARY} text="Schemes" icon="fa fa-list" style={{ flex: 1, margin: 20, height: 30, minWidth: 200 }}
                                 href="/#/schemes/"/>
                         </div>
-                        <div style={{ display: "flex", width: "60vw" }}>
-                            <Button scheme={Scheme.PRIMARY} text="Component Creator" icon="fa fa-plus-square" style={{ flex: 1, margin: 20, height: 30 }}
-                                href="/#/site/creator"/>
-                            <Button scheme={Scheme.PRIMARY} text="Ronuse Brands" style={{ flex: 1, margin: 20, fontSize: 13, height: 30 }}
+                        <div style={{ display: "flex", width: "60vw", flexWrap: "wrap" }}>
+                            <Button scheme={Scheme.PRIMARY} text="Component Creator" icon="fa fa-plus-square" style={{ flex: 1, margin: 20, height: 30, minWidth: 200 }}
+                                href="/#/p/creator"/>
+                            <Button scheme={Scheme.PRIMARY} text="Ronuse Brands" style={{ flex: 1, margin: 20, fontSize: 13, height: 30, minWidth: 200 }}
                                 icon={<img style={{ width: 30 }} src="https://avatars.githubusercontent.com/u/69908664"/>}
                                 href="https://ronuse.com/brand"/>
                         </div>
                     </Panel>
-                </Panel>
-            </LinearLayout>
+                </Panel> */}
+            </ScrollPanel>
         )
     }
 }

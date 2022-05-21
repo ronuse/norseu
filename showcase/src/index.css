@@ -14,8 +14,7 @@ body {
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 	color: orange;
 }
 
@@ -31,6 +30,20 @@ a {
 	color: #1667A1;
 	font-weight: 600;
 	text-decoration: none;
+}
+
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	text-align: left;
+	padding: 8px;
+	min-width: 100px;
+	padding-bottom: 10px;
+	vertical-align: baseline;
 }
 
 .prop-desc-1 {
@@ -71,6 +84,10 @@ a {
 }
 
 .to-navbar-links > a:hover {
+	color: #3699FF;
+}
+
+.to-navbar-links > .active {
 	color: #3699FF;
 }
 
@@ -173,7 +190,6 @@ a {
 
 .used-by-card > img {
 	max-width: 60px;
-	filter: sepia(100%) saturate(0%) brightness(50%) hue-rotate(180deg);
 }
 
 .footer {
@@ -185,23 +201,57 @@ a {
 	justify-content: space-between;
 }
 
-/* General Styles */
-
-.max-width-1500px {
-	max-width: 1500px;
+.left-sidebar {
+	width: auto;
+	display: flex;
+	flex-direction: column;
+	border-right: solid 1px #F4F1F1;
 }
 
-/* norseu custom styles */
-
-.norseu-panel {
-	border: none;
+.left-sidebar.wide {
+	position: relative; 
+	height: auto;
 }
 
-/* EXCOMMUNICATED */
+.left-sidebar > .norseu-scrollpanel {
+	padding: 50px;
+	padding-top: 0px;
+}
+
+.left-sidebar > .norseu-scrollpanel > section {
+	display: flex;
+	flex-direction: column;
+}
+
+.left-sidebar > .norseu-scrollpanel > section > .title {
+	font-weight: bold;
+	font-size: 14px;
+	text-transform: uppercase;
+	margin-top: 25px;
+	margin-bottom: 10px;
+}
+
+.left-sidebar > .norseu-scrollpanel > section > .link {
+	text-decoration: none;
+	color: rgb(22, 22, 22);
+	padding: 5px;
+	font-size: 14px;
+	padding-left: 10px;
+	border-radius: 3px;
+}
+
+.left-sidebar > .norseu-scrollpanel > section > .link:hover {
+	background-color: rgb(216, 216, 216);
+}
+
+.left-sidebar > .norseu-scrollpanel > section > .link.active {
+	color: #3699FF;
+}
 
 .norseu-showcase-component-page {
 	padding: 20px;
 	margin: 0px;
+	margin-left: 3%;
 }
 
 .norseu-showcase-component-page > .norseu-panel-content > .norseu-panel {
@@ -212,13 +262,143 @@ a {
 .norseu-showcase-component-page > .norseu-panel-content > * > .norseu-panel {
 	background-color: white !important;
 	padding: 10px;
+	margin-right: 70px;
+}
+
+.components-overview {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 120px;
+}
+
+.components-overview > .sections {
+	display: flex;
+	flex-direction: column;
+	margin-top: 50px;
+	margin-right: 70px;
+}
+
+.components-overview > .sections > .title {
+	font-weight: bold;
+	font-size: 180%;
+}
+
+.components-overview > .sections > .list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.components-overview > .sections > .list > .section {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+	margin-right: 150px;
+}
+
+.components-overview > .sections > .list > .section > * {
+	margin-top: 10px;
+}
+
+.components-overview > .sections > .list > .section > .title {
+	font-size: 150%;
+	color: #3699FF;
+	font-weight: bold;
+}
+
+.components-overview > .sections > .list > .section > a {
+	font-weight: normal;
+	color: inherit;
+}
+
+.components-overview > .sections > .list > .section > a:hover {
+	color: #1667A1;
+}
+
+.documentation-p {
+	margin-bottom: 20px;
+}
+
+@media (max-width: 1150px) {
+
+	.norseu-showcase-component-page > .norseu-panel-content > * > .norseu-panel {
+		margin-right: 0px;
+	}
+
+}
+
+
+
+/* General Styles */
+
+.bg-dark-tmp-left {
+	padding: 10px;
+	background-color: red;
+}
+
+.norseu-button {
+	margin: 10px;
+}
+
+.popupcode {
+	overflow: hidden;
+	height: 100%;
+	max-height: 100%;
+}
+
+.inline-code {
+	color: black;
+	padding: 2px 10px 2px 10px;
+	border-radius: 5px;
+	background-color: rgba(54, 153, 255, 0.1);
+}
+
+.max-width-1500px {
+	max-width: 1500px;
 }
 
 .norseu-showcase-code {
-	margin: 0px !important;
-	padding: 10px !important;
-	background-color: #EBF1F5 !important;
+	margin: 30px 0px 30px 0px;
+	padding: 20px !important;
 }
+
+.no-margin {
+	margin: 0px !important;
+}
+
+.accordion-controlled-header-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	/* color: white;
+	background-color: #88a1b9; */
+	flex-direction: row-reverse;
+}
+
+.accordion-controlled-header-buttons > .left {
+	margin-left: 10px;
+	font-weight: bold;
+	font-size: 120%;
+}
+
+.accordion-controlled-header-buttons > .right > i {
+	margin-left: 10px;
+	cursor: pointer;
+	padding: 10px;
+	border-radius: 100%;
+}
+
+.accordion-controlled-header-buttons > .right > i:hover {
+	background-color: rgba(2, 102, 116, 0.2);
+}
+
+/* norseu custom styles */
+
+.norseu-panel {
+	border: none;
+}
+
+/* EXCOMMUNICATED */
 
 .norseu-showcase-elevation {
 	width: 170px;
@@ -254,34 +434,20 @@ a {
 	font-weight: bold;
 }
 
-.accordion-controlled-header-buttons {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 10px;
-	background-color: rgb(177, 200, 206);
-	flex-direction: row-reverse;
-}
-
-.accordion-controlled-header-buttons > .left {
-	margin-left: 10px;
+.norseu-showcase-component-page-preview-title {
+	/* margin-left: 10px; */
 	font-weight: bold;
 	font-size: 120%;
 }
 
-.accordion-controlled-header-buttons > .right > i {
-	margin-left: 10px;
-	cursor: pointer;
-	padding: 10px;
-	border-radius: 100%;
-}
-
-.accordion-controlled-header-buttons > .right > i:hover {
-	background-color: rgba(2, 102, 116, 0.2);
-}
-
 .norseu-showcase-component-page-preview {
-	padding: 20px;
+	padding: 20px 0px 20px 0px;
+}
+
+.norseu-showcase-component-page-preview-buttons > i {
+	margin: 20px 10px 0px 10px;
+	cursor: pointer;
+	border-radius: 100%;
 }
 
 .s-flex-wrap > .norseu-panel{
@@ -306,44 +472,6 @@ a {
 
 .max-height-350px {
 	max-height: 350px;
-}
-
-.left-sidebar {
-	width: 200px !important;
-	position: relative !important; 
-	height: auto !important;
-	display: flex;
-	flex-direction: column;
-}
-
-.left-sidebar > .norseu-scrollpanel {
-	padding: 20px !important;
-}
-
-.left-sidebar > .norseu-scrollpanel > section {
-	display: flex;
-	flex-direction: column;
-}
-
-.left-sidebar > .norseu-scrollpanel > section > .title {
-	font-weight: bold;
-	font-size: 14px;
-	text-transform: uppercase;
-	margin-top: 25px;
-	margin-bottom: 10px;
-}
-
-.left-sidebar > .norseu-scrollpanel > section > .link {
-	text-decoration: none;
-	color: rgb(22, 22, 22);
-	padding: 5px;
-	font-size: 14px;
-	padding-left: 10px;
-	border-radius: 3px;
-}
-
-.left-sidebar > .norseu-scrollpanel > section > .link:hover {
-	background-color: rgb(216, 216, 216);
 }
 
 .norseu-fileinput-custom {

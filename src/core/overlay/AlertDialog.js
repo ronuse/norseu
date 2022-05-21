@@ -174,10 +174,10 @@ export class AlertDialog extends Component {
 
 		const isString = BoolUtils.isTypeOfAny(this.props.icon, ["string"]);
 		if (isString) {
-			return <i className={`norseu-dialog-content-icon norseu-dialog-content-icon-str ${this.props.icon} ${!hasMessage ? 'norseu-margin-1-5rem' : ''}`} />;
+			return <i className={`norseu-dialog-content-icon norseu-dialog-content-icon-str ${this.props.icon} ${!hasMessage ? 'norseu-m-1-5rem' : ''}`} />;
 		}
 		const relayProps = ObjUtils.clone(this.props.icon.props);
-		relayProps.className = classNames('norseu-dialog-content-icon', (!hasMessage ? 'norseu-margin-1-5rem' : null), relayProps.className);
+		relayProps.className = classNames('norseu-dialog-content-icon', (!hasMessage ? 'norseu-m-1-5rem' : null), relayProps.className);
 		return React.cloneElement(this.props.icon, relayProps);
 	}
 

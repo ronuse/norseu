@@ -40,7 +40,7 @@ export class DialogPage extends React.Component {
 		.catch(error => { throw error});
     }
 
-    getSourceWithinLine(from, to) {
+    getSourcesWithinLine(from, to) {
         const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
@@ -65,7 +65,7 @@ export class DialogPage extends React.Component {
     renderFooter(name) {
         return (
             <div>
-                <Button text="Cancel" icon="fa fa-times" textonly scheme={Scheme.DANGER} onClick={() => this.setState({[`${name}`]: false})} />
+                <Button text="Cancel" icon="fa fa-times" textOnly scheme={Scheme.DANGER} onClick={() => this.setState({[`${name}`]: false})} />
                 <Button text="Continue" icon="fa fa-check" scheme={Scheme.PRIMARY} onClick={() => this.setState({[`${name}`]: false})}/>
             </div>
         )
@@ -78,9 +78,9 @@ export class DialogPage extends React.Component {
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(100, 106);
-        const source2 = this.getSourceWithinLine(128, 138);
-        const source3 = this.getSourceWithinLine(171, 173);
+        const source1 = this.getSourcesWithinLine(100, 106);
+        const source2 = this.getSourcesWithinLine(128, 138);
+        const source3 = this.getSourcesWithinLine(171, 173);
 
         return (
             <React.Fragment>
@@ -183,7 +183,7 @@ export class DialogPage extends React.Component {
 
     renderDocumentation() {        
         return (
-            <LinearLayout className="norseu-panel norseu-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
+            <LinearLayout className="norseu-panel norseu-p-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
                 <span className="norseu-showcase-doc-title">Documentation</span>
             </LinearLayout>
         )
@@ -198,7 +198,7 @@ export class DialogPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>Dialog</h1>
 
-                <Panel className="norseu-padding-20px" elevation={Elevation.ONE}>
+                <Panel className="norseu-p-20px" elevation={Elevation.ONE}>
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { Dialog } from 'norseu/core/overlay'`}
                     </SyntaxHighlighter>

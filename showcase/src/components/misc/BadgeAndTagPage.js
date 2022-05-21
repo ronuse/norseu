@@ -23,7 +23,7 @@ export class BadgeAndTagPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -57,8 +57,8 @@ export class BadgeAndTagPage extends React.Component {
 
         return (
             <div>
-                <Panel className="norseu-padding-left-right-20px">
-                    <Panel contentClassName="norseu-padding-left-right-20px" title="Badge">
+                <Panel className="norseu-p-left-right-20px">
+                    <Panel contentClassName="norseu-p-left-right-20px" title="Badge">
                         <h5>Badges with Scheme</h5>
                         <div className="norseu-flex norseu-showcase-badges">
                             <span className="norseu-badge">1</span>
@@ -91,7 +91,7 @@ export class BadgeAndTagPage extends React.Component {
                         </div>
                     </Panel>
 
-                    <Panel contentClassName="norseu-padding-left-right-20px" title="Tag">
+                    <Panel contentClassName="norseu-p-left-right-20px" title="Tag">
                     <h5>Tags with Scheme</h5>
                         <div className="norseu-flex norseu-showcase-badges">
                             <span className="norseu-tag">Default</span>
@@ -115,7 +115,7 @@ export class BadgeAndTagPage extends React.Component {
                         </div>
                     </Panel>
 
-                    <Panel contentClassName="norseu-padding-left-right-20px" title="Pill">
+                    <Panel contentClassName="norseu-p-left-right-20px" title="Pill">
                     <h5>Pills with Scheme</h5>
                         <div className="norseu-flex norseu-showcase-badges">
                             <span className="norseu-pill">Default</span>
@@ -139,7 +139,7 @@ export class BadgeAndTagPage extends React.Component {
                         </div>
                     </Panel>
 
-                    <Panel contentClassName="norseu-padding-left-right-20px" title="With Other Components">
+                    <Panel contentClassName="norseu-p-left-right-20px" title="With Other Components">
                         <TabPane activeTabIndex={0}>
                             <TabPanel scheme={Scheme.INFO} icon="fa fa-eye" title="Preview">
                                 <h5>As Button Icons</h5>
@@ -153,19 +153,19 @@ export class BadgeAndTagPage extends React.Component {
                                 <div className="norseu-flex">
                                     <div className="norseu-badge-overlay">
                                         <span className="norseu-badge norseu-primary norseu-no-border">1</span>
-                                        <Button icon="fa fa-bell" scheme={Scheme.PRIMARY} outlined textonly rounded/>
+                                        <Button icon="fa fa-bell" scheme={Scheme.PRIMARY} outlined textOnly rounded/>
                                     </div>
                                     <div className="norseu-badge-overlay">
                                         <span className="norseu-badge norseu-warning norseu-no-border" style={{bottom:"0"}}>2</span>
-                                        <Button icon="fa fa-bell" scheme={Scheme.WARNING} outlined textonly rounded/>
+                                        <Button icon="fa fa-bell" scheme={Scheme.WARNING} outlined textOnly rounded/>
                                     </div>
                                     <div className="norseu-badge-overlay">
                                         <span className="norseu-badge norseu-info norseu-no-border" style={{right:"0",top:"0"}}>3</span>
-                                        <Button icon="fa fa-bell" scheme={Scheme.INFO} outlined textonly rounded/>
+                                        <Button icon="fa fa-bell" scheme={Scheme.INFO} outlined textOnly rounded/>
                                     </div>
                                     <div className="norseu-badge-overlay">
                                         <span className="norseu-badge norseu-danger norseu-no-border" style={{right:"0",bottom:"0"}}>4</span>
-                                        <Button icon="fa fa-bell" scheme={Scheme.DANGER} outlined textonly rounded/>
+                                        <Button icon="fa fa-bell" scheme={Scheme.DANGER} outlined textOnly rounded/>
                                     </div>
                                 </div>
                             </TabPanel>
@@ -185,19 +185,19 @@ return (
         <div className="norseu-flex">
             <div className="norseu-badge-overlay">
                 <span className="norseu-badge norseu-primary norseu-no-border">1</span>
-                <Button icon="fa fa-bell" scheme={Scheme.PRIMARY} outlined textonly rounded/>
+                <Button icon="fa fa-bell" scheme={Scheme.PRIMARY} outlined textOnly rounded/>
             </div>
             <div className="norseu-badge-overlay">
                 <span className="norseu-badge norseu-warning norseu-no-border" style={{bottom:"0"}}>2</span>
-                <Button icon="fa fa-bell" scheme={Scheme.WARNING} outlined textonly rounded/>
+                <Button icon="fa fa-bell" scheme={Scheme.WARNING} outlined textOnly rounded/>
             </div>
             <div className="norseu-badge-overlay">
                 <span className="norseu-badge norseu-info norseu-no-border" style={{right:"0",top:"0"}}>3</span>
-                <Button icon="fa fa-bell" scheme={Scheme.INFO} outlined textonly rounded/>
+                <Button icon="fa fa-bell" scheme={Scheme.INFO} outlined textOnly rounded/>
             </div>
             <div className="norseu-badge-overlay">
                 <span className="norseu-badge norseu-danger norseu-no-border" style={{right:"0",bottom:"0"}}>4</span>
-                <Button icon="fa fa-bell" scheme={Scheme.DANGER} outlined textonly rounded/>
+                <Button icon="fa fa-bell" scheme={Scheme.DANGER} outlined textOnly rounded/>
             </div>
         </div>
     </div>
@@ -217,7 +217,7 @@ return (
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
@@ -239,7 +239,7 @@ return (
             <div className="norseu-showcase-component-page">
                 <h1>Badge, Tag and Pill</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import 'norseu/style.css'`}
                     </SyntaxHighlighter>

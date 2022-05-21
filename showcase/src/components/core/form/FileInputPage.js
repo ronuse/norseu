@@ -36,16 +36,16 @@ export class FileInputPage extends React.Component {
 		.catch(error => { throw error});
     }
 
-    getSourceWithinLine(from, to) {
+    getSourcesWithinLine(from, to) {
         const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
     renderSampleComponents() {
         const sources = [
-			this.getSourceWithinLine(63, 67),
-			this.getSourceWithinLine(84, 149),
-			this.getSourceWithinLine(167, 186)
+			this.getSourcesWithinLine(63, 67),
+			this.getSourcesWithinLine(84, 149),
+			this.getSourcesWithinLine(167, 186)
 		];
 
         return (
@@ -198,7 +198,7 @@ export class FileInputPage extends React.Component {
 
     renderDocumentation() {        
         return (
-            <LinearLayout className="norseu-panel norseu-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
+            <LinearLayout className="norseu-panel norseu-p-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
                 <span className="norseu-showcase-doc-title">Documentation</span>
 				If an element is clickable do not forget to stop propagation at the end of the element on cliick 
 				event.stopPropagation()
@@ -215,7 +215,7 @@ export class FileInputPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>FileInput</h1>
 
-                <Panel className="norseu-padding-20px" elevation={Elevation.ONE}>
+                <Panel className="norseu-p-20px" elevation={Elevation.ONE}>
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { FileInput } from 'norseu/core/form''`}
                     </SyntaxHighlighter>

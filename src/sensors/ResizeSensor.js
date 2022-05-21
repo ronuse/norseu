@@ -31,12 +31,14 @@ import { ObjUtils } from "../utils";
 export class ResizeSensor extends Component {
 
 	static defaultProps = {
+		obeyIf: null,
 		minDimension: null,
 		maxDimension: null,
 		onDimensionChange: null
 	}
 
 	static propTypes = {
+		obeyIf: PropTypes.bool, // conditional obedient if null or undefined or true the sensor will render children, if false will not obey
 		minDimension: PropTypes.object,
 		maxDimension: PropTypes.object,
 		onDimensionChange: PropTypes.func
@@ -45,7 +47,7 @@ export class ResizeSensor extends Component {
 	constructor(props) {
 		super();
 		this.state = {
-			renderChildren: this.shouldRenderChildren(props.minDimension, props.maxDimension, document.documentElement.clientWidth, document.documentElement.clientHeight)
+			renderChildren: this.shouldRenderChildren(props.obeyIf, props.minDimension, props.maxDimension, document.documentElement.clientWidth, document.documentElement.clientHeight)
 		};		
 	}
 
@@ -54,12 +56,9 @@ export class ResizeSensor extends Component {
 			const width = document.documentElement.clientWidth;
 			const height = document.documentElement.clientHeight;
 			if (this.props.onDimensionChange) {
-				this.props.onDimensionChange({
-					event: event,
-					dimension: {width: width, height: height}
-				});
+				this.props.onDimensionChange(event, {width: width, height: height});
 			}
-			this.setState({renderChildren: this.shouldRenderChildren(this.props.minDimension, this.props.maxDimension, width, height)});
+			this.setState({renderChildren: this.shouldRenderChildren(this.props.obeyIf, this.props.minDimension, this.props.maxDimension, width, height)});
 		}
 
 		window.addEventListener('resize', this.documentResizeListener);
@@ -72,7 +71,8 @@ export class ResizeSensor extends Component {
 		}
 	}
 
-	shouldRenderChildren(minDimension, maxDimension, screenWidth, screenHeight) {
+	shouldRenderChildren(obeyIf, minDimension, maxDimension, screenWidth, screenHeight) {
+		if (obeyIf === false) return true;
 		if (!minDimension && !maxDimension) {
 			return true;
 		}

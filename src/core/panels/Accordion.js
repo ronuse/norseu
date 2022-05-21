@@ -225,8 +225,16 @@ class AccordionComponent extends Component {
 		const headerDivider = (index < childrenCount-1 || (isToggled)) && !panel.props.noheader && !panel.props.nodivier ? <hr className="norseu-accordion-divider"/> : null;
 		const contentDivider = (isToggled && index < childrenCount-1) && !panel.props.nodivier ? <hr className="norseu-accordion-divider"/> : null;
 		if (panel.props.forwardRef) {
-			panel.props.forwardRef.current = {
+			let refOptions = {
 				toggle: (e) => this.onPanelHeaderClick(this, e, panel, index)
+			};
+			let ref = panel.props.forwardRef;
+			if (ref) {
+				if (typeof ref === 'function') {
+					ref(refOptions);
+				} else {
+					ref.current = refOptions;
+				}
 			}
 		}
 		

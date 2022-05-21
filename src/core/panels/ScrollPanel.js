@@ -100,9 +100,8 @@ export class ScrollPanelComponent extends Component {
 			'norseu-scrollpanel-always-show-scrollbars': this.props.alwaysScroll,
 			'norseu-scrollpanel-always-show-scrollbar-x': this.props.alwaysScrollX,
 			'norseu-scrollpanel-always-show-scrollbar-y': this.props.alwaysScrollY,
-			'norseu-scrollpanel-hidden-scrollbars': this.props.hideScrollBars,
-			'norseu-scrollpanel-hidden-scrollbar-x': this.props.hideScrollBarX,
-			'norseu-scrollpanel-hidden-scrollbar-y': this.props.hideScrollBarY
+			'norseu-scrollpanel-hidden-scrollbar-x': this.props.hideScrollBars || this.props.hideScrollBarX,
+			'norseu-scrollpanel-hidden-scrollbar-y': this.props.hideScrollBars || this.props.hideScrollBarY
 		}, this.props.className);
 
 		return (this.props.isForm

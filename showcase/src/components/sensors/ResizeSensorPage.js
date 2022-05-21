@@ -24,7 +24,7 @@ export class ResizeSensorPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -47,11 +47,9 @@ export class ResizeSensorPage extends React.Component {
 
     renderSampleComponents() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
-                <ResizeSensor onDimensionChange={(e) => {
-                    this.setState({
-                        dimension: e.dimension
-                    })
+            <Panel className="norseu-p-left-right-20px">
+                <ResizeSensor onDimensionChange={(e, dimension) => {
+                    this.setState({ dimension })
                 }}> 
                     <h3>Resize The window to see new value</h3>
                     <h2>Width {this.state.dimension.width}</h2>
@@ -65,7 +63,7 @@ export class ResizeSensorPage extends React.Component {
                 
                 <h3>The image below will be hidden if the screen is greater than 800</h3>
                 <ResizeSensor maxDimension={{width: 800}}> 
-                    <img style={{width: "300px"}} src="https://www.sciencemag.org/sites/default/files/styles/inline__450w__no_aspect/public/dogs_1280p_0.jpg?itok=4t_1_fSJ"/>
+                    <img style={{width: "300px"}} src="https://www.sciencemag.org/ps/default/files/styles/inline__450w__no_aspect/public/dogs_1280p_0.jpg?itok=4t_1_fSJ"/>
                 </ResizeSensor>
             </Panel>
         )
@@ -77,7 +75,7 @@ export class ResizeSensorPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Documentation" icon="fa fa-book">
 
@@ -100,7 +98,7 @@ export class ResizeSensorPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>ViewportSensor</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { ViewportSensor } from 'norseu/sensors'`}
                     </SyntaxHighlighter>

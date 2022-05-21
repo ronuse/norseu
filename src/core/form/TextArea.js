@@ -194,10 +194,10 @@ export class TextAreaComponent extends BaseComponent {
         }
         let className = classNames('norseu-textarea-label', {
             'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
-            'norseu-margin-bottom-7px': alignLabel === Alignment.TOP,
-            'norseu-margin-top-7px': alignLabel === Alignment.BOTTOM,
-            'norseu-margin-right-7px': alignLabel === Alignment.LEFT,
-            'norseu-margin-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'norseu-m-bottom-7px': alignLabel === Alignment.TOP,
+            'norseu-m-top-7px': alignLabel === Alignment.BOTTOM,
+            'norseu-m-right-7px': alignLabel === Alignment.LEFT,
+            'norseu-m-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
             'norseu-textarea-label-flushed': this.state.flushed
         }); 
         if (isString) {
@@ -224,10 +224,10 @@ export class TextAreaComponent extends BaseComponent {
         }
         let className = classNames('norseu-textarea-help-label', {
             'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
-            'norseu-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
-            'norseu-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
-            'norseu-margin-right-3px': alignHelpLabel === Alignment.LEFT,
-            'norseu-margin-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'norseu-m-bottom-3px': alignHelpLabel === Alignment.TOP,
+            'norseu-m-top-3px': alignHelpLabel === Alignment.BOTTOM,
+            'norseu-m-right-3px': alignHelpLabel === Alignment.LEFT,
+            'norseu-m-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
             'norseu-textarea-label-flushed': this.state.flushed
         }); 
         if (isString) {

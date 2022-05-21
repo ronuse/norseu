@@ -45,7 +45,7 @@ class ButtonComponent extends BaseComponent {
 		raised: null,
 		rounded: null,
 		borderless: null,
-		textonly: null,
+		textOnly: null,
 		outlined: null,
 		fill: false,
 		nostyle: false,
@@ -66,7 +66,7 @@ class ButtonComponent extends BaseComponent {
 		raised: PropTypes.bool,
 		rounded: PropTypes.bool,
 		borderless: PropTypes.bool,
-		textonly: PropTypes.bool,
+		textOnly: PropTypes.bool,
 		outlined: PropTypes.bool,
 		fill: PropTypes.bool,
 		nostyle: PropTypes.bool,
@@ -95,7 +95,7 @@ class ButtonComponent extends BaseComponent {
 		}
 		let className = classNames('norseu-button-icon', isString ? this.state.icon : this.state.icon.props.className, {
 			'norseu-float-center': this.state.alignIcon === Alignment.CENTER,
-			'norseu-margin-right-15px': this.state.rightIcon && (BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
+			'norseu-m-right-15px': this.state.rightIcon && (BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || 
 									BoolUtils.equalsAny(this.state.alignText, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])),
 			'norseu-float-left': this.state.alignIcon === Alignment.LEFT,
 			'norseu-float-right': this.state.alignIcon === Alignment.RIGHT,
@@ -139,8 +139,8 @@ class ButtonComponent extends BaseComponent {
 
 		let className = classNames({
 			'norseu-float-center': this.state.alignText === Alignment.CENTER,
-			'norseu-margin-left-15px': this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.LEFT, Alignment.CENTER, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
-			'norseu-margin-right-15px': (this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.state.rightIcon),
+			'norseu-m-left-15px': this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.LEFT, Alignment.CENTER, Alignment.TOP_LEFT, Alignment.BOTTOM_LEFT ]),
+			'norseu-m-right-15px': (this.state.icon && BoolUtils.equalsAny(this.state.alignIcon, [ Alignment.RIGHT, Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT]) || this.state.rightIcon),
 			'norseu-float-left': this.state.alignText === Alignment.LEFT,
 			'norseu-float-right': this.state.alignText === Alignment.RIGHT
 		})
@@ -149,29 +149,28 @@ class ButtonComponent extends BaseComponent {
 
 	render() {
 		let className = classNames(
-			(this.state.scheme && !this.state.textonly && !this.state.outlined && !this.state.link) ? `${this.state.scheme}` : null, 
+			(this.state.scheme && !this.state.textOnly && !this.state.outlined && !this.state.link) ? `${this.state.scheme}` : null, 
 			(this.state.scheme && this.state.outlined) ? `${this.state.scheme}-border-1px` : null,
-			(this.state.scheme && this.state.outlined && this.state.fillOnHover) ? `${this.state.scheme}-bg-hover` : null,
-			(this.state.scheme && this.state.outlined && !this.state.textonly) ? `${this.state.scheme}-border-1px-bg-hover` : null,
-			(this.state.scheme && (this.state.outlined || this.state.textonly || this.state.link)) ? `${this.state.scheme}-text` : null,
+			(this.state.scheme && (this.state.outlined || this.state.link || this.state.textOnly) && this.state.fillOnHover) ? `${this.state.scheme}-bg-hover` : null,
+			(this.state.scheme && this.state.outlined && !this.state.textOnly) ? `${this.state.scheme}-border-1px-bg-hover` : null,
+			(this.state.scheme && (this.state.outlined || this.state.textOnly || this.state.link)) ? `${this.state.scheme}-text` : null,
 			(this.state.scheme && (!this.state.nostyle && this.state.scheme)) ? `${this.state.scheme}-border-3px-focus-box-shadow` : null, {
 			'norseu-button': !this.state.nostyle,
 			'norseu-button-vertical': BoolUtils.equalsAny(this.state.alignIcon, [Alignment.TOP, Alignment.BOTTOM]) && this.text,
 			'norseu-disabled': !this.state.nostyle && this.state.disabled,
-			'norseu-padding-left-right-20px': this.state.text,
+			'norseu-p-left-right-20px': this.state.text,
 			'norseu-width-100-percent norseu-display-block': this.state.fill,
 			'norseu-button-rounded-border': !this.state.nostyle && this.state.rounded,
 			'norseu-button-raised-border': !this.state.nostyle && this.state.raised,
-			'norseu-button-textonly': !this.state.nostyle && (this.state.textonly || this.state.outlined),
-			'norseu-no-background': !this.state.nostyle && (this.state.outlined || this.state.link),
+			'norseu-no-background': !this.state.nostyle && (this.state.outlined || this.state.link || this.state.textOnly),
 			'norseu-no-box-shadow-active norseu-text-decoration-underline-hover': !this.state.nostyle && this.state.link,
-			'norseu-no-border': !this.state.nostyle && (this.state.borderless || (this.state.textonly && !this.state.outlined) || this.state.link),
+			'norseu-no-border': !this.state.nostyle && (this.state.borderless || (this.state.textOnly && !this.state.outlined) || this.state.link),
 			
 			'norseu-button-min-size norseu-skeleton': this.state.scheme === Scheme.SKELETON /*&& !(this.state.icon || this.state.rightIcon)*/,
 			'norseu-button-min-size-icon-only norseu-skeleton': this.state.scheme === Scheme.SKELETON && (this.state.icon || this.state.rightIcon) && !this.state.text,
 
 			'norseu-stateless': BoolUtils.equalsAny(this.state.scheme, [Scheme.STATELESS, Scheme.SKELETON]) && !this.state.link,
-			'norseu-padding-0px': this.state.fillIcon
+			'norseu-p-0px': this.state.fillIcon
 		}, 'norseu-button-theme', this.state.className);
 		let icon = this.renderIcon();
 		let rightIcon = this.renderRightIcon();
@@ -181,6 +180,8 @@ class ButtonComponent extends BaseComponent {
 		let componentProps = ObjUtils.findDiffKeys(this.state, ButtonComponent.defaultProps);
 		if (!componentProps.children) {
 			componentProps.children = [];
+		} else {
+			componentProps.children = [ ...componentProps.children ];
 		}
 		componentProps.children.push(iconPreText ? icon : '');
 		componentProps.children.push(rightIconPreText ? rightIcon : '');

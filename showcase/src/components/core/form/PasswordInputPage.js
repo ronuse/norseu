@@ -32,14 +32,14 @@ export class PasswordInputPage extends React.Component {
 		.catch(error => { throw error});
     }
 
-    getSourceWithinLine(from, to) {
+    getSourcesWithinLine(from, to) {
         const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
     renderSampleComponents() {
-        const source1 = this.getSourceWithinLine(49);
-        const source2 = this.getSourceWithinLine(67, 75);
+        const source1 = this.getSourcesWithinLine(49);
+        const source2 = this.getSourcesWithinLine(67, 75);
 
         return (
             <React.Fragment>
@@ -92,7 +92,7 @@ export class PasswordInputPage extends React.Component {
 
     renderDocumentation() {        
         return (
-            <LinearLayout className="norseu-panel norseu-padding-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
+            <LinearLayout className="norseu-panel norseu-p-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
                 <span className="norseu-showcase-doc-title">Documentation</span>
             </LinearLayout>
         )
@@ -107,7 +107,7 @@ export class PasswordInputPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>PasswordInput</h1>
 
-                <Panel className="norseu-padding-20px" elevation={Elevation.ONE}>
+                <Panel className="norseu-p-20px" elevation={Elevation.ONE}>
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { PasswordInput } from 'norseu/core/form''`}
                     </SyntaxHighlighter>

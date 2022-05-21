@@ -69,6 +69,7 @@ export class TabPane extends Component {
 
 	static defaultProps = {
 		id: null,
+		scheme: null,
 		style: null,
 		className: null,
 		safely: null,
@@ -80,6 +81,7 @@ export class TabPane extends Component {
 
 	static propTypes = {
 		id: PropTypes.string,
+		scheme: PropTypes.string,
 		style: PropTypes.object,
 		className: PropTypes.string,
 		safely: PropTypes.bool,
@@ -110,6 +112,7 @@ export class TabPane extends Component {
 
 	onTabHeaderClick(event, tab, index) {
 		if (!tab.props.disabled) {
+			if (tab.props.onClick && !tab.props.onClick(event, index)) return;
 			if (this.props.onTabChange) {
 				this.props.onTabChange({event: event, index: index});
 
@@ -135,23 +138,26 @@ export class TabPane extends Component {
 		const id = this.id + '-header-' + index;
 		const ariaControls = this.id + '-content-' + index;
 		const tabIndex = tab.props.disabled ? null : '0';
+		const scheme_ = (tab.props.scheme || this.props.scheme);
+		const scheme = tab.props.scheme || (selectedTab ? this.props.scheme : null);
 		const fill = BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT]) ? true : null;
 		const className = classNames('norseu-tab-button', {
 			'norseu-tab-button-top': this.props.alignNavigator.startsWith(Alignment.BOTTOM),
 			'active': selectedTab,
 			'norseu-disabled': tab.props.disabled
-		}, 
-		(this.props.alignNavigator.startsWith(Alignment.BOTTOM) ? `norseu-tab-button-top-${tab.props.scheme}` : `norseu-tab-button-${tab.props.scheme}`),
+		},
+		scheme_ ? `tab-button-hover-${scheme_}` : null,
+		(this.props.alignNavigator.startsWith(Alignment.BOTTOM) && selectedTab ? `tab-button-top-${scheme}` : `tab-button-${scheme}`),
 		tab.props.headerClassName);
 
 		return (
-			<Button nostyle textonly className={className} onClick={(e)=> this.onTabHeaderClick(e, tab, index)} 
+			<Button nostyle textOnly className={className} onClick={(e)=> this.onTabHeaderClick(e, tab, index)} 
 				alignText={tab.props.alignTitle}
 				icon={tab.props.icon}
 				alignIcon={tab.props.alignIcon} 
 				rightIcon={tab.props.rightIcon}
 				text={tab.props.title}
-				scheme={tab.props.scheme}
+				scheme={scheme}
 				fill={fill}
 				role="tab" aria-controls={ariaControls} aria-selected={selectedTab} tabIndex={tabIndex} id={id}
 			/>

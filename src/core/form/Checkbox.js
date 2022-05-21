@@ -164,10 +164,10 @@ class CheckboxComponent extends BaseComponent {
 			(scheme && this.state.scheme ? `${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null), {
 			'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
 			'norseu-checkbox-box': !this.state.nostyle,
-			'norseu-margin-right-10px': BoolUtils.equalsAny(this.state.align, [Alignment.LEFT, Alignment.CENTER]),
-			'norseu-margin-left-10px': BoolUtils.equalsAny(this.state.align, [Alignment.RIGHT]),
-			'norseu-margin-bottom-10px': BoolUtils.equalsAny(this.state.align, [Alignment.TOP, Alignment.TOP_LEFT, Alignment.TOP_CENTER, Alignment.TOP_RIGHT]),
-			'norseu-margin-top-10px': BoolUtils.equalsAny(this.state.align, [Alignment.BOTTOM, Alignment.BOTTOM_LEFT, Alignment.BOTTOM_CENTER, Alignment.BOTTOM_RIGHT]),
+			'norseu-m-right-10px': BoolUtils.equalsAny(this.state.align, [Alignment.LEFT, Alignment.CENTER]),
+			'norseu-m-left-10px': BoolUtils.equalsAny(this.state.align, [Alignment.RIGHT]),
+			'norseu-m-bottom-10px': BoolUtils.equalsAny(this.state.align, [Alignment.TOP, Alignment.TOP_LEFT, Alignment.TOP_CENTER, Alignment.TOP_RIGHT]),
+			'norseu-m-top-10px': BoolUtils.equalsAny(this.state.align, [Alignment.BOTTOM, Alignment.BOTTOM_LEFT, Alignment.BOTTOM_CENTER, Alignment.BOTTOM_RIGHT]),
 			'norseu-align-self-center': this.state.align === Alignment.TOP_CENTER || this.state.align === Alignment.BOTTOM_CENTER,
 			'norseu-align-self-flex-end': this.state.align === Alignment.TOP_RIGHT || this.state.align === Alignment.BOTTOM_RIGHT
 		});

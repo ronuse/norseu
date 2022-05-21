@@ -48,6 +48,7 @@ export class InputTextComponent extends BaseComponent {
         alignHelpLabel: Alignment.BOTTOM,
         outlined: false,
         flushed: false,
+        noBorder: false,
         nostyle: false,
         leftIcon: null,
         rightIcon: null,
@@ -87,6 +88,7 @@ export class InputTextComponent extends BaseComponent {
         alignHelpLabel: PropTypes.string,
         outlined: PropTypes.bool,
         flushed: PropTypes.bool,
+        noBorder: PropTypes.bool,
         nostyle: PropTypes.bool,
         leftIcon: PropTypes.any,
         rightIcon: PropTypes.any,
@@ -222,7 +224,7 @@ export class InputTextComponent extends BaseComponent {
             'norseu-inputtext-no-right-icon': !this.state.rightIcon,
             'norseu-max-width-100-percent': this.state.fill,
             'norseu-inputtext-outlined': this.state.outlined,
-            'norseu-padding-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
+            'norseu-p-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
             'norseu-disabled norseu-noselect': this.state.disabled,
             'norseu-skeleton': this.state.scheme === Scheme.SKELETON
         }, 'norseu-inputtext-theme', this.state.internalInputClassName);
@@ -257,10 +259,10 @@ export class InputTextComponent extends BaseComponent {
         }
         let className = classNames('norseu-inputtext-label', {
             'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
-            'norseu-margin-bottom-7px': alignLabel === Alignment.TOP,
-            'norseu-margin-top-7px': alignLabel === Alignment.BOTTOM,
-            'norseu-margin-right-7px': alignLabel === Alignment.LEFT,
-            'norseu-margin-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'norseu-m-bottom-7px': alignLabel === Alignment.TOP,
+            'norseu-m-top-7px': alignLabel === Alignment.BOTTOM,
+            'norseu-m-right-7px': alignLabel === Alignment.LEFT,
+            'norseu-m-left-7px': alignLabel === Alignment.RIGHT && !this.state.floatLabel,
             'norseu-inputtext-label-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
@@ -287,10 +289,10 @@ export class InputTextComponent extends BaseComponent {
         }
         let className = classNames('norseu-inputtext-help-label', {
             'norseu-skeleton': this.state.scheme === Scheme.SKELETON,
-            'norseu-margin-bottom-3px': alignHelpLabel === Alignment.TOP,
-            'norseu-margin-top-3px': alignHelpLabel === Alignment.BOTTOM,
-            'norseu-margin-right-3px': alignHelpLabel === Alignment.LEFT,
-            'norseu-margin-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
+            'norseu-m-bottom-3px': alignHelpLabel === Alignment.TOP,
+            'norseu-m-top-3px': alignHelpLabel === Alignment.BOTTOM,
+            'norseu-m-right-3px': alignHelpLabel === Alignment.LEFT,
+            'norseu-m-left-3px': alignHelpLabel === Alignment.RIGHT && !this.state.floatLabel,
             'norseu-inputtext-label-flushed': this.state.flushed && this.state.outlined
         }); 
         if (isString) {
@@ -370,6 +372,7 @@ export class InputTextComponent extends BaseComponent {
             (this.state.scheme && !this.state.flushed ? `${this.state.scheme}-border-1px-hover` : null), {
             'norseu-inputtext-outlined': this.state.outlined,
             'norseu-inputtext-flushed': this.state.flushed,
+            'norseu-no-border': this.state.noBorder,
             'norseu-skeleton': this.state.scheme === Scheme.SKELETON
         }, this.state.inputClassName);
         const className = classNames('norseu-inputtext-compound', {

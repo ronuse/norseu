@@ -30,7 +30,7 @@ export class PanelPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -145,7 +145,7 @@ export class PanelPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>

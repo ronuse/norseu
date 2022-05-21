@@ -25,7 +25,7 @@ export class AccordionPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -89,7 +89,7 @@ export class AccordionPage extends React.Component {
 
     renderSampleComponents() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Basic</h3>
                 <Accordion activeIndex={[2]}>
                     <AccordionPanel header="Title 1">
@@ -143,20 +143,20 @@ export class AccordionPage extends React.Component {
                 </Accordion>
 
                 <h3>Custom Logic and Header</h3>
-                <ButtonGroup scheme={Scheme.SECONDARY} className="norseu-margin-bottom-20px">
+                <ButtonGroup scheme={Scheme.SECONDARY} className="norseu-m-bottom-20px">
                     <Button icon={`fa fa-${this.state.activeIndex && this.state.activeIndex.indexOf(0) > -1 ? 'plus' : 'minus'}`} text="Toggle Panel 1" onClick={() => this.onClick(0)}/>
                     <Button icon={`fa fa-${this.state.activeIndex && this.state.activeIndex.indexOf(1) > -1 ? 'plus' : 'minus'}`} text="Toggle Panel 2" onClick={() => this.onClick(1)}/>
                     <Button icon={`fa fa-${this.state.activeIndex && this.state.activeIndex.indexOf(2) > -1 ? 'plus' : 'minus'}`} text="Toggle Panel 3" onClick={() => this.onClick(2)}/>
                 </ButtonGroup>
                 
                 <Accordion activeIndex={this.state.activeIndex} onTabChange={(e) => this.setState({ activeIndex: [e.index] })}>
-                    <AccordionPanel header={<React.Fragment><i className="fa fa-user-o norseu-margin-right-5px"/>User</React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i className="fa fa-user-o norseu-m-right-5px"/>User</React.Fragment>}>
                         {this.text1()}
                     </AccordionPanel>
-                    <AccordionPanel header={<React.Fragment><i className="fa fa-gear norseu-margin-right-5px"/>Settings</React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i className="fa fa-gear norseu-m-right-5px"/>Settings</React.Fragment>}>
                         {this.text2()}
                     </AccordionPanel>
-                    <AccordionPanel header={<React.Fragment><i className="fa fa-search norseu-margin-right-5px"/>Search Profiles<i className="fa fa-eye norseu-margin-left-5px"/></React.Fragment>}>
+                    <AccordionPanel header={<React.Fragment><i className="fa fa-search norseu-m-right-5px"/>Search Profiles<i className="fa fa-eye norseu-m-left-5px"/></React.Fragment>}>
                         {this.text3()}
                     </AccordionPanel>
                 </Accordion>
@@ -171,7 +171,7 @@ export class AccordionPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
@@ -193,7 +193,7 @@ export class AccordionPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>Accordion</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { Accordion } from 'norseu/core/panels'`}
                     </SyntaxHighlighter>

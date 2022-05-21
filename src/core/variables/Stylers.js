@@ -69,7 +69,9 @@ export const Scheme = {
 	INFO: "norseu-info",
 	WARNING: "norseu-warning",
 	DANGER: "norseu-danger",
-	SKELETON: "norseu-skeleton"
+	SKELETON: "norseu-skeleton",
+	DARK: "norseu-dark",
+	LIGHT: "norseu-light"
 }
 
 export const Overflow = {

@@ -55,21 +55,21 @@ export class GenerateSchemePage extends React.Component {
                 <Button scheme={this.state.name} text="Click me" rounded/>
                 <Button scheme={this.state.name} text="Click me" raised/>
                 <Button scheme={this.state.name} text="Click me" outlined/>
-                <Button scheme={this.state.name} text="Click me" textonly/>
-                <Button scheme={this.state.name} text="Click me" raised textonly/>
+                <Button scheme={this.state.name} text="Click me" textOnly/>
+                <Button scheme={this.state.name} text="Click me" raised textOnly/>
                 <br/><br/>
 
                 <Button scheme={this.state.name} icon="fa fa-circle"/>
                 <Button scheme={this.state.name} icon="fa fa-warning" rounded/>
                 <Button scheme={this.state.name} icon="fa fa-square" outlined/>
-                <Button scheme={this.state.name} icon="fa fa-bell" textonly raised/>
-                <Button scheme={this.state.name} icon="fa fa-times" rounded textonly/>
+                <Button scheme={this.state.name} icon="fa fa-bell" textOnly raised/>
+                <Button scheme={this.state.name} icon="fa fa-times" rounded textOnly/>
 
                 <Button scheme={this.state.name} icon={customIcon1}/>
                 <Button scheme={this.state.name} icon="fab fa-facebook-square"/>
                 <Button scheme={this.state.name} icon="fab fa-google" rounded outlined/>
                 <Button scheme={this.state.name} icon="fab fa-instagram"/>
-                <Button scheme={this.state.name} icon="fab fa-twitter" textonly raised/>
+                <Button scheme={this.state.name} icon="fab fa-twitter" textOnly raised/>
                 <Button scheme={this.state.name} icon="fab fa-linkedin"/>
                 <Button scheme={this.state.name} icon="fab fa-skype"/>
                 <br/><br/>
@@ -94,13 +94,13 @@ export class GenerateSchemePage extends React.Component {
                 <br/><br/>
 
                 <Accordion scheme={this.state.name} >
-                    <AccordionPanel title={<React.Fragment><i className="fa fa-user-o norseu-margin-right-5px"/>User</React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-user-o norseu-m-right-5px"/>User</React.Fragment>}>
                         {"Panel 1"}
                     </AccordionPanel>
-                    <AccordionPanel title={<React.Fragment><i className="fa fa-gear norseu-margin-right-5px"/>Settings</React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-gear norseu-m-right-5px"/>Settings</React.Fragment>}>
                         {"Panel 2"}
                     </AccordionPanel>
-                    <AccordionPanel title={<React.Fragment><i className="fa fa-search norseu-margin-right-5px"/>Search Profiles<i className="fa fa-eye norseu-margin-left-5px"/></React.Fragment>}>
+                    <AccordionPanel title={<React.Fragment><i className="fa fa-search norseu-m-right-5px"/>Search Profiles<i className="fa fa-eye norseu-m-left-5px"/></React.Fragment>}>
                          {"Panel 3"}
                     </AccordionPanel>
                 </Accordion>
@@ -116,8 +116,8 @@ export class GenerateSchemePage extends React.Component {
                 <Tag scheme={this.state.name} icon="fa fa-exclamation" text="Stateless" removable/>
                 <Tag scheme={this.state.name} icon="fa fa-circle" text="Primary" outlined/>
                 <Tag scheme={this.state.name} icon="fa fa-square" text="Secondary" rounded/>
-                <Tag scheme={this.state.name} icon="fa fa-bell" text="Info" textonly outlined/>
-                <Tag scheme={this.state.name} icon="fa fa-warning" text="Warning" raised textonly/>
+                <Tag scheme={this.state.name} icon="fa fa-bell" text="Info" textOnly outlined/>
+                <Tag scheme={this.state.name} icon="fa fa-warning" text="Warning" raised textOnly/>
                 <br/><br/>
 
             </ScrollPanel>

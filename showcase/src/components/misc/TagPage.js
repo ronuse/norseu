@@ -22,7 +22,7 @@ export class TagPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -48,7 +48,7 @@ export class TagPage extends React.Component {
         let customIcon2 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/69908664?s=12" style={{borderRadius:"50%"}}/>;
 
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <p>Click the X button to remove the tag</p>
 
                 <Panel title="Removable Basic Tags" expanded collapsible borderless>
@@ -121,15 +121,15 @@ export class TagPage extends React.Component {
                 </Panel>
                 
                 <Panel title="Outlined Tags" expanded collapsible borderless>
-                    <Tag text="Click Me" textonly outlined/>
-                    <Tag scheme={Scheme.SKELETON} textonly outlined/>
-                    <Tag scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textonly outlined/>
-                    <Tag scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textonly outlined/>
-                    <Tag scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textonly outlined/>
-                    <Tag scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textonly outlined/>
-                    <Tag scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textonly outlined/>
-                    <Tag scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textonly outlined/>
-                    <Tag scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textonly outlined/>
+                    <Tag text="Click Me" textOnly outlined/>
+                    <Tag scheme={Scheme.SKELETON} textOnly outlined/>
+                    <Tag scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textOnly outlined/>
+                    <Tag scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textOnly outlined/>
+                    <Tag scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textOnly outlined/>
+                    <Tag scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textOnly outlined/>
+                    <Tag scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textOnly outlined/>
+                    <Tag scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textOnly outlined/>
+                    <Tag scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textOnly outlined/>
                 </Panel>
                 
                 <Panel title="Outlined With Over Filled Tags" expanded collapsible borderless>
@@ -145,27 +145,27 @@ export class TagPage extends React.Component {
                 </Panel>
                 
                 <Panel title="Text Only Tags" expanded collapsible borderless>
-                    <Tag text="Click Me" textonly/>
-                    <Tag scheme={Scheme.SKELETON} textonly/>
-                    <Tag scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textonly/>
-                    <Tag scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textonly/>
-                    <Tag scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textonly/>
-                    <Tag scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textonly/>
-                    <Tag scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textonly/>
-                    <Tag scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textonly/>
-                    <Tag scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textonly/>
+                    <Tag text="Click Me" textOnly/>
+                    <Tag scheme={Scheme.SKELETON} textOnly/>
+                    <Tag scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textOnly/>
+                    <Tag scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textOnly/>
+                    <Tag scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textOnly/>
+                    <Tag scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textOnly/>
+                    <Tag scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textOnly/>
+                    <Tag scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textOnly/>
+                    <Tag scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textOnly/>
                 </Panel>
                 
                 <Panel title="Raised Text Only Tags" expanded collapsible borderless>
-                    <Tag text="Click Me" textonly raised/>
+                    <Tag text="Click Me" textOnly raised/>
                     <Tag scheme={Scheme.SKELETON} raised/>
-                    <Tag scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textonly raised/>
-                    <Tag scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textonly raised/>
-                    <Tag scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textonly raised/>
-                    <Tag scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textonly raised/>
-                    <Tag scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textonly raised/>
-                    <Tag scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textonly raised/>
-                    <Tag scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textonly raised/>
+                    <Tag scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textOnly raised/>
+                    <Tag scheme={Scheme.PRIMARY} icon="fa fa-circle" text="Primary" textOnly raised/>
+                    <Tag scheme={Scheme.SECONDARY} icon="fa fa-square" text="Secondary" textOnly raised/>
+                    <Tag scheme={Scheme.SUCCESS} icon="fa fa-check" text="Success" textOnly raised/>
+                    <Tag scheme={Scheme.INFO} icon="fa fa-bell" text="Info" textOnly raised/>
+                    <Tag scheme={Scheme.WARNING} icon="fa fa-warning" text="Warning" textOnly raised/>
+                    <Tag scheme={Scheme.DANGER} icon="fa fa-times" text="Danger" textOnly raised/>
                 </Panel>
             </Panel>
         )
@@ -177,7 +177,7 @@ export class TagPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
@@ -199,7 +199,7 @@ export class TagPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>Tag</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { Tag } from 'norseu/core/misc'`}
                     </SyntaxHighlighter>

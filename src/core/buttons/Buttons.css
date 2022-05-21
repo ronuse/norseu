@@ -17,7 +17,7 @@
 }
 
 .norseu-button {
-	margin: 5px;
+	/*margin: 5px;*/
 	height: fit-content;
 	display: inline-flex;
 	cursor: pointer;
@@ -34,6 +34,7 @@
 	border: 1px solid #A7B6C2;
 	text-decoration: none;
     width: fit-content;
+    /* min-width: fit-content; */
 }
 
 .norseu-button-icon {

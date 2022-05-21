@@ -20,7 +20,7 @@ export class ElevationPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -44,7 +44,7 @@ export class ElevationPage extends React.Component {
     renderSampleComponents() {
         return (
             <div>
-                <Panel className="norseu-padding-left-right-20px" contentClassName="norseu-flex">
+                <Panel className="norseu-p-left-right-20px" contentClassName="norseu-flex">
                     <Panel elevation={Elevation.ONE} className="norseu-showcase-elevation">
                         {Elevation.ONE}
                     </Panel>
@@ -107,7 +107,7 @@ export class ElevationPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
@@ -129,7 +129,7 @@ export class ElevationPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>Elevation</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { Elevation } from 'norseu/core/variables'`}
                     </SyntaxHighlighter>

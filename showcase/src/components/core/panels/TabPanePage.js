@@ -49,7 +49,7 @@ export class TabPanePage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -73,7 +73,7 @@ export class TabPanePage extends React.Component {
     renderSampleComponents() {
         return (
             <div>
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <h3>Basic</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
@@ -89,7 +89,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
                 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <h3>Header with Icon</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye">
@@ -105,7 +105,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
                 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <h3>Extra TabNavigator Elements</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye">
@@ -126,7 +126,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
                 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <h3>TabPanel with Scheme</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}} icon="fa fa-eye" scheme={Scheme.PRIMARY}>
@@ -145,7 +145,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <h3>Skeleton</h3>
                     <TabPane activeTabIndex={0} scheme={Scheme.SKELETON} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
@@ -162,7 +162,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <h3>Disabled tab</h3>
                     <TabPane activeTabIndex={0} renderActiveTabOnly>
                         <TabPanel title="Panel 1" contentStyle={{padding:"10px"}}>
@@ -177,7 +177,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <h3>Custom Logic</h3>
                     <Button text="Switch to Panel 1" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 0 })} outlined/>
                     <Button text="Switch to Panel 2" scheme={Scheme.INFO} onClick={() => this.setState({ activeTabIndex: 1 })} outlined/>
@@ -196,7 +196,7 @@ export class TabPanePage extends React.Component {
                     </TabPane>
                 </Panel>
                 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <h3>Tab Navigator Allignment, TODO change select below to ronuse select Component</h3>
                     <select onChange={(e)=>{this.setState({ alignNavigator: e.target.value} )}}>
                         <option value={Alignment.TOP}>{"TOP"}</option>
@@ -233,7 +233,7 @@ export class TabPanePage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>

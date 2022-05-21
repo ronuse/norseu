@@ -23,7 +23,7 @@ export class LinearLayoutPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -46,7 +46,7 @@ export class LinearLayoutPage extends React.Component {
 
     renderSampleComponents() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
 
                 <Panel title="Horizontal Orientation" expanded collapsible borderless>
                     <LinearLayout orientation={Orientation.HORIZONTAL} nofill>
@@ -132,7 +132,7 @@ export class LinearLayoutPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Documentation" icon="fa fa-book">
 
@@ -155,7 +155,7 @@ export class LinearLayoutPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>Linear Layout</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { ViewportSensor } from 'norseu/sensors'`}
                     </SyntaxHighlighter>

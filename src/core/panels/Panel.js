@@ -162,7 +162,7 @@ export class Panel extends BaseComponent {
 			return (
 				<div ref={this.props.headerRef} className="norseu-panel-header">
 					<span className={className} aria-label={this.id + '-header'} style={this.props.headerStyle}>{this.props.title}</span>
-					{this.props.collapsible ? <Button scheme={this.props.scheme} rounded textonly icon={toggleIcon} onClick={this.toggle} className="norseu-panel-toggle-button" /> : ''}
+					{this.props.collapsible ? <Button scheme={this.props.scheme} rounded textOnly icon={toggleIcon} onClick={this.toggle} className="norseu-panel-toggle-button" /> : ''}
 					
 				</div>
 			);

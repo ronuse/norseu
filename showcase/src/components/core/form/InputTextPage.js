@@ -27,7 +27,7 @@ export class InputTextPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -55,7 +55,7 @@ export class InputTextPage extends React.Component {
         const customLeftIcon2 = <img alt="ronuse-react-ui" src="https://avatars3.githubusercontent.com/u/69908664?s=16" style={{borderRadius:"50%"}}/>;
 
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <Panel title="Basic" expanded collapsible borderless>
                     <InputText seamlesslyFocusAttrs={false} name="user-name"/>
                     <br/><br/>
@@ -226,7 +226,7 @@ export class InputTextPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
@@ -248,7 +248,7 @@ export class InputTextPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>InputText</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { InputText } from 'norseu/core/form''`}
                     </SyntaxHighlighter>

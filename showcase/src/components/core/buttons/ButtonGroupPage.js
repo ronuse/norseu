@@ -21,7 +21,7 @@ export class ButtonGroupPage extends React.Component {
 
     renderInteractiveEditor() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <h3>Component Generator</h3>
                 <TabPane activeTabIndex={0}>
                     <TabPanel title="Designer" icon="fa fa-eye">
@@ -44,7 +44,7 @@ export class ButtonGroupPage extends React.Component {
 
     renderSampleComponents() {
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <Panel title="Horizontal" expanded collapsible borderless>
                     <h5>Basic</h5>
                     <ButtonGroup>
@@ -131,7 +131,7 @@ export class ButtonGroupPage extends React.Component {
         }
         
         return (
-            <Panel className="norseu-padding-left-right-20px">
+            <Panel className="norseu-p-left-right-20px">
                 <TabPane activeTabIndex={0}>
                     <TabPanel scheme={Scheme.INFO} title="Documentation" icon="fa fa-book">
                         <h2>Properties</h2>
@@ -153,7 +153,7 @@ export class ButtonGroupPage extends React.Component {
             <div className="norseu-showcase-component-page">
                 <h1>ButtonGroup</h1>
 
-                <Panel className="norseu-padding-left-right-20px">
+                <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
                         {`import { ButtonGroup } from 'norseu/buttons/ButtonGroup'`}
                     </SyntaxHighlighter>
