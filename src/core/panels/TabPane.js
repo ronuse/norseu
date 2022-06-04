@@ -72,6 +72,8 @@ export class TabPane extends Component {
 		scheme: null,
 		style: null,
 		className: null,
+		navigatorStyle: null,
+		navigatorClassName: null,
 		safely: null,
 		alignNavigator: Alignment.TOP,
 		activeTabIndex: 0,
@@ -84,6 +86,8 @@ export class TabPane extends Component {
 		scheme: PropTypes.string,
 		style: PropTypes.object,
 		className: PropTypes.string,
+		navigatorStyle: PropTypes.object,
+		navigatorClassName: PropTypes.string,
 		safely: PropTypes.bool,
 		alignNavigator: PropTypes.string,
 		activeTabIndex: PropTypes.number,
@@ -183,11 +187,12 @@ export class TabPane extends Component {
 			'norseu-display-flex-justify-center':  BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.CENTER, Alignment.TOP_CENTER, Alignment.BOTTOM_CENTER]),
 			'norseu-display-flex-justify-flex-end':  BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.TOP_RIGHT, Alignment.BOTTOM_RIGHT])
 		});
-		let leftRightClassName = BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT]) ? 'norseu-tabpane-navigator-width-max-content' : '';
+		let leftRightClassName = classNames(BoolUtils.equalsAny(this.props.alignNavigator, [Alignment.LEFT, Alignment.RIGHT]) ? 'norseu-tabpane-navigator-width-max-content' : '',
+			this.props.navigatorClassName);
 
 		return (
-			<div className={className} borderless>
-				<div className={leftRightClassName}>{headers}</div>
+			<div className={className}>
+				<div className={leftRightClassName} style={this.props.navigatorStyle}>{headers}</div>
 			</div>
 		)
 	}

@@ -97,7 +97,7 @@ export class ResizeSensor extends Component {
 	}
 
 	render() {
-		let childrenProps = ObjUtils.clone(this.props, ["children", "minDimension", "minDimension", "onDimensionChange"]);
+		let childrenProps = ObjUtils.clone(this.props, [ ...Object.keys(ResizeSensor.defaultProps), "children" ]);
 		const children = !this.state.renderChildren ? null : React.Children.map(this.props.children, child => {
 			if (React.isValidElement(child)) {
 				return React.cloneElement(child, {...child.props, ...childrenProps});

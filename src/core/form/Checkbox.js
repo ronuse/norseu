@@ -74,7 +74,7 @@ class CheckboxComponent extends BaseComponent {
 		checkStates: PropTypes.array,
 		checked: PropTypes.bool,
 		checkedIndex: PropTypes.number,
-		style: PropTypes.string,
+		style: PropTypes.object,
 		className: PropTypes.string,
 		disabled: PropTypes.bool,
 		readOnly: PropTypes.bool,
@@ -106,11 +106,12 @@ class CheckboxComponent extends BaseComponent {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		
-	}
-
-	componentWillUnmount() {
-
+		if (this.state.selfManaged) {
+			super.componentWillReceiveProps(nextProps);
+			return;
+		}
+		let _nextProps = ObjUtils.clone(nextProps, [ "checkedIndex" ]);
+		this.setState(_nextProps);
 	}
 
 	onChange(event, checkedIndex) {
@@ -120,6 +121,7 @@ class CheckboxComponent extends BaseComponent {
 			checkedIndex = 0;
 		}
 		if (!this.state.selfManaged) {
+			this.state.checkedIndex = checkedIndex;
 			this.setState({
 				checkedIndex: checkedIndex
 			});
@@ -169,6 +171,7 @@ class CheckboxComponent extends BaseComponent {
 			'norseu-m-bottom-10px': BoolUtils.equalsAny(this.state.align, [Alignment.TOP, Alignment.TOP_LEFT, Alignment.TOP_CENTER, Alignment.TOP_RIGHT]),
 			'norseu-m-top-10px': BoolUtils.equalsAny(this.state.align, [Alignment.BOTTOM, Alignment.BOTTOM_LEFT, Alignment.BOTTOM_CENTER, Alignment.BOTTOM_RIGHT]),
 			'norseu-align-self-center': this.state.align === Alignment.TOP_CENTER || this.state.align === Alignment.BOTTOM_CENTER,
+			'norseu-align-self-flex-start': this.state.align === Alignment.TOP_LEFT || this.state.align === Alignment.BOTTOM_LEFT,
 			'norseu-align-self-flex-end': this.state.align === Alignment.TOP_RIGHT || this.state.align === Alignment.BOTTOM_RIGHT
 		});
 		let icon = checked.icon ? <i className={checked.icon}/> : null;
@@ -210,9 +213,6 @@ class CheckboxComponent extends BaseComponent {
 	getCheckStatesIndex() {
 		const checkStatesSize = this.state.checkStates.length;
 		let checkedIndex = this.state.checkedIndex;
-		if (this.state.checkedIndex !== undefined) {
-			checkedIndex = this.state.checkedIndex;
-		}
 		checkedIndex = checkedIndex == -1 ? (this.state.checked ? 1 : 0) : checkedIndex;
 		if (checkedIndex >= checkStatesSize) {
 			checkedIndex = 0;
@@ -222,6 +222,7 @@ class CheckboxComponent extends BaseComponent {
 
 	render() {
 		let checkedIndex = this.getCheckStatesIndex();
+		if (!this.state.checkedIndex) this.state.checkedIndex = checkedIndex;
 		let checked = this.state.checkStates[checkedIndex] ;
 		let className = classNames({
 			'norseu-checkbox': !this.state.nostyle,

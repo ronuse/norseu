@@ -62,7 +62,7 @@ export const PopoverArrow = {
 		dismissable: PropTypes.bool,
 		className: PropTypes.string,
 		style: PropTypes.object,
-		pointingArrowClassName: null,
+		pointingArrowClassName: PropTypes.string,
 		transitionOptions: PropTypes.object,
 		onOpenFocusRef: PropTypes.object,
 		onCloseFocusRef: PropTypes.object,

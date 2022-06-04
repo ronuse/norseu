@@ -1,10 +1,9 @@
 
 import { Button } from "norseu/core/buttons";
 import { Accordion, AccordionPanel, Panel } from "norseu/core/panels";
-import { Alignment, Elevation, Scheme } from "norseu/core/variables";
+import { Alignment, Scheme } from "norseu/core/variables";
 import React from "react"
-import { StyleCreator } from "norseu/utils";
-import { buildComponentPage, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers";
+import Helpers from "../../../utils/Helpers";
 
 export class ButtonPage extends React.Component {
 
@@ -14,33 +13,43 @@ export class ButtonPage extends React.Component {
     ];
     properties = [
         { name: "text", type: "string", default: "", description: "The label to show in the button" },
-        { name: "alignText", type: <a href='/p/components/core/variables/alignment'>Alignment</a>, default: <a href='/p/components/core/variables/alignment#center'>Alignment.CENTER</a>, description: "The label alignment if text specified" },
+        { name: "alignText", type: <a href='#/p/components/core/variables/alignment'>Alignment</a>, default: <a href='#/p/components/core/variables/alignment#center'>Alignment.CENTER</a>, description: "The label alignment if text specified" },
         { name: "icon", type: "string|element", default: "", description: "Button icon, can be Font Awesome icon class name or valid react element" },
-        { name: "alignIcon", type: <a href='/p/components/core/variables/alignment'>Alignment</a>, default: <a href='/p/components/core/variables/alignment#left'>Alignment.LEFT</a>, description: "The button icon position" },
+        { name: "alignIcon", type: <a href='#/p/components/core/variables/alignment'>Alignment</a>, default: <a href='#/p/components/core/variables/alignment#left'>Alignment.LEFT</a>, description: "The button icon position" },
         { name: "rightIcon", type: "string|element", default: "", description: "Button right icon, can be Font Awesome icon class name or valid react element" },
         //{ name: "tooltip", type: "string", default: "", description: "The label to show in the button" },
         //{ name: "tooltipProps", type: "object", default: "{}", description: "The label to show in the button" },
-        { name: "scheme", type: <a href='/p/components/core/variables/scheme'>Scheme</a>, default: "null", description: "Set the button appearance according to scheme" },
+        { name: "scheme", type: <a href='#/p/components/core/variables/scheme'>Scheme</a>, default: "null", description: "Set the button appearance according to scheme" },
         { name: "link", type: "string", default: "null", description: "If set to true the element will render as a link (a)" },
-        { name: "raised", type: "boolean", default: "false", description: "Add shadow to the button for raise effect" },
-        { name: "rounded", type: "boolean", default: "false", description: "Make the button perfectly round" },
-        { name: "borderless", type: "boolean", default: "false", description: "Remove the button border" },
-        { name: "textOnly", type: "boolean", default: "false", description: "Remove the button border and the fill effect" },
-        { name: "outlined", type: "boolean", default: "false", description: "Remove the fill effect" },
-        { name: "fill", type: "boolean", default: "false", description: "Make the button width match the parent width" },
-        { name: "nostyle", type: "boolean", default: "false", description: "Only render the button element without any css/style property" },
-        { name: "fillIcon", type: "boolean", default: "false", description: "Make the button size match the specified icon" },
-        { name: "fillOnHover", type: "boolean", default: "false", description: "if the button is outlined, fill the button background color on cursor hover" },
+        { name: "raised", type: "boolean", default: false, description: "Add shadow to the button for raise effect" },
+        { name: "rounded", type: "boolean", default: false, description: "Make the button perfectly round" },
+        { name: "borderless", type: "boolean", default: false, description: "Remove the button border" },
+        { name: "textOnly", type: "boolean", default: false, description: "Remove the button border and the fill effect" },
+        { name: "outlined", type: "boolean", default: false, description: "Remove the fill effect" },
+        { name: "disabled", type: "boolean", default: false, description: "Disable the element, prevents it from receiving pointer event" },
+        { name: "fill", type: "boolean", default: false, description: "Make the button width match the parent width" },
+        { name: "nostyle", type: "boolean", default: false, description: "Only render the element excluding any css/style property" },
+        { name: "fillIcon", type: "boolean", default: false, description: "Make the button size match the specified icon" },
+        { name: "fillOnHover", type: "boolean", default: false, description: "if the button is outlined, fill the button background color on cursor hover" },
     ];
+    refMap = [
+        { name: "value()", type: "function", description: "Returns the value of the component internal HTML element" },
+        { name: "setValue(value)", type: "function", description: "Set the value of the component internal HTML element" },
+        { name: "focus()", type: "function", description: "Send focus to the component" },
+        { name: "getInternalElement()", type: "function", description: "Get the react reference to the internal element" },
+        { name: "getState()", type: "function", description: "Get the current state of the component" },
+        { name: "setState()", type: "function", description: "Change the component state" },
+    ]
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.willUnmount = false;
         this.previewPanels = React.createRef();
         this.previewPanels.current = [];
     }
 
-    componentDidMount() {
-        console.log("COMPONENT", this.previewPanels, this.accOne)
+    componentWillUnmount() {
+        this.willUnmount = true;
     }
 
     buildDocumentation() {
@@ -52,8 +61,9 @@ export class ButtonPage extends React.Component {
             <React.Fragment>
                 <Panel borderless style={{ marginTop: 40 }}>
                     <span className="norseu-showcase-component-page-preview-title">Basic</span>
-                    <Accordion borderless multiple activeIndex={[0]} ref={this.accOne}>
+                    <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <p className="documentation-p"></p>
                             <Button text="Click Me" />
                             <Button icon="fa fa-user-circle" text="View Profile" />
                             <Button icon={customIcon1} text="Custom Icon" />
@@ -66,10 +76,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[0].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[57, 65]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[67, 75]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[0] = ref, [[57, 65]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[0] = ref, [[67, 75]])}
                     </Accordion>
                 </Panel>
 
@@ -77,7 +87,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Schemes</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p">
+                            <p className="documentation-p">
                                 The appearance of a button can be customized according to a scheme. The schem property can be null or any of 
                                 the supoorted <a href="/p/components/core/variables/scheme">scheme</a>. 
                                 If the available scheme does not satisfy your need you can create a scheme on the <a href="/p/theming/schemedesigner">Scheme Designer</a>.
@@ -95,10 +105,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[1].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[85, 94]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[95, 104]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[1] = ref, [[85, 94]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[1] = ref, [[95, 104]])}
                     </Accordion>
                 </Panel>
 
@@ -106,7 +116,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Disabled</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p">
+                            <p className="documentation-p">
                                 Button can be put in a disabled state, which will prevent it from receiving any pointer-events.
                             </p>
                             <Button scheme={Scheme.SKELETON} text="Skeleton" disabled/>
@@ -122,10 +132,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[2].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[112, 121]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[122, 131]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[2] = ref, [[112, 121]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[2] = ref, [[122, 131]])}
                     </Accordion>
                 </Panel>
 
@@ -133,7 +143,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Fill Button With Icon Alignments</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button text="Click Me" alignText={Alignment.CENTER} fill/>
                             <Button scheme={Scheme.SKELETON} fill/>
                             <Button scheme={Scheme.STATELESS} alignText={Alignment.LEFT} rightIcon="fa fa-exclamation" text="Stateless" fill/>
@@ -148,10 +158,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[3].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[137, 147]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[147, 157]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[3] = ref, [[137, 147]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[3] = ref, [[147, 157]])}
                     </Accordion>
                 </Panel>
 
@@ -159,7 +169,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Rounded Buttons</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button text="Click Me" rounded/>
                             <Button scheme={Scheme.SKELETON} rounded/>
                             <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" rounded/>
@@ -174,10 +184,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[4].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[163, 173]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[173, 183]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[4] = ref, [[163, 173]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[4] = ref, [[173, 183]])}
                     </Accordion>
                 </Panel>
 
@@ -185,7 +195,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Raised Buttons</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button text="Click Me" raised/>
                             <Button scheme={Scheme.SKELETON} raised/>
                             <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" raised/>
@@ -200,10 +210,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[5].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[189, 199]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[199, 209]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[5] = ref, [[189, 199]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[5] = ref, [[199, 209]])}
                     </Accordion>
                 </Panel>
 
@@ -211,7 +221,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Outlined Buttons</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button text="Click Me" outlined/>
                             <Button scheme={Scheme.SKELETON} outlined/>
                             <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" outlined/>
@@ -226,10 +236,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[6].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[215, 225]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[225, 235]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[6] = ref, [[215, 225]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[6] = ref, [[225, 235]])}
                     </Accordion>
                 </Panel>
 
@@ -237,7 +247,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Outlined With Over Filled Buttons</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button text="Click Me" outlined fillOnHover/>
                             <Button scheme={Scheme.SKELETON} outlined fillOnHover/>
                             <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" outlined fillOnHover/>
@@ -252,10 +262,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[7].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[241, 251]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[251, 261]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[7] = ref, [[241, 251]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[7] = ref, [[251, 261]])}
                     </Accordion>
                 </Panel>
 
@@ -263,7 +273,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Text Only</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button text="Click Me" textOnly/>
                             <Button scheme={Scheme.SKELETON} textOnly/>
                             <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textOnly/>
@@ -278,10 +288,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[8].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[267, 277]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[277, 287]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[8] = ref, [[267, 277]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[8] = ref, [[277, 287]])}
                     </Accordion>
                 </Panel>
 
@@ -289,7 +299,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Raised Text Only Buttons</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button text="Click Me" textOnly raised/>
                             <Button scheme={Scheme.SKELETON} textOnly raised/>
                             <Button scheme={Scheme.STATELESS} icon="fa fa-exclamation" text="Stateless" textOnly raised/>
@@ -304,10 +314,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[9].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[293, 303]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[303, 313]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[9] = ref, [[293, 303]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[9] = ref, [[303, 313]])}
                     </Accordion>
                 </Panel>
 
@@ -315,7 +325,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Icon Button</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button icon="fa fa-user-circle" />
                             <Button scheme={Scheme.SKELETON} icon="fa fa-user" />
                             <Button scheme={Scheme.PRIMARY} icon="fa fa-circle"/>
@@ -329,10 +339,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[10].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[319, 328]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[329, 338]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[10] = ref, [[319, 328]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[10] = ref, [[329, 338]])}
                     </Accordion>
                 </Panel>
 
@@ -340,7 +350,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Round Icon Button</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button icon="fa fa-user-circle" rounded/>
                             <Button icon={customIcon3} style={{width:"37px",height:"35px"}} fillIcon rounded/>
                             <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded/>
@@ -355,10 +365,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[11].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[344, 354]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[354, 364]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[11] = ref, [[344, 354]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[11] = ref, [[354, 364]])}
                     </Accordion>
                 </Panel>
 
@@ -366,7 +376,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Round and Outlined Icon Button</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button icon="fa fa-user-circle" rounded outlined/>
                             <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded outlined/>
                             <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded outlined/>
@@ -380,10 +390,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[12].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[370, 379]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[380, 389]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[12] = ref, [[370, 379]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[12] = ref, [[380, 389]])}
                     </Accordion>
                 </Panel>
 
@@ -391,7 +401,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Round Text Only Icon Button</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button icon="fa fa-user-circle" rounded textOnly/>
                             <Button scheme={Scheme.SKELETON} icon="fa fa-user" rounded textOnly/>
                             <Button scheme={Scheme.PRIMARY} icon="fa fa-circle" rounded textOnly/>
@@ -405,10 +415,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[13].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[395, 404]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[405, 414]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[13] = ref, [[395, 404]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[13] = ref, [[405, 414]])}
                     </Accordion>
                 </Panel>
 
@@ -416,7 +426,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Social Icon Buttons</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button scheme={Scheme.WARNING} icon={customIcon2}/>
                             <Button scheme={Scheme.PRIMARY} icon="fab fa-facebook-square"/>
                             <Button scheme={Scheme.SECONDARY} icon="fab fa-twitter"/>
@@ -459,10 +469,10 @@ export class ButtonPage extends React.Component {
                             
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[14].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[420, 458]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[430, 468]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[14] = ref, [[420, 458]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[14] = ref, [[430, 468]])}
                     </Accordion>
                 </Panel>
 
@@ -470,7 +480,7 @@ export class ButtonPage extends React.Component {
                     <span className="norseu-showcase-component-page-preview-title">Template</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <p class="documentation-p"></p>
+                            <p className="documentation-p"></p>
                             <Button scheme={Scheme.PRIMARY} style={{ padding: 0, border: "none" }}>
                                 <i className="fab fa-twitter" style={{ padding: 10, marginRight: 20, backgroundColor: "#2a7cd1" }}/>
                                 <span style={{ marginRight: 20 }}>Twitter</span>
@@ -537,10 +547,10 @@ export class ButtonPage extends React.Component {
 
                             <div className="norseu-showcase-component-page-preview-buttons">
                                 <i className="fa fa-code" onClick={(e) => this.previewPanels.current[15].toggle()}></i>
-                                <i className="fa fa-copy" onClick={(e) => {copyToClipboard(this.state.pageSource, [[474, 536]])}}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[484, 546]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[15] = ref, [[474, 536]])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[15] = ref, [[484, 546]])}
                     </Accordion>
                 </Panel>
             </React.Fragment>
@@ -554,11 +564,12 @@ export class ButtonPage extends React.Component {
             baseColor: "#000000"
         }));
         console.log("NORSEU.LOG", StyleCreator.transSchemeColorCss("#000000", ".3"))*/
-        return buildComponentPage(this, {
+        return Helpers.buildComponentPage(this, {
             title: "Button",
             import_statement: "import { Button } from 'norseu/core/buttons'",
             properties: this.properties,
             css_map: this.cssMap,
+            ref_map: this.refMap,
             documentation: this.buildDocumentation(),
             page_source: this.state.pageSource,
             show_dialog: this.state.showSourceDialog,

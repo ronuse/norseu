@@ -151,23 +151,23 @@ export class FileInputComponent extends BaseComponent {
 				(scheme ? `${scheme} ${scheme}-border-2px ${scheme}-border-hover ${scheme}-border-2px-focus ${scheme}-border-3px-focus-box-shadow` : null));
 			if (this.state.previewType === FilePreviewType.IMAGE) {
 				nodeClassName += ` norseu-fileinput-preview-type-image`;
-				urls.forEach(url => previewItems.push(<img className={nodeClassName} style={this.state.previewItemStyle} alt={url} src={url}/>));
+				urls.forEach(url => previewItems.push(<img key={url} className={nodeClassName} style={this.state.previewItemStyle} alt={url} src={url}/>));
 			} else if (this.state.previewType === FilePreviewType.VIDEO) {
 				nodeClassName += ` norseu-fileinput-preview-type-video`;
 				urls.forEach(url => {
-					previewItems.push(<video className={nodeClassName} style={this.state.previewItemStyle} controls>
+					previewItems.push(<video key={url} className={nodeClassName}style={this.state.previewItemStyle} controls>
 							<source src={url}/> Your browser does not support the video tag.
 						</video>);
 				});
 			} else if (this.state.previewType === FilePreviewType.AUDIO) {
 				nodeClassName += ` norseu-fileinput-preview-type-audio`;
-				urls.forEach(url => previewItems.push(<audio className={nodeClassName} style={this.state.previewItemStyle} controls>
+				urls.forEach(url => previewItems.push(<audio key={url} className={nodeClassName} style={this.state.previewItemStyle} controls>
 							<source src={url}/> Your browser does not support the video tag.
 						</audio>)
 				);
 			} else if (this.state.previewType === FilePreviewType.PDF || this.state.previewType === FilePreviewType.TEXT) {
 				nodeClassName += ` norseu-fileinput-preview-type-pdf`;
-				urls.forEach(url => previewItems.push(<iframe className={nodeClassName} style={this.state.previewItemStyle} src={url} frameborder="0" />));
+				urls.forEach(url => previewItems.push(<iframe key={url} className={nodeClassName} style={this.state.previewItemStyle} src={url} frameBorder="0" />));
 			} else if (this.state.previewType === FilePreviewType.BINARY || this.state.previewType === FilePreviewType.CUSTOM) {
 				this.previewRef.style.flexDirection = "column";
 				nodeClassName += ` norseu-fileinput-preview-type-binary`;
@@ -175,7 +175,7 @@ export class FileInputComponent extends BaseComponent {
 					if (this.state.previewType === FilePreviewType.BINARY) {
 						const name = (names) ? names[index] : "Unknown File " + index;
 						const size =  (sizes) ? ObjUtils.humanFileSize(sizes[index]) : "0.00 kb";
-						previewItems.push(<span className={nodeClassName} style={this.state.previewItemStyle}><i className="fa fa-file"></i> {name} ({size})</span>);
+						previewItems.push(<span key={url} className={nodeClassName} style={this.state.previewItemStyle}><i className="fa fa-file"></i> {name} ({size})</span>);
 					} else if (this.state.previewType === FilePreviewType.CUSTOM && this.state.customItemTemplate) {
 						previewItems.push(this.state.customItemTemplate(url, (names ? names[index] : null), (sizes ? sizes[index] : null), (types ? types[index] : null)));
 					}

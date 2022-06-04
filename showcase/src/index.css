@@ -392,6 +392,20 @@ td, th {
 	background-color: rgba(2, 102, 116, 0.2);
 }
 
+.sppai {
+	flex-wrap: wrap;
+}
+
+.sppai > * {
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.sppai > div > span {
+	margin-bottom: 10px;
+}
+
 /* norseu custom styles */
 
 .norseu-panel {
@@ -454,20 +468,6 @@ td, th {
 	display: flex;
 	background-color: green;
 	flex-direction: row;
-}
-
-.sppai {
-	flex-wrap: wrap;
-}
-
-.sppai > * {
-	margin: 20px;
-	display: flex;
-	flex-direction: column;
-}
-
-.sppai > div > span {
-	margin-bottom: 10px;
 }
 
 .max-height-350px {

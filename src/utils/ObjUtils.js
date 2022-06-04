@@ -2,6 +2,13 @@
 
 export class ObjUtils {
 
+	static setValues(main, copyFrom, fields) {
+		fields.forEach(field => {
+			main[field] = copyFrom[field];
+		});
+		return main;
+	}
+
 	static copyFields(original, supplement) {
 		if (!original || !supplement) {
 			return {};
@@ -44,12 +51,24 @@ export class ObjUtils {
 		return oldValue;
 	}
 
-	static clone(obj, keys) {
+	static clone(obj, excludes) {
 		var clone = {};
 
 		if (!obj) { return clone; }
 		Object.keys(obj).map((key) => {
-			if (!keys || keys.indexOf(key) == -1) {
+			if (!excludes || excludes.indexOf(key) == -1) {
+				clone[key] = obj[key];
+			}
+		});
+		return clone;
+	}
+
+	static cloneOnly(obj, selection) {
+		var clone = {};
+
+		if (!obj || !selection) { return clone; }
+		Object.keys(obj).map((key) => {
+			if (selection.indexOf(key) > -1) {
 				clone[key] = obj[key];
 			}
 		});
@@ -68,8 +87,9 @@ export class ObjUtils {
 		return clone;
 	}
 
-	static extractEventProps(obj) {
-		return this.conditionalClone(obj, (key) => key.startsWith("on") && key[2] != undefined && key[2] == key[2].toUpperCase());
+	static extractEventProps(obj, excludes) {
+		excludes = excludes || [];
+		return this.conditionalClone(obj, (key) => excludes.indexOf(key) === -1 && key.startsWith("on") && key[2] != undefined && key[2] == key[2].toUpperCase());
 	}
 
 	static typeOf(obj) {

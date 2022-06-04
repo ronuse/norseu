@@ -210,16 +210,17 @@ export class DOMUtils {
 		if (targetOffset.top + targetOuterHeight + elementOuterHeight > viewport.height) {
 			top = targetOffset.top + windowScrollTop - elementOuterHeight;
 			if(top < 0) top = windowScrollTop;
-			element.style.transformOrigin = 'bottom';
+			element.style.transformOrigin = 'bottom'; top -= 3;
 		} else {
 			top = targetOuterHeight + targetOffset.top + windowScrollTop;
-			element.style.transformOrigin = 'top';
+			element.style.transformOrigin = 'top'; top += 3;
 		}
 		if (targetOffset.left + targetOuterWidth + elementOuterWidth > viewport.width) {
 			//left = targetOffset.left;
 			left = Math.max(0, targetOffset.left + windowScrollLeft + targetOuterWidth - elementOuterWidth);
+			left -= 4;
 		} else {
-			left = targetOffset.left + windowScrollLeft;
+			left = targetOffset.left + windowScrollLeft; left += 1;
 		}
 		element.style.top = top + 'px';
 		element.style.left = left + 'px';

@@ -8,7 +8,7 @@ import { Scheme } from "norseu/core/variables/Stylers";
 import { Alignment, Orientation, Elevation, InputFilters } from "norseu/core/variables";
 import { LinearLayout } from "norseu/layouts";
 import { InputText } from "norseu/core/form/InputText";
-import { getTextBetweenLine, copyToClipboard } from "../../../utils/helpers"
+import Helpers from "../../../utils/Helpers"
 
 export class InputFiltersPage extends React.Component {
 
@@ -26,7 +26,7 @@ export class InputFiltersPage extends React.Component {
     }
 
     getSourcesWithinLine(from, to) {
-        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
+        const sourceSlice = Helpers.getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
@@ -38,7 +38,7 @@ export class InputFiltersPage extends React.Component {
                 <div className="accordion-controlled-header-buttons">
                     <div className="right">
                         <i className="fa fa-code" id='ifp-view-code'></i>
-                        <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                        <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                     </div>
                 </div>
                 <Accordion borderless multiple activeIndex={[0]}>

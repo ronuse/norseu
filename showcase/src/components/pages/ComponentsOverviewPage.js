@@ -10,22 +10,23 @@ export class ComponentsOverviewPage extends React.Component {
 	static Components = {
 		"Core": {
 			"Buttons": [
-				{ label: "Button", href: "/p/components/core/buttons/button" },
-				{ label: "ButtonGroup", href: "/p/components/core/buttons/buttongroup" }
+				{ label: "Button", href: "#/p/components/core/buttons/button" },
+				{ label: "ButtonGroup", href: "#/p/components/core/buttons/buttongroup" },
 			],
 			"Form": [
-				{ label: "Checkbox", href: "/components/form/checkbox" },
-				{ label: "Dropdown", href: "/components/buttons/dropdown" }
+				{ label: "Checkbox", href: "#/p/components/core/form/checkbox" },
+				{ label: "Dropdown", href: "#/p/components/core/form/dropdown" },
+				{ label: "FileInput", href: "#/p/components/core/form/fileinput" },
 			]
 		},
 		"Utilities": {
 			"Sensors": [
-				{ label: "ResizeSensor", href: "/components/sensors/resizesensor" },
-				{ label: "ViewportSensor", href: "/components/buttons/viewportsensor" }
+				{ label: "ResizeSensor", href: "#/components/sensors/resizesensor" },
+				{ label: "ViewportSensor", href: "#/components/sensors/viewportsensor" },
 			],
 			"Functions": [
-				{ label: "buildFormData", href: "/components/functions/buildformdata" },
-				{ label: "getFileDetails", href: "/components/functions/getfiledetails" }
+				{ label: "buildFormData", href: "#/components/functions/buildformdata" },
+				{ label: "getFileDetails", href: "#/components/functions/getfiledetails" },
 			]
 		}
 	};
@@ -40,14 +41,14 @@ export class ComponentsOverviewPage extends React.Component {
 				<div className="components-overview">
 					{Object.keys(ComponentsOverviewPage.Components).map(group => {
 						return (
-							<div className="sections">
+							<div className="sections" key={group}>
 								<span className="title">{group}</span>
 								<div className="list">
 									{Object.keys(ComponentsOverviewPage.Components[group]).map(section => {
 										return (
-											<div className="section">
+											<div className="section" key={section}>
 												<span className="title">{section}</span>
-												{ComponentsOverviewPage.Components[group][section].map(item => <a href={item.href}>{item.label}</a>)}
+												{ComponentsOverviewPage.Components[group][section].map(item => <a key={item.label} href={item.href}>{item.label}</a>)}
 											</div>
 										)
 									})}

@@ -8,7 +8,7 @@ import { Scheme } from "norseu/core/variables/Stylers";
 import { Alignment, Orientation, Elevation, InputFilters } from "norseu/core/variables";
 import { LinearLayout } from "norseu/layouts";
 import { PasswordInput, InputText } from "norseu/core/form";
-import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
+import Helpers from "../../../utils/Helpers"
 
 export class PasswordInputPage extends React.Component {
 
@@ -33,7 +33,7 @@ export class PasswordInputPage extends React.Component {
     }
 
     getSourcesWithinLine(from, to) {
-        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
+        const sourceSlice = Helpers.getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
@@ -47,7 +47,7 @@ export class PasswordInputPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Basic</span>
                     </div>
@@ -57,7 +57,7 @@ export class PasswordInputPage extends React.Component {
                                 <PasswordInput scheme={Scheme.PRIMARY}/>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
+                        {Helpers.getSourceInEditorR(source1, this.previewPanel1)}
                     </Accordion>
                 </Panel>
                 
@@ -65,7 +65,7 @@ export class PasswordInputPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source2)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source2)}}></i>
                         </div>
                         <span className="left">With toggle</span>
                     </div>
@@ -83,7 +83,7 @@ export class PasswordInputPage extends React.Component {
                                 }}/>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source2, this.previewPanel2)}
+                        {Helpers.getSourceInEditorR(source2, this.previewPanel2)}
                     </Accordion>
                 </Panel>
             </React.Fragment>

@@ -205,6 +205,10 @@
 	align-self: center;
 }
 
+.norseu-align-self-flex-start {
+	align-self: flex-start;
+}
+
 .norseu-align-self-flex-end {
 	align-self: flex-end;
 }

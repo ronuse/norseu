@@ -9,7 +9,7 @@ import { Position, Orientation, Elevation, InputFilters } from "norseu/core/vari
 import { LinearLayout } from "norseu/layouts";
 import { PasswordInput, InputText, Checkbox } from "norseu/core/form";
 import { Popover } from "norseu/core/overlay";
-import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
+import Helpers from "../../../utils/Helpers"
 
 export class PopoverPage extends React.Component {
 
@@ -43,7 +43,7 @@ export class PopoverPage extends React.Component {
     }
 
     getSourcesWithinLine(from, to) {
-        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
+        const sourceSlice = Helpers.getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
@@ -104,7 +104,7 @@ export class PopoverPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Basic</span>
                     </div>
@@ -119,7 +119,7 @@ export class PopoverPage extends React.Component {
                                 </Popover>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
+                        {Helpers.getSourceInEditorR(source1, this.previewPanel1)}
                     </Accordion>
                 </Panel>
                 
@@ -127,7 +127,7 @@ export class PopoverPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Dismisable</span>
                     </div>
@@ -146,7 +146,7 @@ export class PopoverPage extends React.Component {
                                 </Popover>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source2, this.previewPanel2)}
+                        {Helpers.getSourceInEditorR(source2, this.previewPanel2)}
                     </Accordion>
                 </Panel>
                 
@@ -154,7 +154,7 @@ export class PopoverPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Focus and trapping</span>
                     </div>
@@ -187,7 +187,7 @@ export class PopoverPage extends React.Component {
                                 </Popover>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source2, this.previewPanel2)}
+                        {Helpers.getSourceInEditorR(source2, this.previewPanel2)}
                     </Accordion>
                 </Panel>
             </React.Fragment>

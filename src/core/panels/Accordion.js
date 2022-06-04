@@ -210,7 +210,7 @@ class AccordionComponent extends Component {
 		});
 		return (
 			<CSSTransition classNames="transition-dropdown" timeout={{enter: 500, exit: 450}} in={isToggled} unmountOnExit>
-				<Panel safely={this.props.safely} scheme={scheme} className={className} style={panel.props.contentStyle} borderless>
+				<Panel safely={this.props.safely} scheme={scheme} contentClassName={className} contentStyle={panel.props.contentStyle} borderless>
 					{panel.props.children}
 				</Panel>
 			</CSSTransition>

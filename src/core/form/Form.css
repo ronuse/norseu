@@ -149,9 +149,10 @@
 	width: 16px;
 	height: 16px;
 	border: 2px solid #d6d6d6;
-	border-radius: 3px;
+	border-radius: 5px;
 	transition: 0.5s;
 	outline:none;
+	padding: 2px;
 }
 
 .norseu-checkbox-box:hover {

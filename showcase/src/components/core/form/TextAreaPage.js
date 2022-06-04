@@ -8,7 +8,7 @@ import { Scheme } from "norseu/core/variables/Stylers";
 import { Alignment, Orientation, Elevation } from "norseu/core/variables";
 import { LinearLayout } from "norseu/layouts";
 import { InputText, TextArea } from "norseu/core/form";
-import { getTextBetweenLine, copyToClipboard } from "../../../utils/helpers"
+import Helpers from "../../../utils/Helpers"
 
 export class TextAreaPage extends React.Component {
 
@@ -29,7 +29,7 @@ export class TextAreaPage extends React.Component {
     }
 
     getSourcesWithinLine(from, to) {
-        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
+        const sourceSlice = Helpers.getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
@@ -42,7 +42,7 @@ export class TextAreaPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" id='ifp-view-code'></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Basic</span>
                     </div>
@@ -70,7 +70,7 @@ export class TextAreaPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" id='ifp-view-code'></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Resize Orientation, Label and Help Label</span>
                     </div>
@@ -128,7 +128,7 @@ export class TextAreaPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" id='ifp-view-code'></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Schemes</span>
                     </div>

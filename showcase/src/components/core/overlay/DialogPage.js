@@ -9,7 +9,7 @@ import { Position, Orientation, Elevation, InputFilters } from "norseu/core/vari
 import { LinearLayout } from "norseu/layouts";
 import { PasswordInput, InputText, Checkbox } from "norseu/core/form";
 import { Dialog } from "norseu/core/overlay";
-import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
+import Helpers from "../../../utils/Helpers"
 
 export class DialogPage extends React.Component {
 
@@ -41,7 +41,7 @@ export class DialogPage extends React.Component {
     }
 
     getSourcesWithinLine(from, to) {
-        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
+        const sourceSlice = Helpers.getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
@@ -88,7 +88,7 @@ export class DialogPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Basic</span>
                     </div>
@@ -107,7 +107,7 @@ export class DialogPage extends React.Component {
                                 </Dialog>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
+                        {Helpers.getSourceInEditorR(source1, this.previewPanel1)}
                     </Accordion>
                 </Panel>
                 
@@ -115,7 +115,7 @@ export class DialogPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel2.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Other Properties</span>
                     </div>
@@ -139,7 +139,7 @@ export class DialogPage extends React.Component {
                                 </Dialog>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source2, this.previewPanel2)}
+                        {Helpers.getSourceInEditorR(source2, this.previewPanel2)}
                     </Accordion>
                 </Panel>
 
@@ -147,7 +147,7 @@ export class DialogPage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel3.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Position TODO change select below to ronuse select Component</span>
                     </div>
@@ -174,7 +174,7 @@ export class DialogPage extends React.Component {
                                 </Dialog>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source3, this.previewPanel3)}
+                        {Helpers.getSourceInEditorR(source3, this.previewPanel3)}
                     </Accordion>
                 </Panel>
             </React.Fragment>

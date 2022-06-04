@@ -83,8 +83,8 @@ export class DropdownComponent extends BaseComponent {
 	constructor(props) {
 		super(props, [ "onDropdownShow", "onDropdownHide" ]);
 		this.state.popoverVisible = false;
-		this.state.inputTextRef = React.createRef(this.state.inputTextRef);
-		this.state.popOverRef = React.createRef(this.state.popOverRef);
+		this.state.inputTextRef = React.createRef(this.state.inputTextRef); // TODO: check this almost makes no sense, has to use prop ref
+		this.state.popOverRef = React.createRef(this.state.popOverRef); // TODO: check this almost makes no sense, has to use prop ref
 		
 		this.onDropdownShow = this.onDropdownShow.bind(this);
 		this.onDropdownHide = this.onDropdownHide.bind(this);
@@ -104,13 +104,17 @@ export class DropdownComponent extends BaseComponent {
 			inputTextRef: () => this.state.inputTextRef,
 			popOverRef: () => { current: this.popover },
 			toggle: this.togglePopover,
-			showDropDown: () => { if (!this.state.popoverVisible) { this.togglePopover(event, true); } },
-			hideDropDown: () => { if (this.state.popoverVisible) { this.togglePopover(event, true); } },
+			showDropDown: (e) => { if (!this.state.popoverVisible) { this.togglePopover(e || event, true); } },
+			hideDropDown: (e) => { if (this.state.popoverVisible) { this.togglePopover(e || event, true); } },
 		});
 	}
 
 	componentWillReceiveProps(nextProps) {
-
+		const _nextProps = ObjUtils.cloneOnly(nextProps, [ 
+			"scheme", "editable", "options", "optionMap", "optionTemplate",
+			"selectable", "matchTargetSize"
+		]);
+		super.componentWillReceiveProps(_nextProps);
 	}
 
 	componentDidUpdate(prevProps) {
@@ -256,7 +260,7 @@ export class DropdownComponent extends BaseComponent {
 					'default-style': !this.state.scheme
 				}, option.className);
 				const optionElement = this.state.optionTemplate ? this.state.optionTemplate(option) : this.buildSingleOption(option);
-				listItems.push(<li aria-label={option.label} role="option" 
+				listItems.push(<li key={index} aria-label={option.label} role="option" 
 					aria-selected={isSelected} className={className} onClick={(e) => {
 						if (!this.state.selectable) return;
 						this.selectOption(e, index, option)

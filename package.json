@@ -1,7 +1,7 @@
 {
-	"name": "norseu",
+	"name": "@ronuse/norseu",
 	"version": "0.0.1",
-	"description": "Configurable React Components by Ronuse",
+	"description": "React UI Components by Ronuse",
 	"watch": {
 		"showcase:run": {
 			"patterns": [

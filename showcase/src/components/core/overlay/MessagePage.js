@@ -9,7 +9,7 @@ import { Position, Orientation, Elevation, InputFilters } from "norseu/core/vari
 import { LinearLayout } from "norseu/layouts";
 import { PasswordInput, InputText, Checkbox } from "norseu/core/form";
 import { Message, showMessage, showMessages } from "norseu/core/overlay";
-import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
+import Helpers from "../../../utils/Helpers"
 
 export class MessagePage extends React.Component {
 
@@ -42,7 +42,7 @@ export class MessagePage extends React.Component {
     }
 
     getSourcesWithinLine(from, to) {
-        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
+        const sourceSlice = Helpers.getTextBetweenLine(this.state.pageSource, from, to, true);
         return sourceSlice;
     }
 
@@ -57,7 +57,7 @@ export class MessagePage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Basic</span>
                     </div>
@@ -72,7 +72,7 @@ export class MessagePage extends React.Component {
                                 <Message icon={"fa fa-times"} scheme={Scheme.DANGER} description={"Danger Message danger"} fill sticky/>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
+                        {Helpers.getSourceInEditorR(source1, this.previewPanel1)}
                     </Accordion>
                 </Panel>
 
@@ -80,7 +80,7 @@ export class MessagePage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Other Properties</span>
                     </div>
@@ -161,7 +161,7 @@ export class MessagePage extends React.Component {
                             </div>
 							<div ref={this.messagesDiv1}></div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
+                        {Helpers.getSourceInEditorR(source1, this.previewPanel1)}
                     </Accordion>
                 </Panel>
 
@@ -169,7 +169,7 @@ export class MessagePage extends React.Component {
                     <div className="accordion-controlled-header-buttons">
                         <div className="right">
                             <i className="fa fa-code" onClick={(e) => {this.previewPanel1.current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(source1)}}></i>
+                            <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(source1)}}></i>
                         </div>
                         <span className="left">Custom Message Content</span>
                     </div>
@@ -198,7 +198,7 @@ export class MessagePage extends React.Component {
 								} sticky/>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(source1, this.previewPanel1)}
+                        {Helpers.getSourceInEditorR(source1, this.previewPanel1)}
                     </Accordion>
                 </Panel>
             </React.Fragment>

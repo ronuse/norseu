@@ -113,7 +113,7 @@ export class InputTextComponent extends BaseComponent {
     }
 
     constructor(props) {
-        super(props);
+        super(props, null, [ "onFirstInput" ]);
 
         this.id = this.state.id; 
         if (!this.id) { 
@@ -226,6 +226,7 @@ export class InputTextComponent extends BaseComponent {
             'norseu-inputtext-outlined': this.state.outlined,
             'norseu-p-left-0px': this.state.flushed && !this.state.leftIcon && !this.state.rightIcon,
             'norseu-disabled norseu-noselect': this.state.disabled,
+            'norseu-cursor-pointer': this.state.readOnly,
             'norseu-skeleton': this.state.scheme === Scheme.SKELETON
         }, 'norseu-inputtext-theme', this.state.internalInputClassName);
 

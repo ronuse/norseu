@@ -184,7 +184,7 @@ export class HomePage extends React.Component {
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M4.44125 23.6187L9.44125 26.1187C9.61478 26.2053 9.80606 26.2504 10 26.2504C10.1939 26.2504 10.3852 26.2053 10.5588 26.1187L15 23.8975L19.4413 26.1175C19.6144 26.2053 19.8057 26.2512 19.9999 26.2514C20.194 26.2517 20.3854 26.2062 20.5588 26.1187L25.5588 23.6187C25.9825 23.4062 26.25 22.9737 26.25 22.5V16.25C26.25 15.7762 25.9825 15.3437 25.5588 15.1312L21.25 12.9775V7.49999C21.25 7.02624 20.9825 6.59374 20.5588 6.38124L15.5587 3.88124C15.3851 3.79434 15.1936 3.7491 14.9994 3.7491C14.8052 3.7491 14.6137 3.79434 14.44 3.88124L9.44 6.38124C9.0175 6.59374 8.75 7.02624 8.75 7.49999V12.9775L4.44125 15.1325C4.23347 15.236 4.05869 15.3954 3.93657 15.5929C3.81445 15.7903 3.74984 16.0179 3.75 16.25V22.5C3.75 22.9737 4.0175 23.4062 4.44125 23.6187ZM10 15.1475L12.83 16.5625L9.18875 18.3837L6.35875 16.9687L10 15.1475ZM15 12.0225L18.75 10.1475V12.9775L15 14.8525V12.0225ZM22.83 16.5625L19.2275 18.3637L16.3975 16.9487L20 15.1475L22.83 16.5625ZM10 23.6025L9.9225 23.5637V20.8125L13.75 18.8975V21.7275L10 23.6025ZM20 23.6025V20.7725L23.75 18.8975V21.7275L20 23.6025ZM15 6.39749L17.83 7.81249L14.2275 9.61374L11.3975 8.19874L15 6.39749Z" fill="#666363"/>
                                         </svg>,
-                                        "/#/components/"
+                                        "/#/p/components_overview"
                                     )}
                                     {this.buildLandingHeroCard("Font Awesome", "Font Awesome 5 Compatible",
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -272,6 +272,8 @@ export class HomePage extends React.Component {
                             <Button scheme={Scheme.INFO} text="Info" onClick={() => this.setState({ previewScheme: Scheme.INFO })}/>
                             <Button scheme={Scheme.WARNING} text="Warning" onClick={() => this.setState({ previewScheme: Scheme.WARNING })}/>
                             <Button scheme={Scheme.DANGER} text="Danger" onClick={() => this.setState({ previewScheme: Scheme.DANGER })}/>
+                            <Button scheme={Scheme.DARK} text="Dark" onClick={() => this.setState({ previewScheme: Scheme.DARK })}/>
+                            <Button scheme={Scheme.LIGHT} text="Light" onClick={() => this.setState({ previewScheme: Scheme.LIGHT })}/>
                         </ButtonGroup>
                         
                         {this.buildPreviewComponents()}

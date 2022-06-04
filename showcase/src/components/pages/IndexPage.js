@@ -12,7 +12,7 @@ import { ObjUtils, DOMUtils, BoolUtils } from "norseu/utils"
 import ReactDOM from 'react-dom';
 import { LinearLayout } from "norseu/layouts";
 import { ScrollPanel } from "norseu/core/panels";
-import { BrowserRouter, HashRouter, NavLink, Route, Switch } from "react-router-dom";
+import { HashRouter, NavLink, Route, Switch } from "react-router-dom";
 import { IntroductionPage } from "./IntroductionPage";
 import { GenerateSchemePage } from "../GenerateSchemePage";
 import { NavbarPage } from "../core/overlay/NavbarPage";
@@ -24,6 +24,10 @@ import { ComponentsOverviewPage } from "./ComponentsOverviewPage";
 import { ButtonPage } from "../core/buttons/ButtonPage";
 import { createBrowserHistory } from "history";
 import { DialogPage } from "../core/overlay/DialogPage";
+import { ButtonGroupPage } from "../core/buttons/ButtonGroupPage";
+import { CheckboxPage } from "../core/form/CheckboxPage";
+import { DropdownPage } from "../core/form/DropdownPage";
+import { FileInputPage } from "../core/form/FileInputPage";
 
 const history = createBrowserHistory({forceRefresh:true});
 
@@ -55,7 +59,7 @@ export class IndexPage extends React.Component {
 	render() {
 
 		return (
-            <BrowserRouter history={history}>
+            <HashRouter history={history}>
                 <LinearLayout style={{ margin: 0, borderRadius: 0, width: "100%" }}>
                     <Navbar noOverlay={this.state.isWideScreen} className={`left-sidebar ${this.state.isWideScreen ? "wide" : ""}`} position={Position.LEFT} 
                         isVisible={this.state.navbarIsVisible} onHide={() => this.hidenavbar()}>
@@ -69,68 +73,19 @@ export class IndexPage extends React.Component {
                                 <NavLink activeClassName="active" className="link" to="/p/components_overview" onClick={() => this.hidenavbar()}>Components Overview</NavLink>
                                 {/* <NavLink activeClassName="active" className="link" to="/scratch" onClick={() => this.hidenavbar()}>ScratchPad</NavLink> */}
                                 {/* <NavLink activeClassName="active" className="link" to="/p/generate/scheme" onClick={() => this.hidenavbar()}>Create Scheme</NavLink> */}
-
                                 
                                 <span className="title">BUTTONS</span>
                                 <NavLink activeClassName="active" className="link" to="/p/components/core/buttons/button" onClick={() => this.hidenavbar()}>Button</NavLink>
                                 <NavLink activeClassName="active" className="link" to="/p/components/core/buttons/buttongroup" onClick={() => this.hidenavbar()}>Button Group</NavLink>
+                                
+                                <span className="title">FORM</span>
+                                <NavLink activeClassName="active" className="link" to="/p/components/core/form/checkbox" onClick={() => this.hidenavbar()}>Checkbox</NavLink>
+                                <NavLink activeClassName="active" className="link" to="/p/components/core/form/dropdown" onClick={() => this.hidenavbar()}>Dropdown</NavLink>
+                                <NavLink activeClassName="active" className="link" to="/p/components/core/form/fileinput" onClick={() => this.hidenavbar()}>FileInput</NavLink>
                             </section>
-
-                            {/* <section>
-                                <span className="title">BUTTONS</span>
-                                <NavLink className="link" to="/components/core/buttons/button">Button</NavLink>
-                                <NavLink className="link" to="/components/core/buttons/buttongroup">ButtonGroup</NavLink>
-                            </section>
-
-                            <section>
-                                <span className="title">Panels</span>
-                                <NavLink className="link" to="/components/core/panels/panel">Panel</NavLink>
-                                <NavLink className="link" to="/components/core/panels/tabpane">TabPane</NavLink>
-                                <NavLink className="link" to="/components/core/panels/fieldset">Fieldset</NavLink>
-                                <NavLink className="link" to="/components/core/panels/accordion">Accordion</NavLink>
-                                <NavLink className="link" to="/components/core/panels/scrollpanel">ScrollPanel</NavLink>
-                            </section>
-
-                            <section>
-                                <span className="title">Form</span>
-                                <NavLink className="link" to="/components/core/form/checkbox">Checkbox</NavLink>
-                                <NavLink className="link" to="/components/core/form/inputtext">InputText</NavLink>
-                                <NavLink className="link" to="/components/core/form/passwordinput">PasswordInput</NavLink>
-                                <NavLink className="link" to="/components/core/form/inputfilterspage">InputFilters</NavLink>
-                                <NavLink className="link" to="/components/core/form/dropdown">Dropdown</NavLink>
-                                <NavLink className="link" to="/components/core/form/textareapage">TextArea</NavLink>
-                                <NavLink className="link" to="/components/core/form/fileinput">FileInput</NavLink>
-                            </section>
-
-                            <section>
-                                <span className="title">Overlay</span>
-                                <NavLink className="link" to="/components/core/overlay/alertdialog">Alert Dialog</NavLink>
-                                <NavLink className="link" to="/components/core/overlay/dialog">Dialog</NavLink>
-                                <NavLink className="link" to="/components/core/overlay/navbar">Navbar</NavLink>
-                                <NavLink className="link" to="/components/core/overlay/popup">Popover</NavLink>
-                                <NavLink className="link" to="/components/core/overlay/message">Message</NavLink>
-                            </section>
-
-                            <section>
-                                <span className="title">Layouts</span>
-                                <NavLink className="link" to="/layouts/linearlayout">LinearLayout</NavLink>
-                            </section>
-
-                            <section>
-                                <span className="title">Sensors</span>
-                                <NavLink className="link" to="/sensors/viewportsensor">ViewportSensor</NavLink>
-                                <NavLink className="link" to="/sensors/resizesensor">ResizeSensor</NavLink>
-                            </section>
-
-                            <section>
-                                <span className="title">Others</span>
-                                <NavLink className="link" to="/components/core/variables/elevation">Elevation</NavLink>
-                                <NavLink className="link" to="/components/core/misc/tag">Tag</NavLink>
-                                <NavLink className="link" to="/misc/badgeandtag">Badge And Tag</NavLink>
-                            </section> */}
                         </ScrollPanel>
                     </Navbar>
-                    <ScrollPanel style={{ flex: 1 }}>
+                    <ScrollPanel style={{ flex: 1, minHeight: "90vh" }}>
                             <Switch>
                                 <Route exact path="/p/introduction" component={IntroductionPage}/>
                                 {/* <Route exact path="/p/resources" component={ResourcesPage}/> */}
@@ -139,27 +94,27 @@ export class IndexPage extends React.Component {
                                 <Route exact path="/scratch" component={ScratchPage}/>
 
                                 <Route exact path="/p/components/core/buttons/button" component={ButtonPage}/>
-                                <Route exact path="/p/components/core/overlay/dialog" component={DialogPage}/>
+                                <Route exact path="/p/components/core/buttons/buttongroup" component={ButtonGroupPage}/>
+
+                                <Route exact path="/p/components/core/form/checkbox" component={CheckboxPage}/>
+                                <Route exact path="/p/components/core/form/dropdown" component={DropdownPage}/>
+                                <Route exact path="/p/components/core/form/fileinput" component={FileInputPage}/>
 
                                 <Route path="/p/generate/scheme" component={GenerateSchemePage}/>                                
                                 {/* <Route exact path="/scratch" component={ScratchPage}/>
                                 <Route exact path="/generate/scheme" component={GenerateSchemePage}/>
+                                
+                                <Route exact path="/components/core/form/inputtext" component={InputTextPage}/>
+                                <Route exact path="/components/core/form/passwordinput" component={PasswordInputPage}/>
+                                <Route exact path="/components/core/form/inputfilterspage" component={InputFiltersPage}/>
+                                <Route exact path="/components/core/form/textareapage" component={TextAreaPage}/>
 
-                                <Route exact path="/components/core/buttons/buttongroup" component={ButtonGroupPage}/>
 
                                 <Route exact path="/components/core/panels/panel" component={PanelPage}/>
                                 <Route exact path="/components/core/panels/tabpane" component={TabPanePage}/>
                                 <Route exact path="/components/core/panels/fieldset" component={FieldsetPage}/>
                                 <Route exact path="/components/core/panels/accordion" component={AccordionPage}/>
                                 <Route exact path="/components/core/panels/scrollpanel" component={ScrollPanelPage}/>
-                                
-                                <Route exact path="/components/core/form/checkbox" component={CheckboxPage}/>
-                                <Route exact path="/components/core/form/inputtext" component={InputTextPage}/>
-                                <Route exact path="/components/core/form/passwordinput" component={PasswordInputPage}/>
-                                <Route exact path="/components/core/form/inputfilterspage" component={InputFiltersPage}/>
-                                <Route exact path="/components/core/form/dropdown" component={DropdownPage}/>
-                                <Route exact path="/components/core/form/textareapage" component={TextAreaPage}/>
-                                <Route exact path="/components/core/form/fileinput" component={FileInputPage}/>
                                 
                                 <Route exact path="/components/core/overlay/alertdialog" component={AlertDialogPage}/>
                                 <Route exact path="/components/core/overlay/dialog" component={DialogPage}/>
@@ -178,7 +133,7 @@ export class IndexPage extends React.Component {
                             </Switch>
                     </ScrollPanel>
                 </LinearLayout>
-            </BrowserRouter>
+            </HashRouter>
 		)
 	}
 }

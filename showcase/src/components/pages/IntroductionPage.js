@@ -38,6 +38,17 @@ import { InputText, PasswordInput } from 'norseu/core/form';`,
 					yarn add norseu
 				</SyntaxHighlighter>
 
+				<h2>Peer Dependencies</h2>
+				<span>norseu depends on some packages, if your node version does not support peer dependencies auotomatic installation, 
+					you can use the command below to install the dependencies.</span>
+				<SyntaxHighlighter language="jsx" style={dracula} className={"norseu-showcase-code"} >
+					npm install classnames react-transition-group
+				</SyntaxHighlighter>
+				<span>or</span>
+				<SyntaxHighlighter language="jsx" style={dracula} className={"norseu-showcase-code"} >
+					yarn add classnames react-transition-group
+				</SyntaxHighlighter>
+
 				<h2>Usage</h2>
 				<span>Once norseu has been installed you can import your components as such:</span>
 				<SyntaxHighlighter language="jsx" style={dracula} className={"norseu-showcase-code"} >

@@ -43,11 +43,11 @@ export class BaseComponent extends Component {
 		onSetState: PropTypes.func
 	}
 
-	constructor(props, ignoreList) {
+	constructor(props, propsIgnoreList, eventIgnoreList) {
 		super(props);
-		this.state = ObjUtils.clone(this.props, ignoreList);
+		this.state = ObjUtils.clone(this.props, propsIgnoreList);
 		this.elementRef = React.createRef(this.props.elementRef);
-		this.state.eventProps = ObjUtils.extractEventProps(this.props); // TODO ignore the event captured by the component itself
+		this.state.eventProps = ObjUtils.extractEventProps(this.props, [ "onSetState", ...(eventIgnoreList || [])]);
 	}
 
 	getRefValue(extraValues) {

@@ -9,81 +9,67 @@ import { Alignment, Orientation, Elevation, FilePreviewType } from "norseu/core/
 import { LinearLayout } from "norseu/layouts";
 import { ObjUtils } from "norseu/utils";
 import { PasswordInput, InputText, FileInput } from "norseu/core/form";
-import { getTextBetweenLine, copyToClipboard, getSourceInEditorR } from "../../../utils/helpers"
+import Helpers from "../../../utils/Helpers"
 
 export class FileInputPage extends React.Component {
 
-    state = {
-        pageSource: ''
-    }
+    state = { pageSource: '', showSourceDialog: false }
+    cssMap = [
+
+    ];
+    properties = [
+        { name: "text", type: "string", default: "", description: "The label to show in the button" },
+    ];
+    refMap = [
+        { name: "value()", type: "function", description: "Returns the value of the component internal HTML element" },
+        { name: "setValue(value)", type: "function", description: "Set the value of the component internal HTML element" },
+        { name: "focus()", type: "function", description: "Send focus to the component" },
+        { name: "getInternalElement()", type: "function", description: "Get the react reference to the internal element" },
+        { name: "getState()", type: "function", description: "Get the current state of the component" },
+        { name: "setState()", type: "function", description: "Change the component state" },
+    ]
 
     constructor(props) {
-        super(props)
-
-        this.previewPanels = [
-			React.createRef(),
-			React.createRef(),
-			React.createRef()
-		];
-    }
-    
-    loadPageSource() {
-        fetch("https://raw.githubusercontent.com/ronuse/ronuse-react-ui/main/showcase/src/components/core/form/FileInputPage.js")
-        .then(response => response.text())
-        .then(data => this.setState({
-            pageSource : data,
-        }))
-		.catch(error => { throw error});
+        super(props);
+        this.willUnmount = false;
+        this.previewPanels = React.createRef();
+        this.previewPanels.current = [];
     }
 
-    getSourcesWithinLine(from, to) {
-        const sourceSlice = getTextBetweenLine(this.state.pageSource, from, to, true);
-        return sourceSlice;
+    componentWillUnmount() {
+        this.willUnmount = true;
     }
 
-    renderSampleComponents() {
-        const sources = [
-			this.getSourcesWithinLine(63, 67),
-			this.getSourcesWithinLine(84, 149),
-			this.getSourcesWithinLine(167, 186)
-		];
-
+    buildDocumentation() {
         return (
             <React.Fragment>
-                <Panel borderless elevation={Elevation.ONE}>
-                    <div className="accordion-controlled-header-buttons">
-                        <div className="right">
-                            <i className="fa fa-code" onClick={(e) => {this.previewPanels[0].current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(sources[0])}}></i>
-                        </div>
-                        <span className="left">Basic</span>
-                    </div>
+                <Panel borderless style={{ marginTop: 40 }}>
+                    <span className="norseu-showcase-component-page-preview-title">Basic</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <div className="norseu-display-flex sppai">
-                                <FileInput scheme={Scheme.PRIMARY}
-									defaultFileUrl={"https://i.pinimg.com/originals/4e/aa/b6/4eaab69fcf8d928738072cd355a980db.jpg"}
-									fileExtensions={["png", "jpg", "jpeg", "JPG", "PNG", "JPEG"]}
-									label={"Select"}
-									previewType={FilePreviewType.IMAGE}/>
+                            <p className="documentation-p"></p>
+                            <FileInput scheme={Scheme.PRIMARY}
+                                defaultFileUrl={"https://i.pinimg.com/originals/4e/aa/b6/4eaab69fcf8d928738072cd355a980db.jpg"}
+                                fileExtensions={["png", "jpg", "jpeg", "JPG", "PNG", "JPEG"]}
+                                label={"Select"}
+                                previewType={FilePreviewType.IMAGE}/>
+                            
+                            <div className="norseu-showcase-component-page-preview-buttons">
+                                <i className="fa fa-code" onClick={(e) => this.previewPanels.current[0].toggle()}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[57, 65]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(sources[0], this.previewPanels[0])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[0] = ref, [[57, 65]])}
                     </Accordion>
                 </Panel>
-                
-                <Panel borderless elevation={Elevation.ONE} style={{marginTop: "0px"}}>
-                    <div className="accordion-controlled-header-buttons">
-                        <div className="right">
-                            <i className="fa fa-code" onClick={(e) => {this.previewPanels[1].current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(sources[1])}}></i>
-                        </div>
-                        <span className="left">Preview Types</span>
-                    </div>
+
+                <Panel borderless style={{ marginTop: 40 }}>
+                    <span className="norseu-showcase-component-page-preview-title">Preview Types</span>
                     <Accordion borderless multiple activeIndex={[0]}>
                         <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
+                            <p className="documentation-p"></p>
                             <div className="norseu-display-flex sppai" style={{ flexDirection: "row" }}>
-								<div>
+                                <div>
 									<span style={{ fontWeight: "bold" }}>FilePreviewType.NONE</span>
 									<FileInput scheme={Scheme.PRIMARY} style={{ minWidth: "200px", minHeight: "200px" }}
 										previewType={FilePreviewType.NONE}/>
@@ -103,7 +89,7 @@ export class FileInputPage extends React.Component {
 								<div>
 									<span style={{ fontWeight: "bold" }}>FilePreviewType.VIDEO</span>
 									<FileInput scheme={Scheme.PRIMARY} previewItemScheme={Scheme.SECONDARY}
-										defaultFileUrl={"https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4"}
+										defaultFileUrl={"https://file-examples.com/storage/feddb42d8762894ad9bbbb0/2017/04/file_example_MP4_480_1_5MG.mp4"}
 										fileExtensions={["mp4", "mpeg", "mov"]}
 										label={"Select"}
 										previewType={FilePreviewType.VIDEO} multiple noBorder/>
@@ -113,7 +99,7 @@ export class FileInputPage extends React.Component {
 								<div>
 									<span style={{ fontWeight: "bold" }}>FilePreviewType.AUDIO</span>
 									<FileInput scheme={Scheme.PRIMARY}
-										defaultFileUrl={"https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"}
+										defaultFileUrl={"https://file-examples.com/storage/feddb42d8762894ad9bbbb0/2017/11/file_example_MP3_700KB.mp3"}
 										fileExtensions={["mp3", "wav"]}
 										label={"Select"}
 										previewType={FilePreviewType.AUDIO} multiple noBorder/>
@@ -148,84 +134,31 @@ export class FileInputPage extends React.Component {
 										<span>Click to select any file(s)</span>
 								</div>
                             </div>
-                        </AccordionPanel>
-                        {getSourceInEditorR(sources[1], this.previewPanels[1])}
-                    </Accordion>
-                </Panel>
-
-                <Panel borderless elevation={Elevation.ONE}>
-                    <div className="accordion-controlled-header-buttons">
-                        <div className="right">
-                            <i className="fa fa-code" onClick={(e) => {this.previewPanels[3].current.toggle()}}></i>
-                            <i className="fa fa-copy" onClick={(e) => {copyToClipboard(sources[2])}}></i>
-                        </div>
-                        <span className="left">Custom FilePreviewType</span>
-                    </div>
-                    <Accordion borderless multiple activeIndex={[0]}>
-                        <AccordionPanel noheader nodivier className="norseu-showcase-component-page-preview">
-                            <div className="norseu-display-flex sppai">
-								<span>click or drag a file into the panel to add file</span>
-                                <FileInput scheme={Scheme.SECONDARY} style={{ width: "100%", minHeight: "100px" }}
-									previewType={FilePreviewType.CUSTOM}
-									previewPanelClassName={"norseu-fileinput-custom"}
-									customItemTemplate={(url, name, size, type) => {
-										let previewElement = null;
-										if (type && type.includes("image")) previewElement = <img src={url} />;
-										if (type && type.includes("video")) previewElement = <video controls><source src={url}/></video>;
-										return (
-											<div id={`el-${name}`}>
-												{previewElement}
-												<span>{name}</span>
-												<span>{ObjUtils.humanFileSize(size)}</span>
-												<Button text="Remove" scheme={Scheme.DANGER} 
-													onClick={(e)=> {
-														e.rruiRef.current.getInternalElement().current.parentNode.parentNode.removeChild(
-															e.rruiRef.current.getInternalElement().current.parentNode
-														);
-														e.stopPropagation();
-													}}/>
-											</div>
-										);
-									}} multiple allowFileDrag/>
+                            
+                            <div className="norseu-showcase-component-page-preview-buttons">
+                                <i className="fa fa-code" onClick={(e) => this.previewPanels.current[0].toggle()}></i>
+                                <i className="fa fa-copy" onClick={(e) => {Helpers.copyToClipboard(this.state.pageSource, [[57, 65]])}}></i>
                             </div>
                         </AccordionPanel>
-                        {getSourceInEditorR(sources[2], this.previewPanels[3])}
+                        {Helpers.getSourceInEditorR(this.state.pageSource, (ref) => this.previewPanels.current[0] = ref, [[57, 65]])}
                     </Accordion>
                 </Panel>
             </React.Fragment>
-        )
-    }
-
-    renderDocumentation() {        
-        return (
-            <LinearLayout className="norseu-panel norseu-p-20px" elevation={Elevation.ONE} orientation={Orientation.VERTICAL}>
-                <span className="norseu-showcase-doc-title">Documentation</span>
-				If an element is clickable do not forget to stop propagation at the end of the element on cliick 
-				event.stopPropagation()
-            </LinearLayout>
-        )
+        );
     }
 
     render() {
-        if (this.state.pageSource === '') {
-            this.loadPageSource();
-        }
-
-        return (
-            <div className="norseu-showcase-component-page">
-                <h1>FileInput</h1>
-
-                <Panel className="norseu-p-20px" elevation={Elevation.ONE}>
-                    <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
-                        {`import { FileInput } from 'norseu/core/form''`}
-                    </SyntaxHighlighter>
-                </Panel>
-                
-                {this.renderSampleComponents()}
-                {this.renderDocumentation()}
-
-            </div>
-        )
+        return Helpers.buildComponentPage(this, {
+            title: "FileInput",
+            import_statement: "import { Button } from 'norseu/core/buttons'",
+            properties: this.properties,
+            css_map: this.cssMap,
+            ref_map: this.refMap,
+            documentation: this.buildDocumentation(),
+            page_source: this.state.pageSource,
+            show_dialog: this.state.showSourceDialog,
+            source_url: "https://raw.githubusercontent.com/ronuse/norseu/main/showcase/src/components/core/form/FileInputPage.js"
+        });
     }
 
 }

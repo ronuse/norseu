@@ -55,7 +55,7 @@ export class Fieldset extends Component {
 
 	static propTypes = {
 		id: PropTypes.string,
-		legend: PropTypes.string,
+		legend: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 		scheme: PropTypes.string,
 		safely: PropTypes.bool,
 		collapsible: PropTypes.bool,
