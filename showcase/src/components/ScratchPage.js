@@ -2,13 +2,13 @@
 import React, { Component } from "react"
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button } from 'norseu/core/buttons'
-import { Panel } from "norseu/core/panels/Panel";
-import { Scheme, Alignment, Position } from "norseu/core/variables";
-import { InputText } from 'norseu/core/form';
-import { Popover, Message, showMessage, Toast } from 'norseu/core/overlay';
-import { Tag } from 'norseu/core/misc'
-import { ObjUtils, DOMUtils, BoolUtils } from "norseu/utils"
+import { Button } from '@ronuse/norseu/core/buttons'
+import { Panel } from "@ronuse/norseu/core/panels/Panel";
+import { Scheme, Alignment, Position } from "@ronuse/norseu/core/variables";
+import { InputText } from '@ronuse/norseu/core/form';
+import { Popover, Message, showMessage, Toast } from '@ronuse/norseu/core/overlay';
+import { Tag } from '@ronuse/norseu/core/misc'
+import { ObjUtils, DOMUtils, BoolUtils } from "@ronuse/norseu/utils"
 import ReactDOM from 'react-dom';
 
 let index = 0;

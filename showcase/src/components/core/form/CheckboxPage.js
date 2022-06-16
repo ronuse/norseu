@@ -1,10 +1,10 @@
 
 import React from "react";
-import { Accordion, AccordionPanel, Panel } from 'norseu/core/panels';
-import { Checkbox, Dropdown } from 'norseu/core/form';
-import { Scheme } from "norseu/core/variables/Stylers";
+import { Accordion, AccordionPanel, Panel } from '@ronuse/norseu/core/panels';
+import { Checkbox, Dropdown } from '@ronuse/norseu/core/form';
+import { Scheme } from "@ronuse/norseu/core/variables/Stylers";
 import Helpers from "../../../utils/Helpers";
-import { Alignment } from "norseu/core/variables";
+import { Alignment } from "@ronuse/norseu/core/variables";
 
 export class CheckboxPage extends React.Component {
 
@@ -240,7 +240,7 @@ export class CheckboxPage extends React.Component {
     render() {
         return Helpers.buildComponentPage(this, {
             title: "Checkbox",
-            import_statement: "import { Checkbox } from 'norseu/core/form'",
+            import_statement: "import { Checkbox } from '@ronuse/norseu/core/form'",
             properties: this.properties,
             css_map: this.cssMap,
             ref_map: this.refMap,

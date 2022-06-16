@@ -1,8 +1,8 @@
 
 import React from "react"
-import { Panel, TabPane, TabPanel } from 'norseu/core/panels'
-import { Button } from 'norseu/core/buttons'
-import { Elevation, Scheme } from "norseu/core/variables"
+import { Panel, TabPane, TabPanel } from '@ronuse/norseu/core/panels'
+import { Button } from '@ronuse/norseu/core/buttons'
+import { Elevation, Scheme } from "@ronuse/norseu/core/variables"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -169,7 +169,7 @@ export class PanelPage extends React.Component {
 
                 <Panel borderless>
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
-                        {`import { Panel } from 'norseu/core/panels'`}
+                        {`import { Panel } from '@ronuse/norseu/core/panels'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

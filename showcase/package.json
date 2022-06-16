@@ -5,14 +5,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "SET CHOKIDAR_USEPOLLING=true & node ./node_modules/react-scripts/bin/react-scripts.js start",
+    "start": "sh -c '_CHOKIDAR_USEPOLLING=true' & node ./node_modules/react-scripts/bin/react-scripts.js start",
     "build": "node ./node_modules/react-scripts/bin/react-scripts.js build",
     "test": "node ./node_modules/react-scripts/bin/react-scripts.js test",
     "eject": "node ./node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
+    "@ronuse/norseu": "file:../ronuse-norseu-0.1.2.tgz",
     "ace-builds": "^1.4.12",
-    "norseu": "file:../norseu-0.0.1.tgz",
     "react": "^17.0.1",
     "react-ace": "^9.2.1",
     "react-dom": "^17.0.1",

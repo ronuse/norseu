@@ -2,11 +2,11 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { AccordionPanel, Panel, ScrollPanel, TabPane, TabPanel } from 'norseu/core/panels';
-import { LinearLayout } from "norseu/layouts";
+import { AccordionPanel, Panel, ScrollPanel, TabPane, TabPanel } from '@ronuse/norseu/core/panels';
+import { LinearLayout } from "@ronuse/norseu/layouts";
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "norseu/core/variables";
-import { Dialog } from "norseu/core/overlay";
+import { Scheme } from "@ronuse/norseu/core/variables";
+import { Dialog } from "@ronuse/norseu/core/overlay";
 
 export default class Helpers {
 

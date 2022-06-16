@@ -1,14 +1,14 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from 'norseu/core/panels';
-import { Button } from 'norseu/core/buttons';
+import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from '@ronuse/norseu/core/panels';
+import { Button } from '@ronuse/norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "norseu/core/variables/Stylers";
-import { Position, Orientation, Elevation, InputFilters } from "norseu/core/variables";
-import { LinearLayout } from "norseu/layouts";
-import { PasswordInput, InputText, Checkbox } from "norseu/core/form";
-import { Dialog } from "norseu/core/overlay";
+import { Scheme } from "@ronuse/norseu/core/variables/Stylers";
+import { Position, Orientation, Elevation, InputFilters } from "@ronuse/norseu/core/variables";
+import { LinearLayout } from "@ronuse/norseu/layouts";
+import { PasswordInput, InputText, Checkbox } from "@ronuse/norseu/core/form";
+import { Dialog } from "@ronuse/norseu/core/overlay";
 import Helpers from "../../../utils/Helpers"
 
 export class DialogPage extends React.Component {
@@ -200,7 +200,7 @@ export class DialogPage extends React.Component {
 
                 <Panel className="norseu-p-20px" elevation={Elevation.ONE}>
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
-                        {`import { Dialog } from 'norseu/core/overlay'`}
+                        {`import { Dialog } from '@ronuse/norseu/core/overlay'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

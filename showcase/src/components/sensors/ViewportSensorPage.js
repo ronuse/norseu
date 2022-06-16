@@ -1,12 +1,12 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from 'norseu/core/panels';
-import { Button } from 'norseu/core/buttons';
+import { Panel, TabPane, TabPanel } from '@ronuse/norseu/core/panels';
+import { Button } from '@ronuse/norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "norseu/core/variables/Stylers";
-import { Orientation } from "norseu/core/variables";
-import { ViewportSensor } from "norseu/sensors";
+import { Scheme } from "@ronuse/norseu/core/variables/Stylers";
+import { Orientation } from "@ronuse/norseu/core/variables";
+import { ViewportSensor } from "@ronuse/norseu/sensors";
 
 export class ViewportSensorPage extends React.Component {
 
@@ -134,7 +134,7 @@ export class ViewportSensorPage extends React.Component {
 
                 <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
-                        {`import { ViewportSensor } from 'norseu/sensors'`}
+                        {`import { ViewportSensor } from '@ronuse/norseu/sensors'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

@@ -1,8 +1,8 @@
 
 import React from "react";
-import { Accordion, AccordionPanel, Panel } from 'norseu/core/panels';
+import { Accordion, AccordionPanel, Panel } from '@ronuse/norseu/core/panels';
 import Helpers from "../../../utils/Helpers";
-import { Button } from "norseu/core/buttons";
+import { Button } from "@ronuse/norseu/core/buttons";
 
 export class PageTemplate extends React.Component {
 
@@ -59,7 +59,7 @@ export class PageTemplate extends React.Component {
     render() {
         return Helpers.buildComponentPage(this, {
             title: "PageTemplate",
-            import_statement: "import { Button } from 'norseu/core/buttons'",
+            import_statement: "import { Button } from '@ronuse/norseu/core/buttons'",
             properties: this.properties,
             css_map: this.cssMap,
             ref_map: this.refMap,

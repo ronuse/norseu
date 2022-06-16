@@ -1,10 +1,10 @@
 
 import React from "react";
-import { Accordion, Panel, AccordionPanel, TabPanel } from 'norseu/core/panels';
-import { Button, ButtonGroup } from 'norseu/core/buttons';
+import { Accordion, Panel, AccordionPanel, TabPanel } from '@ronuse/norseu/core/panels';
+import { Button, ButtonGroup } from '@ronuse/norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme, Alignment, Orientation } from "norseu/core/variables";
+import { Scheme, Alignment, Orientation } from "@ronuse/norseu/core/variables";
 import Helpers from "../../../utils/Helpers";
 
 export class ButtonGroupPage extends React.Component {
@@ -214,7 +214,7 @@ export class ButtonGroupPage extends React.Component {
     render() {
         return Helpers.buildComponentPage(this, {
             title: "ButtonGroup",
-            import_statement: "import { ButtonGroup  } from 'norseu/core/buttons'",
+            import_statement: "import { ButtonGroup  } from '@ronuse/norseu/core/buttons'",
             properties: this.properties,
             css_map: this.cssMap,
             ref_map: this.refMap,

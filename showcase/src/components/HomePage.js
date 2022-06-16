@@ -1,15 +1,15 @@
 
 import React from "react"
-import { Button, ButtonGroup } from 'norseu/core/buttons'
-import { Scheme, Alignment, Orientation, FilePreviewType } from "norseu/core/variables";
-import { LinearLayout } from "norseu/layouts";
-import { Message, Navbar } from "norseu/core/overlay";
+import { Button, ButtonGroup } from '@ronuse/norseu/core/buttons'
+import { Scheme, Alignment, Orientation, FilePreviewType } from "@ronuse/norseu/core/variables";
+import { LinearLayout } from "@ronuse/norseu/layouts";
+import { Message, Navbar } from "@ronuse/norseu/core/overlay";
 import { Link } from "react-router-dom";
-import { ResizeSensor } from "norseu/sensors";
+import { ResizeSensor } from "@ronuse/norseu/sensors";
 import { UsedByPage } from "./pages/UsedByPage";
 import { CompaniesUsingNorseu } from "../utils/companies_using_norseu"
-import { Panel, ScrollPanel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel } from "norseu/core/panels";
-import { InputText, Checkbox, Dropdown, FileInput, TextArea } from "norseu/core/form";
+import { Panel, ScrollPanel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel } from "@ronuse/norseu/core/panels";
+import { InputText, Checkbox, Dropdown, FileInput, TextArea } from "@ronuse/norseu/core/form";
 
 export class HomePage extends React.Component {
 

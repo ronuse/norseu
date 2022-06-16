@@ -1,7 +1,7 @@
 
-import { Button } from "norseu/core/buttons";
-import { Accordion, AccordionPanel, Panel } from "norseu/core/panels";
-import { Alignment, Scheme } from "norseu/core/variables";
+import { Button } from "@ronuse/norseu/core/buttons";
+import { Accordion, AccordionPanel, Panel } from "@ronuse/norseu/core/panels";
+import { Alignment, Scheme } from "@ronuse/norseu/core/variables";
 import React from "react"
 import Helpers from "../../../utils/Helpers";
 
@@ -566,7 +566,7 @@ export class ButtonPage extends React.Component {
         console.log("NORSEU.LOG", StyleCreator.transSchemeColorCss("#000000", ".3"))*/
         return Helpers.buildComponentPage(this, {
             title: "Button",
-            import_statement: "import { Button } from 'norseu/core/buttons'",
+            import_statement: "import { Button } from '@ronuse/norseu/core/buttons'",
             properties: this.properties,
             css_map: this.cssMap,
             ref_map: this.refMap,

@@ -30,14 +30,14 @@ import { DialogPage } from './components/core/overlay/DialogPage'
 import { PopoverPage } from './components/core/overlay/PopoverPage'
 import { MessagePage } from './components/core/overlay/MessagePage'
 import { IndexPage } from './components/pages/IndexPage'
-import { Navbar } from "norseu/core/overlay";
-import { Button } from "norseu/core/buttons";
-import { Panel, ScrollPanel } from "norseu/core/panels";
-import { Position, Scheme, Orientation, Elevation, InputFilters } from "norseu/core/variables";
-import { LinearLayout } from 'norseu/layouts'
+import { Navbar } from "@ronuse/norseu/core/overlay";
+import { Button } from "@ronuse/norseu/core/buttons";
+import { Panel, ScrollPanel } from "@ronuse/norseu/core/panels";
+import { Position, Scheme, Orientation, Elevation, InputFilters } from "@ronuse/norseu/core/variables";
+import { LinearLayout } from '@ronuse/norseu/layouts'
 
 import { LinearLayoutPage } from './components/layouts/LinearLayoutPage'
-import { ResizeSensor } from 'norseu/sensors'
+import { ResizeSensor } from '@ronuse/norseu/sensors'
 import './index.css'
 
 const App = () => {

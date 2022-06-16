@@ -1,12 +1,12 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from 'norseu/core/panels';
-import { Button } from 'norseu/core/buttons';
-import { Tag } from 'norseu/core/misc';
+import { Panel, TabPane, TabPanel } from '@ronuse/norseu/core/panels';
+import { Button } from '@ronuse/norseu/core/buttons';
+import { Tag } from '@ronuse/norseu/core/misc';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "norseu/core/variables/Stylers";
-import { Alignment } from "norseu/core/variables";
+import { Scheme } from "@ronuse/norseu/core/variables/Stylers";
+import { Alignment } from "@ronuse/norseu/core/variables";
 
 export class BadgeAndTagPage extends React.Component {
 
@@ -241,7 +241,7 @@ return (
 
                 <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
-                        {`import 'norseu/style.css'`}
+                        {`import '@ronuse/norseu/style.css'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

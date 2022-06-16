@@ -105,8 +105,8 @@ export class FileInputComponent extends BaseComponent {
 
 	resolveForwardRef(extraValues) {
 		super.resolveForwardRef({
-			values: () => this.elementRef.files,
-			value: () => ((this.elementRef.files && this.elementRef.files.len) ? event.target.files[0] : null),
+			values: () => this.elementRef.current.files,
+			value: () => this.elementRef.current.files && this.elementRef.current.files[0],
 			changePreview: this.changePreview
 		});
 	}
@@ -117,13 +117,13 @@ export class FileInputComponent extends BaseComponent {
 		}
 	}
 
-	componentDidUpdate(prevProps) {
+	/*componentDidUpdate(prevProps) {
 
 	}
 
 	componentWillUnmount() {
 
-	}
+	}*/
 
 	formatAcceptedFileExtensions() {
 		if (!this.state.fileExtensions) return "";

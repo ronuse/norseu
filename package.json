@@ -1,6 +1,6 @@
 {
 	"name": "@ronuse/norseu",
-	"version": "0.0.1",
+	"version": "0.1.2",
 	"description": "React UI Components by Ronuse",
 	"watch": {
 		"showcase:run": {
@@ -15,9 +15,9 @@
 		"test": "jest",
 		"build": "babel src --out-dir dist --copy-files",
 		"pack": "npm run build && cp package.json dist/ && cp .*ignore dist/ && cd dist/ && npm pack && cp -f *.tgz ../",
-		"showcase:prepare": "npm run pack && cd showcase && if exist \"node_modules/norseu\" (robocopy \"../dist/\" \"node_modules/norseu\" /s /e || exit /b 0) else (npm install ../norseu-0.0.1.tgz) ",
+		"showcase:prepare": "npm run pack && cd showcase && sh -c 'if [ -d \"node_modules/norseu\" ]; then cp -R ../dist/ ./node_modules/norseu/; else npm install ../ronuse-norseu-0.1.2.tgz; fi;' ",
 		"showcase:start": "cd showcase && npm start",
-		"showcase:run": "npm run showcase:prepare && npm run showcase:start",
+		"showcase:run": "sh -c 'npm run showcase:prepare' && sh -c 'npm run showcase:start'",
 		"deploy": "npm run deploy:build && npm run deploy:push",
 		"deploy:build": "cd showcase && npm run build && build-showcase.bat",
 		"deploy:push": "cd showcase && gh-pages -d build",

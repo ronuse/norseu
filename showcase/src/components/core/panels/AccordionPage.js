@@ -1,13 +1,13 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel } from 'norseu/core/panels';
-import { Button } from 'norseu/core/buttons';
+import { Panel, TabPane, TabPanel } from '@ronuse/norseu/core/panels';
+import { Button } from '@ronuse/norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "norseu/core/variables/Stylers";
-import { Alignment } from "norseu/core/variables";
-import { Accordion, AccordionPanel } from "norseu/core/panels/Accordion";
-import { ButtonGroup } from "norseu/core/buttons/ButtonGroup";
+import { Scheme } from "@ronuse/norseu/core/variables/Stylers";
+import { Alignment } from "@ronuse/norseu/core/variables";
+import { Accordion, AccordionPanel } from "@ronuse/norseu/core/panels/Accordion";
+import { ButtonGroup } from "@ronuse/norseu/core/buttons/ButtonGroup";
 
 export class AccordionPage extends React.Component {
 
@@ -195,7 +195,7 @@ export class AccordionPage extends React.Component {
 
                 <Panel className="norseu-p-left-right-20px">
                     <SyntaxHighlighter language="javascript" style={prism} className={"norseu-showcase-code"}>
-                        {`import { Accordion } from 'norseu/core/panels'`}
+                        {`import { Accordion } from '@ronuse/norseu/core/panels'`}
                     </SyntaxHighlighter>
                 </Panel>
                 

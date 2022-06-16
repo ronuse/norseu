@@ -1,6 +1,6 @@
 
 import React from "react"
-import { Panel } from "norseu/core/panels/Panel";
+import { Panel } from "@ronuse/norseu/core/panels/Panel";
 import { CompaniesUsingNorseu } from "../../utils/companies_using_norseu"
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';

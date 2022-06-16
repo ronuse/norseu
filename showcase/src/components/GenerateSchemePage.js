@@ -1,11 +1,11 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel, ScrollPanel } from 'norseu/core/panels';
-import { Button, ButtonGroup } from 'norseu/core/buttons';
-import { InputText, Checkbox } from 'norseu/core/form';
-import { LinearLayout } from 'norseu/layouts';
-import { Tag } from 'norseu/core/misc';
-import { Scheme, Alignment, Orientation } from "norseu/core/variables";
+import { Panel, TabPane, TabPanel, Fieldset, Accordion, AccordionPanel, ScrollPanel } from '@ronuse/norseu/core/panels';
+import { Button, ButtonGroup } from '@ronuse/norseu/core/buttons';
+import { InputText, Checkbox } from '@ronuse/norseu/core/form';
+import { LinearLayout } from '@ronuse/norseu/layouts';
+import { Tag } from '@ronuse/norseu/core/misc';
+import { Scheme, Alignment, Orientation } from "@ronuse/norseu/core/variables";
 import { SchemeBuilder } from '../utils/generate_scheme_css.mjs';
 import AceEditor from "react-ace";
 

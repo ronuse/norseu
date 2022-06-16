@@ -1,16 +1,16 @@
 
 import React from "react"
-import { Panel } from "norseu/core/panels/Panel";
+import { Panel } from "@ronuse/norseu/core/panels/Panel";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export class IntroductionPage extends React.Component {
 
 	state = {
-		usageCode: `import { Button } from 'norseu/core/buttons';
-import { Scheme } from "norseu/core/variables";
-import { ScrollPanel } from 'norseu/core/panels';
-import { InputText, PasswordInput } from 'norseu/core/form';`,
+		usageCode: `import { Button } from '@ronuse/norseu/core/buttons';
+import { Scheme } from "@ronuse/norseu/core/variables";
+import { ScrollPanel } from '@ronuse/norseu/core/panels';
+import { InputText, PasswordInput } from '@ronuse/norseu/core/form';`,
 		sampleCode: `<ScrollPanel>
 	<InputText scheme={Scheme.PRIMARY} label="Email"/>
 	<PasswordInput scheme={Scheme.PRIMARY} label="Password"/>

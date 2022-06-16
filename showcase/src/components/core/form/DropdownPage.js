@@ -1,13 +1,13 @@
 
 import React from "react";
-import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from 'norseu/core/panels';
-import { Button } from 'norseu/core/buttons';
+import { Panel, TabPane, TabPanel, Accordion, AccordionPanel } from '@ronuse/norseu/core/panels';
+import { Button } from '@ronuse/norseu/core/buttons';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Scheme } from "norseu/core/variables/Stylers";
-import { Alignment, Orientation, Elevation, InputFilters } from "norseu/core/variables";
-import { LinearLayout } from "norseu/layouts";
-import { Dropdown, InputText } from "norseu/core/form";
+import { Scheme } from "@ronuse/norseu/core/variables/Stylers";
+import { Alignment, Orientation, Elevation, InputFilters } from "@ronuse/norseu/core/variables";
+import { LinearLayout } from "@ronuse/norseu/layouts";
+import { Dropdown, InputText } from "@ronuse/norseu/core/form";
 import Helpers from "../../../utils/Helpers"
 
 export class DropdownPage extends React.Component {
@@ -253,7 +253,7 @@ export class DropdownPage extends React.Component {
     render() {
         return Helpers.buildComponentPage(this, {
             title: "Dropdown",
-            import_statement: "import { Dropdown } from 'norseu/core/form'",
+            import_statement: "import { Dropdown } from '@ronuse/norseu/core/form'",
             properties: this.properties,
             css_map: this.cssMap,
             ref_map: this.refMap,
